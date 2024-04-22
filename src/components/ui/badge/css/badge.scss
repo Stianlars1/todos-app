@@ -1,0 +1,54 @@
+.badge {
+  font-size: 0.875rem;
+  padding: 0.25rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: calc(var(--radius) - 2px);
+  margin: 4px 0;
+}
+
+.badge-text {
+  font-size: inherit;
+  margin: 0 4px !important;
+  padding: 1px 0.5rem;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.badge-link {
+  font-size: 0.875rem;
+  line-height: 1;
+  padding: 0;
+  font-weight: 500;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.badge-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.badge-secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+.badge-muted {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--foreground));
+}
+
+.badge-outlined {
+  background-color: transparent;
+  border: 1px solid hsl(var(--primary));
+  color: hsl(var(--foreground));
+}

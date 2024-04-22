@@ -1,0 +1,7 @@
+@media screen and (min-width: 769px) {
+  .hamburger-menu {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+  }
+}/*# sourceMappingURL=hamburger.css.map */

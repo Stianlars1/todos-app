@@ -1,0 +1,64 @@
+.login-or-signup {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+
+  .section {
+    flex: 1 0 50%;
+  }
+
+  .first-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+
+    p {
+      max-width: 370px;
+      text-align: center;
+    }
+  }
+
+  .second-section {
+    .form-card {
+      border-color: hsl(var(--border));
+    }
+  }
+
+  .signup-success-on-login {
+    .form-card {
+      border-color: transparent;
+    }
+  }
+
+  .forms-section {
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .login-or-signup {
+    flex-direction: column;
+    align-items: center;
+
+    .section {
+      width: 100%;
+    }
+
+    .first-section {
+      .success-animation {
+        width: 200px !important;
+        height: 200px !important;
+      }
+    }
+
+    .second-section {
+      display: flex;
+      justify-content: center;
+      .form-card {
+        border-color: hsl(var(--border));
+      }
+    }
+  }
+}

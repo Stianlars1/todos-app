@@ -1,0 +1,8 @@
+.form-error-wrapper {
+  li {
+    list-style-type: symbols("*");
+    margin-left: 24px;
+    color: hsl(var(--destructive));
+    margin-bottom: 0.25rem;
+  }
+}

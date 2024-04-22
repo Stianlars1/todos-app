@@ -1,0 +1,46 @@
+.login-or-signup {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+.login-or-signup .section {
+  flex: 1 0 50%;
+}
+.login-or-signup .first-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.login-or-signup .first-section p {
+  max-width: 370px;
+  text-align: center;
+}
+.login-or-signup .second-section .form-card {
+  border-color: hsl(var(--border));
+}
+.login-or-signup .signup-success-on-login .form-card {
+  border-color: transparent;
+}
+@media screen and (max-width: 768px) {
+  .login-or-signup {
+    flex-direction: column;
+    align-items: center;
+  }
+  .login-or-signup .section {
+    width: 100%;
+  }
+  .login-or-signup .first-section .success-animation {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  .login-or-signup .second-section {
+    display: flex;
+    justify-content: center;
+  }
+  .login-or-signup .second-section .form-card {
+    border-color: hsl(var(--border));
+  }
+}/*# sourceMappingURL=loginOrSignup.css.map */

@@ -1,0 +1,7 @@
+.divider {
+  width: 100%;
+  min-width: 100%;
+  overflow-x: hidden;
+  height: 1.75px;
+  background-color: hsl(var(--muted));
+}/*# sourceMappingURL=divider.css.map */
