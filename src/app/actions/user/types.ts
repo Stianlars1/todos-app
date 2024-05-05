@@ -1,0 +1,40 @@
+import { LanguageType } from "@/utils/i18/types";
+
+// api/user
+export interface UserDTO {
+  userId: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  createdAt: Date;
+  updatedAt: Date;
+  profilePicture?: string;
+  settings?: UserSettingsDTO;
+}
+
+// api/user/settings/:userId
+export interface UserSettingsDTO {
+  sidebarOpen?: boolean;
+  language?: LanguageType;
+  sortBacklog?: string;
+  sortInProgressTasks?: string;
+  sortCompletedTasks?: string;
+  sortByUpdatedAt?: string;
+  sortByCreatedAt?: string;
+  sortByTitle?: string;
+  sortByPriority?: string;
+  sortByDueDate?: string;
+}
+export type ExcludeBooleanKeys<T> = {
+  [K in keyof T]: T[K] extends boolean ? never : K;
+}[keyof T];
+
+export type UserSettingsSortKey =
+  | "sortBacklog"
+  | "sortInProgressTasks"
+  | "sortCompletedTasks"
+  | "sortByUpdatedAt"
+  | "sortByCreatedAt"
+  | "sortByTitle"
+  | "sortByPriority"
+  | "sortByDueDate";

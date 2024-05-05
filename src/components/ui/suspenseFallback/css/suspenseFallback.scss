@@ -1,0 +1,61 @@
+.suspense-fallback {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000000;
+
+  &__loader {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      border: 0.25rem solid hsl(var(--muted));
+      border-top-color: hsl(var(--primary));
+      animation: spin 1s linear infinite;
+      z-index: 1000000000;
+    }
+  }
+}
+
+.suspense-fallback-fixed {
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100%;
+  z-index: 100000000;
+
+  &__loader {
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      border: 0.25rem solid hsl(var(--muted));
+      border-top-color: hsl(var(--primary));
+      animation: spin 1s linear infinite;
+      z-index: 1000000000;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

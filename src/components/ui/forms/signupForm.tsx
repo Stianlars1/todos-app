@@ -1,5 +1,5 @@
 "use client";
-import { signup } from "@/app/actions/authentication";
+import { signup } from "@/app/actions/auth/signup";
 import { SignUpButton } from "@/components/ui/forms/components/signupButton";
 import { GeistSans } from "geist/font/sans";
 import { useFormState } from "react-dom";

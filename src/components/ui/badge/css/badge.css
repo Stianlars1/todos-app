@@ -1,6 +1,8 @@
 .badge {
-  font-size: 0.875rem;
-  padding: 0.25rem 1rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  padding: 0.125rem 0.625rem;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -8,22 +10,19 @@
   background-color: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
   border-radius: calc(var(--radius) - 2px);
+  border: 1px solid hsl(var(--border));
   margin: 4px 0;
 }
 
 .badge-text {
   font-size: inherit;
-  margin: 0 4px !important;
-  padding: 1px 0.5rem;
-  line-height: 1.7;
-  font-weight: 500;
+  margin: 0 3px !important;
+  padding: inherit;
+  line-height: inherit;
+  font-weight: inherit;
 }
 
 .badge-link {
-  font-size: 0.875rem;
-  line-height: 1;
-  padding: 0;
-  font-weight: 500;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   cursor: pointer;

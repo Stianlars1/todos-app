@@ -1,13 +1,34 @@
 "use client";
 import { iconSize } from "@/utils/constants";
 import { Button } from "@stianlarsen/react-ui-kit";
+import { useEffect } from "react";
 import "./css/hamburger.css";
 export const HamburgerMenu = () => {
   const handleMenuClick = () => {
     const isOpen =
       document.body.getAttribute("data-nav-open") === "true" || false;
     document.body.setAttribute("data-nav-open", String(!isOpen));
+
+    if (!isOpen) {
+      document.body.style.setProperty("--sidebar-width", "15rem");
+    }
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isOpen =
+        document.body.getAttribute("data-nav-open") === "true" || false;
+      if (window.innerWidth >= 768 && isOpen) {
+        document.body.setAttribute("data-nav-open", String(false));
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <Button variant="icon" onClick={handleMenuClick}>
       <svg

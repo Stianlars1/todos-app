@@ -1,0 +1,35 @@
+.error-message {
+  color: hsl(var(--destructive-foreground));
+  font-size: 1rem;
+  padding: 6px 12px;
+  margin: 0;
+  background-color: hsl(var(--destructive));
+  width: fit-content;
+  border-radius: calc(var(--radius) - 2px);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  position: relative;
+
+  &__icon {
+    font-size: 1.75rem;
+  }
+
+  &__message {
+  }
+
+  &__close-button {
+    font-size: calc(1rem + 4px);
+    background-color: black;
+    border-radius: 50%;
+    padding: 4px;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+}
+
+.with-margins {
+  margin: 1rem;
+}

@@ -1,0 +1,51 @@
+.grid-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  pointer-events: all;
+  border-bottom: 1px solid hsl(var(--border));
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background-color: hsl(var(--background));
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    pointer-events: all;
+
+    &__logo {
+      color: inherit;
+      cursor: inherit;
+    }
+    &__logo-text {
+      font-size: 22px;
+      line-height: 22px;
+      font-weight: 400;
+      color: inherit;
+      cursor: inherit;
+    }
+  }
+}
+
+@media screen and (prefers-color-scheme=dark) {
+  .grid-navbar {
+    &__logo {
+      &__logo {
+      }
+      &__logo-text {
+      }
+    }
+  }
+}

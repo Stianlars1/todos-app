@@ -1,0 +1,95 @@
+.login-or-signup {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  gap: 8rem;
+}
+.login-or-signup .section {
+  flex: 1 0 calc(50% - 4rem);
+}
+.login-or-signup .first-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  gap: 1.5rem;
+}
+.login-or-signup .first-section p {
+  max-width: 370px;
+  text-align: center;
+}
+.login-or-signup .first-section::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: hsl(var(--secondary));
+  z-index: -1;
+  right: 50%;
+  top: 0;
+  left: -1000000px;
+  bottom: var(--footer-height);
+}
+.login-or-signup .second-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.login-or-signup .second-section .form-card {
+  border-color: hsl(var(--border));
+  border-color: transparent;
+  margin: 0 !important;
+}
+.login-or-signup .signup-success-on-login .form-card {
+  border-color: transparent;
+}
+.login-or-signup .forms-section .form-card {
+  max-width: 450px;
+}
+
+@media screen and (max-width: 1080px) {
+  .login-or-signup {
+    gap: 0;
+  }
+  .login-or-signup .first-section {
+    align-items: center;
+    flex: 1 0 40%;
+  }
+  .login-or-signup .first-section::after {
+    background-color: transparent;
+    display: none;
+  }
+  .login-or-signup .second-section {
+    align-items: center;
+    flex: 1 0 60%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .login-or-signup {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+  .login-or-signup .section {
+    width: 100%;
+  }
+  .login-or-signup .first-section {
+    align-items: center;
+    display: none;
+  }
+  .login-or-signup .first-section .lottie-animation {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  .login-or-signup .second-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-or-signup .second-section .form-card {
+    border-color: hsl(var(--border));
+  }
+}/*# sourceMappingURL=loginOrSignup.css.map */

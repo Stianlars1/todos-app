@@ -24,13 +24,20 @@ export interface DecryptedToken {
   sub: string;
   iat: number;
   exp: number;
-  username: string;
   email: string;
   userId: number;
+  firstName: string;
+  lastName: string;
 }
+
+export type SessionType = DecryptedToken;
 
 export interface authResponseDTO {
   data: Tokens;
   message: string;
   success: boolean;
+}
+export interface TokenType {
+  accessToken: string;
+  refreshToken: string;
 }

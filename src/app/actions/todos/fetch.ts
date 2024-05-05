@@ -1,0 +1,104 @@
+"use server";
+import { cacheInvalidate } from "@/app/lib/cache/cache";
+import { CacheKeys } from "@/app/lib/cache/keys";
+import { TodoDTO } from "@/types/types";
+import { customFetch } from "@/utils/fetch/customFetch";
+import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
+import {
+  API_TODOS_CATEGORIZED_URL,
+  API_TODOS_CREATE_URL,
+  API_TODOS_UPDATE_URL,
+  API_TODOS_URL,
+} from "@/utils/urls";
+import { UpdateTodoResponse, UpdatedTodoDTO } from "./types";
+import { getCreateTodoFormData } from "./utils";
+
+export const getTodoById = async (todoId: string) => {
+  const API_TODO_URL = `${API_TODOS_URL}/${todoId}`;
+  const todoResponse = await customFetch<TodoDTO>({
+    url: API_TODO_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    revalidate: 0,
+  });
+
+  return todoResponse;
+};
+
+export const getAllTodos = async <T>() => {
+  return await customFetch<T>({
+    url: API_TODOS_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    cacheKey: CacheKeys.ALL_TODOS,
+  });
+};
+export const getCategorizedTodos = async <T>() => {
+  const categorized = await customFetch<T>({
+    url: API_TODOS_CATEGORIZED_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    headers: APPLICATION_JSON_V1,
+    cacheKey: CacheKeys.CATEGORIZED_TODOS,
+  });
+
+  let error = "";
+  if (categorized.isError) {
+    error = "Couldn't load todos";
+  }
+
+  return { ...categorized, error: error };
+};
+
+export const updateTodo = async (
+  todoId: string,
+  updatedTodo: UpdatedTodoDTO
+) => {
+  const UPDATE_URL = `${API_TODOS_UPDATE_URL}/${todoId}`;
+  const formData = new FormData();
+  formData.append("todo", JSON.stringify(updatedTodo));
+
+  return await customFetch<UpdateTodoResponse>({
+    url: UPDATE_URL,
+    options: {
+      method: HTTP_REQUEST.PUT,
+      body: formData,
+    },
+  });
+};
+export const createTodo = async (
+  __initialState: unknown,
+  formData: FormData
+) => {
+  console.log("\n\n\n\n 🟢 == CREATE TODO CALLED == ");
+  const updatedTodo = getCreateTodoFormData(formData);
+  const formDataDTO = new FormData();
+  formDataDTO.append("todo", JSON.stringify(updatedTodo));
+
+  console.log("\n 🟢updatedTodo", updatedTodo);
+  console.log("\n 🟢formDataDTO", formDataDTO);
+
+  const uploadResponse = await customFetch<TodoDTO>({
+    url: API_TODOS_CREATE_URL,
+    options: {
+      method: HTTP_REQUEST.POST,
+      body: formDataDTO,
+    },
+  });
+
+  if (uploadResponse.isError) {
+    console.error("\n 🟢 Error creating todo", uploadResponse.error);
+  }
+
+  await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+
+  return uploadResponse;
+};
+
+// working example
+// {    "title": "test 404 with image",    "description": "test 404 with image",    "statusId": 7,    "dueDate": "2030-08-19T01:44:23", "priority": "MEDIUM", "tags": ["first tag"]}
+// not working
+//'{"title":"Første oppgave ","description":"dette er beskrivelsaen","statusId":"1","priority":"LOW","dueDate":"","content":null,"tags":"first"}'

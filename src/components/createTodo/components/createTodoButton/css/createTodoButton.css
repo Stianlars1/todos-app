@@ -1,0 +1,17 @@
+.create-todo__button {
+  font-size: 0.875rem;
+  background-color: hsl(var(--primary));
+}
+.create-todo__button svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  vertical-align: middle;
+  color: hsl(var(--white));
+}
+.create-todo__button:hover {
+  background-color: hsl(var(--primary)/0.8);
+}/*# sourceMappingURL=createTodoButton.css.map */

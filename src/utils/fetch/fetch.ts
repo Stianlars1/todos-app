@@ -1,0 +1,31 @@
+import { getToken } from "@/app/actions/session";
+
+export const HTTP_REQUEST = {
+  GET: "GET",
+  POST: "POST",
+  PUT: "PUT",
+  DELETE: "DELETE",
+  PATCH: "PATCH",
+};
+
+export const APPLICATION_JSON_V1: HeadersInit = {
+  "Content-Type": "application/json",
+};
+
+export const MULTIPART_FORM_DATA_V1 = {
+  "Content-Type": "multipart/form-data",
+};
+
+export const getAuthHeaders = async () => {
+  const tokenDetails = await getToken(); // Assuming getToken is now an async function if you're retrieving token from an async source.
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${tokenDetails?.accessToken || ""}`,
+  };
+};
+export const getAuthHeaderOnly = async () => {
+  const tokenDetails = await getToken(); // Assuming getToken is now an async function if you're retrieving token from an async source.
+  return {
+    Authorization: `Bearer ${tokenDetails?.accessToken || ""}`,
+  };
+};

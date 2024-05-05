@@ -1,0 +1,64 @@
+.reveal-card {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+  color: hsl(var(--card-foreground));
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  cursor: grab;
+  border: 1px solid hsl(var(--border));
+  &__wrapper {
+    padding: 1.5rem;
+    &__header {
+      h3 {
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+      p {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: hsl(var(--muted-foreground));
+      }
+    }
+    &__badges {
+      display: flex;
+      gap: 0.5rem;
+
+      &__tags,
+      &__priority {
+        padding-top: 0.125rem;
+        padding-bottom: 0.125rem;
+        font-weight: 600;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        padding-left: 0.625rem;
+        padding-right: 0.625rem;
+        border-width: 1px;
+        border-radius: 9999px;
+        white-space: nowrap;
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+      }
+      &__priority {
+        color: rgb(153 27 27);
+        background-color: rgb(254 226 226);
+      }
+
+      &__tags {
+        color: rgb(27, 71, 153);
+        background-color: rgb(226, 232, 254);
+      }
+    }
+    &__content {
+    }
+  }
+}
+
+.reveal-card-is-grabbed {
+  opacity: 0.25;
+  //display: none;
+}

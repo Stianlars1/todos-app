@@ -1,0 +1,15 @@
+[data-nav-open="true"] {
+  @media screen and (max-width: 768px) {
+    .backdrop {
+      position: fixed;
+      top: -10000px;
+      left: -10000px;
+      right: -10000px;
+      bottom: -10000px;
+      z-index: -10;
+      background: hsl(0 0% 0% / 80%);
+      padding: 20px;
+      overflow: hidden;
+    }
+  }
+}

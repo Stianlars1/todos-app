@@ -1,0 +1,35 @@
+.modal {
+  max-width: calc(-120px + 100vw);
+  max-height: calc(-119px + 100vh);
+  position: fixed;
+
+  inset-inline: 0px;
+  margin-inline: auto;
+
+  border-radius: 0.5rem;
+  box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
+  border: 1px solid #ccc;
+
+  overflow-y: scroll;
+
+  inset-block-start: 60px;
+
+  transition-duration: 350ms;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.15, 1, 0.3, 1);
+
+  &__backdrop-clickable {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -10;
+    background-color: transparent;
+  }
+}
+
+.modal::backdrop {
+  background: hsl(0 0% 0% / 50%);
+  overflow: hidden;
+}

@@ -1,0 +1,25 @@
+.status-column-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: hsl(var(--muted));
+  padding: 1rem 1rem 2rem;
+  flex: 1 1 auto;
+  border-radius: calc(var(--radius) - 4px);
+  &__title {
+    font-size: 0.875rem;
+  }
+  &__ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow: hidden;
+    height: 100%;
+
+    &__reveal-card {
+    }
+  }
+
+  &__ul-active {
+  }
+}
