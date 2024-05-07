@@ -1,11 +1,12 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
+import "./css/forgotPasswordCommonComponents.css";
 
-export const ResetPasswordPageHeader = ({
+export const ForgotPasswordPageHeader = ({
   title,
   description,
 }: {
   title: string;
-  description: string;
+  description: string | ReactElement | ReactNode;
 }) => {
   return (
     <header className="grid-container-password__main__header">
@@ -17,10 +18,10 @@ export const ResetPasswordPageHeader = ({
   );
 };
 
-export const ResetPasswordPageContainer = ({
+export const ForgotPasswordPageContainer = ({
   children,
 }: {
-  children: ReactElement | ReactElement[];
+  children: ReactElement | ReactElement[] | ReactNode | ReactNode[];
 }) => {
   return <div className="grid-container-password__main">{children}</div>;
 };

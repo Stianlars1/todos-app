@@ -1,0 +1,8 @@
+.form-content-wrapper {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.625rem;
+  background-color: hsl(var(--card));
+}/*# sourceMappingURL=formContentWrapper.css.map */

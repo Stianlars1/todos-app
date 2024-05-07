@@ -45,7 +45,7 @@ export const verifySession = cache(async () => {
   const session = await decryptSession(token);
   if (!token || !session) {
     try {
-      deleteSession();
+      await deleteSession();
     } catch (error) {
       console.error("Error deleting session: ", error);
     }
@@ -65,7 +65,7 @@ export const verifySession = cache(async () => {
 
     if (!requestNewTokenresponse.ok) {
       console.error("Error requesting new token: ", requestNewTokenresponse);
-      deleteSession();
+      await deleteSession();
       return redirect("/login");
     }
     const newToken: authResponseDTO = await requestNewTokenresponse.json();
@@ -104,8 +104,12 @@ export async function decryptSession(
 }
 
 // Delete
-export const deleteSession = () => {
+export const deleteSession = async () => {
   console.log("\n\n\n 🗑️ Deleting session");
+  if (!cookies().get("session")) {
+    console.warn("No session found in cookies");
+    return;
+  }
   cookies().delete("session");
 };
 //

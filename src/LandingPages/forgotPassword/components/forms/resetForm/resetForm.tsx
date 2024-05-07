@@ -1,10 +1,21 @@
 "use client";
 import { resetPassword } from "@/app/actions/password/reset";
+import { CustomForm } from "@/components/form/components/customForm/customForm";
+import {
+  CustomInput,
+  CustomInputLabel,
+  CustomInputLabelWrapper,
+} from "@/components/form/components/customInput/customInput";
+import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
-import { GeistSans } from "geist/font/sans";
+import { FormError } from "@/components/ui/forms/components/formError/formError";
+import { LOGIN_URL } from "@/utils/urls";
+import { Button } from "@stianlarsen/react-ui-kit";
 import { useSearchParams } from "next/navigation";
 import { useFormState, useFormStatus } from "react-dom";
-import { ResetPasswordButton } from "../buttons/resetPasswordButton";
+import { ForgotPasswordButtonsWrapper } from "../../forgotPasswordButtonsWrapper/forgotPasswordButtonsWrapper";
+import { ForgotPasswordButton } from "../buttons/resetPasswordButton";
+import "../css/forgotPasswordForms.css";
 
 export const ResetForm = () => {
   const token = useSearchParams().get("token");
@@ -13,15 +24,6 @@ export const ResetForm = () => {
   const { pending } = useFormStatus();
 
   console.log("state", state);
-  if (state?.success && state?.message) {
-    return (
-      <div className="form-card-reset-password__form">
-        <p className="form-card-reset-password__form__success-message">
-          {state.message}
-        </p>
-      </div>
-    );
-  }
 
   if (!validToken) {
     return (
@@ -33,37 +35,53 @@ export const ResetForm = () => {
       />
     );
   }
+
   return (
-    <form action={dispatch} className="form-card-reset-password__form">
-      <div className="form-card-reset-password__form__group">
-        <label htmlFor="email">New password</label>
-        <input
-          className={GeistSans.className}
-          autoComplete="email"
-          type="password"
-          id="password"
-          name="password"
-          required
-        />
-        {validToken && token && (
-          <input
-            className={GeistSans.className}
-            autoComplete="email"
-            type="token"
-            id="token"
-            name="token"
-            value={token}
-            hidden
+    <CustomForm action={dispatch}>
+      <FormContentWrapper>
+        <CustomInputLabelWrapper>
+          <CustomInputLabel htmlFor="email">New password</CustomInputLabel>
+          <CustomInput
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your new password..."
+            width="100%"
+            required
           />
+
+          {state?.errors?.password && (
+            <FormError
+              style={{ listStyleType: "none", margin: "0" }}
+              errorArray={state?.errors?.password}
+            />
+          )}
+
+          {state?.errors?.token && (
+            <FormError
+              style={{ listStyleType: "none", margin: "0" }}
+              errorArray={state?.errors?.token}
+            />
+          )}
+        </CustomInputLabelWrapper>
+
+        {validToken && token && (
+          <input type="token" id="token" name="token" value={token} hidden />
         )}
-      </div>
+      </FormContentWrapper>
+
       <ErrorMessage
         errorMessage={state?.message.toString() || null}
         isError={state?.success === false}
         margins={false}
       />
-      {pending && <p>Loading</p>}
-      <ResetPasswordButton variant="reset-password" />
-    </form>
+
+      <ForgotPasswordButtonsWrapper>
+        <ForgotPasswordButton variant="reset-password" />
+        <Button href={LOGIN_URL} variant="link">
+          Go to login
+        </Button>
+      </ForgotPasswordButtonsWrapper>
+    </CustomForm>
   );
 };

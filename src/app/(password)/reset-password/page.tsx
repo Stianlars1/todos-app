@@ -1,4 +1,4 @@
-import { ForgotOrResetPage } from "@/LandingPages/forgotPassword/forgotPasswordCommonContainer";
+import { ForgotPasswordCommonContainer } from "@/LandingPages/forgotPassword/forgotPasswordCommonContainer";
 import { verifyAuthentication } from "@/app/actions/authentication";
 import { getUserSettings } from "@/app/actions/user/userApi";
 import { GridContainerPassword } from "@/components/grid/gridContainerPassword/gridContainerPassword";
@@ -19,7 +19,7 @@ export default async function ForgotPassword() {
   return (
     <>
       <GridContainerPassword>
-        <ForgotOrResetPage variant="reset-password" />
+        <ForgotPasswordCommonContainer variant="reset-password" />
       </GridContainerPassword>
     </>
   );

@@ -1,45 +1,52 @@
 "use client";
 import { forgotPassword } from "@/app/actions/password/forgot";
+import { CustomForm } from "@/components/form/components/customForm/customForm";
+import {
+  CustomInput,
+  CustomInputLabel,
+  CustomInputLabelWrapper,
+} from "@/components/form/components/customInput/customInput";
+import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
-import { GeistSans } from "geist/font/sans";
-import { useFormState, useFormStatus } from "react-dom";
-import { ResetPasswordButton } from "../buttons/resetPasswordButton";
+import { LOGIN_URL } from "@/utils/urls";
+import { Button } from "@stianlarsen/react-ui-kit";
+import { useFormState } from "react-dom";
+import { ForgotPasswordButtonsWrapper } from "../../forgotPasswordButtonsWrapper/forgotPasswordButtonsWrapper";
+import { ForgotPasswordButton } from "../buttons/resetPasswordButton";
+import "../css/forgotPasswordForms.css";
 
 export const ForgotForm = () => {
   const [state, dispatch] = useFormState(forgotPassword, null);
-  const { pending } = useFormStatus();
 
-  console.log("state", state);
-
-  if (state?.success && state?.message) {
-    return (
-      <div className="form-card-reset-password__form">
-        <p className="form-card-reset-password__form__success-message">
-          {state.message}
-        </p>
-      </div>
-    );
-  }
   return (
-    <form action={dispatch} className="form-card-reset-password__form">
-      <div className="form-card-reset-password__form__group">
-        <label htmlFor="email">Email</label>
-        <input
-          className={GeistSans.className}
-          autoComplete="email"
-          type="email"
-          id="email"
-          name="email"
-          required
-        />
-      </div>
+    <CustomForm action={dispatch}>
+      <FormContentWrapper>
+        <CustomInputLabelWrapper>
+          <CustomInputLabel htmlFor="email">Email Address</CustomInputLabel>
+          <CustomInput
+            type="email"
+            autoComplete="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email address..."
+            width="100%"
+            required
+          />
+        </CustomInputLabelWrapper>
+      </FormContentWrapper>
+
       <ErrorMessage
         errorMessage={state?.message.toString() || null}
         isError={state?.success === false}
         margins={false}
       />
-      {pending && <p>Loading</p>}
-      <ResetPasswordButton variant="forgot-password" />
-    </form>
+
+      <ForgotPasswordButtonsWrapper>
+        <ForgotPasswordButton variant="forgot-password" />
+        <Button href={LOGIN_URL} variant="link">
+          Go to login
+        </Button>
+      </ForgotPasswordButtonsWrapper>
+    </CustomForm>
   );
 };

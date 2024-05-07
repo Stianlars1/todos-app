@@ -3,7 +3,7 @@
   font-size: 1rem;
   padding: 6px 12px;
   margin: 0;
-  background-color: #8bc34a;
+  background-color: hsl(var(--success));
   width: -moz-fit-content;
   width: fit-content;
   border-radius: calc(var(--radius) - 2px);

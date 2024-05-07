@@ -35,6 +35,7 @@ export const API_PASSWORD_RESET_URL =
 export const ROOT_URL = "/";
 export const LOGIN_URL = "/login";
 export const SIGNUP_URL = "/signup";
+export const FORGOT_URL = "/forgot-password";
 
 export const useLinkUrl = (href: string) => {
   const locale = useLocale();

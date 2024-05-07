@@ -1,6 +1,10 @@
 export interface ResetPasswordResponse {
   success: boolean;
   message: string;
+  errors?: {
+    password?: string[];
+    token?: string[];
+  };
 }
 
 export interface ForgotPasswordFetcherProps {

@@ -15,6 +15,7 @@
 }
 .error-message__icon {
   font-size: 1.75rem;
+  flex-shrink: 0;
 }
 .error-message__close-button {
   font-size: calc(1rem + 4px);

@@ -1,7 +1,5 @@
-"use client";
-import { MdCheck, MdClose, MdError } from "react-icons/md";
+import { MdCheck } from "react-icons/md";
 
-import { useState } from "react";
 import "./css/successMessage.css";
 
 export const SuccessMessage = ({ message }: { message: string }) => {

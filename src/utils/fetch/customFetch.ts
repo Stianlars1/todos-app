@@ -110,7 +110,7 @@ export async function customFetch<T>({
         "\n\n 🔴 Access restricted or cache has cleaned and session expired. \n",
         error
       );
-      deleteSession();
+      await deleteSession();
       return redirect("/login");
     }
     return {
