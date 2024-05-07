@@ -13,6 +13,7 @@ export interface sidebarContentListType {
   href: string;
   icon: ReactElement;
 }
+
 export const sidebarContentList: sidebarContentListType[] = [
   {
     title: "Overview",

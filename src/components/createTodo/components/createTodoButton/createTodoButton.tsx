@@ -3,9 +3,13 @@ import { IconAdd } from "@/components/ui/icons/icons";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { CreateTask } from "../../createTask";
+import { CreateTask, CreateTaskTextsProps } from "../../createTask";
 import "./css/createTodoButton.css";
-export const CreateTodoButton = () => {
+export const CreateTodoButton = ({
+  createTaskTexts,
+}: {
+  createTaskTexts: CreateTaskTextsProps;
+}) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -19,7 +23,10 @@ export const CreateTodoButton = () => {
 
       {open &&
         createPortal(
-          <CreateTask onClose={() => setOpen(!open)} />,
+          <CreateTask
+            createTaskTexts={createTaskTexts}
+            onClose={() => setOpen(!open)}
+          />,
           document.body
         )}
     </>

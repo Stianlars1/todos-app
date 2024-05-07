@@ -1,0 +1,59 @@
+{
+  "Navbar": {
+    "LocaleSwitcher": {
+      "language": "{locale}"
+    }
+  },
+  "Dashboard": {
+    "title": "Hello"
+  },
+
+  "Buttons": {
+    "logout": {
+      "title": "Logout",
+      "loadingTitle": "Logging out..."
+    },
+
+    "login": {
+      "title": "Login",
+      "loadingTitle": "Logging in..."
+    }
+  },
+
+  "Create-task": {
+    "header": {
+      "title": "Create task",
+      "description": "Click outside the modal to close it."
+    },
+    "form": {
+      "title": {
+        "label": "Title",
+        "placeholder": "Task title"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Task description"
+      },
+      "status": {
+        "label": "Status"
+      },
+      "priority": {
+        "label": "Priority"
+      },
+      "dueDate": {
+        "label": "Due date (optional)",
+        "placeholder": "Date"
+      },
+      "content": {
+        "label": "Content (optional)"
+      },
+      "tags": {
+        "label": "Tags (optional)",
+        "placeholder": "Tags"
+      }
+    },
+    "submit": {
+      "title": "Create task"
+    }
+  }
+}

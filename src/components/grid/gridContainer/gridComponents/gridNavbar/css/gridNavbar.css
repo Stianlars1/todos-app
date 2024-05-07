@@ -34,4 +34,23 @@
   font-weight: 400;
   color: inherit;
   cursor: inherit;
+}
+.grid-navbar__right-side-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+@media screen and (min-width: 769px) {
+  .grid-navbar__right-side-wrapper__hamburger-menu {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .grid-navbar__right-side-wrapper__logout-button {
+    display: none !important;
+  }
+  .grid-navbar__right-side-wrapper__hamburger-menu {
+    display: flex;
+  }
 }/*# sourceMappingURL=gridNavbar.css.map */

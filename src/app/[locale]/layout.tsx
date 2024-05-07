@@ -1,18 +1,19 @@
-import { InitializeLocaleLanguage } from "@/utils/i18/components/initializeLocaleLanguage";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
-import "./globals.css";
-import { mainPageMeta } from "./metadata";
+import "../globals.css";
+import { mainPageMeta } from "../metadata";
 
 export const metadata: Metadata = mainPageMeta;
 
 export default async function RootLayout({
   children,
-}: Readonly<{
+  params: { locale },
+}: {
   children: React.ReactNode;
-}>) {
+  params: { locale: string };
+}) {
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={GeistSans.className}>{children}</body>
     </html>
   );

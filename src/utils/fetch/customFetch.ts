@@ -1,3 +1,4 @@
+"use server";
 import { deleteSession } from "@/app/actions/session";
 import { redirect } from "next/navigation";
 import {
@@ -39,9 +40,13 @@ export async function customFetch<T>({
           ...headers,
         }
       : undefined
-    : {
+    : authHeader
+    ? {
         ...authHeader,
         ...headers, // Include passed headers as well
+      }
+    : {
+        ...headers,
       };
 
   const fetchOptions: RequestInit = {
@@ -105,11 +110,7 @@ export async function customFetch<T>({
         "\n\n 🔴 Access restricted or cache has cleaned and session expired. \n",
         error
       );
-      const delSession = async () => {
-        "use server";
-        deleteSession();
-      };
-      await delSession();
+      deleteSession();
       return redirect("/login");
     }
     return {

@@ -1,0 +1,24 @@
+.locale-switcher {
+  position: relative;
+  cursor: pointer;
+}
+.locale-switcher__select-wrapper {
+  background-color: transparent;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: none;
+  align-items: center;
+  border: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+}
+.locale-switcher span {
+  position: absolute;
+  pointer-events: none;
+  right: 2px;
+  top: 5px;
+  cursor: pointer;
+}/*# sourceMappingURL=localeSwitcher.css.map */

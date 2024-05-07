@@ -5,11 +5,11 @@ export const getCategoryDisplaySettings = (categoryString: string) => {
     case "upcomingDeadlines":
       return { render: false, title: "Upcoming Deadlines" };
     case "completedTasks":
-      return { render: true, title: "Completed Tasks" };
+      return { render: true, title: "Completed" };
     case "pendingTasks":
-      return { render: false, title: "Pending Tasks" };
+      return { render: false, title: "Pending" };
     case "inProgressTasks":
-      return { render: true, title: "In Progress Tasks" };
+      return { render: true, title: "In Progress" };
     case "onHoldTasks":
       return { render: false, title: "On Hold Tasks" };
     case "cancelledTasks":

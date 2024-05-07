@@ -1,17 +1,21 @@
-import { UserDetailsResponse } from "@/app/actions/user/types";
+import { UserDTO } from "@/app/actions/user/types";
 import { ProfilePictureAvatar } from "@/components/profilePictureAvatar/profilePictureAvatar";
 import { IconSettings } from "@/components/ui/icons/icons";
+import { navLinks } from "@/content/content";
+import { useLinkUrl } from "@/utils/urls";
+import Link from "next/link";
 import { TaskBuddyLogo } from "../../../gridNavbar/assets/taskBuddyLogoSvg";
 import "./css/gridSidebarFooter.css";
 export const GridSidebarFooter = async ({
   userDetails,
 }: {
-  userDetails: UserDetailsResponse | null;
+  userDetails: UserDTO | null;
 }) => {
+  const linkUrl = useLinkUrl(navLinks.SETTINGS.href);
   const full_name = userDetails ? `${userDetails.firstName}` : undefined;
   return (
     <>
-      <div className="sidebar__footer">
+      <Link href={linkUrl} className="sidebar__footer">
         <div className="sidebar__footer__wrapper">
           {userDetails?.profilePicture ? (
             <ProfilePictureAvatar
@@ -26,7 +30,7 @@ export const GridSidebarFooter = async ({
           <span className="link-text">{full_name}</span>
         </div>
         <IconSettings />
-      </div>
+      </Link>
     </>
   );
 };

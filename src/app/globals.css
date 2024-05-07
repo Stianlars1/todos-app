@@ -1,6 +1,8 @@
 /* --background: 20 14.3% 4.1%; dark */
 html body {
   --testMainBG: #f3f4f6;
+  --test: #71717a;
+  --test2: hsl(240 3.8% 46.1%);
   --testMainMutedLightMode: 222 56% 88%;
   /* == layout sizes == */
   /* --nav-height: 65px; */

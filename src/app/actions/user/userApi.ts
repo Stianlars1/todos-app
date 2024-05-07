@@ -1,6 +1,5 @@
 import { customFetch } from "@/utils/fetch/customFetch";
 import { HTTP_REQUEST, getAuthHeaderOnly } from "@/utils/fetch/fetch";
-import { LanguageType } from "@/utils/i18/types";
 import {
   API_PROFILE_PICTURES_URL,
   API_USER_SETTINGS_URL,
@@ -53,10 +52,4 @@ export const getUserSettings = async () => {
       headers: await getAuthHeaderOnly(),
     },
   });
-};
-
-export const getLanguageFromServer = async (): Promise<LanguageType> => {
-  const res = await getUserSettings();
-
-  return res.data?.language || "en";
 };

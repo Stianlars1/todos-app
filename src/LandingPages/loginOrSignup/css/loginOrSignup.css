@@ -30,7 +30,7 @@
   right: 50%;
   top: 0;
   left: -1000000px;
-  bottom: var(--footer-height);
+  bottom: 0;
 }
 .login-or-signup .second-section {
   display: flex;

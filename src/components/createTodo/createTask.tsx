@@ -8,7 +8,86 @@ import { Modal } from "../modal/modal";
 import { TextEditor } from "../ui/richTextEditor/richTextEditor";
 import "./css/createTask.css";
 
-export const CreateTask = ({ onClose }: { onClose: () => void }) => {
+// "Create-task": {
+//   "header": {
+//     "title": "Create task",
+//     "description": "Click outside the modal to close it."
+//   },
+//   "form": {
+//     "title": {
+//       "label": "Tittel",
+//       "placeholder": "Oppgavetittel"
+//     },
+//     "description": {
+//       "label": "Beskrivelse",
+//       "placeholder": "Gi en beskrivelse av oppgaven"
+//     },
+//     "status": {
+//       "label": "Status"
+//     },
+//     "priority": {
+//       "label": "Prioritet"
+//     },
+//     "dueDate": {
+//       "label": "Frist (valgfritt)",
+//       "placeholder": "dato og klokkeslett når fristen er"
+//     },
+//     "content": {
+//       "label": "Innhold (valgfritt)"
+//     },
+//     "tags": {
+//       "label": "Tags (valgfritt)",
+//       "placeholder": "Tags"
+//     }
+//   },
+//   "submit": {
+//     "title": "Opprett oppgave"
+//   }
+
+export interface CreateTaskTextsProps {
+  header: {
+    title: string;
+    description: string;
+  };
+  form: {
+    title: {
+      label: string;
+      placeholder: string;
+    };
+    description: {
+      label: string;
+      placeholder: string;
+    };
+    status: {
+      label: string;
+    };
+    priority: {
+      label: string;
+    };
+    dueDate: {
+      label: string;
+      placeholder: string;
+    };
+    content: {
+      label: string;
+    };
+    tags: {
+      label: string;
+      placeholder: string;
+    };
+  };
+  submit: {
+    title: string;
+  };
+}
+
+export const CreateTask = ({
+  onClose,
+  createTaskTexts,
+}: {
+  onClose: () => void;
+  createTaskTexts: CreateTaskTextsProps;
+}) => {
   const [state, dispatch] = useFormState(createTodo, undefined);
   const [content, setContent] = useState<string>("");
   const [statusId, setStatusId] = useState<StatusId>(StatusId.CREATED);
@@ -71,47 +150,47 @@ export const CreateTask = ({ onClose }: { onClose: () => void }) => {
     <Modal onClose={onClose}>
       <form action={dispatch} className="create-task">
         <header className="create-task__header">
-          <h1>Create task</h1>
-          <p>Click outside the modal to close it.</p>
+          <h1>{createTaskTexts.header.title}</h1>
+          <p>{createTaskTexts.header.description}</p>
         </header>
         <div className="create-task__content">
           <div className="create-task__content__wrapper ">
-            <label>Title</label>
+            <label>{createTaskTexts.form.title.label}</label>
             <input
               type="text"
-              placeholder="Task title"
+              placeholder={createTaskTexts.form.title.placeholder}
               id="title"
               name="title"
             />
           </div>
           <div className="create-task__content__wrapper ">
-            <label>Description</label>
+            <label>{createTaskTexts.form.description.label}</label>
             <input
               type="text"
-              placeholder="Task description"
+              placeholder={createTaskTexts.form.description.placeholder}
               id="description"
               name="description"
             />
           </div>
           <div className="create-task__content__wrapper ">
-            <label>Status</label>
+            <label>{createTaskTexts.form.status.label}</label>
             <SelectStatus />
           </div>
           <div className="create-task__content__wrapper ">
-            <label>Priority</label>
+            <label>{createTaskTexts.form.priority.label}</label>
             <TaskPriority />
           </div>
           <div className="create-task__content__wrapper ">
-            <label>Due date (optional)</label>
+            <label>{createTaskTexts.form.dueDate.label}</label>
             <input
               type="datetime-local"
-              placeholder="Date"
+              placeholder={createTaskTexts.form.dueDate.placeholder}
               id="dueDate"
               name="dueDate"
             />
           </div>
           <div className="create-task__content__wrapper ">
-            <label>Content (optional)</label>
+            <label>{createTaskTexts.form.content.label}</label>
             <TextEditor content={content} setContent={setContent} />
             {content && (
               <input
@@ -125,13 +204,13 @@ export const CreateTask = ({ onClose }: { onClose: () => void }) => {
             )}
           </div>
           <div className="create-task__content__wrapper ">
-            <label>Tags (optionsl)</label>
+            <label>{createTaskTexts.form.tags.label}</label>
             <input type="text" placeholder="Tags" id="tags" name="tags" />
           </div>
         </div>
         <div className="create-task__footer">
           <Button type="submit" variant="primary">
-            Create task
+            {createTaskTexts.submit.title}
           </Button>
         </div>
       </form>

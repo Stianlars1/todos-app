@@ -105,6 +105,7 @@ export async function decryptSession(
 
 // Delete
 export const deleteSession = () => {
+  console.log("\n\n\n 🗑️ Deleting session");
   cookies().delete("session");
 };
 //

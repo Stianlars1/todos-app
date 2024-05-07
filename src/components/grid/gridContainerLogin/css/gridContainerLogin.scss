@@ -3,33 +3,19 @@
   min-height: 100vh;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto var(--footer-height);
-  grid-template-areas:
-    "main"
-    "footer";
+  grid-template-columns: 100vw;
+  grid-template-rows: 100dvh;
+
   z-index: 1;
   overflow: visible;
 
   &__main {
-    grid-area: main; // Assigning to the main area
     flex: 1;
     max-width: var(--main--content-max-width); // Setting the width
     z-index: 1;
     overflow-x: hidden;
     height: fit-content;
     align-self: center;
-  }
-
-  &__footer {
-    grid-area: footer;
-    max-width: var(--main--content-max-width); // Setting the width
-    padding: var(--main-padding);
-    z-index: 1;
-    overflow-x: hidden;
-    height: fit-content;
-    place-self: flex-end;
-    justify-self: center;
   }
 }
 

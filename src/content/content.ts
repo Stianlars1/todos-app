@@ -10,10 +10,15 @@ export const socialMedia = {
 };
 
 export const navLinks = {
-  example: {
-    name: "example",
-    title: "This is an example",
-    url: "/example",
-    description: "Example test",
+  SETTINGS: {
+    href: "/settings",
   },
 };
+// export const navLinks = {
+//   SETTINGS: {
+//     name: "example",
+//     title: "This is an example",
+//     url: "/example",
+//     description: "Example test",
+//   },
+// };

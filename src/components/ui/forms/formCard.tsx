@@ -11,21 +11,30 @@ export const FormCard = ({ variant }: { variant: "signup" | "login" }) => {
       {isLogin ? <LoginForm /> : <SignUpForm />}
 
       {isLogin ? (
-        <p className="switchPageStatement">
-          Not a member yet?{" "}
-          <a href="/signup" className="link">
-            Sign up here
-          </a>
-          .
-        </p>
+        <>
+          <p className="switchPageStatement">
+            Not a member yet?{" "}
+            <a href="/signup" className="link">
+              Sign up here
+            </a>
+            .
+          </p>
+          <p className="switchPageStatement">
+            <a href="/forgot-password" className="link">
+              Forgot password?
+            </a>
+          </p>
+        </>
       ) : (
-        <p className="switchPageStatement">
-          Already have an account?{" "}
-          <a href="/login" className="link">
-            Log in here
-          </a>
-          .
-        </p>
+        <>
+          <p className="switchPageStatement">
+            Already have an account?{" "}
+            <a href="/login" className="link">
+              Log in here
+            </a>
+            .
+          </p>
+        </>
       )}
     </div>
   );

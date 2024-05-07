@@ -1,0 +1,16 @@
+.grid-container-password__main {
+  // styled in parent component
+
+  &__header {
+    &__title {
+      letter-spacing: -0.05rem;
+      font-size: 2rem;
+      text-wrap: pretty;
+    }
+
+    &__description {
+      margin-top: 1.25rem;
+      max-width: 450px;
+    }
+  }
+}

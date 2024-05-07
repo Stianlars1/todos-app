@@ -37,6 +37,16 @@
       cursor: inherit;
     }
   }
+
+  &__right-side-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    &__logout-button {
+    }
+  }
 }
 
 @media screen and (prefers-color-scheme=dark) {
@@ -45,6 +55,29 @@
       &__logo {
       }
       &__logo-text {
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .grid-navbar {
+    &__right-side-wrapper {
+      &__hamburger-menu {
+        display: none !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .grid-navbar {
+    &__right-side-wrapper {
+      &__logout-button {
+        display: none !important;
+      }
+
+      &__hamburger-menu {
+        display: flex;
       }
     }
   }

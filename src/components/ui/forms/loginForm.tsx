@@ -10,13 +10,13 @@ export const LoginForm = () => {
     ? getErrorMessage(state.errorMessage)
     : null;
 
-  console.log("state", state);
   return (
     <form className="form" action={dispatch}>
       <div className="form__group">
         <label htmlFor="email">Email</label>
         <input
           className={GeistSans.className}
+          autoComplete="email"
           type="email"
           id="email"
           name="email"
@@ -27,6 +27,7 @@ export const LoginForm = () => {
         <label htmlFor="password">Password</label>
         <input
           className={GeistSans.className}
+          autoComplete="current-password"
           type="password"
           id="password"
           name="password"
@@ -44,7 +45,6 @@ export const LoginForm = () => {
 };
 
 const getErrorMessage = (errorMessage: string) => {
-  console.log("errorMessage", errorMessage);
   switch (errorMessage) {
     case "Authentication failed: Bad credentials":
       return "Invalid email or password";

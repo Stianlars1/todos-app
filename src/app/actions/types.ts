@@ -1,3 +1,5 @@
+import { LanguageType } from "./user/types";
+
 export interface LoginCredentials {
   email: string;
   password: string;
@@ -28,6 +30,7 @@ export interface DecryptedToken {
   userId: number;
   firstName: string;
   lastName: string;
+  locale: LanguageType;
 }
 
 export type SessionType = DecryptedToken;

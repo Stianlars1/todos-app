@@ -1,0 +1,26 @@
+.success-message {
+  color: hsl(var(--destructive-foreground));
+  font-size: 1rem;
+  padding: 6px 12px;
+  margin: 0;
+  background-color: #8bc34a;
+  width: fit-content;
+  border-radius: calc(var(--radius) - 2px);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  position: relative;
+
+  &__icon {
+    font-size: 1.75rem;
+  }
+
+  &__message {
+  }
+}
+
+.with-margins {
+  margin: 1rem;
+}

@@ -3,14 +3,12 @@
   min-height: 100vh;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto var(--footer-height);
-  grid-template-areas: "main" "footer";
+  grid-template-columns: 100vw;
+  grid-template-rows: 100dvh;
   z-index: 1;
   overflow: visible;
 }
 .grid-container-login__main {
-  grid-area: main;
   flex: 1;
   max-width: var(--main--content-max-width);
   z-index: 1;
@@ -18,15 +16,4 @@
   height: -moz-fit-content;
   height: fit-content;
   align-self: center;
-}
-.grid-container-login__footer {
-  grid-area: footer;
-  max-width: var(--main--content-max-width);
-  padding: var(--main-padding);
-  z-index: 1;
-  overflow-x: hidden;
-  height: -moz-fit-content;
-  height: fit-content;
-  place-self: flex-end;
-  justify-self: center;
 }/*# sourceMappingURL=gridContainerLogin.css.map */

@@ -1,0 +1,59 @@
+{
+  "Navbar": {
+    "LocaleSwitcher": {
+      "language": "{locale}"
+    }
+  },
+  "Dashboard": {
+    "title": "Hei"
+  },
+
+  "Buttons": {
+    "logout": {
+      "title": "Logg ut",
+      "loadingTitle": "Logger ut..."
+    },
+
+    "login": {
+      "title": "Logg inn",
+      "loadingTitle": "Logger inn..."
+    }
+  },
+
+  "Create-task": {
+    "header": {
+      "title": "Opprett oppgave",
+      "description": "Klikk utenfor boksen for å lukke"
+    },
+    "form": {
+      "title": {
+        "label": "Tittel",
+        "placeholder": "Oppgavetittel"
+      },
+      "description": {
+        "label": "Beskrivelse",
+        "placeholder": "Gi en beskrivelse av oppgaven"
+      },
+      "status": {
+        "label": "Status"
+      },
+      "priority": {
+        "label": "Prioritet"
+      },
+      "dueDate": {
+        "label": "Frist (valgfritt)",
+        "placeholder": "dato og klokkeslett når fristen er"
+      },
+      "content": {
+        "label": "Innhold (valgfritt)"
+      },
+      "tags": {
+        "label": "Tags (valgfritt)",
+        "placeholder": "Tags"
+      }
+    },
+    "submit": {
+      "title": "Opprett oppgave"
+    }
+  }
+}

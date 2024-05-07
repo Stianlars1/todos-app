@@ -1,5 +1,3 @@
-import { LanguageType } from "@/utils/i18/types";
-
 // api/user
 export interface UserDTO {
   userId: number;
@@ -11,6 +9,8 @@ export interface UserDTO {
   profilePicture?: string;
   settings?: UserSettingsDTO;
 }
+
+export type LanguageType = "en" | "nb";
 
 // api/user/settings/:userId
 export interface UserSettingsDTO {

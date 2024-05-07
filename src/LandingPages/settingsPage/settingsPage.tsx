@@ -1,4 +1,4 @@
-export const SettingsPage = () => {
+export const SettingsPage = async () => {
   return (
     <div className="settings-page">
       <h1>Settings</h1>

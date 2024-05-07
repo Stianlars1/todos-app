@@ -1,13 +1,18 @@
 import { LoginOrSignupPage } from "@/LandingPages/loginOrSignup/loginOrSignup";
-import { LoginFooter } from "@/components/footer/loginFooter";
+import { verifyAuthentication } from "@/app/actions/authentication";
+import { getUserSettings } from "@/app/actions/user/userApi";
 import { GridContainerLogin } from "@/components/grid/gridContainerLogin/gridContainerLogin";
 import { redirect } from "next/navigation";
-import { verifyAuthentication } from "../../actions/authentication";
 
 export default async function Login() {
   const isAuthenticated = await verifyAuthentication();
 
   if (isAuthenticated) {
+    const userSettings = await getUserSettings();
+    if (userSettings.data?.language) {
+      const locale = userSettings.data.language;
+      return redirect(`/${locale}`);
+    }
     redirect("/");
   }
 
@@ -15,7 +20,6 @@ export default async function Login() {
     <>
       <GridContainerLogin>
         <LoginOrSignupPage variant="login" />
-        <LoginFooter />
       </GridContainerLogin>
     </>
   );

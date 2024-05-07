@@ -1,14 +1,14 @@
 "use client";
 
 import { updateUserSettings } from "@/app/actions/user/api";
-import { UserDetailsResponse } from "@/app/actions/user/types";
 import { useEffect, useState } from "react";
 import "./css/gridSidebarToggle.css";
+import { UserDTO } from "@/app/actions/user/types";
 
 export const GridSidebarToggle = ({
   userDetails,
 }: {
-  userDetails: UserDetailsResponse | null;
+  userDetails: UserDTO | null;
 }) => {
   const userSettings = Boolean(userDetails?.settings?.sidebarOpen);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(userSettings);

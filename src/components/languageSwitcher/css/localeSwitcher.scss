@@ -1,0 +1,27 @@
+.locale-switcher {
+  position: relative;
+  cursor: pointer;
+
+  &__select-wrapper {
+    background-color: transparent;
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: none;
+    align-items: center;
+    border: none;
+    appearance: none;
+    cursor: pointer;
+
+    &__option {
+    }
+  }
+
+  span {
+    position: absolute;
+    pointer-events: none;
+    right: 2px;
+    top: 5px;
+    cursor: pointer;
+  }
+}

@@ -1,9 +1,9 @@
-import { SECKRET_KEY } from "@/utils/constants";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { TokenType } from "./types";
 
 export const isValid = async (accessToken: string | undefined) => {
   if (!accessToken) {
+    console.error("No access token provided");
     return false;
   }
 
@@ -15,11 +15,7 @@ export const isValid = async (accessToken: string | undefined) => {
       return false;
     }
 
-    const decoded = jwt.verify(token, SECKRET_KEY, {
-      ignoreExpiration: true,
-    });
-
-    const hasExpired = await isTokenExpired(decoded as string);
+    const hasExpired = await isTokenExpired(token);
 
     if (hasExpired) {
       return false;
@@ -34,7 +30,7 @@ export const isValid = async (accessToken: string | undefined) => {
 
 export async function isTokenExpired(token: string): Promise<boolean> {
   try {
-    const decoded = jwt.decode(token) as JwtPayload | null;
+    const decoded = jwt.decode(token, { json: true }) as JwtPayload | null;
     if (
       decoded &&
       typeof decoded !== "string" &&

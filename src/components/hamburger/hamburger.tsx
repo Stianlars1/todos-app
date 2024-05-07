@@ -3,7 +3,7 @@ import { iconSize } from "@/utils/constants";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useEffect } from "react";
 import "./css/hamburger.css";
-export const HamburgerMenu = () => {
+export const HamburgerMenu = ({ className = " " }: { className?: string }) => {
   const handleMenuClick = () => {
     const isOpen =
       document.body.getAttribute("data-nav-open") === "true" || false;
@@ -30,7 +30,7 @@ export const HamburgerMenu = () => {
     };
   }, []);
   return (
-    <Button variant="icon" onClick={handleMenuClick}>
+    <Button className={className} variant="icon" onClick={handleMenuClick}>
       <svg
         stroke="currentColor"
         fill="currentColor"

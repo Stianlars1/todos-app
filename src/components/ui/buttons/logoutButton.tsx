@@ -5,27 +5,37 @@ import { Button } from "@stianlarsen/react-ui-kit";
 import { useState } from "react";
 import "./logoutButton.css";
 
-export const LogoutButton = () => {
+export const LogoutButton = ({
+  buttonTitle,
+  buttonLoadingTitle,
+  className = " ",
+}: {
+  buttonTitle: string;
+  buttonLoadingTitle: string;
+  className?: string;
+}) => {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+
+    try {
+      await logout();
+    } catch (error) {
+      setIsLoggingOut(false);
+    }
+  };
+
   return (
     <Button
       aria-disabled={isLoggingOut}
       loading={isLoggingOut}
-      loadingText="Logging out..."
-      className="logout-button"
-      onClick={async () => {
-        try {
-          setIsLoggingOut(true);
-          await logout();
-        } catch (error) {
-          setIsLoggingOut(false);
-        } finally {
-          setIsLoggingOut(false);
-        }
-      }}
+      loadingText={buttonLoadingTitle}
+      className={`logout-button ${className}`}
+      onClick={handleLogout}
       variant="secondary"
     >
-      Logout
+      {buttonTitle}
     </Button>
   );
 };
