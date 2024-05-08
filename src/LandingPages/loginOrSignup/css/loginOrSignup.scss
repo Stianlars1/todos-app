@@ -1,7 +1,6 @@
 .login-or-signup {
-  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
   overflow: visible;
   width: 100%;
@@ -9,6 +8,27 @@
 
   .section {
     flex: 1 0 calc(50% - 4rem);
+
+    .form-card {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+
+      .switchPageStatement {
+        font-size: 0.875rem;
+        text-align: center;
+
+        a {
+          color: hsl(var(--primary));
+        }
+      }
+
+      .link {
+        text-decoration: underline;
+      }
+    }
   }
 
   .first-section {
@@ -23,17 +43,21 @@
       text-align: center;
     }
 
-    &::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-color: hsl(var(--secondary));
-      z-index: -1;
-      right: 50%;
-      top: 0;
-      left: -1000000px;
-      bottom: 0;
-    }
+    // &::after {
+    //   content: "";
+    //   position: fixed;
+    //   inset: 0;
+    //   background-color: hsl(var(--secondary));
+    //   z-index: -1;
+    //   right: 50%;
+    //   top: 0;
+    //   left: -1000000px;
+    //   bottom: 0;
+    // }
+  }
+
+  .signup-animation {
+    margin-bottom: 100px;
   }
 
   .second-section {
@@ -41,10 +65,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    position: relative;
+
     .form-card {
       border-color: hsl(var(--border));
       border-color: transparent;
       margin: 0 !important;
+    }
+
+    &::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-color: hsl(var(--card));
+      z-index: -1;
+      left: 50%;
+      top: 0;
+      right: 0;
+      bottom: 0;
     }
   }
 
@@ -53,17 +91,17 @@
       border-color: transparent;
     }
   }
-
-  .forms-section {
-    .form-card {
-      max-width: 450px;
-    }
-  }
 }
 
 @media screen and (max-width: 1080px) {
   .login-or-signup {
     gap: 0;
+
+    .section {
+      .form-card {
+        max-width: 350px;
+      }
+    }
 
     .first-section {
       align-items: center;
@@ -78,6 +116,10 @@
     .second-section {
       align-items: center;
       flex: 1 0 60%;
+
+      &::after {
+        display: none;
+      }
     }
   }
 }
@@ -86,10 +128,13 @@
   .login-or-signup {
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     gap: 3rem;
+    background-color: hsl(var(--card));
 
     .section {
       width: 100%;
+      border: none;
     }
 
     .first-section {
@@ -105,9 +150,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      border: none;
 
       .form-card {
         border-color: hsl(var(--border));
+      }
+
+      &::after {
+        display: none;
       }
     }
   }

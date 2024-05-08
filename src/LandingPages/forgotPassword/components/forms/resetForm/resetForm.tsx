@@ -15,7 +15,6 @@ import { useSearchParams } from "next/navigation";
 import { useFormState, useFormStatus } from "react-dom";
 import { ForgotPasswordButtonsWrapper } from "../../forgotPasswordButtonsWrapper/forgotPasswordButtonsWrapper";
 import { ForgotPasswordButton } from "../buttons/resetPasswordButton";
-import "../css/forgotPasswordForms.css";
 
 export const ResetForm = () => {
   const token = useSearchParams().get("token");

@@ -1,17 +1,13 @@
-import Image from "next/image";
+import { TaskBuddyNavbarLogo } from "@/components/navbarLogo/navbarLogo";
+import { Inter } from "next/font/google";
 import "./css/login-or-signup-navbar.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const GridContainerLoginOrSignupNavbar = () => {
   return (
     <nav className="login-or-signup-navbar">
-      <Image
-        alt="logo taskbuddy"
-        src={"/taskbuddy-with-text-aside.png"}
-        width={0}
-        height={0}
-        style={{ width: "auto", height: "55px" }}
-        sizes="auto"
-      />
+      <TaskBuddyNavbarLogo />
     </nav>
   );
 };

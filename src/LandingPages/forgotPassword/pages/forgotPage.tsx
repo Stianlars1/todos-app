@@ -22,6 +22,7 @@ export const ForgotPage = () => {
     return (
       <>
         <ForgotPasswordSuccessPage
+          variant="forgot"
           title="Check Your Inbox!"
           description="🎉 We've sent a password reset link to your email address. Follow the link in the email to reset your password."
         >

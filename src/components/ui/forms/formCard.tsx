@@ -6,7 +6,7 @@ export const FormCard = ({ variant }: { variant: "signup" | "login" }) => {
 
   return (
     <div className="form-card">
-      <h1>{isLogin ? "Login" : "Sign up"}</h1>
+      <h1>{isLogin ? "Sign in to TaskBuddy" : "Sign up to TaskBuddy"}</h1>
 
       {isLogin ? <LoginForm /> : <SignUpForm />}
 

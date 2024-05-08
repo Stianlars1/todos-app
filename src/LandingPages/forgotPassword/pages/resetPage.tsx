@@ -24,7 +24,8 @@ export const ResetPage = () => {
     return (
       <>
         <ForgotPasswordSuccessPage
-          title="Password Updated Successfully!"
+          variant="reset"
+          title="Success!"
           description="🎉 Your password has been successfully updated. You can now use your new password to log in."
         >
           <Button href={LOGIN_URL} variant="link">
@@ -77,7 +78,7 @@ const InvalidTokenDescription = () => {
         >
           try again
         </a>{" "}
-        to reset your password. Or , if this was a mistake, head back to the{" "}
+        to reset your password. Or, if this was a mistake, head back to the{" "}
         <a
           style={{
             fontFamily: "inherit",

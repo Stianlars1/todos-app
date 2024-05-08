@@ -1,6 +1,12 @@
 "use client";
 import { login } from "@/app/actions/auth/login";
-import { CustomInput } from "@/components/form/components/customInput/customInput";
+import { CustomForm } from "@/components/form/components/customForm/customForm";
+import {
+  CustomInput,
+  CustomInputLabel,
+  CustomInputLabelWrapper,
+} from "@/components/form/components/customInput/customInput";
+import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { GeistSans } from "geist/font/sans";
 import { useFormState } from "react-dom";
 import { ErrorMessage } from "../errorMessage/errorMessage";
@@ -12,36 +18,42 @@ export const LoginForm = () => {
     : null;
 
   return (
-    <form className="form" action={dispatch}>
-      <div className="form__group">
-        <label htmlFor="email">Email</label>
-        <CustomInput
-          className={GeistSans.className}
-          autoComplete="email"
-          type="email"
-          id="email"
-          name="email"
-          required
-        />
-      </div>
-      <div className="form__group">
-        <label htmlFor="password">Password</label>
-        <CustomInput
-          className={GeistSans.className}
-          autoComplete="current-password"
-          type="password"
-          id="password"
-          name="password"
-          required
-        />
-      </div>
+    <CustomForm action={dispatch}>
+      <FormContentWrapper>
+        <CustomInputLabelWrapper>
+          <CustomInputLabel htmlFor="email">Email</CustomInputLabel>
+          <CustomInput
+            className={GeistSans.className}
+            autoComplete="email"
+            type="email"
+            id="email"
+            name="email"
+            width="100%"
+            placeholder="Enter your email address.."
+            required
+          />
+        </CustomInputLabelWrapper>
+        <CustomInputLabelWrapper>
+          <CustomInputLabel htmlFor="password">Password</CustomInputLabel>
+          <CustomInput
+            className={GeistSans.className}
+            autoComplete="current-password"
+            type="password"
+            id="password"
+            name="password"
+            width="100%"
+            placeholder="Enter your password.."
+            required
+          />
+        </CustomInputLabelWrapper>
+      </FormContentWrapper>
       <ErrorMessage
         errorMessage={errorMessage}
         isError={Boolean(state?.errorMessage)}
         margins={false}
       />
       <LoginButton />
-    </form>
+    </CustomForm>
   );
 };
 

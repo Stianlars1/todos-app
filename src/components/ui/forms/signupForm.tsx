@@ -1,8 +1,13 @@
 "use client";
 import { signup } from "@/app/actions/auth/signup";
-import { CustomInput } from "@/components/form/components/customInput/customInput";
+import { CustomForm } from "@/components/form/components/customForm/customForm";
+import {
+  CustomInput,
+  CustomInputLabel,
+  CustomInputLabelWrapper,
+} from "@/components/form/components/customInput/customInput";
+import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { SignUpButton } from "@/components/ui/forms/components/signupButton";
-import { GeistSans } from "geist/font/sans";
 import { useFormState } from "react-dom";
 import { FormError } from "./components/formError/formError";
 export const SignUpForm = () => {
@@ -22,29 +27,59 @@ export const SignUpForm = () => {
           errorArray={[state.errorMessage]}
         />
       )}
-      <form className={`form ${GeistSans.className}`} action={dispatch}>
-        <div className="form__group">
-          <label htmlFor="firstname">First Name</label>
-          <CustomInput type="text" id="firstname" name="firstname" required />
-          <FormError errorArray={state?.errors?.firstName} />
-        </div>
-        <div className="form__group">
-          <label htmlFor="lastname">Last Name</label>
-          <CustomInput type="text" id="lastname" name="lastname" required />
-          <FormError errorArray={state?.errors?.lastName} />
-        </div>
-        <div className="form__group">
-          <label htmlFor="email">Email</label>
-          <CustomInput type="email" id="email" name="email" required />
-          <FormError errorArray={state?.errors?.email} />
-        </div>
-        <div className="form__group">
-          <label htmlFor="password">Password</label>
-          <CustomInput type="password" id="password" name="password" required />
-          <FormError errorArray={state?.errors?.password} />
-        </div>
+      <CustomForm action={dispatch}>
+        <FormContentWrapper>
+          <CustomInputLabelWrapper>
+            <CustomInputLabel htmlFor="firstname">First Name</CustomInputLabel>
+            <CustomInput
+              type="text"
+              id="firstname"
+              name="firstname"
+              width="100%"
+              placeholder="Enter your first name.."
+              required
+            />
+            <FormError errorArray={state?.errors?.firstName} />
+          </CustomInputLabelWrapper>
+          <CustomInputLabelWrapper>
+            <CustomInputLabel htmlFor="lastname">Last Name</CustomInputLabel>
+            <CustomInput
+              type="text"
+              id="lastname"
+              name="lastname"
+              width="100%"
+              placeholder="Enter your last name.."
+              required
+            />
+            <FormError errorArray={state?.errors?.lastName} />
+          </CustomInputLabelWrapper>
+          <CustomInputLabelWrapper>
+            <CustomInputLabel htmlFor="email">Email address</CustomInputLabel>
+            <CustomInput
+              type="email"
+              id="email"
+              name="email"
+              width="100%"
+              placeholder="Enter your email address.."
+              required
+            />
+            <FormError errorArray={state?.errors?.email} />
+          </CustomInputLabelWrapper>
+          <CustomInputLabelWrapper>
+            <CustomInputLabel htmlFor="password">Password</CustomInputLabel>
+            <CustomInput
+              type="password"
+              id="password"
+              name="password"
+              width="100%"
+              placeholder="Enter a password.."
+              required
+            />
+            <FormError errorArray={state?.errors?.password} />
+          </CustomInputLabelWrapper>
+        </FormContentWrapper>
         <SignUpButton />
-      </form>
+      </CustomForm>
     </>
   );
 };

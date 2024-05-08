@@ -13,7 +13,6 @@ import { Button } from "@stianlarsen/react-ui-kit";
 import { useFormState } from "react-dom";
 import { ForgotPasswordButtonsWrapper } from "../../forgotPasswordButtonsWrapper/forgotPasswordButtonsWrapper";
 import { ForgotPasswordButton } from "../buttons/resetPasswordButton";
-import "../css/forgotPasswordForms.css";
 
 export const ForgotForm = () => {
   const [state, dispatch] = useFormState(forgotPassword, null);

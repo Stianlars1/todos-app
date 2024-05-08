@@ -6,7 +6,7 @@ export const TaskBuddyLogo = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     strokeWidth="2"
-    className="grid-navbar__logo__logo"
+    className="grid-navbar__logo__logo navbar-logo-svg"
   >
     <path
       d="M856.968 856.968C660.924 1053.01 343.076 1053.01 147.032 856.968C-49.0108 660.924 -49.0108 343.076 147.032 147.032C343.076 -49.0108 660.924 -49.0108 856.968 147.032C1053.01 343.076 1053.01 660.924 856.968 856.968Z"

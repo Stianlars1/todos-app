@@ -1,0 +1,21 @@
+.navbar-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.2rem;
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  .navbar-logo-svg {
+    height: 40px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-logo-link {
+    font-size: 0.875rem;
+    .navbar-logo-svg {
+      height: 35px !important;
+    }
+  }
+}

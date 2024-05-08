@@ -1,5 +1,5 @@
+import { CommonNavbar } from "@/components/commonNavbar/commonNavbar";
 import { ReactElement } from "react";
-import { GridContainerPasswordNavbar } from "./components/gridContainerPasswordNavbar";
 import "./css/gridContainerPassword.css";
 
 export const GridContainerPassword = async ({
@@ -9,7 +9,7 @@ export const GridContainerPassword = async ({
 }) => {
   return (
     <div className="grid-container-password">
-      <GridContainerPasswordNavbar />
+      <CommonNavbar />
       {children}
     </div>
   );
