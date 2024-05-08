@@ -1,5 +1,6 @@
 "use client";
 import { login } from "@/app/actions/auth/login";
+import { CustomInput } from "@/components/form/components/customInput/customInput";
 import { GeistSans } from "geist/font/sans";
 import { useFormState } from "react-dom";
 import { ErrorMessage } from "../errorMessage/errorMessage";
@@ -14,7 +15,7 @@ export const LoginForm = () => {
     <form className="form" action={dispatch}>
       <div className="form__group">
         <label htmlFor="email">Email</label>
-        <input
+        <CustomInput
           className={GeistSans.className}
           autoComplete="email"
           type="email"
@@ -25,7 +26,7 @@ export const LoginForm = () => {
       </div>
       <div className="form__group">
         <label htmlFor="password">Password</label>
-        <input
+        <CustomInput
           className={GeistSans.className}
           autoComplete="current-password"
           type="password"

@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
     gap: 1.5rem;
 
     p {
@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     .form-card {
       border-color: hsl(var(--border));
       border-color: transparent;

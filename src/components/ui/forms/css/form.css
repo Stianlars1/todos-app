@@ -24,7 +24,7 @@
   font-family: inherit;
 }
 .form-card .form__group input {
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.25rem;
   padding: 0.25rem 0.75rem;
   font-family: inherit;
@@ -39,14 +39,14 @@
 .form-card .form__group input:-webkit-autofill {
   box-shadow: inset 0 0 0 100px hsl(var(--background));
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   -webkit-appearance: textfield;
           appearance: textfield;
 }
 .form-card .form__group input:autofill {
   box-shadow: inset 0 0 0 100px hsl(var(--background));
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   -webkit-appearance: textfield;
      -moz-appearance: textfield;
           appearance: textfield;

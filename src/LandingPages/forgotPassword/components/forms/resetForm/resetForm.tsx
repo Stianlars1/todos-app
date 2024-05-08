@@ -66,7 +66,14 @@ export const ResetForm = () => {
         </CustomInputLabelWrapper>
 
         {validToken && token && (
-          <input type="token" id="token" name="token" value={token} hidden />
+          <input
+            type="token"
+            id="token"
+            name="token"
+            defaultValue={token}
+            value={token}
+            hidden
+          />
         )}
       </FormContentWrapper>
 

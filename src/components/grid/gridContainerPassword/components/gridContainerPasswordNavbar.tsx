@@ -12,7 +12,6 @@ export const GridContainerPasswordNavbar = async () => {
           width={0}
           height={50}
           sizes="auto"
-          loading="eager"
           style={{ width: "auto", height: "50px" }} // optional
         />
       </Link>

@@ -70,26 +70,27 @@
     }
   }
 }
-
-[data-sidebar-open="false"] {
-  .sidebar__content {
-    width: fit-content;
-
-    // ul
-    &__item {
+@media screen and (min-width: 769px) {
+  [data-sidebar-open="false"] {
+    .sidebar__content {
       width: fit-content;
-      // li
 
-      &__link {
+      // ul
+      &__item {
         width: fit-content;
-        overflow: hidden;
-        transition: width 0.15s ease-in-out;
+        // li
 
-        .link-text {
-          display: none;
-          width: 0 !important;
+        &__link {
+          width: fit-content;
           overflow: hidden;
           transition: width 0.15s ease-in-out;
+
+          .link-text {
+            display: none;
+            width: 0 !important;
+            overflow: hidden;
+            transition: width 0.15s ease-in-out;
+          }
         }
       }
     }

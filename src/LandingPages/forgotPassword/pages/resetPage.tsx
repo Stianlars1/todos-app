@@ -10,16 +10,16 @@ import { ForgotPasswordSuccessPage } from "../components/forgotPasswordSuccessPa
 import { ResetForm } from "../components/forms/resetForm/resetForm";
 
 export const ResetPage = () => {
+  const successParam = useSearchParams().get("success");
   const passwordUpdatedWithSuccess =
-    useSearchParams().get("success") === "true";
+    successParam === "true" || successParam === "TRUE";
   const resetToken = useSearchParams().get("token");
-  // if (state?.success && !state?.message) {
-  //   return <SuccessMessage message="" />;
-  // }
+
   const title = "Reset Your Password 🔑";
   const description =
     "Please enter your new password below. Make sure it's strong and secure to protect your account.";
 
+  console.log("passwordUpdatedWithSuccess, ", passwordUpdatedWithSuccess);
   if (passwordUpdatedWithSuccess) {
     return (
       <>

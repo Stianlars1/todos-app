@@ -1,0 +1,23 @@
+.login-or-signup-navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 60px;
+  left: 0;
+  z-index: 100000;
+  padding: 20px;
+
+  img {
+    height: 55px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .login-or-signup-navbar {
+    img {
+      height: 40px !important;
+    }
+    padding: 20px;
+  }
+}

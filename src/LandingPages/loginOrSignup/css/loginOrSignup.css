@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
   gap: 1.5rem;
 }
 .login-or-signup .first-section p {
@@ -36,7 +36,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
 }
 .login-or-signup .second-section .form-card {
   border-color: hsl(var(--border));
