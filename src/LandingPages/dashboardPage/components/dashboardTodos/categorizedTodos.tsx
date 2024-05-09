@@ -2,6 +2,7 @@ import { getCategorizedTodos } from "@/app/actions/todos/fetch";
 import { getUserSettings } from "@/app/actions/user/userApi";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { CategorizedTodosDTO, TodoDTO } from "@/types/types";
+import { getTranslations } from "next-intl/server";
 import { CategorizedTodosFiltered } from "../../types";
 import { TasksBoard } from "../tasksBoard/tasksBoard";
 import "./css/categorizedTodos.css";
@@ -14,6 +15,8 @@ export const CategorizedTodos = async () => {
   } = await getCategorizedTodos<CategorizedTodosDTO>();
   const userSettings = await getUserSettings();
 
+  const headerColumnsTexts = await getCategorizedTodosTexts();
+
   const landingPageFilteredTasks = getDashboardTasks(CategorizedTodos);
   return (
     <>
@@ -21,6 +24,7 @@ export const CategorizedTodos = async () => {
       <TasksBoard
         tasks={landingPageFilteredTasks}
         userSettings={userSettings.data}
+        columnHeadersTexts={headerColumnsTexts}
       />
     </>
   );
@@ -47,4 +51,14 @@ const getDashboardTasks = (
       }, {});
 
   return filtered;
+};
+
+const getCategorizedTodosTexts = async () => {
+  const text = await getTranslations("Categorized Todos");
+  const headerColumnsTexts = {
+    backlog: text("backlog"),
+    inProgressTasks: text("inProgressTasks"),
+    completedTasks: text("completedTasks"),
+  };
+  return headerColumnsTexts;
 };

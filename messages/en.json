@@ -55,5 +55,21 @@
     "submit": {
       "title": "Create task"
     }
+  },
+
+  "Sidebar": {
+    "Overview": "Overview",
+    "Backlog": "Backlog",
+    "Todo": "Todo",
+    "In Progress": "In Progress",
+    "Done": "Done",
+    "Settings": "Settings",
+    "Logout": "Logout"
+  },
+
+  "Categorized Todos": {
+    "backlog": "Backlog",
+    "inProgressTasks": "In Progress",
+    "completedTasks": "Done"
   }
 }

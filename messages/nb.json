@@ -55,5 +55,21 @@
     "submit": {
       "title": "Opprett oppgave"
     }
+  },
+
+  "Sidebar": {
+    "Overview": "Oversikt",
+    "Backlog": "Oppgaveliste",
+    "Todo": "Sak",
+    "In Progress": "Under arbeid",
+    "Done": "Ferdig",
+    "Settings": "Innstillinger",
+    "Logout": "Logg ut"
+  },
+
+  "Categorized Todos": {
+    "backlog": "Oppgaveliste",
+    "inProgressTasks": "Under arbeid",
+    "completedTasks": "Ferdig"
   }
 }

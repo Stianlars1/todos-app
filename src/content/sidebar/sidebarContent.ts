@@ -5,6 +5,7 @@ import {
   IconInProgress,
   IconSettings,
   IconTodo,
+  LogoutIcon,
 } from "@/components/ui/icons/icons";
 import { ReactElement } from "react";
 
@@ -12,6 +13,7 @@ export interface sidebarContentListType {
   title: string;
   href: string;
   icon: ReactElement;
+  renderMobileOnly?: boolean;
 }
 
 export const sidebarContentList: sidebarContentListType[] = [
@@ -44,5 +46,11 @@ export const sidebarContentList: sidebarContentListType[] = [
     title: "Settings",
     href: "/settings",
     icon: IconSettings(),
+  },
+  {
+    title: "Logout",
+    href: "/logout",
+    icon: LogoutIcon(),
+    renderMobileOnly: true,
   },
 ];

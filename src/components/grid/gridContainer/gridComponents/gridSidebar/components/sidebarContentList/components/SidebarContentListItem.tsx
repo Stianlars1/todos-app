@@ -1,4 +1,5 @@
 "use client";
+import { LogoutButtonSidebar } from "@/components/ui/buttons/logoutButton";
 import { sidebarContentListType } from "@/content/sidebar/sidebarContent";
 import { useLinkUrl } from "@/utils/urls";
 import { handleCloseNav } from "@/utils/utils";
@@ -8,8 +9,10 @@ import { usePathname } from "next/navigation";
 
 export const SidebarContentListItem = ({
   item,
+  title,
 }: {
   item: sidebarContentListType;
+  title: string;
 }) => {
   const pathname = usePathname();
   const locale = useLocale();
@@ -19,7 +22,21 @@ export const SidebarContentListItem = ({
 
   const Icon = item.icon;
   const linkurl = useLinkUrl(item.href);
-  console.log("linkurl", linkurl);
+
+  const onlyOnMobile = item.renderMobileOnly;
+
+  if (onlyOnMobile) {
+    return (
+      <li
+        key={item.href}
+        className={`sidebar__content__item ${
+          onlyOnMobile ? "sidebar__content__item-mobile-only" : " "
+        }`}
+      >
+        <LogoutButtonSidebar title={title} icon={Icon} />
+      </li>
+    );
+  }
   return (
     <li key={item.href} className="sidebar__content__item">
       <Link
@@ -30,7 +47,7 @@ export const SidebarContentListItem = ({
         onClick={handleCloseNav}
       >
         {Icon}
-        <span className="link-text">{item.title}</span>
+        <span className="link-text">{title}</span>
       </Link>
     </li>
   );

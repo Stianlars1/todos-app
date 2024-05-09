@@ -17,10 +17,12 @@ export const StatusColumn = ({
   categoryString,
   todosList,
   userSettings,
+  headerTitle,
 }: {
   categoryString: CategoryString;
   todosList: TodoDTO[];
   userSettings: UserSettingsDTO | null;
+  headerTitle: string;
 }) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -75,7 +77,8 @@ export const StatusColumn = ({
   return (
     <div className="status-column-container">
       <h2 className="status-column-container__title">
-        {columnDisplaySettings.title}
+        {/* {columnDisplaySettings.title} */}
+        {headerTitle}
       </h2>
 
       {/* ==  Render sort button  ==  */}

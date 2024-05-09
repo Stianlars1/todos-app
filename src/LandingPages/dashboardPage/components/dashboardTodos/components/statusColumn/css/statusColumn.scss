@@ -15,9 +15,14 @@
     gap: 0.5rem;
     overflow: hidden;
     height: 100%;
+    border: 1px solid transparent;
 
     &__reveal-card {
     }
+  }
+
+  &__ul-active {
+    border-color: red;
   }
 
   &__ul-active {

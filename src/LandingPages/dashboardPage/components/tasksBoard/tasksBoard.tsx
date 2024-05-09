@@ -9,9 +9,15 @@ import { StatusColumn } from "../dashboardTodos/components/statusColumn/statusCo
 export const TasksBoard = ({
   userSettings,
   tasks,
+  columnHeadersTexts,
 }: {
   userSettings: UserSettingsDTO | null;
   tasks: CategorizedTodosFiltered | null;
+  columnHeadersTexts: {
+    backlog: string;
+    inProgressTasks: string;
+    completedTasks: string;
+  };
 }) => {
   const selectedTaskId = useSelectedTaskId();
   const [showTaskModal, setShowTaskModal] = useState(false);
@@ -32,6 +38,9 @@ export const TasksBoard = ({
                 categoryString={categoryString as CategoryString}
                 todosList={todosList}
                 userSettings={userSettings}
+                headerTitle={
+                  columnHeadersTexts[categoryString as CategoryString]
+                }
               />
             );
           })}

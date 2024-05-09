@@ -7,6 +7,7 @@
   border-radius: var(--radius);
   cursor: grab;
   border: 1px solid hsl(var(--border));
+  overflow: visible;
 }
 .reveal-card__wrapper {
   padding: 1.5rem;
@@ -51,4 +52,5 @@
 }
 .reveal-card-is-grabbed {
   opacity: 0.25;
+  overflow: visible;
 }/*# sourceMappingURL=revealCard.css.map */

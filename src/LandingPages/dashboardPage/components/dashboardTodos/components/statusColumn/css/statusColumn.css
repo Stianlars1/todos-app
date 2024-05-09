@@ -16,4 +16,8 @@
   gap: 0.5rem;
   overflow: hidden;
   height: 100%;
+  border: 1px solid transparent;
+}
+.status-column-container__ul-active {
+  border-color: red;
 }/*# sourceMappingURL=statusColumn.css.map */

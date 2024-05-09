@@ -31,7 +31,7 @@
       position: relative;
 
       svg {
-        flex: 0 0 auto;
+        flex: 0 0 24px;
         background-color: hsl(
           var(--background)
         ); // Set a default that can be overridden
@@ -68,6 +68,13 @@
         }
       }
     }
+  }
+
+  &__item-mobile-only {
+    display: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
   }
 }
 @media screen and (min-width: 769px) {
@@ -120,6 +127,22 @@
           width: min-content;
           overflow: hidden;
           transition: width 0.15s ease-in-out;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  [data-nav-open="true"] {
+    .sidebar__content {
+      // ul
+      &__item-mobile-only {
+        display: initial;
+        cursor: pointer;
+        button {
+          border: none;
+          font-family: inherit;
         }
       }
     }

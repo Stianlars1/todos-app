@@ -30,27 +30,43 @@ export const RevealCard = ({
       // Create a clone and use it as the drag image
       const rect = event.currentTarget.getBoundingClientRect();
       const clone = event.currentTarget.cloneNode(true) as HTMLDivElement;
-      clone.style.width = `${rect.width}px`; // Maintain the original width
-      document.body.appendChild(clone); // Append to body to not interfere with original layout
+      clone.style.width = `${rect.width}px`;
+      clone.style.position = "fixed"; // Set the clone to be fixed
+      clone.style.left = `${rect.left}px`; // Align horizontally with the original element
+      clone.style.top = `${rect.top}px`; // Align vertically with the original element
+
+      const dragContainer =
+        document.querySelector(".drag-container") ||
+        document.createElement("div");
+      dragContainer.className = "drag-container";
+      document.body.appendChild(dragContainer);
+      dragContainer.appendChild(clone); // Append clone to the specific container
+
       event.dataTransfer.setDragImage(
         clone,
         event.clientX - rect.left,
         event.clientY - rect.top
       );
 
+      console.log("rect", rect);
+      console.log("clone", clone);
+      console.log("event", event);
+
       // Delay hiding the original element to ensure it's used as the drag image
       setTimeout(() => {
         setIsDragging(true);
-      }, 0); // Adjust the timeout to be very minimal, just to defer the removal until after the drag image capture
+      }, 50); // Minimal timeout to defer removal until after the drag image capture
 
       // Clean up the clone immediately after setting it as the drag image
       setTimeout(() => {
-        document.body.removeChild(clone);
+        dragContainer.removeChild(clone);
+        if (dragContainer.childNodes.length === 0) {
+          document.body.removeChild(dragContainer); // Clean up container if empty
+        }
       }, 0);
     },
     [todoId, statusCode]
   );
-
   const handleDragEnd = useCallback(() => {
     // Reset dragging state
     setIsDragging(false);

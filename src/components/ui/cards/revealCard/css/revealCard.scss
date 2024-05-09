@@ -9,6 +9,8 @@
   border-radius: var(--radius);
   cursor: grab;
   border: 1px solid hsl(var(--border));
+
+  overflow: visible;
   &__wrapper {
     padding: 1.5rem;
     &__header {
@@ -60,5 +62,6 @@
 
 .reveal-card-is-grabbed {
   opacity: 0.25;
+  overflow: visible;
   //display: none;
 }
