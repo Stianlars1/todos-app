@@ -7,6 +7,16 @@
   "Dashboard": {
     "title": "Hello"
   },
+  "Taskboard": {
+    "header": {
+      "title": "My Tasks",
+      "sortSwitch": "Sort manually",
+      "settings": {
+        "dragAndDrop": "Drag & drop",
+        "layout": "Column Layout"
+      }
+    }
+  },
 
   "Buttons": {
     "logout": {
@@ -35,10 +45,24 @@
         "placeholder": "Task description"
       },
       "status": {
-        "label": "Status"
+        "label": "Status",
+        "options": {
+          "CREATED": "Created",
+          "PENDING": "Pending",
+          "IN_PROGRESS": "In progress",
+          "COMPLETED": "Completed",
+          "ON_HOLD": "On hold",
+          "CANCELLED": "Cancelled",
+          "DELETED": "Deleted"
+        }
       },
       "priority": {
-        "label": "Priority"
+        "label": "Priority",
+        "options": {
+          "LOW": "Low",
+          "MEDIUM": "Medium",
+          "HIGH": "High"
+        }
       },
       "dueDate": {
         "label": "Due date (optional)",
@@ -53,12 +77,14 @@
       }
     },
     "submit": {
-      "title": "Create task"
+      "title": "Create task",
+      "loadingTitle": "Creating task..."
     }
   },
 
   "Sidebar": {
     "Overview": "Overview",
+    "Today": "Today",
     "Backlog": "Backlog",
     "Todo": "Todo",
     "In Progress": "In Progress",
@@ -68,8 +94,12 @@
   },
 
   "Categorized Todos": {
-    "backlog": "Backlog",
-    "inProgressTasks": "In Progress",
-    "completedTasks": "Done"
+    "CREATED": "Created",
+    "PENDING": "Pending",
+    "IN_PROGRESS": "In progress",
+    "COMPLETED": "Completed",
+    "ON_HOLD": "On hold",
+    "CANCELLED": "Cancelled",
+    "DELETED": "Deleted"
   }
 }

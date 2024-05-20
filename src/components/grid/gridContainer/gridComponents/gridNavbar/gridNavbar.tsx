@@ -1,6 +1,6 @@
 import { HamburgerMenu } from "@/components/hamburger/hamburger";
 import { LocaleSwitcher } from "@/components/languageSwitcher/localeSwitcher";
-import { LogoutButton } from "@/components/ui/buttons/logoutButton";
+import { LogoutButton } from "@/components/ui/buttons/logout/logoutButton";
 import { DOMAIN_NAME, SUB_URL } from "@/utils/constants";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";

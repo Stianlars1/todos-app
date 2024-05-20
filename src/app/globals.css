@@ -1,8 +1,8 @@
 /* --background: 20 14.3% 4.1%; dark */
-html body {
+html:root {
   --testMainBG: #f3f4f6;
   --test: 0 0% 83%;
-  --test2: hsl(0, 0%, 74%);
+  --test2: #2563eb;
 
   --testMainMutedLightMode: 222 56% 88%;
   /* == layout sizes == */
@@ -52,6 +52,10 @@ html body {
   --accent-foreground: 222.2 47.4% 11.2%; */
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
+  --warning: 47.9 95.8% 53.1%;
+  --warning-foreground: 26 83.3% 14.1%;
+  --info: 221.2 83.2% 53.3%;
+  --info-foreground: 210 40% 98%;
   --border: 214.3 31.8% 91.4%;
   --input: 0 0% 83%;
   --input-hover: 0 0% 40%;
@@ -60,7 +64,7 @@ html body {
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  html body {
+  html:root {
     --sidebar-bg: 222.2 84% 4.9%;
     /* == Theme == */
     --background: 222.2 84% 4.9%;
@@ -79,6 +83,12 @@ html body {
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
+
+    --warning: 47.9 95.8% 53.1%;
+    --warning-foreground: 26 83.3% 14.1%;
+    --info: 217.2 91.2% 59.8%;
+    --info-foreground: 222.2 47.4% 11.2%;
+
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --input-hover: 217 34% 32%;

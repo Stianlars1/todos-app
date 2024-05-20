@@ -1,48 +1,22 @@
 "use client";
 import { createTodo } from "@/app/actions/todos/fetch";
 import { Priority, StatusId } from "@/app/actions/todos/types";
-import { Button } from "@stianlarsen/react-ui-kit";
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import { Modal } from "../modal/modal";
 import { TextEditor } from "../ui/richTextEditor/richTextEditor";
+import { ConfirmCreateTaskButton } from "./components/createTaskButton";
 import "./css/createTask.css";
 
-// "Create-task": {
-//   "header": {
-//     "title": "Create task",
-//     "description": "Click outside the modal to close it."
-//   },
-//   "form": {
-//     "title": {
-//       "label": "Tittel",
-//       "placeholder": "Oppgavetittel"
-//     },
-//     "description": {
-//       "label": "Beskrivelse",
-//       "placeholder": "Gi en beskrivelse av oppgaven"
-//     },
-//     "status": {
-//       "label": "Status"
-//     },
-//     "priority": {
-//       "label": "Prioritet"
-//     },
-//     "dueDate": {
-//       "label": "Frist (valgfritt)",
-//       "placeholder": "dato og klokkeslett når fristen er"
-//     },
-//     "content": {
-//       "label": "Innhold (valgfritt)"
-//     },
-//     "tags": {
-//       "label": "Tags (valgfritt)",
-//       "placeholder": "Tags"
-//     }
-//   },
-//   "submit": {
-//     "title": "Opprett oppgave"
-//   }
+type CreateTodoStatusOptions =
+  | "CREATED"
+  | "ON_HOLD"
+  | "PENDING"
+  | "IN_PROGRESS"
+  | "COMPLETED"
+  | "CANCELLED"
+  | "DELETED";
+type CreateTodoPriorityOptions = "LOW" | "MEDIUM" | "HIGH";
 
 export interface CreateTaskTextsProps {
   header: {
@@ -60,9 +34,15 @@ export interface CreateTaskTextsProps {
     };
     status: {
       label: string;
+      options: {
+        [key in CreateTodoStatusOptions]: string;
+      };
     };
     priority: {
       label: string;
+      options: {
+        [key in CreateTodoPriorityOptions]: string;
+      };
     };
     dueDate: {
       label: string;
@@ -78,6 +58,7 @@ export interface CreateTaskTextsProps {
   };
   submit: {
     title: string;
+    loadingTitle: string;
   };
 }
 
@@ -93,10 +74,17 @@ export const CreateTask = ({
   const [statusId, setStatusId] = useState<StatusId>(StatusId.CREATED);
   const [priority, setPriority] = useState<Priority>(Priority.MEDIUM);
 
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+  const handleInputChange = () => {
+    setHasUnsavedChanges(true);
+  };
+
   const SelectStatus = () => {
     const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedValue = parseInt(e.target.value, 10);
       setStatusId(selectedValue as StatusId);
+      handleInputChange();
     };
 
     return (
@@ -109,21 +97,35 @@ export const CreateTask = ({
         <option defaultValue={""} value={""} disabled>
           Select status
         </option>
-        <option value={StatusId.CREATED}>Created</option>
-        <option value={StatusId.ON_HOLD}>On hold</option>
-        <option value={StatusId.PENDING}>Pending</option>
-        <option value={StatusId.IN_PROGRESS}>In progress</option>
-        <option value={StatusId.COMPLETED}>Completed</option>
-        <option value={StatusId.CANCELLED}>Cancelled</option>
-        <option value={StatusId.DELETED}>Deleted</option>
+        <option value={StatusId.CREATED}>
+          {createTaskTexts.form.status.options.CREATED}
+        </option>
+        <option value={StatusId.ON_HOLD}>
+          {createTaskTexts.form.status.options.ON_HOLD}
+        </option>
+        <option value={StatusId.PENDING}>
+          {createTaskTexts.form.status.options.PENDING}
+        </option>
+        <option value={StatusId.IN_PROGRESS}>
+          {createTaskTexts.form.status.options.IN_PROGRESS}
+        </option>
+        <option value={StatusId.COMPLETED}>
+          {createTaskTexts.form.status.options.COMPLETED}
+        </option>
+        <option value={StatusId.CANCELLED}>
+          {createTaskTexts.form.status.options.CANCELLED}
+        </option>
+        <option value={StatusId.DELETED}>
+          {createTaskTexts.form.status.options.DELETED}
+        </option>
       </select>
     );
   };
 
   const TaskPriority = () => {
     const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      console.log("Selected priority: ", e.target.value);
       setPriority(e.target.value as Priority);
+      handleInputChange();
     };
 
     return (
@@ -133,21 +135,25 @@ export const CreateTask = ({
         value={priority || ""} // Fallback to the empty string if priority is undefined
         onChange={handleOnChange}
       >
-        <option value={Priority.LOW}>Low</option>
-        <option value={Priority.MEDIUM}>Medium</option>
-        <option value={Priority.HIGH}>High</option>
+        <option value={Priority.LOW}>
+          {createTaskTexts.form.priority.options.LOW}
+        </option>
+        <option value={Priority.MEDIUM}>
+          {createTaskTexts.form.priority.options.MEDIUM}
+        </option>
+        <option value={Priority.HIGH}>
+          {createTaskTexts.form.priority.options.HIGH}
+        </option>
       </select>
     );
   };
-
-  console.log("\n\n🟢 state", state);
 
   if (state && "isSuccess" in state && state.isSuccess) {
     onClose && onClose();
   }
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} hasUnsavedChanges={hasUnsavedChanges}>
       <form action={dispatch} className="create-task">
         <header className="create-task__header">
           <h1>{createTaskTexts.header.title}</h1>
@@ -161,6 +167,8 @@ export const CreateTask = ({
               placeholder={createTaskTexts.form.title.placeholder}
               id="title"
               name="title"
+              required
+              onChange={handleInputChange}
             />
           </div>
           <div className="create-task__content__wrapper ">
@@ -170,6 +178,7 @@ export const CreateTask = ({
               placeholder={createTaskTexts.form.description.placeholder}
               id="description"
               name="description"
+              onChange={handleInputChange}
             />
           </div>
           <div className="create-task__content__wrapper ">
@@ -183,15 +192,20 @@ export const CreateTask = ({
           <div className="create-task__content__wrapper ">
             <label>{createTaskTexts.form.dueDate.label}</label>
             <input
-              type="datetime-local"
+              type="date"
               placeholder={createTaskTexts.form.dueDate.placeholder}
               id="dueDate"
               name="dueDate"
+              onChange={handleInputChange}
             />
           </div>
           <div className="create-task__content__wrapper ">
             <label>{createTaskTexts.form.content.label}</label>
-            <TextEditor content={content} setContent={setContent} />
+            <TextEditor
+              content={content}
+              setContent={setContent}
+              onChange={() => handleInputChange()}
+            />
             {content && (
               <input
                 aria-hidden
@@ -205,13 +219,21 @@ export const CreateTask = ({
           </div>
           <div className="create-task__content__wrapper ">
             <label>{createTaskTexts.form.tags.label}</label>
-            <input type="text" placeholder="Tags" id="tags" name="tags" />
+            <input
+              type="text"
+              placeholder="Tags"
+              id="tags"
+              name="tags"
+              onChange={() => handleInputChange()}
+            />
           </div>
         </div>
         <div className="create-task__footer">
-          <Button type="submit" variant="primary">
+          <ConfirmCreateTaskButton
+            loadingText={createTaskTexts.submit.loadingTitle}
+          >
             {createTaskTexts.submit.title}
-          </Button>
+          </ConfirmCreateTaskButton>
         </div>
       </form>
     </Modal>

@@ -1,5 +1,4 @@
 "use client";
-import { CategoryString } from "@/LandingPages/dashboardPage/types";
 import { determineStatusBasedOnDropZone } from "@/LandingPages/dashboardPage/utils";
 import { updateTodo } from "@/app/actions/todos/fetch";
 import { TodoDropType, UpdatedTodoDTO } from "@/app/actions/todos/types";
@@ -7,6 +6,7 @@ import { UserSettingsDTO } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { RevealCard } from "@/components/ui/cards/revealCard/revealCard";
+import { StatusCodes } from "@/types/todo/types";
 import { TodoDTO } from "@/types/types";
 import { DragEvent, useState } from "react";
 import { StatusColumnSortButton } from "./components/statusColumnSortButton/statusColumnSortButton";
@@ -19,7 +19,7 @@ export const StatusColumn = ({
   userSettings,
   headerTitle,
 }: {
-  categoryString: CategoryString;
+  categoryString: StatusCodes;
   todosList: TodoDTO[];
   userSettings: UserSettingsDTO | null;
   headerTitle: string;

@@ -1,0 +1,24 @@
+.contextContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.contextContent li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.875rem;
+  width: 100%;
+  position: relative;
+}
+.contextContent li:not(:last-child):after {
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0rem;
+  right: 0rem;
+  height: 0.5px;
+  background-color: hsl(var(--muted));
+  z-index: 10;
+}/*# sourceMappingURL=taskboardSettingsContextButton.module.css.map */

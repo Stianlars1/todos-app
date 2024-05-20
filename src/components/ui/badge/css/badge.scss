@@ -52,3 +52,39 @@
   border: 1px solid hsl(var(--primary));
   color: hsl(var(--foreground));
 }
+
+.badge-tag {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  border-width: 1px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+
+  &__tag {
+    background-color: hsl(var(--black));
+    color: hsl(var(--white));
+  }
+
+  &__priority-low {
+    color: rgb(27, 71, 153);
+    background-color: rgb(226, 232, 254);
+  }
+
+  &__priority-medium {
+    color: rgb(27, 153, 71);
+    background-color: rgb(226, 254, 232);
+  }
+
+  &__priority-high {
+    color: rgb(153 27 27);
+    background-color: rgb(254 226 226);
+  }
+}

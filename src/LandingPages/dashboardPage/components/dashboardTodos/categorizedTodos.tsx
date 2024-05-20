@@ -4,7 +4,7 @@ import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { CategorizedTodosDTO, TodoDTO } from "@/types/types";
 import { getTranslations } from "next-intl/server";
 import { CategorizedTodosFiltered } from "../../types";
-import { TasksBoard } from "../tasksBoard/tasksBoard";
+import { TasksBoard } from "../taskboard_old/tasksBoard_old/tasksBoard";
 import "./css/categorizedTodos.css";
 
 export const CategorizedTodos = async () => {

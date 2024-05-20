@@ -3,8 +3,8 @@ import { UserSettingsDTO } from "@/app/actions/user/types";
 import { TodoModal } from "@/components/todoModal/todoModal";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { CategorizedTodosFiltered, CategoryString } from "../../types";
-import { StatusColumn } from "../dashboardTodos/components/statusColumn/statusColumn";
+import { CategorizedTodosFiltered, CategoryString } from "../../../types";
+import { StatusColumn } from "../../dashboardTodos/components/statusColumn/statusColumn";
 
 export const TasksBoard = ({
   userSettings,

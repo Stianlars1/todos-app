@@ -1,17 +1,19 @@
 "use client";
-import { CategoryString } from "@/LandingPages/dashboardPage/types";
 import { updateSortSetting } from "@/app/actions/settings/update";
-import { UserSettingsDTO, UserSettingsSortKey } from "@/app/actions/user/types";
+import { UserSettingsDTO } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { IconSort } from "@/components/ui/icons/icons";
-import { useState } from "react";
+import { StatusCodes } from "@/types/todo/types";
+import { Button } from "@stianlarsen/react-ui-kit";
+import "./css/statusColumnSortButton.css";
+import { useSortingStuff } from "./utils";
 
 export const StatusColumnSortButton = ({
   categoryString,
   userSettings,
 }: {
-  categoryString: CategoryString;
+  categoryString: StatusCodes;
   userSettings: UserSettingsDTO;
 }) => {
   const { sortKey, sortOrder, setSortOrder } = useSortingStuff(
@@ -22,9 +24,6 @@ export const StatusColumnSortButton = ({
   if (!sortOrder || !sortKey) return;
 
   const handleUpdateSort = async () => {
-    console.log("\n\n🔥 === Handle Update Sort ===");
-    // SortOrders
-    // UPDATED_AT_DESC
     const newSortOrder = sortOrder.endsWith("_desc")
       ? sortOrder.replace("_desc", "_asc")
       : sortOrder.replace("_asc", "_desc");
@@ -43,38 +42,18 @@ export const StatusColumnSortButton = ({
   };
 
   return (
-    <button onClick={handleUpdateSort}>
-      {/* <Button variant="icon" onClick={handleUpdateSort}> */}
-      {sortOrder.endsWith("_desc") ? (
-        <IconSort variant="DESC" />
-      ) : (
-        <IconSort variant="ASC" />
-      )}
-      {/* </Button> */}
-    </button>
+    <>
+      <Button
+        className="status-column-button"
+        variant="icon"
+        onClick={handleUpdateSort}
+      >
+        {sortOrder.endsWith("_desc") ? (
+          <IconSort variant="DESC" />
+        ) : (
+          <IconSort variant="ASC" />
+        )}
+      </Button>
+    </>
   );
-};
-
-const mapCategoryStringToSortKey = (
-  categoryString: CategoryString
-): UserSettingsSortKey => {
-  switch (categoryString) {
-    case "backlog":
-      return "sortBacklog";
-    case "inProgressTasks":
-      return "sortInProgressTasks";
-    case "completedTasks":
-      return "sortCompletedTasks";
-  }
-};
-
-const useSortingStuff = (
-  categoryString: CategoryString,
-  userSettings: UserSettingsDTO
-) => {
-  const sortKey = mapCategoryStringToSortKey(categoryString); // sortBackend, sortInProgressTasks, etc..
-  const currentSort = userSettings[sortKey]!; // BE AWARE !!!!
-  const [sortOrder, setSortOrder] = useState(currentSort); // updatedAt_desc or updatedAt_asc
-
-  return { sortKey, sortOrder, setSortOrder };
 };

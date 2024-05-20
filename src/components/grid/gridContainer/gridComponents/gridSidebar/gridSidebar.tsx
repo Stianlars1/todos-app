@@ -15,7 +15,7 @@ export const GridSidebar = async () => {
   return (
     <aside className={`grid-container__sidebar sidebar`}>
       <div className="sidebar__header">
-        <span>TaskBuddy</span>
+        <span>🔥</span>
       </div>
       <SidebarContentList />
 

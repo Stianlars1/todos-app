@@ -7,10 +7,26 @@ export const Badge = ({
   href,
 }: {
   children: ReactElement | ReactNode;
-  variant: "primary" | "secondary" | "muted" | "outlined" | "text" | "link";
+  variant:
+    | "primary"
+    | "secondary"
+    | "muted"
+    | "outlined"
+    | "text"
+    | "link"
+    | "tag";
   width?: "100%" | "fit-content";
   href?: string;
 }) => {
+  if (variant === "tag") {
+    return (
+      <div className="reveal-card__wrapper__badges__tags">
+        <span style={{ width: "fit-content" }} className={`badge-tag`}>
+          {children}
+        </span>
+      </div>
+    );
+  }
   if (variant === "text") {
     return (
       <span style={{ width: width }} className={`badge badge-text`}>

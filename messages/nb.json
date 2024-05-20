@@ -8,6 +8,17 @@
     "title": "Hei"
   },
 
+  "Taskboard": {
+    "header": {
+      "title": "Mine oppgaver",
+      "sortSwitch": "Sorter manuelt",
+      "settings": {
+        "dragAndDrop": "Dra & slipp",
+        "layout": "Kolonneoppsett"
+      }
+    }
+  },
+
   "Buttons": {
     "logout": {
       "title": "Logg ut",
@@ -35,10 +46,24 @@
         "placeholder": "Gi en beskrivelse av oppgaven"
       },
       "status": {
-        "label": "Status"
+        "label": "Status",
+        "options": {
+          "CREATED": "Opprettet",
+          "PENDING": "Venter",
+          "IN_PROGRESS": "Under arbeid",
+          "COMPLETED": "Ferdig",
+          "ON_HOLD": "På vent",
+          "CANCELLED": "Avbrutt",
+          "DELETED": "Slettet"
+        }
       },
       "priority": {
-        "label": "Prioritet"
+        "label": "Prioritet",
+        "options": {
+          "LOW": "Lav",
+          "MEDIUM": "Medium",
+          "HIGH": "Høy"
+        }
       },
       "dueDate": {
         "label": "Frist (valgfritt)",
@@ -53,12 +78,14 @@
       }
     },
     "submit": {
-      "title": "Opprett oppgave"
+      "title": "Opprett oppgave",
+      "loadingTitle": "Oppretter.."
     }
   },
 
   "Sidebar": {
     "Overview": "Oversikt",
+    "Today": "I dag",
     "Backlog": "Oppgaveliste",
     "Todo": "Sak",
     "In Progress": "Under arbeid",
@@ -68,8 +95,12 @@
   },
 
   "Categorized Todos": {
-    "backlog": "Oppgaveliste",
-    "inProgressTasks": "Under arbeid",
-    "completedTasks": "Ferdig"
+    "CREATED": "Opprettet",
+    "PENDING": "venter",
+    "IN_PROGRESS": "Under arbeid",
+    "COMPLETED": "Ferdig",
+    "ON_HOLD": "På vent",
+    "CANCELLED": "Avbrutt",
+    "DELETED": "Slettet"
   }
 }

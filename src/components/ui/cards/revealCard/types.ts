@@ -9,4 +9,5 @@ export interface RevealCardProps {
   todoId: number;
   className?: string;
   statusCode?: StatusCode;
+  url?: string;
 }

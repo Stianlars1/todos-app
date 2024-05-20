@@ -1,3 +1,4 @@
+import { CacheKeys } from "@/app/lib/cache/keys";
 import { customFetch } from "@/utils/fetch/customFetch";
 import { HTTP_REQUEST, getAuthHeaderOnly } from "@/utils/fetch/fetch";
 import {
@@ -15,6 +16,7 @@ export const getUserDetails = async () => {
       method: HTTP_REQUEST.GET,
     },
     revalidate: 0,
+    cacheKey: CacheKeys.USER_DETAILS,
   });
 
   // let error = "";
@@ -51,5 +53,6 @@ export const getUserSettings = async () => {
       method: HTTP_REQUEST.GET,
       headers: await getAuthHeaderOnly(),
     },
+    cacheKey: CacheKeys.USER_SETTINGS,
   });
 };

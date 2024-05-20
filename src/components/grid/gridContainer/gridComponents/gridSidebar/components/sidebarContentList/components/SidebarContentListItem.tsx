@@ -1,5 +1,5 @@
 "use client";
-import { LogoutButtonSidebar } from "@/components/ui/buttons/logoutButton";
+import { LogoutButtonSidebar } from "@/components/ui/buttons/logout/logoutButton";
 import { sidebarContentListType } from "@/content/sidebar/sidebarContent";
 import { useLinkUrl } from "@/utils/urls";
 import { handleCloseNav } from "@/utils/utils";

@@ -1,0 +1,12 @@
+.taskboardSettingsWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.taskboardSettings {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

@@ -4,6 +4,7 @@ import {
   IconDone,
   IconInProgress,
   IconSettings,
+  IconToday,
   IconTodo,
   LogoutIcon,
 } from "@/components/ui/icons/icons";
@@ -21,6 +22,11 @@ export const sidebarContentList: sidebarContentListType[] = [
     title: "Overview",
     href: "/",
     icon: IconDashboard(),
+  },
+  {
+    title: "Today",
+    href: "/today",
+    icon: IconToday(),
   },
   {
     title: "Backlog",

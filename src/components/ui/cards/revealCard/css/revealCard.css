@@ -5,11 +5,12 @@
   color: hsl(var(--card-foreground));
   background-color: hsl(var(--card));
   border-radius: var(--radius);
-  cursor: grab;
+  cursor: default;
   border: 1px solid hsl(var(--border));
   overflow: visible;
 }
 .reveal-card__wrapper {
+  position: relative;
   padding: 1.5rem;
 }
 .reveal-card__wrapper__header h3 {
@@ -50,6 +51,33 @@
   color: rgb(27, 71, 153);
   background-color: rgb(226, 232, 254);
 }
+.reveal-card__wrapper__content {
+  margin-top: 1rem;
+}
+.reveal-card__wrapper__content > p {
+  font-size: 0.875rem;
+  line-height: 1;
+}
+.reveal-card__wrapper__expand-chevron {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-45%);
+  transition: transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+.reveal-card__wrapper__expanded-chevron {
+  transform: translateY(-45%) rotate(90deg);
+}
+
+.reveal-card-simple {
+  cursor: default;
+}
+
 .reveal-card-is-grabbed {
   opacity: 0.25;
   overflow: visible;

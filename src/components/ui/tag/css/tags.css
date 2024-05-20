@@ -1,0 +1,37 @@
+.tag {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  white-space: nowrap;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+}
+
+.default {
+  background-color: hsl(var(--black));
+  color: hsl(var(--white));
+  border-color: hsl(var(--border));
+}
+
+.priority-low {
+  color: rgb(27, 71, 153);
+  background-color: rgb(226, 232, 254);
+}
+
+.priority-medium {
+  color: rgb(27, 153, 71);
+  background-color: rgb(226, 254, 232);
+}
+
+.priority-high {
+  color: rgb(153, 27, 27);
+  background-color: rgb(254, 226, 226);
+}/*# sourceMappingURL=tags.css.map */

@@ -4,8 +4,8 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: var(--sidebar-width) auto;
-  grid-template-rows: var(--nav-height) auto auto;
-  grid-template-areas: "navbar navbar" "sidebar main" "sidebar footer";
+  grid-template-rows: var(--nav-height) auto;
+  grid-template-areas: "navbar navbar" "sidebar main";
   z-index: 1;
   overflow: visible;
   transition: grid-template-columns 0.15s ease-in-out;
@@ -24,6 +24,7 @@
   overflow-x: hidden;
   height: -moz-fit-content;
   height: fit-content;
+  height: 100%;
 }
 .grid-container__sidebar {
   grid-area: sidebar;
@@ -46,5 +47,8 @@
   .grid-container {
     grid-template-columns: 100%;
     grid-template-areas: "navbar" "main" "footer";
+  }
+  .grid-container__main {
+    padding: 1rem;
   }
 }/*# sourceMappingURL=gridContainer.css.map */

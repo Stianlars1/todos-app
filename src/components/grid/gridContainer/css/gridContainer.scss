@@ -4,11 +4,10 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: var(--sidebar-width) auto;
-  grid-template-rows: var(--nav-height) auto auto;
+  grid-template-rows: var(--nav-height) auto;
   grid-template-areas:
     "navbar navbar"
-    "sidebar main"
-    "sidebar footer";
+    "sidebar main";
   z-index: 1;
   overflow: visible;
   transition: grid-template-columns 0.15s ease-in-out;
@@ -29,6 +28,7 @@
     z-index: 1;
     overflow-x: hidden;
     height: fit-content;
+    height: 100%;
   }
 
   &__sidebar {
@@ -57,6 +57,7 @@
       "main"
       "footer";
     &__main {
+      padding: 1rem;
     }
 
     // // Need high specificity

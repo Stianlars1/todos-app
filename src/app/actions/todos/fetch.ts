@@ -7,6 +7,7 @@ import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import {
   API_TODOS_CATEGORIZED_URL,
   API_TODOS_CREATE_URL,
+  API_TODOS_DUE_TODAY_URL,
   API_TODOS_UPDATE_URL,
   API_TODOS_URL,
 } from "@/utils/urls";
@@ -35,6 +36,15 @@ export const getAllTodos = async <T>() => {
     cacheKey: CacheKeys.ALL_TODOS,
   });
 };
+export const getTodosDueToday = async <T>() => {
+  return await customFetch<T>({
+    url: API_TODOS_DUE_TODAY_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    cacheKey: CacheKeys.TODOS_TODAY,
+  });
+};
 export const getCategorizedTodos = async <T>() => {
   const categorized = await customFetch<T>({
     url: API_TODOS_CATEGORIZED_URL,
@@ -43,6 +53,7 @@ export const getCategorizedTodos = async <T>() => {
     },
     headers: APPLICATION_JSON_V1,
     cacheKey: CacheKeys.CATEGORIZED_TODOS,
+    revalidate: 0,
   });
 
   let error = "";

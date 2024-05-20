@@ -6,6 +6,7 @@ import "react-quill/dist/quill.snow.css"; // Ensure CSS is loaded
 interface TextEditorProps {
   content: string;
   setContent?: Dispatch<SetStateAction<string>>;
+  onChange?: () => void;
 }
 
 const ReactQuill = dynamic(() => import("react-quill"), {
@@ -16,12 +17,14 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 export const TextEditor: React.FC<TextEditorProps> = ({
   content,
   setContent,
+  onChange,
 }) => {
   // if document is not defined
   if (typeof document === "undefined") {
     return undefined;
   }
   const handleChange = (content: string) => {
+    onChange && onChange();
     setContent && setContent(content);
   };
 

@@ -1,3 +1,5 @@
+import { SVGProps } from "react";
+
 export const IconDashboard = () => {
   return (
     <svg
@@ -38,6 +40,23 @@ export const IconBacklog = () => {
       <line x1="3" x2="3.01" y1="6" y2="6"></line>
       <line x1="3" x2="3.01" y1="12" y2="12"></line>
       <line x1="3" x2="3.01" y1="18" y2="18"></line>
+    </svg>
+  );
+};
+export const IconToday = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 256 256"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M208,34H182V24a6,6,0,0,0-12,0V34H86V24a6,6,0,0,0-12,0V34H48A14,14,0,0,0,34,48V208a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V48A14,14,0,0,0,208,34ZM48,46H74V56a6,6,0,0,0,12,0V46h84V56a6,6,0,0,0,12,0V46h26a2,2,0,0,1,2,2V82H46V48A2,2,0,0,1,48,46ZM208,210H48a2,2,0,0,1-2-2V94H210V208A2,2,0,0,1,208,210Zm-39.76-86.24a6,6,0,0,1,0,8.48l-48,48a6,6,0,0,1-8.48,0l-24-24a6,6,0,0,1,8.48-8.48L116,167.51l43.76-43.75A6,6,0,0,1,168.24,123.76Z"></path>
     </svg>
   );
 };
@@ -133,20 +152,21 @@ export const IconSettings = () => {
     </svg>
   );
 };
-export const IconChevron = () => {
+export const IconChevron = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="none"
+      fill="currentColor"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="0"
       strokeLinecap="round"
       strokeLinejoin="round"
+      {...props}
     >
-      <path d="m9 18 6-6-6-6"></path>
+      <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path>
     </svg>
   );
 };
@@ -315,6 +335,267 @@ export const LogoutIcon = () => {
       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
       <polyline points="16 17 21 12 16 7"></polyline>
       <line x1="21" x2="9" y1="12" y2="12"></line>
+    </svg>
+  );
+};
+export const DragDropIcon = ({ className = " " }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 256 512"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path
+        fill="currentColor"
+        d="M48 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm0 160a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM96 416A48 48 0 1 0 0 416a48 48 0 1 0 96 0zM208 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48 112a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM208 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"
+        data-v-870ae63a=""
+      ></path>
+    </svg>
+  );
+};
+export const TaskBuddyIcon = ({ className = " " }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 1004 1004"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path
+        d="M856.968 856.968C660.924 1053.01 343.076 1053.01 147.032 856.968C-49.0108 660.924 -49.0108 343.076 147.032 147.032C343.076 -49.0108 660.924 -49.0108 856.968 147.032C1053.01 343.076 1053.01 660.924 856.968 856.968Z"
+        fill="black"
+      />
+      <path
+        d="M199.926 492.514C169.075 461.663 169.075 411.643 199.926 380.791C230.778 349.94 280.798 349.94 311.649 380.791L365.389 434.532C366.561 435.703 366.561 437.603 365.389 438.774L257.909 546.254C256.738 547.426 254.838 547.426 253.666 546.254L199.926 492.514Z"
+        fill="white"
+      />
+      <rect
+        x="267.102"
+        y="559.689"
+        width="158"
+        height="158"
+        transform="rotate(-45 267.102 559.689)"
+        fill="white"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M971.618 324.273L501.651 794.24L389.928 682.517L888.939 183.506L894.913 189.48C928.015 230.991 953.583 276.533 971.618 324.273Z"
+        fill="white"
+      />
+    </svg>
+  );
+};
+export const ArrowUpDownIcon = ({
+  className = " ",
+}: {
+  className?: string;
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      className={className}
+    >
+      <path
+        d="M4.21968 3.46975L3.68935 4.00008L4.75001 5.06074L5.28034 4.53041L7.24999 2.56076L7.24999 13.4393L5.28031 11.4697L4.74998 10.9393L3.68932 12L4.21965 12.5303L7.29288 15.6036C7.6834 15.9941 8.31657 15.9941 8.70709 15.6036L11.7803 12.5303L12.3106 12L11.25 10.9393L10.7197 11.4697L8.74999 13.4393L8.74999 2.56072L10.7197 4.53041L11.25 5.06075L12.3107 4.00009L11.7803 3.46975L8.70712 0.396531C8.31659 0.00600645 7.68343 0.00600637 7.2929 0.396531L4.21968 3.46975Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};
+export const CloseIcon = ({ className = " " }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      className={className}
+    >
+      <path d="M18 6 6 18"></path>
+      <path d="m6 6 12 12"></path>
+    </svg>
+  );
+};
+export const DragAndDropSimpleIcon = ({
+  className = " ",
+}: {
+  className?: string;
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M8 8m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" />
+      <path d="M4 4l0 .01" />
+      <path d="M8 4l0 .01" />
+      <path d="M12 4l0 .01" />
+      <path d="M16 4l0 .01" />
+      <path d="M4 8l0 .01" />
+      <path d="M4 12l0 .01" />
+      <path d="M4 16l0 .01" />
+    </svg>
+  );
+};
+
+export const DragAndDropSimpleIcon2 = ({
+  className = " ",
+}: {
+  className?: string;
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      style={{ fill: "none" }}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M19 11v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" />
+      <path d="M13 13l9 3l-4 2l-2 4l-3 -9" />
+      <path d="M3 3l0 .01" />
+      <path d="M7 3l0 .01" />
+      <path d="M11 3l0 .01" />
+      <path d="M15 3l0 .01" />
+      <path d="M3 7l0 .01" />
+      <path d="M3 11l0 .01" />
+      <path d="M3 15l0 .01" />
+    </svg>
+  );
+};
+
+export const DragAndDropSimpleIcon2Glow = ({
+  className = " ",
+}: {
+  className?: string;
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <defs>
+        <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#2563eb" stop-opacity="0" />
+          <stop offset="50%" stop-color="#2563eb" stop-opacity="1" />
+          <stop offset="100%" stop-color="#2563eb" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path
+        d="M19 11v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path
+        d="M13 13l9 3l-4 2l-2 4l-3 -9"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path d="M3 3l0 .01" stroke="currentColor" strokeWidth="2" />
+      <path d="M7 3l0 .01" stroke="currentColor" strokeWidth="2" />
+      <path d="M11 3l0 .01" stroke="currentColor" strokeWidth="2" />
+      <path d="M15 3l0 .01" stroke="currentColor" strokeWidth="2" />
+      <path d="M3 7l0 .01" stroke="currentColor" strokeWidth="2" />
+      <path d="M3 11l0 .01" stroke="currentColor" strokeWidth="2" />
+      <path d="M3 15l0 .01" stroke="currentColor" strokeWidth="2" />
+
+      <path
+        d="M19 11v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"
+        stroke="url(#glowGradient)"
+        className="glow"
+      />
+      <path
+        d="M13 13l9 3l-4 2l-2 4l-3 -9"
+        stroke="url(#glowGradient)"
+        className="glow"
+        strokeWidth="2"
+      />
+      <path
+        d="M3 3l0 .01"
+        stroke="url(#glowGradient)"
+        className="glow"
+        strokeWidth="2"
+      />
+      <path
+        d="M7 3l0 .01"
+        stroke="url(#glowGradient)"
+        className="glow"
+        strokeWidth="2"
+      />
+      <path
+        d="M11 3l0 .01"
+        stroke="url(#glowGradient)"
+        className="glow"
+        strokeWidth="2"
+      />
+      <path
+        d="M15 3l0 .01"
+        stroke="url(#glowGradient)"
+        className="glow"
+        strokeWidth="2"
+      />
+      <path
+        d="M3 7l0 .01"
+        stroke="url(#glowGradient)"
+        className="glow"
+        strokeWidth="2"
+      />
+      <path
+        d="M3 11l0 .01"
+        stroke="url(#glowGradient)"
+        className="glow"
+        strokeWidth="2"
+      />
+      <path
+        d="M3 15l0 .01"
+        stroke="url(#glowGradient)"
+        className="glow"
+        strokeWidth="2"
+      />
     </svg>
   );
 };

@@ -1,0 +1,30 @@
+.sortSwitchWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.34rem;
+
+  border: 1px solid hsl(var(--border));
+
+  background-color: hsl(var(--foreground));
+
+  border-radius: 6px;
+}
+
+.sortSwitchWrapper h3 {
+  font-size: 14px;
+  font-weight: 400;
+  color: hsl(var(--secondary));
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  .sortSwitchWrapper {
+    background-color: hsl(var(--muted));
+  }
+
+  .sortSwitchWrapper h3 {
+    color: hsl(var(--foreground));
+  }
+}

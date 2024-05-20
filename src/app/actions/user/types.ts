@@ -24,6 +24,8 @@ export interface UserSettingsDTO {
   sortByTitle?: string;
   sortByPriority?: string;
   sortByDueDate?: string;
+  sortManual?: boolean;
+  isColumnLayout?: boolean;
 }
 export type ExcludeBooleanKeys<T> = {
   [K in keyof T]: T[K] extends boolean ? never : K;
@@ -33,6 +35,8 @@ export type UserSettingsSortKey =
   | "sortBacklog"
   | "sortInProgressTasks"
   | "sortCompletedTasks"
+  | "sortByUpdatedAt"
+  | "sortByCreatedAt"
   | "sortByUpdatedAt"
   | "sortByCreatedAt"
   | "sortByTitle"

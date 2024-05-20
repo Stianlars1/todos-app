@@ -57,7 +57,7 @@ export async function customFetch<T>({
     },
   };
 
-  // console.log("\n\n 🟢 fetchOptions", fetchOptions);
+  console.log("\n\n 🟢 fetchOptions", fetchOptions);
 
   const state: FetchState<T> = {
     isLoading: true,
@@ -70,7 +70,7 @@ export async function customFetch<T>({
   try {
     const response = await fetch(url, fetchOptions);
     if (!response.ok) {
-      // console.log("\n\n 🔴 response customFetch: \n", response);
+      console.log("\n\n 🔴 response customFetch: \n", response);
       const errorMessage = getErrorMessage(response.status);
       // console.log("\n\n 🔴 errorMessage: \n", errorMessage);
       throw new Error(errorMessage);

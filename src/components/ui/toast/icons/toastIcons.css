@@ -1,0 +1,31 @@
+.toastIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+}
+
+.checkMark {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  stroke-width: 10;
+  fill: none;
+}
+.checkMark path {
+  stroke-width: 10px;
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  animation: draw-check 0.5s forwards;
+}
+
+.checkMark path {
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  animation: draw-check 0.5s forwards;
+}
+
+@keyframes draw-check {
+  to {
+    stroke-dashoffset: 100;
+  }
+}/*# sourceMappingURL=toastIcons.css.map */

@@ -22,7 +22,6 @@ export const useFetchTask = (taskId: string) => {
           setIsError(true);
           return setError(data.error);
         }
-        console.log("🟢 data", data);
 
         setTask(data.data);
         setIsSuccess(true);
