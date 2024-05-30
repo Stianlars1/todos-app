@@ -1,11 +1,13 @@
 "use client";
 import { IconAdd } from "@/components/ui/icons/icons";
 import { Button } from "@stianlarsen/react-ui-kit";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { CreateTask } from "../../createTask";
 import styles from "./css/createTodoButton.module.css";
 export const CreateTodoButton = () => {
+  const text = useTranslations("Taskboard.header");
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -15,6 +17,8 @@ export const CreateTodoButton = () => {
         onClick={() => setOpen(!open)}
       >
         <IconAdd />
+
+        {text("createTask")}
       </Button>
 
       {open &&

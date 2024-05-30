@@ -29,28 +29,27 @@
 .reveal-card__wrapper {
   padding: 1.5rem;
 }
+.reveal-card__wrapper__header {
+  overflow: hidden;
+}
 .reveal-card__wrapper__header h3 {
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-user-select: text;
-     -moz-user-select: text;
-          user-select: text;
-  cursor: text;
-  width: -moz-fit-content;
-  width: fit-content;
+  -webkit-hyphens: auto;
+          hyphens: auto;
+  text-wrap: balance;
+  min-width: 0;
 }
 .reveal-card__wrapper__header p {
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: hsl(var(--muted-foreground));
-  width: -moz-fit-content;
-  width: fit-content;
-  max-width: calc(100% - 1rem);
 }
 .reveal-card__wrapper__badges {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 .reveal-card__wrapper__badges__tags, .reveal-card__wrapper__badges__priority {
   padding-top: 0.125rem;

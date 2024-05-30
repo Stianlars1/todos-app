@@ -32,25 +32,25 @@
   &__wrapper {
     padding: 1.5rem;
     &__header {
+      overflow: hidden;
       h3 {
         font-weight: 500;
         font-size: 1rem;
         line-height: 1.5rem;
-        user-select: text;
-        cursor: text;
-        width: fit-content;
+        hyphens: auto;
+        text-wrap: balance;
+        min-width: 0;
       }
       p {
         font-size: 0.875rem;
         line-height: 1.25rem;
         color: hsl(var(--muted-foreground));
-        width: fit-content;
-        max-width: calc(100% - 1rem);
       }
     }
     &__badges {
       display: flex;
       gap: 0.5rem;
+      flex-wrap: wrap;
 
       &__tags,
       &__priority {

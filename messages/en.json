@@ -14,7 +14,8 @@
       "settings": {
         "dragAndDrop": "Drag & drop",
         "layout": "Column Layout"
-      }
+      },
+      "createTask": "Create"
     },
     "filter": {
       "CREATED": "Created",
@@ -28,6 +29,10 @@
       "savingPreferences": "Saving..",
       "savePreferences": "Save preferences",
       "filterTitle": "Filter columns"
+    },
+    "taskCard": {
+      "showMore": "Show all",
+      "showLess": "Show less"
     }
   },
 

@@ -30,6 +30,7 @@ import {
 } from "@formkit/drag-and-drop";
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 import { Button } from "@stianlarsen/react-ui-kit";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { DropHere } from "../components/dropHere";
 import taskWrapperStyles from "../css/taskwrapper.module.css";
@@ -42,7 +43,8 @@ import {
   getTodoId,
 } from "../utils";
 
-const VISIBLE_TASKS = 3;
+const VISIBLE_TASKS = 4;
+
 export const TaskCardWrapper = ({
   categoryCode,
   tasks,
@@ -58,14 +60,14 @@ export const TaskCardWrapper = ({
   const { isMobile } = useBrowserInfo();
   const [isDragging, setIsDragging] = useState(false);
   const [showHiddenTasks, setShowHiddenTasks] = useState(false);
+  const text = useTranslations("Taskboard.taskCard");
 
   // Needed settings checks
   const isColumnLayout = !!userSettings?.isColumnLayout;
   const sortManual = !!userSettings?.sortManual;
 
   // defining the tasksList
-  const initialTasksList =
-    isColumnLayout && !isMobile ? tasks : tasks.slice(0, VISIBLE_TASKS);
+  const initialTasksList = tasks.slice(0, VISIBLE_TASKS);
 
   // only show first 5 tasks
   // The drag and drop hook-component
@@ -224,14 +226,10 @@ export const TaskCardWrapper = ({
 
   useEffect(() => {
     if (tasks) {
-      if (isColumnLayout && !isMobile) {
+      if (showHiddenTasks) {
         setTaskList(tasks);
       } else {
-        if (showHiddenTasks) {
-          setTaskList(tasks);
-        } else {
-          setTaskList(tasks.slice(0, VISIBLE_TASKS));
-        }
+        setTaskList(tasks.slice(0, VISIBLE_TASKS));
       }
 
       resetState();
@@ -300,13 +298,13 @@ export const TaskCardWrapper = ({
           {tasksList.length === 0 && <DropHere />}
         </ul>
 
-        {(!isColumnLayout || isMobile) && tasks.length > 5 && (
+        {tasks && tasks.length > VISIBLE_TASKS && (
           <Button
             className={taskWrapperStyles.showMoreOrLessButton}
             variant="link"
             onClick={handleShowHiddenTasks}
           >
-            {showHiddenTasks ? "Show less" : "Show all"}
+            {showHiddenTasks ? text("showLess") : text("showMore")}
           </Button>
         )}
         {isDragging && <DroppableDelete isDragging={isDragging} />}

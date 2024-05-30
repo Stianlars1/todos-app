@@ -13,10 +13,17 @@
   position: relative;
   padding: 1.5rem;
 }
+.reveal-card__wrapper__header {
+  overflow: hidden;
+}
 .reveal-card__wrapper__header h3 {
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.5rem;
+  -webkit-hyphens: auto;
+          hyphens: auto;
+  text-wrap: balance;
+  min-width: 0;
 }
 .reveal-card__wrapper__header p {
   font-size: 0.875rem;

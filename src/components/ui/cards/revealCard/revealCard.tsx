@@ -38,7 +38,7 @@ export const RevealCard = ({
       <div className="reveal-card__wrapper">
         <div className="reveal-card__wrapper__header">
           <h3>{title}</h3>
-          <p>{description}</p>
+          {description && description.length > 0 && <p>{description}</p>}
         </div>
         <div className="reveal-card__wrapper__badges">
           <div className="reveal-card__wrapper__badges__priority">

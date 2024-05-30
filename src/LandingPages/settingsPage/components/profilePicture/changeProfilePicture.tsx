@@ -3,6 +3,7 @@ import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { CustomForm } from "@/components/form/components/customForm/customForm";
 import { CustomInput } from "@/components/form/components/customInput/customInput";
+import Skeleton from "@/components/ui/skeleton/skeleton";
 import { toast } from "@/components/ui/toast/toast";
 import { Button } from "@stianlarsen/react-ui-kit";
 import "cropperjs/dist/cropper.css";
@@ -112,23 +113,34 @@ export const ChangeProfilePicture = ({
             />
           </>
         ) : (
-          <Image
-            style={{
-              width: "250px",
-              height: "250px",
-              borderRadius: "50%",
-              background: `${imageLoaded ? "transparent" : "lightGray"}`,
-            }}
-            width={100}
-            height={100}
-            src={initialPicture}
-            alt="profile picture"
-            sizes="250px"
-            priority={true}
-            fetchPriority="high"
-            loading="eager"
-            onLoadingComplete={() => setImageLoaded(true)}
-          />
+          <>
+            {!imageLoaded && (
+              <Skeleton
+                width={250}
+                height={250}
+                variant="skimmer"
+                style={{ borderRadius: "50%", animationDuration: "1.4s" }}
+              />
+            )}
+            <Image
+              style={{
+                width: "250px",
+                height: "250px",
+                borderRadius: "50%",
+                background: `${imageLoaded ? "transparent" : "lightGray"}`,
+                display: imageLoaded ? "block" : "none",
+              }}
+              width={100}
+              height={100}
+              src={initialPicture}
+              alt="profile picture"
+              sizes="250px"
+              priority={true}
+              fetchPriority="high"
+              loading="eager"
+              onLoadingComplete={() => setImageLoaded(true)}
+            />
+          </>
         )}
 
         <CustomForm action={dispatch}>

@@ -8,12 +8,14 @@
 .taskContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   position: relative;
 }
 
 .showMoreOrLessButton {
   width: fit-content;
-  margin: 1.5rem auto -1rem;
+
+  margin: 1.5rem auto -1rem !important;
   padding: 0;
 }
 

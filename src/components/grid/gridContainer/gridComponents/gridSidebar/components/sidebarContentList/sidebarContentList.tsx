@@ -15,26 +15,28 @@ export const SidebarContentList = async () => {
 
   return (
     <ul className="sidebar__content">
-      {sidebarContentList.map((item: sidebarContentListType, index: number) => {
-        const todayUrl = "/today";
-        if (item.href === todayUrl) {
+      {sidebarContentList
+        .filter((item) => item.render)
+        .map((item: sidebarContentListType, index: number) => {
+          const todayUrl = "/today";
+          if (item.href === todayUrl) {
+            return (
+              <SidebarContentListItem
+                title={texts(`${item.title}`)}
+                todosDueTodayCount={todosDueTodayCount.data?.data}
+                key={item.href}
+                item={item}
+              />
+            );
+          }
           return (
             <SidebarContentListItem
               title={texts(`${item.title}`)}
-              todosDueTodayCount={todosDueTodayCount.data?.data}
               key={item.href}
               item={item}
             />
           );
-        }
-        return (
-          <SidebarContentListItem
-            title={texts(`${item.title}`)}
-            key={item.href}
-            item={item}
-          />
-        );
-      })}
+        })}
     </ul>
   );
 };

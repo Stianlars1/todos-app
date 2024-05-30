@@ -15,7 +15,8 @@
       "settings": {
         "dragAndDrop": "Dra & slipp",
         "layout": "Kolonneoppsett"
-      }
+      },
+      "createTask": "Opprett"
     },
 
     "filter": {
@@ -30,6 +31,10 @@
       "savingPreferences": "Lagrer..",
       "savePreferences": "Lagre preferanse",
       "filterTitle": "Filtrer kolonner"
+    },
+    "taskCard": {
+      "showMore": "Vis alle",
+      "showLess": "Vis mindre"
     }
   },
 

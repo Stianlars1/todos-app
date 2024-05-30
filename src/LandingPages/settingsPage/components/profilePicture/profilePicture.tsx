@@ -1,6 +1,7 @@
 "use client";
 import { Modal } from "@/components/modal/modal";
 import { EditIcon } from "@/components/ui/icons/icons";
+import Skeleton from "@/components/ui/skeleton/skeleton";
 import Image from "next/image";
 import { useState } from "react";
 import { ChangeProfilePicture } from "./changeProfilePicture";
@@ -16,6 +17,14 @@ export const ProfilePicture = ({
   return (
     <>
       <div className={styles.profilePictureWrapper}>
+        {!imageLoaded && (
+          <Skeleton
+            width={100}
+            height={100}
+            variant="pulse"
+            style={{ borderRadius: "50%", animationDuration: "1s" }}
+          />
+        )}
         <Image
           className={styles.image}
           style={{
@@ -24,6 +33,7 @@ export const ProfilePicture = ({
             borderRadius: "50%",
             background: `${imageLoaded ? "transparent" : "lightGray"}`,
             cursor: "pointer",
+            display: imageLoaded ? "block" : "none",
           }}
           width={100}
           height={100}

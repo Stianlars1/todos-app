@@ -1,6 +1,11 @@
 .createTodoButton {
   font-size: 0.875rem;
   background: hsl(var(--primary)) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: hsl(var(--white)) !important;
 }
 .createTodoButton svg {
   width: 20px;
@@ -13,7 +18,7 @@
   color: hsl(var(--white));
 }
 .createTodoButton:hover {
-  background-color: hsl(var(--primary)/0.8);
+  background-color: hsl(var(--primary)/0.8) !important;
 }
 
 @media screen and (max-width: 768px) {

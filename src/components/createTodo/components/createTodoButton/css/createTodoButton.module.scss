@@ -1,6 +1,11 @@
 .createTodoButton {
   font-size: 0.875rem;
   background: hsl(var(--primary)) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: hsl(var(--white)) !important;
   svg {
     width: 20px;
     height: 20px;
@@ -13,7 +18,7 @@
   }
 
   &:hover {
-    background-color: hsl(var(--primary) / 0.8);
+    background-color: hsl(var(--primary) / 0.8) !important;
   }
 }
 
