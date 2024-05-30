@@ -20,8 +20,8 @@ export const getAuthHeaders = async () => {
   console.log("\n\n\n\n\n 🟢 ===  getAuthHeaders called === ");
   const tokenDetails = await getToken(); // Assuming getToken is now an async function if you're retrieving token from an async source.
   return {
-    "Content-Type": "application/json",
     Authorization: `Bearer ${tokenDetails?.accessToken || ""}`,
+    ...APPLICATION_JSON_V1,
   };
 };
 export const getAuthHeaderOnly = async () => {

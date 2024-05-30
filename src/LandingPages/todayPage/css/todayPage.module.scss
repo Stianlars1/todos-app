@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 32px;
+
+  h1 {
+    max-width: 55%;
+    text-wrap: pretty;
+  }
+
+  .title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    .titleDueCount {
+      width: 2rem;
+      aspect-ratio: 1/1;
+      background: hsl(var(--border));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: calc(var(--radius) - 4px);
+      font-size: 13px;
+      border: 1px solid hsl(var(--muted));
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    h1 {
+      max-width: 45%;
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .header {
+    padding-top: 40px;
+    h1 {
+      max-width: 100%;
+    }
+  }
+}

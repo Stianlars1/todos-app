@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { CloseIcon } from "../icons/icons";
 import {
   InfoToastIcon,
   TaskBuddyToastIcon,
@@ -90,7 +91,7 @@ export const ToastContainer = () => {
         {toasts.map((toast, index: number) => {
           return (
             <Toast
-              key={toast.id}
+              key={`${toast.id}_${index}`}
               removeToast={removeToast}
               {...toast}
               style={{
@@ -126,7 +127,6 @@ const Toast = ({
 }: ToastProps) => {
   const [status, setStatus] = useState(" "); // New toasts start as 'entering'
 
-  const ToastIcon = getIcon(type);
   useEffect(() => {
     // Transition from 'entering' to 'entered'
     const enteringTimeout = setTimeout(() => {
@@ -151,38 +151,32 @@ const Toast = ({
 
   return (
     <div className={`toast ${position} ${type} ${status}`} style={style}>
-      <ToastIcon /> {message}
+      <Icon type={type} /> {message}
     </div>
   );
 };
+const SuccessIcon = () => (
+  <TaskBuddyToastIcon className="toastIcon checkMark" />
+);
+SuccessIcon.displayName = "SuccessIcon";
 
-const getIcon = (type: ToastType["type"]) => {
-  switch (type) {
-    case "success":
-      return () => <TaskBuddyToastIcon className="toastIcon checkMark" />;
-    case "error":
-      return () => <span>❌</span>;
-    case "warning":
-      return () => <WarningToastIcon className="toastIcon" />;
-    case "info":
-      return () => <InfoToastIcon className="toastIcon" />;
-  }
+const ErrorIcon = () => <CloseIcon />;
+ErrorIcon.displayName = "ErrorIcon";
+
+const WarningIcon = () => <WarningToastIcon className="toastIcon" />;
+WarningIcon.displayName = "WarningIcon";
+
+const InfoIcon = () => <InfoToastIcon className="toastIcon" />;
+InfoIcon.displayName = "InfoIcon";
+
+const iconMap = {
+  success: SuccessIcon,
+  error: ErrorIcon,
+  warning: WarningIcon,
+  info: InfoIcon,
 };
 
-{
-  /* <div
-key={toast.id}
-className={`${toast.position} ${
-  toast.type === "success"
-    ? "success"
-    : toast.type === "error"
-    ? "error"
-    : toast.type === "warning"
-    ? "warning"
-    : "info"
-} toast`}
->
-<Icon />
-{toast.message}
-</div> */
-}
+const Icon = ({ type }: { type: ToastType["type"] }) => {
+  const IconComponent = iconMap[type];
+  return IconComponent ? <IconComponent /> : null;
+};

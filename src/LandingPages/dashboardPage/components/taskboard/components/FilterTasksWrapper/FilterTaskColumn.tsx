@@ -1,9 +1,11 @@
 "use client";
 import { updateUserPreferences } from "@/app/actions/preferences/fetch";
 import { UserPreferenceDTO } from "@/app/actions/preferences/types";
+import { toast } from "@/components/ui/toast/toast";
 import { StatusCodes } from "@/types/todo/types";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-
+import styles from "./filtering.module.css";
 export const FilterTaskColumn = ({
   userPreferences,
 }: {
@@ -34,31 +36,36 @@ export const FilterTaskColumn = ({
         ),
       });
 
-      alert("Preferences updated successfully!");
+      toast.success("Preferences updated successfully!", "bottomRight");
     } catch (error) {
       console.error("Failed to update preferences:", error);
-      alert("Failed to update preferences. Please try again.");
+      toast.error(
+        "Failed to update preferences. Please try again.",
+        "bottomRight"
+      );
     }
     setIsSaving(false);
   };
+  const text = useTranslations("Taskboard");
+
   return (
-    <div>
+    <div className={styles.filterTaskColumn}>
       <ul>
         {userPreferencesState.map((pref) => (
           <li key={pref.categoryCode}>
-            <label>
-              {pref.categoryCode}
-              <input
-                type="checkbox"
-                checked={pref.visible}
-                onChange={() => handleVisibilityToggle(pref.categoryCode)}
-              />
-            </label>
+            <label>{text(`filter.${pref.categoryCode}`)}</label>
+            <input
+              type="checkbox"
+              checked={pref.visible}
+              onChange={() => handleVisibilityToggle(pref.categoryCode)}
+            />
           </li>
         ))}
       </ul>
       <button onClick={savePreferences} disabled={isSaving}>
-        {isSaving ? "Saving..." : "Save Preferences"}
+        {isSaving
+          ? text("filter.savingPreferences")
+          : text("filter.savePreferences")}
       </button>
     </div>
   );

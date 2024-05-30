@@ -9,15 +9,17 @@
 
 .menuIsOpen {
   opacity: 1;
-  transition: opacity 0.3s 50ms ease-in-out;
+  visibility: visible;
+  transition: top 0s 0s ease-in-out, left 0s 0s ease-in-out, opacity 0.3s 50ms ease-in-out, visibility 0s 25ms ease-in-out;
 }
 
 .menuIsClosed {
   opacity: 0;
+  visibility: hidden;
 }
 
 .contextMenu {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   background-color: hsl(var(--accent));
   color: hsl(var(--accent-foreground));
   border: 1px solid hsl(var(--border));

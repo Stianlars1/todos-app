@@ -45,18 +45,13 @@ export const login = async (_currentState: unknown, formData: FormData) => {
   await createSession(token);
   console.log("Login successful,  session created: ", decryptedToken);
 
-  console.log("Decrypted token locale language : ", decryptedToken.locale);
-
   const userLanguagePreference = decryptedToken.locale;
 
   if (userLanguagePreference) {
     const locale = userLanguagePreference;
     const redirectUrl = `${ROOT_URL}${locale}`;
-    console.log("Redirecting to user locale: ", userLanguagePreference);
     return redirect(redirectUrl);
   }
-
-  console.log("Redirecting to default locale");
 
   return redirect(ROOT_URL);
 };

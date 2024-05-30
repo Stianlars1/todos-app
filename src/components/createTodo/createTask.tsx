@@ -1,79 +1,28 @@
 "use client";
 import { createTodo } from "@/app/actions/todos/fetch";
 import { Priority, StatusId } from "@/app/actions/todos/types";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useFormState } from "react-dom";
+import { CustomForm } from "../form/components/customForm/customForm";
+import {
+  CustomInput,
+  CustomInputLabel,
+  CustomInputLabelWrapper,
+} from "../form/components/customInput/customInput";
+import { FormContentWrapper } from "../form/formContentWrapper";
 import { Modal } from "../modal/modal";
 import { TextEditor } from "../ui/richTextEditor/richTextEditor";
 import { ConfirmCreateTaskButton } from "./components/createTaskButton";
 import "./css/createTask.css";
 
-type CreateTodoStatusOptions =
-  | "CREATED"
-  | "ON_HOLD"
-  | "PENDING"
-  | "IN_PROGRESS"
-  | "COMPLETED"
-  | "CANCELLED"
-  | "DELETED";
-type CreateTodoPriorityOptions = "LOW" | "MEDIUM" | "HIGH";
-
-export interface CreateTaskTextsProps {
-  header: {
-    title: string;
-    description: string;
-  };
-  form: {
-    title: {
-      label: string;
-      placeholder: string;
-    };
-    description: {
-      label: string;
-      placeholder: string;
-    };
-    status: {
-      label: string;
-      options: {
-        [key in CreateTodoStatusOptions]: string;
-      };
-    };
-    priority: {
-      label: string;
-      options: {
-        [key in CreateTodoPriorityOptions]: string;
-      };
-    };
-    dueDate: {
-      label: string;
-      placeholder: string;
-    };
-    content: {
-      label: string;
-    };
-    tags: {
-      label: string;
-      placeholder: string;
-    };
-  };
-  submit: {
-    title: string;
-    loadingTitle: string;
-  };
-}
-
-export const CreateTask = ({
-  onClose,
-  createTaskTexts,
-}: {
-  onClose: () => void;
-  createTaskTexts: CreateTaskTextsProps;
-}) => {
+export const CreateTask = ({ onClose }: { onClose: () => void }) => {
   const [state, dispatch] = useFormState(createTodo, undefined);
   const [content, setContent] = useState<string>("");
   const [statusId, setStatusId] = useState<StatusId>(StatusId.CREATED);
   const [priority, setPriority] = useState<Priority>(Priority.MEDIUM);
-
+  const text = useTranslations("general");
+  const createText = useTranslations("Create-task");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   const handleInputChange = () => {
@@ -95,29 +44,21 @@ export const CreateTask = ({
         onChange={handleOnChange}
       >
         <option defaultValue={""} value={""} disabled>
-          Select status
+          {text("tasks.status.selectStatus")}
         </option>
-        <option value={StatusId.CREATED}>
-          {createTaskTexts.form.status.options.CREATED}
-        </option>
-        <option value={StatusId.ON_HOLD}>
-          {createTaskTexts.form.status.options.ON_HOLD}
-        </option>
-        <option value={StatusId.PENDING}>
-          {createTaskTexts.form.status.options.PENDING}
-        </option>
+        <option value={StatusId.CREATED}>{text("tasks.status.CREATED")}</option>
+        <option value={StatusId.ON_HOLD}>{text("tasks.status.ON_HOLD")}</option>
+        <option value={StatusId.PENDING}>{text("tasks.status.PENDING")}</option>
         <option value={StatusId.IN_PROGRESS}>
-          {createTaskTexts.form.status.options.IN_PROGRESS}
+          {text("tasks.status.IN_PROGRESS")}
         </option>
         <option value={StatusId.COMPLETED}>
-          {createTaskTexts.form.status.options.COMPLETED}
+          {text("tasks.status.COMPLETED")}
         </option>
         <option value={StatusId.CANCELLED}>
-          {createTaskTexts.form.status.options.CANCELLED}
+          {text("tasks.status.CANCELLED")}
         </option>
-        <option value={StatusId.DELETED}>
-          {createTaskTexts.form.status.options.DELETED}
-        </option>
+        <option value={StatusId.DELETED}>{text("tasks.status.DELETED")}</option>
       </select>
     );
   };
@@ -135,15 +76,9 @@ export const CreateTask = ({
         value={priority || ""} // Fallback to the empty string if priority is undefined
         onChange={handleOnChange}
       >
-        <option value={Priority.LOW}>
-          {createTaskTexts.form.priority.options.LOW}
-        </option>
-        <option value={Priority.MEDIUM}>
-          {createTaskTexts.form.priority.options.MEDIUM}
-        </option>
-        <option value={Priority.HIGH}>
-          {createTaskTexts.form.priority.options.HIGH}
-        </option>
+        <option value={Priority.LOW}>{text("tasks.priority.LOW")}</option>
+        <option value={Priority.MEDIUM}>{text("tasks.priority.MEDIUM")}</option>
+        <option value={Priority.HIGH}>{text("tasks.priority.HIGH")}</option>
       </select>
     );
   };
@@ -153,54 +88,76 @@ export const CreateTask = ({
   }
 
   return (
-    <Modal onClose={onClose} hasUnsavedChanges={hasUnsavedChanges}>
-      <form action={dispatch} className="create-task">
-        <header className="create-task__header">
-          <h1>{createTaskTexts.header.title}</h1>
-          <p>{createTaskTexts.header.description}</p>
-        </header>
-        <div className="create-task__content">
-          <div className="create-task__content__wrapper ">
-            <label>{createTaskTexts.form.title.label}</label>
-            <input
+    <Modal
+      onClose={onClose}
+      hasUnsavedChanges={hasUnsavedChanges}
+      replaceUrl={true}
+    >
+      <CustomForm action={dispatch} className="create-task">
+        <FormContentWrapper>
+          <header className="create-task__header">
+            <h1>{createText("header.title")}</h1>
+            <p>{createText("header.description")}</p>
+          </header>
+
+          <CustomInputLabelWrapper>
+            <CustomInputLabel htmlFor="title">
+              {createText("form.title.label")}
+            </CustomInputLabel>
+            <CustomInput
               type="text"
-              placeholder={createTaskTexts.form.title.placeholder}
+              placeholder={createText("form.title.placeholder")}
               id="title"
               name="title"
               required
               onChange={handleInputChange}
             />
-          </div>
-          <div className="create-task__content__wrapper ">
-            <label>{createTaskTexts.form.description.label}</label>
-            <input
+          </CustomInputLabelWrapper>
+
+          <CustomInputLabelWrapper>
+            <CustomInputLabel htmlFor="description">
+              {createText("form.description.label")}
+            </CustomInputLabel>
+            <CustomInput
               type="text"
-              placeholder={createTaskTexts.form.description.placeholder}
+              placeholder={createText("form.description.placeholder")}
               id="description"
               name="description"
               onChange={handleInputChange}
             />
-          </div>
-          <div className="create-task__content__wrapper ">
-            <label>{createTaskTexts.form.status.label}</label>
+          </CustomInputLabelWrapper>
+
+          <CustomInputLabelWrapper>
+            <CustomInputLabel>
+              {createText("form.status.label")}
+            </CustomInputLabel>
             <SelectStatus />
-          </div>
-          <div className="create-task__content__wrapper ">
-            <label>{createTaskTexts.form.priority.label}</label>
+          </CustomInputLabelWrapper>
+
+          <CustomInputLabelWrapper>
+            <CustomInputLabel>
+              {createText("form.priority.label")}
+            </CustomInputLabel>
+
             <TaskPriority />
-          </div>
-          <div className="create-task__content__wrapper ">
-            <label>{createTaskTexts.form.dueDate.label}</label>
-            <input
+          </CustomInputLabelWrapper>
+          <CustomInputLabelWrapper>
+            <CustomInputLabel htmlFor="dueDate">
+              {createText("form.dueDate.label")}
+            </CustomInputLabel>
+            <CustomInput
               type="date"
-              placeholder={createTaskTexts.form.dueDate.placeholder}
+              placeholder={createText("form.dueDate.placeholder")}
               id="dueDate"
               name="dueDate"
               onChange={handleInputChange}
             />
-          </div>
-          <div className="create-task__content__wrapper ">
-            <label>{createTaskTexts.form.content.label}</label>
+          </CustomInputLabelWrapper>
+
+          <CustomInputLabelWrapper>
+            <CustomInputLabel>
+              {createText("form.content.label")}
+            </CustomInputLabel>
             <TextEditor
               content={content}
               setContent={setContent}
@@ -216,26 +173,29 @@ export const CreateTask = ({
                 name="content"
               />
             )}
-          </div>
-          <div className="create-task__content__wrapper ">
-            <label>{createTaskTexts.form.tags.label}</label>
-            <input
+          </CustomInputLabelWrapper>
+
+          <CustomInputLabelWrapper>
+            <CustomInputLabel htmlFor="tags">
+              {createText("form.tags.label")}
+            </CustomInputLabel>
+            <CustomInput
               type="text"
               placeholder="Tags"
               id="tags"
               name="tags"
               onChange={() => handleInputChange()}
             />
+          </CustomInputLabelWrapper>
+          <div className="create-task__footer">
+            <ConfirmCreateTaskButton
+              loadingText={createText("submit.loadingTitle")}
+            >
+              {createText("submit.title")}
+            </ConfirmCreateTaskButton>
           </div>
-        </div>
-        <div className="create-task__footer">
-          <ConfirmCreateTaskButton
-            loadingText={createTaskTexts.submit.loadingTitle}
-          >
-            {createTaskTexts.submit.title}
-          </ConfirmCreateTaskButton>
-        </div>
-      </form>
+        </FormContentWrapper>
+      </CustomForm>
     </Modal>
   );
 };

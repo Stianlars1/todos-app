@@ -1,0 +1,1 @@
+{"version":3,"sources":["skeleton.module.scss","skeleton.module.css"],"names":[],"mappings":"AAUA;EACE,yBAXoB;EAYpB,qBAAA;EACA,kBAAA;ACTF;ADWE;EACE,8BAAA;ACTJ;ADYE;EACE,yEAjBwB;EAkBxB,0BAAA;EACA,gCAAA;ACVJ;;ADcA;EACE;IACE,yBA5BkB;ECiBpB;EDaA;IACE,yBA9BmB;ECmBrB;EDaA;IACE,yBAlCkB;ECuBpB;AACF;ADcA;EACE;IACE,4BAAA;ECZF;EDcA;IACE,2BAAA;ECZF;AACF","file":"skeleton.module.css"}

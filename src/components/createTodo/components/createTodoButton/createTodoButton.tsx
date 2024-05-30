@@ -3,18 +3,14 @@ import { IconAdd } from "@/components/ui/icons/icons";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { CreateTask, CreateTaskTextsProps } from "../../createTask";
-import "./css/createTodoButton.css";
-export const CreateTodoButton = ({
-  createTaskTexts,
-}: {
-  createTaskTexts: CreateTaskTextsProps;
-}) => {
+import { CreateTask } from "../../createTask";
+import styles from "./css/createTodoButton.module.css";
+export const CreateTodoButton = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
       <Button
-        className="create-todo__button"
+        className={styles.createTodoButton}
         variant="icon"
         onClick={() => setOpen(!open)}
       >
@@ -23,10 +19,7 @@ export const CreateTodoButton = ({
 
       {open &&
         createPortal(
-          <CreateTask
-            createTaskTexts={createTaskTexts}
-            onClose={() => setOpen(!open)}
-          />,
+          <CreateTask onClose={() => setOpen(!open)} />,
           document.body
         )}
     </>

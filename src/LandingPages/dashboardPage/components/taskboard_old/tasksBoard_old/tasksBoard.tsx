@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CategorizedTodosFiltered, CategoryString } from "../../../types";
 import { StatusColumn } from "../../dashboardTodos/components/statusColumn/statusColumn";
+import { StatusCodes } from "@/types/todo/types";
 
 export const TasksBoard = ({
   userSettings,
@@ -35,7 +36,7 @@ export const TasksBoard = ({
             return (
               <StatusColumn
                 key={categoryString || "no-category"}
-                categoryString={categoryString as CategoryString}
+                categoryString={categoryString as StatusCodes}
                 todosList={todosList}
                 userSettings={userSettings}
                 headerTitle={

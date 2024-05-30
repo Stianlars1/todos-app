@@ -3,7 +3,6 @@
 
 import { updateColumnDisplayOrder } from "@/app/actions/dragDrop/fetch";
 import { UpdateColumnOrderDTO } from "@/app/actions/dragDrop/types";
-import { CreateTaskTextsProps } from "@/components/createTodo/createTask";
 import { StatusCodes } from "@/types/todo/types";
 import { TodoDTO } from "@/types/types";
 import { NodeDragEventData, NodeTouchEventData } from "@formkit/drag-and-drop";
@@ -76,7 +75,6 @@ export const didCategoryIndexChange = ({
   oldList: ColumnListDND[];
   newList: ColumnListDND[];
 }) => {
-  // did the order change
   return oldList.some((oldColumn, index) => {
     return oldColumn.column !== newList[index].column;
   });
@@ -97,71 +95,11 @@ export const getCategorizedTodosTexts = async () => {
 };
 export const getTaskboardTexts = async () => {
   const text = await getTranslations("Taskboard");
-  console.log("Taskboard texts", text);
   const Texts = {
     header: {
       sortSwitchTitle: text("header.sortSwitch"),
       title: text("header.title"),
     },
   } as { header: { sortSwitchTitle: string; title: string } };
-  console.log("Taskboard Texts", Texts);
   return Texts;
-};
-
-export const getCreateTodosTexts = async () => {
-  const texts = await getTranslations("Create-task");
-
-  const messageObject: CreateTaskTextsProps = {
-    header: {
-      title: texts("header.title"),
-      description: texts("header.description"),
-    },
-    form: {
-      title: {
-        label: texts("form.title.label"),
-        placeholder: texts("form.title.placeholder"),
-      },
-      description: {
-        label: texts("form.description.label"),
-        placeholder: texts("form.description.placeholder"),
-      },
-      status: {
-        label: texts("form.status.label"),
-        options: {
-          CREATED: texts("form.status.options.CREATED"),
-          PENDING: texts("form.status.options.PENDING"),
-          IN_PROGRESS: texts("form.status.options.IN_PROGRESS"),
-          COMPLETED: texts("form.status.options.COMPLETED"),
-          ON_HOLD: texts("form.status.options.ON_HOLD"),
-          CANCELLED: texts("form.status.options.CANCELLED"),
-          DELETED: texts("form.status.options.DELETED"),
-        },
-      },
-      priority: {
-        label: texts("form.priority.label"),
-        options: {
-          LOW: texts("form.priority.options.LOW"),
-          MEDIUM: texts("form.priority.options.MEDIUM"),
-          HIGH: texts("form.priority.options.HIGH"),
-        },
-      },
-      dueDate: {
-        label: texts("form.dueDate.label"),
-        placeholder: texts("form.dueDate.placeholder"),
-      },
-      content: {
-        label: texts("form.content.label"),
-      },
-      tags: {
-        label: texts("form.tags.label"),
-        placeholder: texts("form.tags.placeholder"),
-      },
-    },
-    submit: {
-      title: texts("submit.title"),
-      loadingTitle: texts("submit.loadingTitle"),
-    },
-  };
-
-  return messageObject;
 };

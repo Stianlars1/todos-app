@@ -27,6 +27,10 @@ const ContextButton: React.FC<ContextButtonProps> = ({ trigger, children }) => {
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
+    if (isOpen) {
+      setMenuPosition({ top: 0, left: 0 });
+      setMenuOpenClass(styles.menuIsClosed);
+    }
     if (!isOpen) {
       // To ensure it updates right before opening
       updateMenuPosition();
@@ -42,13 +46,15 @@ const ContextButton: React.FC<ContextButtonProps> = ({ trigger, children }) => {
       }, 50);
       intervalId = setInterval(() => {
         updateMenuPosition();
-      }, 0); // Continuously update position every 100ms when menu is open
+      }, 0); // Continuously update position every 50 when menu is open
     } else {
       clearInterval(intervalId);
       clearTimeout(setOpenMenuClass);
     }
 
-    return () => clearInterval(intervalId);
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -58,6 +64,7 @@ const ContextButton: React.FC<ContextButtonProps> = ({ trigger, children }) => {
         !menuRef.current?.contains(event.target as Node)
       ) {
         setIsOpen(false);
+        setMenuOpenClass(styles.menuIsClosed);
       }
     };
 
@@ -65,6 +72,7 @@ const ContextButton: React.FC<ContextButtonProps> = ({ trigger, children }) => {
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      setMenuOpenClass(styles.menuIsClosed);
     };
   }, []);
 

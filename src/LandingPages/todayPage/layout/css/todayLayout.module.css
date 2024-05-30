@@ -3,24 +3,43 @@
   flex-wrap: nowrap;
   align-items: flex-start;
   min-width: 100%;
-  min-height: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: initial;
 }
-
-.noTasks {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.list {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+.todayLayout .list {
+  flex: 0 1 55%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
 }
+.todayLayout .list .card {
+  flex: 1 1 auto;
+}
 
-.card {
-  width: 100%;
+@media screen and (max-width: 1200px) {
+  .todayLayout .list {
+    flex: 0 1 45%;
+    width: 45%;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+@media screen and (max-width: 1000px) {
+  .todayLayout {
+    position: initial;
+  }
+  .todayLayout .list {
+    flex: 1 1 100%;
+    max-width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto);
+  }
+}
+@media screen and (max-width: 768px) {
+  .todayLayout .list {
+    flex: 1 1 100%;
+    max-width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto);
+  }
 }/*# sourceMappingURL=todayLayout.module.css.map */

@@ -6,7 +6,6 @@ import { redirect } from "next/navigation";
 
 export default async function Login() {
   const isAuthenticated = await verifyAuthentication();
-
   if (isAuthenticated) {
     const userSettings = await getUserSettings();
     if (userSettings.data?.language) {

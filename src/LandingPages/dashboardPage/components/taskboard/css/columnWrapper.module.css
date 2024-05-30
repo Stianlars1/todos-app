@@ -17,5 +17,8 @@
 @media screen and (max-width: 768px) {
   .columnWrapper {
     padding: 32px 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+    row-gap: 1.2rem;
   }
 }

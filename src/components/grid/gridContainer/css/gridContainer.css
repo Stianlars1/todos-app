@@ -21,10 +21,8 @@
   max-width: var(--main--content-max-width);
   padding: var(--main-padding);
   z-index: 1;
-  overflow-x: hidden;
-  height: -moz-fit-content;
-  height: fit-content;
-  height: 100%;
+  min-height: 100%;
+  position: relative;
 }
 .grid-container__sidebar {
   grid-area: sidebar;
@@ -46,7 +44,7 @@
 @media screen and (max-width: 768px) {
   .grid-container {
     grid-template-columns: 100%;
-    grid-template-areas: "navbar" "main" "footer";
+    grid-template-areas: "navbar" "main";
   }
   .grid-container__main {
     padding: 1rem;

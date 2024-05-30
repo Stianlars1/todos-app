@@ -13,7 +13,7 @@ export const TodoModal = ({
   const { task, isSuccess, isError, isLoading, error } = useFetchTask(taskId);
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} replaceUrl url="">
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error: {error}</p>}
       {isSuccess && task && <Task task={task} />}

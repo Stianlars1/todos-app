@@ -33,3 +33,9 @@
   background: hsl(0 0% 0% / 50%);
   overflow: hidden;
 }
+
+@media screen and (max-width: 768px) {
+  .modal {
+    max-width: 100%;
+  }
+}

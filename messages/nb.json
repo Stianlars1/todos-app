@@ -16,6 +16,20 @@
         "dragAndDrop": "Dra & slipp",
         "layout": "Kolonneoppsett"
       }
+    },
+
+    "filter": {
+      "CREATED": "Opprettet",
+      "PENDING": "Venter",
+      "IN_PROGRESS": "Under arbeid",
+      "COMPLETED": "Ferdig",
+      "ON_HOLD": "På vent",
+      "CANCELLED": "Avbrutt",
+      "DELETED": "Slettet",
+      "SOON_DUE": "Snart forfall",
+      "savingPreferences": "Lagrer..",
+      "savePreferences": "Lagre preferanse",
+      "filterTitle": "Filtrer kolonner"
     }
   },
 
@@ -102,5 +116,127 @@
     "ON_HOLD": "På vent",
     "CANCELLED": "Avbrutt",
     "DELETED": "Slettet"
+  },
+
+  "TodayPage": {
+    "header": {
+      "title": "Oppgaver",
+      "noTasksTitle": "Ingen oppgaver med frist i dag",
+      "description": "Klikk på en oppgave for å se flere detaljer."
+    },
+
+    "taskViewer": {
+      "task": "Oppgave",
+      "placeholderTitle": "Gi oppgaven en tittel..",
+      "placeholderDescription": "Gi en kort beskrivelse av oppgaven..",
+      "formTitle": "Tittel",
+      "formDescription": "Beskrivelse",
+      "markAsCompleted": "Marker som ferdig",
+      "saveChanges": "Lagre endringer",
+      "savingChanges": "Lagrer..",
+      "formDueDate": "Frist",
+      "formContent": "Innhold",
+      "deleteTask": "Slett oppgave",
+      "cancel": "Avbryt",
+      "edit": "Rediger",
+      "taskUpdated": "Oppgaven ble oppdatert",
+      "markedAsCompleted": "Oppgaven ble markert som ferdig"
+    }
+  },
+
+  "SettingsPage": {
+    "header": {
+      "title": "Innstillinger"
+    },
+    "tabs": {
+      "Profile": "Profil",
+      "Security": "Sikkerhet",
+      "Preferences": "Preferanser"
+    },
+
+    "profile": {
+      "firstname": {
+        "label": "Fornavn",
+        "placeholder": "Skriv inn et nytt fornavn.."
+      },
+      "lastname": {
+        "label": "Etternavn",
+        "placeholder": "Skriv inn et nytt etternavn.."
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Skriv inn en ny e-post adresse"
+      },
+      "lastUpdated": {
+        "label": "Sist oppdatert"
+      },
+      "userUpdatedSuccessfully": "Brukeren ble oppdatert",
+      "emailConflict": "E-posten er allerede i bruk"
+    },
+
+    "security": {
+      "password": {
+        "title": "Endre passord",
+        "description": "Skriv inn ditt nåværende passord og deretter ditt nye passord.",
+        "currentPassword": {
+          "label": "Nåværende passord",
+          "placeholder": "Skriv inn ditt nåværende passord"
+        },
+        "newPassword": {
+          "label": "Nytt passord",
+          "placeholder": "Skriv inn ditt nye passord"
+        },
+        "confirmPassword": {
+          "label": "Bekreft passord",
+          "placeholder": "Bekreft ditt nye passord"
+        },
+        "passwordUpdatedSuccessfully": "Passordet ble oppdatert",
+        "updateSuccess": "Oppdatert",
+        "passwordSameAsCurrent": "Det nye passordet kan ikke være det samme som det nåværende passordet",
+        "passwordsDoNotMatch": "Passordene stemmer ikke overens",
+        "incorrectPassword": "Nåværende passord er feil",
+        "userNotFound": "Brukeren ble ikke funnet",
+        "savingChanges": "Lagrer.."
+      }
+    }
+  },
+
+  "general": {
+    "tasks": {
+      "priority": {
+        "LOW": "Lav",
+        "MEDIUM": "Middels",
+        "HIGH": "Høy",
+        "label": "Prioritet"
+      },
+      "status": {
+        "CREATED": "Opprettet",
+        "PENDING": "Venter",
+        "IN_PROGRESS": "Under arbeid",
+        "COMPLETED": "Ferdig",
+        "ON_HOLD": "På vent",
+        "CANCELLED": "Avbrutt",
+        "DELETED": "Slettet",
+        "selectStatus": "Velg status",
+        "label": "Status"
+      },
+
+      "CREATION": {
+        "messages": {
+          "UNSAVED_CHANGES": "Du har ulagrede endringer. Vil du forlate siden uten å lagre?"
+        }
+      }
+    },
+
+    "buttons": {
+      "save": "Lagre",
+      "cancel": "Avbryt",
+      "close": "Lukk",
+      "delete": "Slett",
+      "edit": "Rediger",
+      "create": "Opprett",
+      "update": "Oppdater",
+      "loading": "Laster.."
+    }
   }
 }

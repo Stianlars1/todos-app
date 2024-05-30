@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 0.5rem;
   overflow: hidden;
+  width: 100%;
 }
 .sidebar__content__item {
   list-style-type: none;

@@ -5,7 +5,6 @@
   grid-template-rows: max-content auto auto 0;
   gap: 0.5rem;
   padding: 1rem;
-  transition: all 0.15s ease-in-out;
   place-items: flex-start;
   justify-items: start;
   max-width: 15rem;
@@ -14,6 +13,7 @@
   bottom: 0;
   left: 0;
   width: var(--sidebar-width);
+  transition: width 0.2s ease;
 }
 .sidebar__header {
   overflow: hidden;
@@ -26,10 +26,6 @@
   flex: 1 0 100%;
 }
 @media screen and (min-width: 769px) {
-  [data-sidebar-open=false] .sidebar {
-    width: -moz-min-content;
-    width: min-content;
-  }
   [data-sidebar-open=true] .sidebar__content__item .link-text {
     animation: sidebarContentSlider 0.3s ease forwards;
   }

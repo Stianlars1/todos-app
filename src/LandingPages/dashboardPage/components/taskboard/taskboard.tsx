@@ -34,34 +34,40 @@ export const Taskboard = async ({
   }, {} as CategorizedTodosDTO);
 
   const soonDueTasks = taskResponse?.data?.[DUE_SOON_KEY];
-
+  console.log("soonDueTasks", soonDueTasks);
   if (isError && error) {
     return <ErrorMessage isError={isError} errorMessage={error} />;
   }
   return (
     <>
-      <div>
-        <h3>Soon due</h3>
-        <ul>
-          {soonDueTasks?.map((task) => {
-            // Get how many days left
-            const date = new Date(task.dueDate!);
-            const daysUntil = Math.floor(
-              (date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
-            );
-            return (
-              <>
-                <h4>
-                  {daysUntil === 1
-                    ? "Due tomorrow"
-                    : `Due in ${daysUntil} days`}
-                </h4>
-                <div key={task.todoId}>{task.title}</div>
-              </>
-            );
-          })}
-        </ul>
-      </div>
+      {soonDueTasks && soonDueTasks.length > 0 && (
+        <>
+          <div>
+            <h3>Soon due</h3>
+            <ul>
+              {soonDueTasks.map((task) => {
+                // Get how many days left
+                const date = new Date(task.dueDate!);
+                const daysUntil = Math.floor(
+                  (date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+                );
+                return (
+                  <>
+                    <h4>
+                      {daysUntil === 0
+                        ? "Due today"
+                        : daysUntil === 1
+                        ? "Due tomorrow"
+                        : `Due in ${daysUntil} days`}
+                    </h4>
+                    <div key={task.todoId}>{task.title}</div>
+                  </>
+                );
+              })}
+            </ul>
+          </div>
+        </>
+      )}
       <TaskboardHeader
         taskboardHeaderTexts={taskboardTexts.header}
         userSettings={userSettings}

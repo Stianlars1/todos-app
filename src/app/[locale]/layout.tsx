@@ -1,6 +1,7 @@
-import { ErrorBoundary } from "@/components/errorBoundary";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import "../globals.css";
 import { mainPageMeta } from "../metadata";
 
@@ -13,9 +14,13 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const messages = await getMessages();
+
   return (
     <html lang={locale}>
-      <body className={GeistSans.className}>{children}</body>
+      <NextIntlClientProvider messages={messages}>
+        <body className={GeistSans.className}>{children}</body>
+      </NextIntlClientProvider>
     </html>
   );
 }

@@ -16,6 +16,10 @@ export interface FetchState<T> {
   error: string | null;
 }
 
+export interface FetchStateForm<T> extends FetchState<T> {
+  formErrors: string[] | undefined;
+}
+
 export async function customFetch<T>({
   url,
   options,
@@ -67,12 +71,31 @@ export async function customFetch<T>({
     error: null,
   };
 
+  console.log("\n\n 🟢 customFetch url: \n", url);
   try {
+    console.log("\n\n 🟢 customFetch trying: \n");
     const response = await fetch(url, fetchOptions);
+    console.log("\n\n 🟢 await fetch res: \n", response);
+    // if (!response.ok) {
+    //   console.log("\n\n 🔴 response customFetch: \n", await response.json());
+    //   const errorMessage = getErrorMessage(response.status);
+    //   // console.log("\n\n 🔴 errorMessage: \n", errorMessage);
+    //   console.log("\n\n 🔴 errorMessage: \n", errorMessage);
+    //   throw new Error(errorMessage);
+    // }
+
     if (!response.ok) {
-      console.log("\n\n 🔴 response customFetch: \n", response);
-      const errorMessage = getErrorMessage(response.status);
-      // console.log("\n\n 🔴 errorMessage: \n", errorMessage);
+      const contentType = response.headers.get("Content-Type");
+      let errorData: any;
+      if (contentType && contentType.includes("application/json")) {
+        errorData = await response.json();
+      } else {
+        errorData = await response.text(); // Fallback to plain text
+      }
+      console.log("\n\n 🔴 response customFetch: \n", errorData);
+      const errorMessage =
+        errorData.message || errorData || getErrorMessage(response.status);
+      console.log("\n\n 🔴 errorMessage: \n", errorMessage);
       throw new Error(errorMessage);
     }
 
@@ -86,7 +109,7 @@ export async function customFetch<T>({
       data = await response.text(); // Fallback to plain text
     }
 
-    // console.log("\n\n 🟢 customFetch data response : \n", data);
+    console.log("\n\n 🟢 customFetch data response : \n", data);
 
     return {
       ...state,
@@ -95,6 +118,7 @@ export async function customFetch<T>({
       data,
     };
   } catch (error: any) {
+    console.log("\n\n 🔴 customFetch error: \n", error);
     let message = error.message;
 
     if (error instanceof TypeError) {

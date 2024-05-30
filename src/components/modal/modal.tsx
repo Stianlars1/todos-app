@@ -1,5 +1,5 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
 import "./css/modal.css";
@@ -8,26 +8,34 @@ export const Modal = ({
   onClose,
   children,
   hasUnsavedChanges,
+  replaceUrl = false,
+  url = "",
 }: {
   children: ReactNode | ReactNode[] | ReactElement | ReactElement[];
   onClose: () => void;
   hasUnsavedChanges?: boolean;
+  replaceUrl?: boolean;
+  url?: string;
 }) => {
   const [isModalOpen, setModalOpen] = useState(true);
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const locale = useLocale();
   const router = useRouter();
+  const text = useTranslations("general");
   const handleCloseModal = () => {
     if (hasUnsavedChanges) {
       const userConfirmed = window.confirm(
-        "Are you sure you want to close? Unsaved changes will be lost."
+        text("tasks.CREATION.messages.UNSAVED_CHANGES")
       );
       if (!userConfirmed) {
         return;
       }
     }
 
-    router.replace(`/${locale}`, undefined);
+    if (replaceUrl) {
+      const replaceUrl = url ? `/${locale}/${url}` : `/${locale}`;
+      router.replace(replaceUrl, undefined);
+    }
 
     if (onClose) onClose();
     setModalOpen(false);

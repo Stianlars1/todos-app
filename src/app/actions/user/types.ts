@@ -26,6 +26,7 @@ export interface UserSettingsDTO {
   sortByDueDate?: string;
   sortManual?: boolean;
   isColumnLayout?: boolean;
+  timeZone?: string;
 }
 export type ExcludeBooleanKeys<T> = {
   [K in keyof T]: T[K] extends boolean ? never : K;

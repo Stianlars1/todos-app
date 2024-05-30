@@ -18,7 +18,6 @@ export const TaskboardHeader = async ({
           userSettings={userSettings}
         />
       </header>
-      <FilterTasksWrapper />
     </>
   );
 };

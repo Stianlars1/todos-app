@@ -1,9 +1,9 @@
 .create-task {
   width: 800px;
-  height: auto;
+  height: -moz-fit-content;
+  height: fit-content;
   max-width: inherit;
-  max-height: inherit;
-  padding: 1.5rem;
+  padding: 1.5rem !important;
   pointer-events: auto;
   display: flex;
   flex-direction: column;

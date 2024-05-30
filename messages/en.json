@@ -15,6 +15,19 @@
         "dragAndDrop": "Drag & drop",
         "layout": "Column Layout"
       }
+    },
+    "filter": {
+      "CREATED": "Created",
+      "PENDING": "Pending",
+      "IN_PROGRESS": "In Progress",
+      "COMPLETED": "Completed",
+      "ON_HOLD": "On Hold",
+      "CANCELLED": "Cancelled",
+      "DELETED": "Deleted",
+      "SOON_DUE": "Soon Due",
+      "savingPreferences": "Saving..",
+      "savePreferences": "Save preferences",
+      "filterTitle": "Filter columns"
     }
   },
 
@@ -101,5 +114,122 @@
     "ON_HOLD": "On hold",
     "CANCELLED": "Cancelled",
     "DELETED": "Deleted"
+  },
+
+  "TodayPage": {
+    "header": {
+      "title": "Tasks",
+      "noTasksTitle": "No tasks are due for today",
+      "description": "Click on a task to view more details."
+    },
+
+    "taskViewer": {
+      "task": "Task",
+      "formTitle": "Title",
+      "placeholderTitle": "Give the task a title..",
+      "formDescription": "Description",
+      "placeholderDescription": "Give a short description..",
+      "markAsCompleted": "Mark as completed",
+      "saveChanges": "Save changes",
+      "savingChanges": "Saving..",
+      "formDueDate": "Due date",
+      "deleteTask": "Delete task",
+      "cancel": "Cancel",
+      "formContent": "Content",
+      "edit": "Edit",
+      "taskUpdated": "Task updated successfully",
+      "markedAsCompleted": "Task marked as completed"
+    }
+  },
+
+  "SettingsPage": {
+    "header": {
+      "title": "Settings"
+    },
+    "tabs": {
+      "Profile": "Profile",
+      "Security": "Security",
+      "Preferences": "Preferences"
+    },
+    "profile": {
+      "firstname": {
+        "label": "First name",
+        "placeholder": "Enter a first name"
+      },
+      "lastname": {
+        "label": "Last name",
+        "placeholder": "Enter a last name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter an email"
+      },
+      "lastUpdated": {
+        "label": "Last updated"
+      },
+      "userUpdatedSuccessfully": "User updated successfully",
+      "emailConflict": "Email already in use"
+    },
+    "security": {
+      "password": {
+        "title": "Change password",
+        "description": "Enter your current password and a new password to change your password.",
+        "currentPassword": {
+          "label": "Current password",
+          "placeholder": "Enter your current password"
+        },
+        "newPassword": {
+          "label": "New password",
+          "placeholder": "Enter a new password"
+        },
+        "confirmPassword": {
+          "label": "Confirm password",
+          "placeholder": "Confirm your new password"
+        },
+        "passwordUpdatedSuccessfully": "Password updated successfully",
+        "updateSuccess": "Updated",
+        "passwordSameAsCurrent": "You cannot use the same password.",
+        "passwordsDoNotMatch": "Passwords do not match.",
+        "userNotFound": "User not found",
+        "incorrectPassword": "Current password is incorrect"
+      }
+    }
+  },
+
+  "general": {
+    "tasks": {
+      "priority": {
+        "LOW": "Low",
+        "MEDIUM": "Medium",
+        "HIGH": "High",
+        "label": "Priority"
+      },
+      "status": {
+        "CREATED": "Created",
+        "PENDING": "Pending",
+        "IN_PROGRESS": "In progress",
+        "COMPLETED": "Completed",
+        "ON_HOLD": "On hold",
+        "CANCELLED": "Cancelled",
+        "DELETED": "Deleted",
+        "selectStatus": "Select status",
+        "label": "Status"
+      },
+      "CREATION": {
+        "messages": {
+          "UNSAVED_CHANGES": "Are you sure you want to close? Unsaved changes will be lost."
+        }
+      }
+    },
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "close": "Close",
+      "delete": "Delete",
+      "edit": "Edit",
+      "create": "Create",
+      "update": "Update",
+      "loading": "Loading.."
+    }
   }
 }

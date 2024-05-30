@@ -12,11 +12,15 @@ export const API_USER_SETTINGS_URL =
   "https://app.taskbuddy.dev/api/user/settings"; // add /:userId to get a specific user's profile picture (PATCH)
 export const API_USER_PREFERENCES =
   "https://app.taskbuddy.dev/api/user/preferences"; // add /:userId to get a specific user's profile picture (PATCH)
+export const API_USER_UPDATE_PASSWORD_URL =
+  "https://app.taskbuddy.dev/api/user/update-current-password"; // add /:userId to get a specific user's profile picture (PATCH)
 
 // Todos
 export const API_TODOS_URL = "https://app.taskbuddy.dev/api/todos"; // GET
 export const API_TODOS_DUE_TODAY_URL =
   "https://app.taskbuddy.dev/api/todos/today"; // GET
+export const API_TODOS_DUE_TODAY_COUNT_URL =
+  "https://app.taskbuddy.dev/api/todos/todays-due-count"; // GET
 export const API_TODOS_UPDATE_URL = API_TODOS_URL; // PUT
 export const API_TODOS_CREATE_URL = API_TODOS_URL; // POST
 export const API_TASKS_URL = API_TODOS_URL; // GET

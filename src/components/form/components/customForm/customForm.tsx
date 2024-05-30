@@ -5,7 +5,7 @@ interface CustomFormProps extends FormHTMLAttributes<HTMLFormElement> {
 }
 export const CustomForm = ({ children, ...props }: CustomFormProps) => {
   return (
-    <form {...props} className="custom-form">
+    <form {...props} className={`custom-form ${props.className || " "}`}>
       {children}
     </form>
   );

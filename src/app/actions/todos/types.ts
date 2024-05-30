@@ -25,7 +25,7 @@ export enum Priority {
 export interface CreateTodoDTO {
   title?: string;
   description?: string;
-  statusId?: StatusId;
+  statusId?: StatusId | number;
   priority?: TodoPriority;
   dueDate?: Date;
   files?: FilesType[];

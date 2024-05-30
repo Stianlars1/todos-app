@@ -2,7 +2,8 @@
 import { DragDropIcon } from "@/components/ui/icons/icons";
 
 import { UserSettingsDTO } from "@/app/actions/user/types";
-import { Button } from "@stianlarsen/react-ui-kit";
+import { useState } from "react";
+import { MdEdit } from "react-icons/md";
 import { StatusColumnSortButton } from "../../dashboardTodos/components/statusColumn/components/statusColumnSortButton/statusColumnSortButton";
 import draggableColumn from "../css/draggableColumn.module.css";
 import { ColumnListDND } from "../types";
@@ -17,8 +18,13 @@ export const DraggableColumn = ({
   title: string;
   userSettings: UserSettingsDTO | undefined;
 }) => {
+  const [draggableColumnEditActive, setDraggableColumnEditActive] =
+    useState(false);
   const showSortButton =
     userSettings?.sortManual !== undefined && !userSettings.sortManual;
+  const handleColumnEditClick = () => {
+    setDraggableColumnEditActive(!draggableColumnEditActive);
+  };
   return (
     <>
       <li
@@ -37,21 +43,25 @@ export const DraggableColumn = ({
                 key={columnObject.categoryCode}
               />
             )}
-            <Button
-              variant="icon"
-              onClick={() => null}
-              className={draggableColumn.columnDragButton}
-            >
-              <DragDropIcon
-                className={`${draggableColumn.columnDragButtonSVG} column-drag-handle`}
-              />
-            </Button>
+            <MdEdit
+              onClick={handleColumnEditClick}
+              className={`${draggableColumn.editColumn} ${
+                draggableColumnEditActive
+                  ? draggableColumn.editColumnActive
+                  : ""
+              }`}
+            />
+            <DragDropIcon
+              id="dragHandle"
+              className={`${draggableColumn.columnDragButtonSVG} column-drag-handle `}
+            />
           </div>
         </header>
         <TaskCardWrapper
           categoryCode={columnObject.categoryCode}
           tasks={columnObject.tasks}
           userSettings={userSettings}
+          draggableColumnEditActive={draggableColumnEditActive}
         />
       </li>
     </>

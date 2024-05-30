@@ -7,8 +7,12 @@ import {
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
-import { DraggableCard } from "@/components/ui/cards/draggableCard/draggableCard";
+import {
+  DRAGGABLE_CARD_ID,
+  DraggableCard,
+} from "@/components/ui/cards/draggableCard/draggableCard";
 import { toast } from "@/components/ui/toast/toast";
+import { useBrowserInfo } from "@/hooks/useBrowserInfo";
 import { StatusCodes } from "@/types/todo/types";
 import { TodoDTO } from "@/types/types";
 import {
@@ -16,7 +20,13 @@ import {
   handleDragoverNode,
   handleDragoverParent,
   handleDragstart,
+  handleEnd,
+  handleTouchOverNode,
+  handleTouchOverParent,
+  handleTouchmove,
+  handleTouchstart,
   resetState,
+  updateConfig,
 } from "@formkit/drag-and-drop";
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 import { Button } from "@stianlarsen/react-ui-kit";
@@ -37,12 +47,15 @@ export const TaskCardWrapper = ({
   categoryCode,
   tasks,
   userSettings,
+  draggableColumnEditActive,
 }: {
   categoryCode: StatusCodes;
   tasks: TodoDTO[];
   userSettings: UserSettingsDTO | undefined;
+  draggableColumnEditActive: boolean;
 }) => {
   // States
+  const { isMobile } = useBrowserInfo();
   const [isDragging, setIsDragging] = useState(false);
   const [showHiddenTasks, setShowHiddenTasks] = useState(false);
 
@@ -51,11 +64,10 @@ export const TaskCardWrapper = ({
   const sortManual = !!userSettings?.sortManual;
 
   // defining the tasksList
-  const initialTasksList = isColumnLayout
-    ? tasks
-    : tasks.slice(0, VISIBLE_TASKS);
-  // only show first 5 tasks
+  const initialTasksList =
+    isColumnLayout && !isMobile ? tasks : tasks.slice(0, VISIBLE_TASKS);
 
+  // only show first 5 tasks
   // The drag and drop hook-component
   const [parent, tasksList, setTaskList] = useDragAndDrop<
     HTMLUListElement,
@@ -70,6 +82,8 @@ export const TaskCardWrapper = ({
     dragHandle:
       !isColumnLayout && sortManual
         ? ".reveal-card-sort-manual-row-layout-handle"
+        : isMobile && sortManual
+        ? ".reveal-card-sort-manual-row-layout-handle"
         : undefined,
 
     draggable: (el) => {
@@ -83,28 +97,54 @@ export const TaskCardWrapper = ({
     handleDragstart: (data) => {
       if (!parent.current) return;
       handleDragstart(data);
-      console.log("\n\n🛜 handleDragstart", data);
-      console.log("\n\n🛜 handleDragstart", data.e.dataTransfer?.dropEffect);
 
       if (data.e.dataTransfer?.dropEffect === "move") {
         setIsDragging(true);
       }
     },
+    longTouch: true,
+    handleTouchstart: (data) => {
+      if (isMobile && sortManual) {
+        if (data.e.target instanceof HTMLElement) {
+          if (data.e.target.id !== DRAGGABLE_CARD_ID) {
+            return;
+          }
+        }
+      }
+      return handleTouchstart(data);
+    },
+
     handleDragoverNode: async (data) => {
       return handleDragoverNode(data);
     },
+    handleTouchOverNode: async (data) => {
+      return handleTouchOverNode(data);
+    },
 
+    handleTouchOverParent: async (data) => {
+      return handleTouchOverParent(data);
+    },
+    handleTouchmove: async (data) => {
+      return handleTouchmove(data);
+    },
     handleDragoverParent: (data) => {
       return handleDragoverParent(data);
     },
+
     handleEnd: async (data) => {
-      console.log("\n\n\n\n🛜 handleEnd", data);
+      if (isMobile && sortManual) {
+        if (data.e.target instanceof HTMLElement) {
+          if (data.e.target.id !== DRAGGABLE_CARD_ID) {
+            return;
+          }
+        }
+      }
+      handleEnd(data);
       setIsDragging(false);
       const newCategoryCode = getNewCategoryCode(data);
       const oldIndex = getOldTaskIndex(tasks, data);
       const newIndex = getNewTaskIndex(data);
       if (newCategoryCode === categoryCode && oldIndex === newIndex) {
-        toast.info("No changes detected", "bottomRight");
         return;
       }
       // UPDATE THE TASK SORT INDEX WITHIN SAME COLUMN / STATUS
@@ -141,7 +181,6 @@ export const TaskCardWrapper = ({
           newSortIndex: 1,
           todoId,
         });
-        console.log("\n\n\n\n🛜 handleEnd", deleteResponse);
         if (deleteResponse.isError) {
           toast.error("Error deleting task", "bottomRight");
           return;
@@ -185,7 +224,7 @@ export const TaskCardWrapper = ({
 
   useEffect(() => {
     if (tasks) {
-      if (isColumnLayout) {
+      if (isColumnLayout && !isMobile) {
         setTaskList(tasks);
       } else {
         if (showHiddenTasks) {
@@ -198,6 +237,23 @@ export const TaskCardWrapper = ({
       resetState();
     }
   }, [tasks]);
+
+  useEffect(() => {
+    if (isMobile) {
+      if (parent.current) {
+        updateConfig(parent.current, {
+          dragHandle: ".reveal-card-sort-manual-row-layout-handle",
+        });
+      }
+
+      if (showHiddenTasks) {
+        setTaskList(tasks);
+      } else {
+        setTaskList(tasks.slice(0, VISIBLE_TASKS));
+      }
+      resetState();
+    }
+  }, [isMobile]);
 
   const handleShowHiddenTasks = () => {
     setTaskList(showHiddenTasks ? tasks.slice(0, VISIBLE_TASKS) : tasks);
@@ -218,7 +274,10 @@ export const TaskCardWrapper = ({
 
   return (
     <>
-      <div className={`${taskWrapperStyles.taskContainer} `}>
+      <div
+        suppressHydrationWarning={true}
+        className={`${taskWrapperStyles.taskContainer} `}
+      >
         <ul
           id={categoryCode}
           ref={parent}
@@ -234,13 +293,14 @@ export const TaskCardWrapper = ({
                 task={task}
                 categoryCode={categoryCode}
                 userSettings={userSettings}
+                draggableColumnEditActive={draggableColumnEditActive}
               />
             ))}
 
           {tasksList.length === 0 && <DropHere />}
         </ul>
 
-        {!isColumnLayout && tasks.length > 5 && (
+        {(!isColumnLayout || isMobile) && tasks.length > 5 && (
           <Button
             className={taskWrapperStyles.showMoreOrLessButton}
             variant="link"

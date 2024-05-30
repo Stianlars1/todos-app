@@ -26,4 +26,10 @@
 .modal::backdrop {
   background: hsla(0, 0%, 0%, 0.5);
   overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .modal {
+    max-width: 100%;
+  }
 }/*# sourceMappingURL=modal.css.map */

@@ -5,6 +5,7 @@ import {
   LabelHTMLAttributes,
   ReactElement,
   ReactNode,
+  forwardRef,
 } from "react";
 import "./css/customInput.css";
 
@@ -16,18 +17,22 @@ interface CustomInputLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   children: React.ReactNode;
 }
 
-export const CustomInput = ({ width, ...props }: CustomInputProps) => {
-  const customStyle: CSSProperties = width ? { width: width } : {};
-  return (
-    <input
-      style={customStyle}
-      {...props}
-      className={`custom-input ${GeistSans.className} ${
-        props.className ? props.className : " "
-      }`}
-    />
-  );
-};
+export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
+  ({ width, ...props }, ref) => {
+    const customStyle: CSSProperties = width ? { width: width } : {};
+
+    return (
+      <input
+        style={customStyle}
+        {...props}
+        ref={ref}
+        className={`custom-input ${props.className ? props.className : " "}`}
+      />
+    );
+  }
+);
+
+CustomInput.displayName = "CustomInput";
 
 export const CustomInputLabel = ({
   children,
@@ -47,8 +52,20 @@ export const CustomInputLabel = ({
 
 export const CustomInputLabelWrapper = ({
   children,
+  style = {},
+  className = "",
 }: {
   children: ReactElement | ReactElement[] | ReactNode | ReactNode[];
+  style?: CSSProperties;
+  className?: string;
 }) => {
-  return <div className="custom-input-label-wrapper">{children}</div>;
+  return (
+    <div
+      style={style}
+      suppressHydrationWarning
+      className={`custom-input-label-wrapper ${className}`}
+    >
+      {children}
+    </div>
+  );
 };

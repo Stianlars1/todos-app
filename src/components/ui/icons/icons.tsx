@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import { CSSProperties, SVGProps } from "react";
 
 export const IconDashboard = () => {
   return (
@@ -149,6 +149,29 @@ export const IconSettings = () => {
     >
       <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
       <circle cx="12" cy="12" r="3"></circle>
+    </svg>
+  );
+};
+export const IconFilter = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="none"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="IconSettings"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1 0H1.75H14.25H15V0.75V3V3.31066L14.7803 3.53033L10.5 7.81066V15.25V16H9.75H9H8.7816L8.59734 15.8827L5.84734 14.1327L5.5 13.9117V13.5V7.81066L1.21967 3.53033L1 3.31066V3V0.75V0ZM2.5 1.5V2.68934L6.78033 6.96967L7 7.18934V7.5V13.0883L9 14.361V7.5V7.18934L9.21967 6.96967L13.5 2.68934V1.5H2.5Z"
+        fill="currentColor"
+      ></path>
     </svg>
   );
 };
@@ -338,7 +361,13 @@ export const LogoutIcon = () => {
     </svg>
   );
 };
-export const DragDropIcon = ({ className = " " }: { className?: string }) => {
+export const DragDropIcon = ({
+  className = " ",
+  id,
+}: {
+  className?: string;
+  id?: string;
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -351,6 +380,7 @@ export const DragDropIcon = ({ className = " " }: { className?: string }) => {
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      id={id}
     >
       <path
         fill="currentColor"
@@ -401,8 +431,14 @@ export const TaskBuddyIcon = ({ className = " " }: { className?: string }) => {
 };
 export const ArrowUpDownIcon = ({
   className = " ",
+  id,
+  style,
+  pathStyle,
 }: {
   className?: string;
+  id?: string;
+  style?: CSSProperties;
+  pathStyle?: CSSProperties;
 }) => {
   return (
     <svg
@@ -411,8 +447,11 @@ export const ArrowUpDownIcon = ({
       height="16"
       viewBox="0 0 16 16"
       className={className}
+      id={id}
+      style={style}
     >
       <path
+        style={pathStyle}
         d="M4.21968 3.46975L3.68935 4.00008L4.75001 5.06074L5.28034 4.53041L7.24999 2.56076L7.24999 13.4393L5.28031 11.4697L4.74998 10.9393L3.68932 12L4.21965 12.5303L7.29288 15.6036C7.6834 15.9941 8.31657 15.9941 8.70709 15.6036L11.7803 12.5303L12.3106 12L11.25 10.9393L10.7197 11.4697L8.74999 13.4393L8.74999 2.56072L10.7197 4.53041L11.25 5.06075L12.3107 4.00009L11.7803 3.46975L8.70712 0.396531C8.31659 0.00600645 7.68343 0.00600637 7.2929 0.396531L4.21968 3.46975Z"
         fill="currentColor"
       ></path>
@@ -432,6 +471,33 @@ export const CloseIcon = ({ className = " " }: { className?: string }) => {
     >
       <path d="M18 6 6 18"></path>
       <path d="m6 6 12 12"></path>
+    </svg>
+  );
+};
+export const ClickIcon = ({
+  className = " ",
+  onClick,
+}: {
+  className?: string;
+  onClick?: () => void;
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="none"
+      className={className}
+      strokeLinejoin="round"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M5.5 2V0H7V2H5.5ZM0.96967 2.03033L2.46967 3.53033L3.53033 2.46967L2.03033 0.96967L0.96967 2.03033ZM4.24592 4.24592L4.79515 5.75631L7.79516 14.0063L8.46663 15.8529L9.19636 14.0285L10.2739 11.3346L13.4697 14.5303L14.5303 13.4697L11.3346 10.2739L14.0285 9.19636L15.8529 8.46663L14.0063 7.79516L5.75631 4.79516L4.24592 4.24592ZM11.6471 8.53337L10.1194 9.14447C9.6747 9.32235 9.32235 9.6747 9.14447 10.1194L8.53337 11.6471L6.75408 6.75408L11.6471 8.53337ZM0 7H2V5.5H0V7Z"
+        fill="currentColor"
+      ></path>
     </svg>
   );
 };
@@ -495,6 +561,30 @@ export const DragAndDropSimpleIcon2 = ({
       <path d="M3 7l0 .01" />
       <path d="M3 11l0 .01" />
       <path d="M3 15l0 .01" />
+    </svg>
+  );
+};
+export const EditIcon = ({ className = " " }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="none"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      style={{ fill: "none" }}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M11.75 0.189331L12.2803 0.719661L15.2803 3.71966L15.8107 4.24999L15.2803 4.78032L5.15901 14.9016C4.45575 15.6049 3.50192 16 2.50736 16H0.75H0V15.25V13.4926C0 12.4981 0.395088 11.5442 1.09835 10.841L11.2197 0.719661L11.75 0.189331ZM11.75 2.31065L9.81066 4.24999L11.75 6.18933L13.6893 4.24999L11.75 2.31065ZM2.15901 11.9016L8.75 5.31065L10.6893 7.24999L4.09835 13.841C3.67639 14.2629 3.1041 14.5 2.50736 14.5H1.5V13.4926C1.5 12.8959 1.73705 12.3236 2.15901 11.9016ZM9 16H16V14.5H9V16Z"
+        fill="currentColor"
+      ></path>
     </svg>
   );
 };

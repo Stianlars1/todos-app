@@ -3,19 +3,20 @@ import { LogoutButtonSidebar } from "@/components/ui/buttons/logout/logoutButton
 import { sidebarContentListType } from "@/content/sidebar/sidebarContent";
 import { useLinkUrl } from "@/utils/urls";
 import { handleCloseNav } from "@/utils/utils";
-import { useLocale } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SidebarDueCount } from "./sidebarDueCount/sidebarDueCount";
 
 export const SidebarContentListItem = ({
   item,
   title,
+  todosDueTodayCount,
 }: {
   item: sidebarContentListType;
   title: string;
+  todosDueTodayCount?: number | null;
 }) => {
   const pathname = usePathname();
-  const locale = useLocale();
 
   const url = item.href;
   const isActive = url === pathname;
@@ -24,6 +25,9 @@ export const SidebarContentListItem = ({
   const linkurl = useLinkUrl(item.href);
 
   const onlyOnMobile = item.renderMobileOnly;
+  const showDueCount =
+    todosDueTodayCount && todosDueTodayCount > 0 ? true : false;
+  const dueCount = todosDueTodayCount;
 
   if (onlyOnMobile) {
     return (
@@ -47,7 +51,10 @@ export const SidebarContentListItem = ({
         onClick={handleCloseNav}
       >
         {Icon}
+
         <span className="link-text">{title}</span>
+
+        {showDueCount && <SidebarDueCount dueCount={dueCount!} />}
       </Link>
     </li>
   );

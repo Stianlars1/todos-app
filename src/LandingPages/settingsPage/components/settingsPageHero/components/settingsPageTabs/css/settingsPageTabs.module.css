@@ -1,0 +1,45 @@
+.Tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  box-shadow: inset 0 -1px hsl(var(--border));
+}
+.Tabs .TabsTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0.5rem 1rem 0.75rem;
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  position: relative;
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  color: hsl(var(--muted-foreground));
+  text-rendering: optimizeLegibility;
+  transition: color 0.15s ease;
+}
+.Tabs .TabsTrigger:hover {
+  color: hsl(var(--foreground));
+}
+.Tabs .ActiveTab {
+  color: hsl(var(--primary));
+}
+.Tabs .ActiveTab:hover {
+  color: hsl(var(--primary));
+}
+.Tabs .TabUnderline {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: hsl(var(--foreground));
+  transition: left 0.25s ease, width 0.25s ease;
+  border-radius: 0.7px;
+}/*# sourceMappingURL=settingsPageTabs.module.css.map */

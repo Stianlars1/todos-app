@@ -32,7 +32,7 @@ export async function createSession(tokens: TokenType) {
 
   cookies().set("session", JSON.stringify(tokens), {
     httpOnly: true,
-    secure: true,
+    secure: false,
     expires: expiresAt,
     sameSite: "lax",
     path: "/",

@@ -21,3 +21,12 @@ export interface CategorizedTodosResponseDTO {
   message: string;
   data: CategorizedTodosDTO;
 }
+
+export interface UpdatedTaskDTO
+  extends Omit<
+    TodoDTO,
+    "todoId" | "createdAt" | "status" | "sortIndex" | "content"
+  > {
+  content: string;
+  statusId: number;
+}

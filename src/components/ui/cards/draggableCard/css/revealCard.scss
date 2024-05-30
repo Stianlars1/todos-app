@@ -12,6 +12,23 @@
   position: relative;
 
   overflow: visible;
+
+  &__remove {
+    position: absolute;
+    width: 1.2rem;
+    height: 1.2rem;
+    top: -0.5rem;
+    right: -0.5rem;
+    cursor: pointer;
+    fill: hsl(var(--destructive));
+    color: hsl(var(--destructive));
+    transition: color 0.15s ease-in-out;
+    pointer-events: all;
+
+    &:hover {
+      color: hsl(var(--foreground));
+    }
+  }
   &__wrapper {
     padding: 1.5rem;
     &__header {
@@ -28,6 +45,7 @@
         line-height: 1.25rem;
         color: hsl(var(--muted-foreground));
         width: fit-content;
+        max-width: calc(100% - 1rem);
       }
     }
     &__badges {
@@ -119,5 +137,31 @@
     shape-rendering: geometricprecision;
     fill-rule: evenodd;
     clip-rule: evenodd;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .reveal-card {
+    &__wrapper {
+      &__header {
+        h3 {
+          font-weight: 500;
+          font-size: 0.875rem;
+          line-height: 1.5rem;
+        }
+        p {
+          font-size: 12px;
+          line-height: 1.25rem;
+        }
+      }
+
+      &__badges {
+        &__tags,
+        &__priority {
+          font-weight: 600;
+          font-size: 10px;
+        }
+      }
+    }
   }
 }

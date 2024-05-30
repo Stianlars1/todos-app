@@ -1,0 +1,30 @@
+.profile {
+  position: relative;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.customInputLabelWrapperOverride {
+  width: 100%;
+}
+
+.formProfileSection {
+  display: flex;
+  gap: 1.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .formProfileSection {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .customInputLabelWrapperOverride {
+    max-width: 367px;
+  }
+  .customInputOverrider {
+    width: 100%;
+  }
+}/*# sourceMappingURL=profile.module.css.map */

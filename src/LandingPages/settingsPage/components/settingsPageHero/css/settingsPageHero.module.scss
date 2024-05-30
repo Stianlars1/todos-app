@@ -1,0 +1,12 @@
+.settingsPageHero {
+  padding: 1rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: calc(var(--radius) * 2);
+  background-color: hsl(var(--card));
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  max-width: var(--content-max-width);
+}

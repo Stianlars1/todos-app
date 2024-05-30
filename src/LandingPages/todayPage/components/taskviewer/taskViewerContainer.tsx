@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Taskviewer } from "./taskviewer/taskviewer";
 
 // HELPER UTILS
@@ -20,16 +20,26 @@ export const TaskviewerContainer = ({
   sidebarOpen: boolean;
 }) => {
   const selectedTaskId = useSelectedTaskId();
-  const [showTaskModal, setShowTaskModal] = useState(false);
 
   useEffect(() => {
-    if (selectedTaskId) {
-      const GridContainerId = "grid-container";
-      document
-        ?.getElementById(GridContainerId)
-        ?.setAttribute("data-sidebar-open", String(false));
-      setShowTaskModal(!!selectedTaskId);
-    }
+    const handleResize = () => {
+      if (selectedTaskId && typeof window !== undefined) {
+        const GridContainerId = "grid-container";
+        if (window.innerWidth <= 1400) {
+          document
+            ?.getElementById(GridContainerId)
+            ?.setAttribute("data-sidebar-open", String(false));
+        } else {
+          document
+            ?.getElementById(GridContainerId)
+            ?.setAttribute("data-sidebar-open", String(sidebarOpen));
+        }
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, [selectedTaskId]);
 
   if (!selectedTaskId) return null;

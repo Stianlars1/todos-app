@@ -34,13 +34,35 @@
   pointer-events: all;
   cursor: grab;
 }
+
 .header .headerButtons .columnDragButton:active {
   cursor: grabbing;
 }
 
 .header .headerButtons .columnDragButtonSVG {
   fill: none;
+  cursor: grab;
 
   width: 1rem;
   height: 1rem;
+}
+
+.header .headerButtons .editColumn {
+  width: calc(1rem + 4px);
+  height: calc(1rem + 4px);
+  background-color: transparent;
+  padding: 2px;
+  pointer-events: all;
+  cursor: pointer;
+  stroke-width: none;
+  border-radius: 2px;
+}
+
+.header .headerButtons .editColumn:hover {
+  background-color: hsl(var(--muted));
+}
+
+.header .headerButtons .editColumnActive {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--white));
 }

@@ -1,7 +1,7 @@
-import { RevealCard } from "@/components/ui/cards/revealCard/revealCard";
-import { TaskBuddyIcon } from "@/components/ui/icons/icons";
+import { TodayCard } from "@/components/ui/cards/todayCard/todayCard";
 import { TodoDTO } from "@/types/types";
 import { TaskviewerContainer } from "../components/taskviewer/taskViewerContainer";
+import { TodayLayoutResizeWrapper } from "../components/todayLayoutResizeWrapper/todayLayoutResizeWrapper";
 import styles from "./css/todayLayout.module.css";
 export const TodayLayout = ({
   tasksToday,
@@ -12,17 +12,11 @@ export const TodayLayout = ({
 }) => {
   return (
     <div className={styles.todayLayout}>
-      {!tasksToday && (
-        <>
-          <div className={styles.noTasks}>
-            <TaskBuddyIcon />
-            <h2>No tasks due today</h2>
-          </div>
-        </>
-      )}
+      <TodayLayoutResizeWrapper sidebarOpen={sidebarOpen} />
+
       <ul className={styles.list}>
         {tasksToday?.map((task) => (
-          <RevealCard
+          <TodayCard
             className={styles.card}
             content={task.content}
             title={task.title}

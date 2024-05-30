@@ -1,17 +1,16 @@
 .custom-input {
   font-size: 1rem;
-  // font-size: 0.8125rem;
   line-height: 1.25rem;
-  height: 45px;
-
   padding: 6px 12px;
+  // font-size: 0.8125rem;
+  height: 45px;
 
   font-family: inherit;
   background-color: hsl(var(--card));
   border: 1px solid hsl(var(--input));
   outline: none;
   border-radius: calc(var(--radius) - 2px);
-  color: inherit;
+  color: hsl(var(--foreground));
   margin: 0;
 
   transition: border-color 0.15s ease-in-out;
@@ -48,4 +47,18 @@
   flex-direction: column;
   gap: 0.4125rem;
   align-items: flex-start;
+  overflow: hidden;
+}
+
+/* Override autofill styles */
+input:autofill,
+input:-webkit-autofill,
+input:-webkit-autofill-strong-password,
+input:-webkit-autofill-strong-password-viewable,
+input:-webkit-autofill-and-obscured {
+  -webkit-text-fill-color: hsl(
+    var(--foreground)
+  ) !important; /* Change text color */
+  background-color: hsl(var(--card)) !important; /* Change background color */
+  transition: background-color 5000s ease-in-out 0s;
 }

@@ -11,6 +11,21 @@
   overflow: visible;
   cursor: default;
 }
+.reveal-card__remove {
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  top: -0.5rem;
+  right: -0.5rem;
+  cursor: pointer;
+  fill: hsl(var(--destructive));
+  color: hsl(var(--destructive));
+  transition: color 0.15s ease-in-out;
+  pointer-events: all;
+}
+.reveal-card__remove:hover {
+  color: hsl(var(--foreground));
+}
 .reveal-card__wrapper {
   padding: 1.5rem;
 }
@@ -31,6 +46,7 @@
   color: hsl(var(--muted-foreground));
   width: -moz-fit-content;
   width: fit-content;
+  max-width: calc(100% - 1rem);
 }
 .reveal-card__wrapper__badges {
   display: flex;
@@ -108,4 +124,20 @@
   shape-rendering: geometricprecision;
   fill-rule: evenodd;
   clip-rule: evenodd;
+}
+
+@media screen and (max-width: 768px) {
+  .reveal-card__wrapper__header h3 {
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+  }
+  .reveal-card__wrapper__header p {
+    font-size: 12px;
+    line-height: 1.25rem;
+  }
+  .reveal-card__wrapper__badges__tags, .reveal-card__wrapper__badges__priority {
+    font-weight: 600;
+    font-size: 10px;
+  }
 }/*# sourceMappingURL=revealCard.css.map */

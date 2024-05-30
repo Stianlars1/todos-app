@@ -8,6 +8,8 @@ export function getErrorMessage(statusCode: number): string {
       return error_403_message;
     case 404:
       return "We couldn’t find the resource you were looking for.";
+    case 409:
+      return "Conflict occured. Please try again.";
     case 500:
       return "We’re experiencing technical difficulties. Please try again later.";
     case 503:
@@ -20,6 +22,7 @@ export function getErrorMessage(statusCode: number): string {
 export const vpnInternetError =
   "An error occured when loading the data. Please check your internet connection, firewall, or VPN.";
 
+export const conflictError = "Conflict occured. Please try again.";
 const error_403_message =
   "Access to this resource is restricted. Please contact support if you think this is a mistake.";
 export const AccessRestrictedOrCacheHasCleaned = error_403_message;

@@ -7,6 +7,7 @@ import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import {
   API_TODOS_CATEGORIZED_URL,
   API_TODOS_CREATE_URL,
+  API_TODOS_DUE_TODAY_COUNT_URL,
   API_TODOS_DUE_TODAY_URL,
   API_TODOS_UPDATE_URL,
   API_TODOS_URL,
@@ -45,6 +46,15 @@ export const getTodosDueToday = async <T>() => {
     cacheKey: CacheKeys.TODOS_TODAY,
   });
 };
+export const getTodosDueTodayCount = async <T>() => {
+  return await customFetch<T>({
+    url: API_TODOS_DUE_TODAY_COUNT_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    cacheKey: CacheKeys.TODOS_TODAY_COUNT,
+  });
+};
 export const getCategorizedTodos = async <T>() => {
   const categorized = await customFetch<T>({
     url: API_TODOS_CATEGORIZED_URL,
@@ -80,6 +90,31 @@ export const updateTodo = async (
     },
   });
 };
+export const updateTodoForm = async (_state: unknown, formData: FormData) => {
+  const todoId = formData.get("todoId") as string;
+
+  const UPDATE_URL = `${API_TODOS_UPDATE_URL}/${todoId}`;
+  const updatedTodo = {
+    title: formData.get("title") as string,
+    description: formData.get("description") as string,
+    statusId: parseInt(formData.get("statusId") as string),
+    dueDate: new Date((formData.get("dueDate") as string) || ""),
+    priority: formData.get("priority") as string,
+    content: formData.get("content") as string,
+    // tags: JSON.parse(formData.get("tags") as string),
+  };
+
+  formData.append("todo", JSON.stringify(updatedTodo));
+
+  return await customFetch<UpdateTodoResponse>({
+    url: UPDATE_URL,
+    options: {
+      method: HTTP_REQUEST.PUT,
+      body: formData,
+    },
+  });
+};
+
 export const createTodo = async (
   __initialState: unknown,
   formData: FormData

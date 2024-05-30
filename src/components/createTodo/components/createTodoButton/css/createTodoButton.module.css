@@ -1,0 +1,24 @@
+.createTodoButton {
+  font-size: 0.875rem;
+  background: hsl(var(--primary)) !important;
+}
+.createTodoButton svg {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  vertical-align: middle;
+  color: hsl(var(--white));
+}
+.createTodoButton:hover {
+  background-color: hsl(var(--primary)/0.8);
+}
+
+@media screen and (max-width: 768px) {
+  .createTodoButton svg {
+    width: 15px;
+    height: 15px;
+  }
+}/*# sourceMappingURL=createTodoButton.module.css.map */

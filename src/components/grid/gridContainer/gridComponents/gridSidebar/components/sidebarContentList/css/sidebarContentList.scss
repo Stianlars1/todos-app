@@ -5,6 +5,7 @@
   gap: 0.5rem;
 
   overflow: hidden;
+  width: 100%;
 
   &__item {
     // li
@@ -148,20 +149,3 @@
     }
   }
 }
-// [data-sidebar-open="true"] {
-//   .sidebar__content {
-//     // ul
-//     &__item {
-//       // li
-
-//       &__link {
-//         overflow: hidden;
-//         position: relative;
-//         svg {
-//           background-color: hsl(var(--background));
-//           z-index: 10;
-//         }
-//       }
-//     }
-//   }
-// }

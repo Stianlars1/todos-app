@@ -1,12 +1,24 @@
 "use client";
 import { CategorizedTodosDTO, StatusCodes } from "@/types/todo/types";
-import { animations, resetState } from "@formkit/drag-and-drop";
+import {
+  animations,
+  handleDragoverNode,
+  handleDragoverParent,
+  handleDragstart,
+  handleEnd,
+  handleTouchOverNode,
+  handleTouchOverParent,
+  handleTouchmove,
+  handleTouchstart,
+  resetState,
+} from "@formkit/drag-and-drop";
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { ToastContainer, toast } from "@/components/ui/toast/toast";
+import { useBrowserInfo } from "@/hooks/useBrowserInfo";
 import { useEffect } from "react";
 import { ShowTaskModalContainer } from "../../showTaskModal/showTaskModal";
 import columnWrapper from "../css/columnWrapper.module.css";
@@ -30,6 +42,7 @@ export const TaskboardWrapper = ({
   categorizedTexts: { [key in StatusCodes]: string };
   taskboardTexts: { header: { sortSwitchTitle: string } };
 }) => {
+  const { isMobile } = useBrowserInfo();
   const columnsList: ColumnListDND[] = Object.entries(tasks).map(
     ([categoryString, todosList]) => ({
       column: categoryString as StatusCodes,
@@ -57,11 +70,68 @@ export const TaskboardWrapper = ({
         return el.attributes.getNamedItem("data-group")?.value == COLUMN_GROUP;
       },
 
+      handleDragstart: (data) => {
+        if (isMobile) {
+          if (
+            data.e.target instanceof HTMLElement ||
+            data.e.target instanceof SVGElement
+          ) {
+            if (data.e.target.id !== "dragHandle") {
+              return;
+            }
+          }
+        }
+        return handleDragstart(data);
+      },
+
+      handleTouchstart: (data) => {
+        if (isMobile) {
+          if (
+            data.e.target instanceof HTMLElement ||
+            data.e.target instanceof SVGElement
+          ) {
+            if (data.e.target.id !== "dragHandle") {
+              return;
+            }
+          }
+        }
+        handleTouchstart(data);
+      },
+      handleDragoverNode: (data) => {
+        return handleDragoverNode(data);
+      },
+      handleDragoverParent: (data) => {
+        return handleDragoverParent(data);
+      },
+
+      handleTouchOverNode: (data) => {
+        return handleTouchOverNode(data);
+      },
+      handleTouchmove: (data) => {
+        return handleTouchmove(data);
+      },
+      handleTouchOverParent: (data) => {
+        return handleTouchOverParent(data);
+      },
+
       handleEnd: async (data) => {
+        handleEnd(data);
+
         if (data.e.target instanceof HTMLElement) {
           if (data.e.target.getAttribute("data-group") == TASKCARD_GROUP) {
             // Needs this cause the drag of a task also fires of this.
             return;
+          }
+        }
+
+        if (isMobile) {
+          if (
+            data.e.target instanceof HTMLElement ||
+            data.e.target instanceof SVGElement
+          ) {
+            if (data.e.target.id !== "dragHandle") {
+              return;
+            }
           }
         }
 
@@ -72,7 +142,6 @@ export const TaskboardWrapper = ({
 
         // If order didnt change, no need to do update
         if (!didIndexChange) {
-          toast.info("No changes were made to the column order", "bottomRight");
           return;
         }
 
@@ -84,7 +153,6 @@ export const TaskboardWrapper = ({
             "An error occured while updating the sort preference of the status columns"
           );
         }
-        console.log("🟢 columnsUpdateResponse", columnsUpdateResponse);
         await cacheInvalidate({ cacheKey: CacheKeys.USER_PREFERENCES });
         await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
 

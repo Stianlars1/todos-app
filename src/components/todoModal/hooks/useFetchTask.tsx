@@ -2,7 +2,7 @@ import { TodoDTO } from "@/types/types";
 import { FetchState } from "@/utils/fetch/customFetch";
 import { useEffect, useState } from "react";
 
-export const useFetchTask = (taskId: string) => {
+export const useFetchTask = (taskId: string | null) => {
   const [task, setTask] = useState<TodoDTO | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -13,7 +13,8 @@ export const useFetchTask = (taskId: string) => {
     const fetchTask = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`/api?taskId=${taskId}`);
+        console.log(`Fetching task with ID: ${taskId}`); // Debug log
+        const response = await fetch(`/frontend-api?taskId=${taskId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch");
         }
