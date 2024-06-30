@@ -10,8 +10,18 @@ export type StatusCodes =
   | "DELETED"
   | "SOON_DUE";
 
+export type SoonDueSubCategories =
+  | "Due Today"
+  | "Due Tomorrow"
+  | "Due in 2 Days"
+  | "Due in 3 Days";
+
 export type CategorizedTodosDTO = {
-  [key in StatusCodes]: TodoDTO[];
+  [key in StatusCodes]:
+    | TodoDTO[]
+    | {
+        [key in SoonDueSubCategories]: TodoDTO[];
+      };
 };
 export const DUE_SOON_KEY = "SOON_DUE";
 

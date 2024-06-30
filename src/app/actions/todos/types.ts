@@ -31,6 +31,7 @@ export interface CreateTodoDTO {
   files?: FilesType[];
   content?: string;
   tags?: TagsType;
+  timezone?: string;
 }
 
 export interface UpdatedTodoDTO extends CreateTodoDTO {}

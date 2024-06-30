@@ -4,8 +4,36 @@
       "language": "{locale}"
     }
   },
+  "Toasts": {
+    "TASK_CREATED": "Oppgave opprettet"
+  },
   "Dashboard": {
-    "title": "Hei"
+    "title": "Hello",
+    "header": {
+      "tabs": {
+        "overview": "Oversikt",
+        "dashboard": "Dashboard"
+      },
+      "taskSummary": {
+        "SHOW_SUMMARY": "Vis oppsummering",
+        "HIDE_SUMMARY": "Skjul oppsummering",
+        "TITLE": "Oppsummering av oppgaver",
+        "TITLE_DEADLINES": "Kommende frister",
+        "TITLE_OVERDUE": "Forfalte oppgaver",
+        "TOTAL_TASKS": "Total",
+        "CREATED": "Opprettet",
+        "PENDING": "venter",
+        "IN_PROGRESS": "Under arbeid",
+        "COMPLETED": "Ferdig",
+        "ON_HOLD": "På vent",
+        "CANCELLED": "Avbrutt",
+        "DELETED": "Slettet",
+        "Due Today": "Frist i dag",
+        "Due Tomorrow": "Frist i morgen",
+        "Due in 2 Days": "Frist om 2 dager",
+        "Due in 3 Days": "Frist om 3 dager"
+      }
+    }
   },
 
   "Taskboard": {

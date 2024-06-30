@@ -72,7 +72,9 @@ export const SettingsPageHero = ({
             <SettingsProfileContent userDetails={userDetails} />
           )}
           {activeTab === Tabs.SECURITY && <SettingsSecurityContent />}
-          {activeTab === Tabs.PREFERENCES && <SettingsPreferencesContent />}
+          {activeTab === Tabs.PREFERENCES && (
+            <SettingsPreferencesContent userDetails={userDetails} />
+          )}
         </div>
       )}
     </div>

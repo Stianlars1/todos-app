@@ -4,8 +4,36 @@
       "language": "{locale}"
     }
   },
+  "Toasts": {
+    "TASK_CREATED": "Task created successfully"
+  },
   "Dashboard": {
-    "title": "Hello"
+    "title": "Hello",
+    "header": {
+      "tabs": {
+        "overview": "Overview",
+        "dashboard": "Dashboard"
+      },
+      "taskSummary": {
+        "SHOW_SUMMARY": "Show Summary",
+        "HIDE_SUMMARY": "Hide Summary",
+        "TITLE": "Task Summary",
+        "TITLE_DEADLINES": "Upcoming Deadlines",
+        "TITLE_OVERDUE": "Overdue Tasks",
+        "TOTAL_TASKS": "Total",
+        "CREATED": "Created",
+        "PENDING": "Pending",
+        "IN_PROGRESS": "In progress",
+        "COMPLETED": "Completed",
+        "ON_HOLD": "On hold",
+        "CANCELLED": "Cancelled",
+        "DELETED": "Deleted",
+        "Due Today": "Due Today",
+        "Due Tomorrow": "Due Tomorrow",
+        "Due in 2 Days": "Due in 2 Days",
+        "Due in 3 Days": "Due in 3 Days"
+      }
+    }
   },
   "Taskboard": {
     "header": {

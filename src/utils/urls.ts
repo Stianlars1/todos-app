@@ -17,6 +17,10 @@ export const API_USER_UPDATE_PASSWORD_URL =
 
 // Todos
 export const API_TODOS_URL = "https://app.taskbuddy.dev/api/todos"; // GET
+export const API_TODOS_UPCOMING_DEADLINES_URL =
+  "https://app.taskbuddy.dev/api/todos/upcoming-deadlines"; // GET
+export const API_TODOS_OVERDUE_URL =
+  "https://app.taskbuddy.dev/api/todos/overdue"; // GET
 export const API_TODOS_DUE_TODAY_URL =
   "https://app.taskbuddy.dev/api/todos/today"; // GET
 export const API_TODOS_DUE_TODAY_COUNT_URL =

@@ -1,5 +1,9 @@
 "use client";
-import { CategorizedTodosDTO, StatusCodes } from "@/types/todo/types";
+import {
+  CategorizedTodosDTO,
+  SoonDueSubCategories,
+  StatusCodes,
+} from "@/types/todo/types";
 import {
   animations,
   handleDragoverNode,
@@ -19,6 +23,7 @@ import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { ToastContainer, toast } from "@/components/ui/toast/toast";
 import { useBrowserInfo } from "@/hooks/useBrowserInfo";
+import { TodoDTO } from "@/types/types";
 import { useEffect } from "react";
 import { ShowTaskModalContainer } from "../../showTaskModal/showTaskModal";
 import columnWrapper from "../css/columnWrapper.module.css";
@@ -44,11 +49,24 @@ export const TaskboardWrapper = ({
 }) => {
   const { isMobile } = useBrowserInfo();
   const columnsList: ColumnListDND[] = Object.entries(tasks).map(
-    ([categoryString, todosList]) => ({
-      column: categoryString as StatusCodes,
-      tasks: todosList,
-      categoryCode: categoryString as StatusCodes,
-    })
+    ([categoryString, todosList]) => {
+      let flatTasks: TodoDTO[] = [];
+
+      if (categoryString === "SOON_DUE") {
+        const soonDueTasks = todosList as {
+          [key in SoonDueSubCategories]?: TodoDTO[];
+        };
+        flatTasks = Object.values(soonDueTasks).flat();
+      } else {
+        flatTasks = todosList as TodoDTO[];
+      }
+
+      return {
+        column: categoryString as StatusCodes,
+        tasks: flatTasks,
+        categoryCode: categoryString as StatusCodes,
+      };
+    }
   );
 
   const isColumnLayout = userSettings?.isColumnLayout;
@@ -199,7 +217,6 @@ export const TaskboardWrapper = ({
       </ul>
 
       <ShowTaskModalContainer />
-      <ToastContainer />
     </>
   );
 };

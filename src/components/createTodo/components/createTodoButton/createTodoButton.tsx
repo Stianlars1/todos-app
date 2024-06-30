@@ -15,6 +15,12 @@ export const CreateTodoButton = () => {
         className={styles.createTodoButton}
         variant="icon"
         onClick={() => setOpen(!open)}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            setOpen(!open);
+          }
+        }}
       >
         <IconAdd />
 

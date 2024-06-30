@@ -15,9 +15,9 @@
 }
 
 .default {
-  background-color: hsl(var(--black));
-  color: hsl(var(--white));
-  border-color: hsl(var(--border));
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  border-color: hsl(var(--muted-foreground) / 0.2);
 }
 
 .priority-low {

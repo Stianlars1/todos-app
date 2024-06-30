@@ -80,20 +80,31 @@ export const didCategoryIndexChange = ({
   });
 };
 
-export const getCategorizedTodosTexts = async () => {
-  const text = await getTranslations("Categorized Todos");
-  const headerColumnsTexts = {
-    CREATED: text("CREATED"),
-    PENDING: text("PENDING"),
-    IN_PROGRESS: text("IN_PROGRESS"),
-    COMPLETED: text("COMPLETED"),
-    ON_HOLD: text("ON_HOLD"),
-    CANCELLED: text("CANCELLED"),
-    DELETED: text("DELETED"),
-  } as { [key in StatusCodes]: string };
-  return headerColumnsTexts;
+export type GetCategorizedTodosTexts = {
+  [key in StatusCodes]: string;
 };
-export const getTaskboardTexts = async () => {
+export const getCategorizedTodosTexts =
+  async (): Promise<GetCategorizedTodosTexts> => {
+    const text = await getTranslations("Categorized Todos");
+    const headerColumnsTexts = {
+      CREATED: text("CREATED"),
+      PENDING: text("PENDING"),
+      IN_PROGRESS: text("IN_PROGRESS"),
+      COMPLETED: text("COMPLETED"),
+      ON_HOLD: text("ON_HOLD"),
+      CANCELLED: text("CANCELLED"),
+      DELETED: text("DELETED"),
+    } as { [key in StatusCodes]: string };
+    return headerColumnsTexts;
+  };
+
+export type GetTaskboardTexts = {
+  header: {
+    sortSwitchTitle: string;
+    title: string;
+  };
+};
+export const getTaskboardTexts = async (): Promise<GetTaskboardTexts> => {
   const text = await getTranslations("Taskboard");
   const Texts = {
     header: {

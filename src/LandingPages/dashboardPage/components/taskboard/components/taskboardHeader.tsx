@@ -1,6 +1,5 @@
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import styles from "../css/taskboardHeader.module.css";
-import { FilterTasksWrapper } from "./FilterTasksWrapper/FilterTasksWrapper";
 import { TaskboardSettings } from "./taskboardSettings";
 export const TaskboardHeader = async ({
   taskboardHeaderTexts,

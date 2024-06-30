@@ -5,12 +5,9 @@
   padding: 0 1.5rem;
   pointer-events: all;
   border-bottom: 1px solid hsl(var(--border));
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   height: var(--nav-height);
   background-color: hsl(var(--background));
+  z-index: 1000000;
 }
 .grid-navbar__logo {
   display: flex;

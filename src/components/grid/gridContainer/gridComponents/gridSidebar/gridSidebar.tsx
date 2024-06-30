@@ -2,7 +2,6 @@ import { SidebarContentList } from "./components/sidebarContentList/sidebarConte
 
 import { getUserDetails } from "@/app/actions/user/userApi";
 import { Backdrop } from "@/components/backdrop/backdrop";
-import { GridSidebarFooter } from "./components/gridSidebarFooter/gridSidebarFooter";
 import { GridSidebarToggle } from "./components/gridSidebarToggle/gridSidebarToggle";
 import "./css/gridSidebar.css";
 
@@ -15,11 +14,13 @@ export const GridSidebar = async () => {
   return (
     <aside className={`grid-container__sidebar sidebar`}>
       <div className="sidebar__header">
-        <span></span>
+        <span>
+          <br />
+        </span>
       </div>
       <SidebarContentList />
 
-      <GridSidebarFooter userDetails={userDetails.data} />
+      {/* <GridSidebarFooter userDetails={userDetails.data} /> */}
 
       <GridSidebarToggle userDetails={userDetails.data} />
       <Backdrop />

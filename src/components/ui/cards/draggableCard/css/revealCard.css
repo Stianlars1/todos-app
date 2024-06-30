@@ -47,34 +47,15 @@
   color: hsl(var(--muted-foreground));
 }
 .reveal-card__wrapper__badges {
+  margin-top: 4px;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
-.reveal-card__wrapper__badges__tags, .reveal-card__wrapper__badges__priority {
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
-  font-weight: 600;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
-  border-width: 1px;
-  border-radius: 9999px;
-  white-space: nowrap;
-  width: -moz-fit-content;
-  width: fit-content;
-  display: inline-flex;
-  align-items: center;
+.reveal-card-permanently-deleting {
+  background-color: hsl(var(--background));
 }
-.reveal-card__wrapper__badges__priority {
-  color: rgb(153, 27, 27);
-  background-color: rgb(254, 226, 226);
-}
-.reveal-card__wrapper__badges__tags {
-  color: rgb(27, 71, 153);
-  background-color: rgb(226, 232, 254);
-}
+
 .reveal-card-sortable {
   cursor: pointer;
 }

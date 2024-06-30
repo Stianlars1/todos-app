@@ -16,7 +16,7 @@ export const TodayPage = async () => {
     isLoading,
     error,
   } = await getTodosDueToday<ApiResponse<TodoDTO[]>>();
-  const { data } = await getUserSettings();
+  const { data: userSettings } = await getUserSettings();
   const text = await getTranslations("TodayPage");
   const tasksForProps = (tasksDueToday?.data as TodoDTO[]) || null;
   return (
@@ -40,7 +40,7 @@ export const TodayPage = async () => {
           </div>
         </>
       )}
-      <TodayLayout tasksToday={tasksForProps} sidebarOpen={data?.sidebarOpen} />
+      <TodayLayout tasksToday={tasksForProps} userSettings={userSettings} />
       <ToastContainer />
     </>
   );

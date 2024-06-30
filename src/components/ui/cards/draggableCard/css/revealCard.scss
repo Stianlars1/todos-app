@@ -48,41 +48,20 @@
       }
     }
     &__badges {
+      margin-top: 4px;
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
-
-      &__tags,
-      &__priority {
-        padding-top: 0.125rem;
-        padding-bottom: 0.125rem;
-        font-weight: 600;
-        font-size: 0.75rem;
-        line-height: 1rem;
-        padding-left: 0.625rem;
-        padding-right: 0.625rem;
-        border-width: 1px;
-        border-radius: 9999px;
-        white-space: nowrap;
-        width: fit-content;
-        display: inline-flex;
-        align-items: center;
-      }
-      &__priority {
-        color: rgb(153 27 27);
-        background-color: rgb(254 226 226);
-      }
-
-      &__tags {
-        color: rgb(27, 71, 153);
-        background-color: rgb(226, 232, 254);
-      }
     }
     &__content {
     }
   }
 
   cursor: default;
+}
+
+.reveal-card-permanently-deleting {
+  background-color: hsl(var(--background));
 }
 
 .reveal-card-sortable {

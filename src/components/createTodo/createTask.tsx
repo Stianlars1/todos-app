@@ -13,6 +13,7 @@ import {
 import { FormContentWrapper } from "../form/formContentWrapper";
 import { Modal } from "../modal/modal";
 import { TextEditor } from "../ui/richTextEditor/richTextEditor";
+import { toast } from "../ui/toast/toast";
 import { ConfirmCreateTaskButton } from "./components/createTaskButton";
 import "./css/createTask.css";
 
@@ -24,7 +25,7 @@ export const CreateTask = ({ onClose }: { onClose: () => void }) => {
   const text = useTranslations("general");
   const createText = useTranslations("Create-task");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-
+  const toastText = useTranslations("Toasts");
   const handleInputChange = () => {
     setHasUnsavedChanges(true);
   };
@@ -84,6 +85,8 @@ export const CreateTask = ({ onClose }: { onClose: () => void }) => {
   };
 
   if (state && "isSuccess" in state && state.isSuccess) {
+    toast.success(toastText("TASK_CREATED"), "bottomRight");
+
     onClose && onClose();
   }
 
@@ -127,20 +130,22 @@ export const CreateTask = ({ onClose }: { onClose: () => void }) => {
             />
           </CustomInputLabelWrapper>
 
-          <CustomInputLabelWrapper>
-            <CustomInputLabel>
-              {createText("form.status.label")}
-            </CustomInputLabel>
-            <SelectStatus />
-          </CustomInputLabelWrapper>
+          <div className="selects">
+            <CustomInputLabelWrapper>
+              <CustomInputLabel>
+                {createText("form.status.label")}
+              </CustomInputLabel>
+              <SelectStatus />
+            </CustomInputLabelWrapper>
 
-          <CustomInputLabelWrapper>
-            <CustomInputLabel>
-              {createText("form.priority.label")}
-            </CustomInputLabel>
+            <CustomInputLabelWrapper>
+              <CustomInputLabel>
+                {createText("form.priority.label")}
+              </CustomInputLabel>
 
-            <TaskPriority />
-          </CustomInputLabelWrapper>
+              <TaskPriority />
+            </CustomInputLabelWrapper>
+          </div>
           <CustomInputLabelWrapper>
             <CustomInputLabel htmlFor="dueDate">
               {createText("form.dueDate.label")}

@@ -4,16 +4,17 @@
   grid-template-columns: auto;
   grid-template-rows: max-content auto auto 0;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: var(--nav-height) 1rem 1rem 1rem;
   place-items: flex-start;
   justify-items: start;
   max-width: 15rem;
   position: fixed;
-  top: var(--nav-height);
+  top: 0;
   bottom: 0;
   left: 0;
   width: var(--sidebar-width);
   transition: width 0.2s ease;
+  z-index: 1;
 }
 .sidebar__header {
   overflow: hidden;

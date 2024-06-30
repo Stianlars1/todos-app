@@ -9,9 +9,12 @@ import {
   API_TODOS_CREATE_URL,
   API_TODOS_DUE_TODAY_COUNT_URL,
   API_TODOS_DUE_TODAY_URL,
+  API_TODOS_OVERDUE_URL,
+  API_TODOS_UPCOMING_DEADLINES_URL,
   API_TODOS_UPDATE_URL,
   API_TODOS_URL,
 } from "@/utils/urls";
+import { getTranslations } from "next-intl/server";
 import { UpdateTodoResponse, UpdatedTodoDTO } from "./types";
 import { getCreateTodoFormData } from "./utils";
 
@@ -37,12 +40,31 @@ export const getAllTodos = async <T>() => {
     cacheKey: CacheKeys.ALL_TODOS,
   });
 };
+export const getUpcomingDeadlinesTodos = async <T>() => {
+  return await customFetch<T>({
+    url: API_TODOS_UPCOMING_DEADLINES_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    cacheKey: CacheKeys.ALL_TODOS,
+  });
+};
+export const getOverdueTodos = async <T>() => {
+  return await customFetch<T>({
+    url: API_TODOS_OVERDUE_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    cacheKey: CacheKeys.ALL_TODOS,
+  });
+};
 export const getTodosDueToday = async <T>() => {
   return await customFetch<T>({
     url: API_TODOS_DUE_TODAY_URL,
     options: {
       method: HTTP_REQUEST.GET,
     },
+
     cacheKey: CacheKeys.TODOS_TODAY,
   });
 };
@@ -123,6 +145,7 @@ export const createTodo = async (
   const updatedTodo = getCreateTodoFormData(formData);
   const formDataDTO = new FormData();
   formDataDTO.append("todo", JSON.stringify(updatedTodo));
+  const text = await getTranslations("Toasts");
 
   console.log("\n 🟢updatedTodo", updatedTodo);
   console.log("\n 🟢formDataDTO", formDataDTO);

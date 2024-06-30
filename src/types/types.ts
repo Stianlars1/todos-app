@@ -15,6 +15,13 @@ export interface TodoDTO {
   sortIndex: number;
 }
 
+export interface SoonDueTodosDTO {
+  "Due Today": TodoDTO[];
+  "Due Tomorrow": TodoDTO[];
+  "Due in 2 Days": TodoDTO[];
+  "Due in 3 Days": TodoDTO[];
+}
+
 export type TodoPriority = Priority | undefined;
 
 export interface CategorizedTodos {

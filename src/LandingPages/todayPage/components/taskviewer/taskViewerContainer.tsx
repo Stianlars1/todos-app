@@ -1,4 +1,5 @@
 "use client";
+import { UserSettingsDTO } from "@/app/actions/user/types";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { Taskviewer } from "./taskviewer/taskviewer";
@@ -15,9 +16,9 @@ const useSelectedTaskId = () => {
 
 // COMPONENT
 export const TaskviewerContainer = ({
-  sidebarOpen,
+  userSettings,
 }: {
-  sidebarOpen: boolean;
+  userSettings: UserSettingsDTO | null;
 }) => {
   const selectedTaskId = useSelectedTaskId();
 
@@ -32,7 +33,10 @@ export const TaskviewerContainer = ({
         } else {
           document
             ?.getElementById(GridContainerId)
-            ?.setAttribute("data-sidebar-open", String(sidebarOpen));
+            ?.setAttribute(
+              "data-sidebar-open",
+              String(!!userSettings?.sidebarOpen)
+            );
         }
       }
     };
@@ -44,5 +48,11 @@ export const TaskviewerContainer = ({
 
   if (!selectedTaskId) return null;
 
-  return <Taskviewer sidebarOpen={sidebarOpen} taskId={selectedTaskId} />;
+  return (
+    <Taskviewer
+      sidebarOpen={!!userSettings?.sidebarOpen}
+      taskId={selectedTaskId}
+      userSettings={userSettings}
+    />
+  );
 };

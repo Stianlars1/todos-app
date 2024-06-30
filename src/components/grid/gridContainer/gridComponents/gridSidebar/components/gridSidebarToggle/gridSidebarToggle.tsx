@@ -1,9 +1,11 @@
 "use client";
 
 import { updateUserSettings } from "@/app/actions/user/api";
+import { UserDTO } from "@/app/actions/user/types";
+import { cacheInvalidate } from "@/app/lib/cache/cache";
+import { CacheKeys } from "@/app/lib/cache/keys";
 import { useEffect, useState } from "react";
 import "./css/gridSidebarToggle.css";
-import { UserDTO } from "@/app/actions/user/types";
 
 export const GridSidebarToggle = ({
   userDetails,
@@ -34,7 +36,10 @@ export const GridSidebarToggle = ({
   const toggleSidebar = async () => {
     const newSidebarOpen = !sidebarOpen;
     setSidebarOpen(newSidebarOpen);
-    await updateUserSettings({ sidebarOpen: newSidebarOpen });
+    const updated = await updateUserSettings({ sidebarOpen: newSidebarOpen });
+    if (updated.success) {
+      cacheInvalidate({ cacheKey: CacheKeys.USER_DETAILS });
+    }
   };
   return (
     <div onClick={toggleSidebar} id="dragButton" className="sidebar-toggle">

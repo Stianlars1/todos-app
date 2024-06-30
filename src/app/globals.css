@@ -46,6 +46,10 @@ html:root {
   --muted: 222 56% 88%;
   /* --muted: 210 40% 96.1%; */
   --muted-foreground: 215.4 16.3% 46.9%;
+
+  --muted2: 210 40% 96.1%;
+  --muted2-foreground: 215.4 16.3% 46.9%;
+
   --accent: 215, 28%, 17%;
   --accent-foreground: 240 6% 94%;
   /* --accent: 210 40% 96.1%;
@@ -79,6 +83,9 @@ html:root {
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
+
+    --muted2: 217.2 32.6% 17.5%;
+    --muted2-foreground: 215 20.2% 65.1%;
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
@@ -110,6 +117,10 @@ html body {
   overflow-x: hidden;
   color: hsl(var(--foreground));
   background: hsl(var(--background));
+}
+
+body:has(dialog[open]) {
+  overflow: hidden;
 }
 
 #login-signup-button .isLoading .loader {

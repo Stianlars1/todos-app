@@ -4,6 +4,9 @@ import { Priority, StatusId, UpdatedTodoDTO } from "@/app/actions/todos/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { CustomForm } from "@/components/form/components/customForm/customForm";
+import moment from "moment-timezone";
+
+import { UserSettingsDTO } from "@/app/actions/user/types";
 import {
   CustomInput,
   CustomInputLabel,
@@ -45,9 +48,11 @@ const initialUseState: UpdatedTodoDTO = {
 export const Taskviewer = ({
   taskId,
   sidebarOpen,
+  userSettings,
 }: {
   taskId: string | null;
   sidebarOpen: boolean;
+  userSettings: UserSettingsDTO | null;
 }) => {
   // Variables
   const { task: taskDTO } = useFetchTask(taskId);
@@ -92,6 +97,9 @@ export const Taskviewer = ({
         handleClose();
       }
       cacheInvalidate({ cacheKey: CacheKeys.TODOS_TODAY });
+      cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
+      cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+
       toast.success(text("taskUpdated"), "bottomRight");
     }
   }, [formState?.isSuccess]);
@@ -138,6 +146,8 @@ export const Taskviewer = ({
       ?.setAttribute("data-sidebar-open", String(sidebarOpen));
 
     cacheInvalidate({ cacheKey: CacheKeys.TODOS_TODAY });
+    cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+    cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
     toast.success(text("markedAsCompleted"), "bottomRight");
   };
 
@@ -146,7 +156,13 @@ export const Taskviewer = ({
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
+    console.log("\n\nHandlee change");
+    console.log("\ne.target.name", e.target.name);
+    console.log("\n\n e.target.value", e.target.value);
+
     const newState = { ...state, [e.target.name]: e.target.value };
+    console.log("\n\n jewState");
+    console.log("\n\n jewState.dueDate", newState.dueDate);
     setState(newState);
 
     setHasUnsavedChanges(
@@ -250,6 +266,11 @@ export const Taskviewer = ({
     setHasUnsavedChanges(content !== taskDTO?.content);
   };
 
+  console.log(
+    "formatDate(state.dueDate)",
+    state && state.dueDate && formatDate(state.dueDate, userSettings?.timeZone)
+  );
+
   return (
     <Suspense fallback={<SuspenseFallback fixed={false} />}>
       <div
@@ -345,7 +366,7 @@ export const Taskviewer = ({
                 </CustomInputLabel>
 
                 <CustomInput
-                  value={formatDate(state.dueDate)}
+                  value={formatDate(state.dueDate, userSettings?.timeZone)}
                   onChange={handleOnChange}
                   name="dueDate"
                   id="dueDate"
@@ -431,12 +452,18 @@ const mapDTOtoUpdatedTodoDTO = (taskDTO: TodoDTO) => {
   };
 };
 
-const formatDate = (date: Date | string): string => {
-  const d = new Date(date);
-  const month = `0${d.getMonth() + 1}`.slice(-2);
-  const day = `0${d.getDate()}`.slice(-2);
-  const year = d.getFullYear();
-  return `${year}-${month}-${day}`.split("T")[0];
+const formatDate = (date: Date | string, timezone: string = "UTC"): string => {
+  console.log("format date: ", date);
+  const d = moment.tz(date, timezone);
+  console.log("d: ", d.format());
+
+  const month = d.format("MM");
+  const day = d.format("DD");
+  const year = d.format("YYYY");
+
+  const result = `${year}-${month}-${day}`;
+  console.log("result: ", result);
+  return result;
 };
 
 const compareDates = (date1: string, date2: string): boolean => {

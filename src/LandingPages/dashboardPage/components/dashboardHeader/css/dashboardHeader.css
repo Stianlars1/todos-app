@@ -1,6 +1,34 @@
-.dashboard-header__title__hello {
-  font-size: 1.5rem;
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 2rem;
 }
-.dashboard-header__title__name {
+.dashboard-header > * {
+  transition: all 0.3s ease;
+}
+.dashboard-header__title {
+  padding: 0;
+  line-height: 1;
+  color: hsl(var(--muted-foreground));
+  font-size: 1rem;
+}
+.dashboard-header__title:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.dashboard-header__slash {
+  font-size: 2rem;
+}
+.dashboard-header__activeTab {
   font-size: 1.5rem;
+  color: hsl(var(--foreground));
+}
+.dashboard-header__activeTab:hover {
+  cursor: default !important;
+  text-decoration: none !important;
+}
+.dashboard-header__activeTab span {
+  font-size: 2rem !important;
+  color: hsl(var(--foreground));
 }/*# sourceMappingURL=dashboardHeader.css.map */

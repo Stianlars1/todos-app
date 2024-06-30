@@ -6,4 +6,5 @@ export enum CacheKeys {
   USER_SETTINGS = "user-settings",
   USER_PREFERENCES = "user-preferences",
   USER_DETAILS = "user-details",
+  TODOS_UPCOMING_DEADLINES = "todos-upcoming-deadlines",
 }

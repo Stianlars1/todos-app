@@ -12,12 +12,16 @@ export const getCreateTodoFormData = (formData: FormData): CreateTodoDTO => {
     priority: formData.get("priority")
       ? (formData.get("priority") as Priority)
       : undefined,
-    dueDate: formData.get("dueDate")
-      ? new Date(formData.get("dueDate") as string)
-      : undefined,
+    dueDate: new Date(formData.get("dueDate") as string) ?? undefined,
     content: formData.get("content") as string,
     tags: formData.get("tags")
       ? (formData.get("tags") as string).split(",")
-      : undefined, // Assuming tags are comma-separated if multiple
+      : undefined,
+    timezone: getLocalTimezone(),
   };
+};
+
+const getLocalTimezone = () => {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  return timezone;
 };

@@ -1,4 +1,3 @@
-import { getCategorizedTodos } from "@/app/actions/todos/fetch";
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import {
@@ -8,22 +7,25 @@ import {
   StatusCodes,
 } from "@/types/todo/types";
 import { TaskboardHeader } from "./components/taskboardHeader";
-import { getCategorizedTodosTexts, getTaskboardTexts } from "./utils";
+import { GetCategorizedTodosTexts, GetTaskboardTexts } from "./utils";
 import { TaskboardWrapper } from "./wrappers/taskboardWrapper";
+import styles from "./css/taskboard.module.css";
 
-export const Taskboard = async ({
+export const Taskboard = ({
   userSettings,
+  categorizedTexts,
+  taskboardTexts,
+  taskResponse,
+  isError,
+  error,
 }: {
   userSettings: UserSettingsDTO | undefined;
+  categorizedTexts: GetCategorizedTodosTexts;
+  taskboardTexts: GetTaskboardTexts;
+  taskResponse: CategorizedTodosResponseDTO | null;
+  isError: boolean;
+  error: string;
 }) => {
-  const categorizedTexts = await getCategorizedTodosTexts();
-  const taskboardTexts = await getTaskboardTexts();
-  const {
-    data: taskResponse,
-    isError,
-    error,
-  } = await getCategorizedTodos<CategorizedTodosResponseDTO>();
-
   const categorizedTodosFiltered = Object.entries(
     taskResponse?.data || {}
   ).reduce<CategorizedTodosDTO>((acc, [key, value]) => {
@@ -33,41 +35,12 @@ export const Taskboard = async ({
     return acc;
   }, {} as CategorizedTodosDTO);
 
-  const soonDueTasks = taskResponse?.data?.[DUE_SOON_KEY];
-  console.log("soonDueTasks", soonDueTasks);
   if (isError && error) {
     return <ErrorMessage isError={isError} errorMessage={error} />;
   }
+
   return (
-    <>
-      {soonDueTasks && soonDueTasks.length > 0 && (
-        <>
-          <div>
-            <h3>Soon due</h3>
-            <ul>
-              {soonDueTasks.map((task) => {
-                // Get how many days left
-                const date = new Date(task.dueDate!);
-                const daysUntil = Math.floor(
-                  (date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
-                );
-                return (
-                  <>
-                    <h4>
-                      {daysUntil === 0
-                        ? "Due today"
-                        : daysUntil === 1
-                        ? "Due tomorrow"
-                        : `Due in ${daysUntil} days`}
-                    </h4>
-                    <div key={task.todoId}>{task.title}</div>
-                  </>
-                );
-              })}
-            </ul>
-          </div>
-        </>
-      )}
+    <div className={styles.taskboard}>
       <TaskboardHeader
         taskboardHeaderTexts={taskboardTexts.header}
         userSettings={userSettings}
@@ -81,6 +54,6 @@ export const Taskboard = async ({
           taskboardTexts={taskboardTexts}
         />
       )}
-    </>
+    </div>
   );
 };

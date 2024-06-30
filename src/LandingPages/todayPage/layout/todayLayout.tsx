@@ -1,3 +1,4 @@
+import { UserSettingsDTO } from "@/app/actions/user/types";
 import { TodayCard } from "@/components/ui/cards/todayCard/todayCard";
 import { TodoDTO } from "@/types/types";
 import { TaskviewerContainer } from "../components/taskviewer/taskViewerContainer";
@@ -5,14 +6,14 @@ import { TodayLayoutResizeWrapper } from "../components/todayLayoutResizeWrapper
 import styles from "./css/todayLayout.module.css";
 export const TodayLayout = ({
   tasksToday,
-  sidebarOpen = true,
+  userSettings,
 }: {
   tasksToday: TodoDTO[] | null;
-  sidebarOpen?: boolean;
+  userSettings: UserSettingsDTO | null;
 }) => {
   return (
     <div className={styles.todayLayout}>
-      <TodayLayoutResizeWrapper sidebarOpen={sidebarOpen} />
+      <TodayLayoutResizeWrapper sidebarOpen={!!userSettings?.sidebarOpen} />
 
       <ul className={styles.list}>
         {tasksToday?.map((task) => (
@@ -31,7 +32,7 @@ export const TodayLayout = ({
         ))}
       </ul>
 
-      <TaskviewerContainer sidebarOpen={sidebarOpen} />
+      <TaskviewerContainer userSettings={userSettings} />
     </div>
   );
 };

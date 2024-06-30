@@ -167,6 +167,8 @@ export const TaskCardWrapper = ({
         if (response.isSuccess) {
           // Toast message=?¿?
           await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+          await cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
+
           toast.success("Task was updated successfully", "bottomRight");
 
           return;
@@ -190,6 +192,8 @@ export const TaskCardWrapper = ({
 
         if (deleteResponse.isSuccess) {
           await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+          await cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
+
           toast.success("Task was deleted successfully", "bottomRight");
 
           return;
@@ -214,6 +218,8 @@ export const TaskCardWrapper = ({
         if (moveResponse.isSuccess) {
           // Toast message=?¿?
           await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+          await cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
+
           toast.success("Task was moved successfully", "bottomRight");
 
           return;
@@ -252,6 +258,20 @@ export const TaskCardWrapper = ({
       resetState();
     }
   }, [isMobile]);
+
+  const deleteTaskFromTasklist = (idToRemove: number) => {
+    setTaskList(tasks.filter((task: TodoDTO) => task.todoId !== idToRemove));
+    resetState();
+  };
+
+  const resetTaskList = () => {
+    if (showHiddenTasks) {
+      setTaskList(tasks);
+    } else {
+      setTaskList(tasks.slice(0, VISIBLE_TASKS));
+    }
+    resetState();
+  };
 
   const handleShowHiddenTasks = () => {
     setTaskList(showHiddenTasks ? tasks.slice(0, VISIBLE_TASKS) : tasks);
@@ -292,6 +312,8 @@ export const TaskCardWrapper = ({
                 categoryCode={categoryCode}
                 userSettings={userSettings}
                 draggableColumnEditActive={draggableColumnEditActive}
+                deleteTaskFromTasklist={deleteTaskFromTasklist}
+                resetTaskList={resetTaskList}
               />
             ))}
 
