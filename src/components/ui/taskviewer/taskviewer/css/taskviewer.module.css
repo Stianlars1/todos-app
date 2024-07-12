@@ -1,5 +1,4 @@
 .taskViewer {
-  flex: 1 0 45%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,7 +10,8 @@
   padding-top: calc(2rem + 4px);
   right: 0;
   bottom: 0;
-  width: calc(45% - 64px);
+  left: 0;
+  padding-left: 2rem;
   overflow: auto;
   transition: transform 0.3s ease-in-out;
   transform: translateX(120%);
@@ -39,6 +39,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+}
+.taskViewer .bottomButtons .delete {
+  background-color: hsl(var(--destructive));
+  text: hsl(var(--destructive-foreground));
 }
 .taskViewer .titleInput {
   border-left: none;
@@ -119,36 +123,7 @@
     transform: translateX(120%);
   }
 }
-@media screen and (max-width: 1200px) {
-  .taskViewer {
-    flex: 1 0 55%;
-    width: calc(55% - 64px);
-  }
-}
-@media screen and (max-width: 1000px) {
-  .taskViewer {
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: calc(100% - 64px);
-    position: absolute;
-    z-index: 1000;
-    left: 64px;
-  }
-}
 @media screen and (max-width: 768px) {
-  .taskViewer {
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    position: absolute;
-    z-index: 1000;
-    transform: translateX(0%) translateY(120%);
-    padding: 40px 2rem 64px;
-  }
   .taskViewer::after {
     content: "";
     display: none;

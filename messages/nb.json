@@ -31,7 +31,9 @@
         "Due Today": "Frist i dag",
         "Due Tomorrow": "Frist i morgen",
         "Due in 2 Days": "Frist om 2 dager",
-        "Due in 3 Days": "Frist om 3 dager"
+        "Due in 3 Days": "Frist om 3 dager",
+        "SHOW_MORE": "Vis mindre",
+        "SHOW_LESS": "Vis mer"
       }
     }
   },
@@ -173,7 +175,8 @@
       "cancel": "Avbryt",
       "edit": "Rediger",
       "taskUpdated": "Oppgaven ble oppdatert",
-      "markedAsCompleted": "Oppgaven ble markert som ferdig"
+      "markedAsCompleted": "Oppgaven ble markert som ferdig",
+      "movedToTrash": "Oppgaven ble flyttet til søppelkurven"
     }
   },
 

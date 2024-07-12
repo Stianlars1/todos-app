@@ -120,7 +120,7 @@ export const updateTodoForm = async (_state: unknown, formData: FormData) => {
     title: formData.get("title") as string,
     description: formData.get("description") as string,
     statusId: parseInt(formData.get("statusId") as string),
-    dueDate: new Date((formData.get("dueDate") as string) || ""),
+    dueDate: new Date(formData.get("dueDate") as string) ?? undefined,
     priority: formData.get("priority") as string,
     content: formData.get("content") as string,
     // tags: JSON.parse(formData.get("tags") as string),
@@ -148,7 +148,6 @@ export const createTodo = async (
   const text = await getTranslations("Toasts");
 
   console.log("\n 🟢updatedTodo", updatedTodo);
-  console.log("\n 🟢formDataDTO", formDataDTO);
 
   const uploadResponse = await customFetch<TodoDTO>({
     url: API_TODOS_CREATE_URL,
@@ -159,15 +158,10 @@ export const createTodo = async (
   });
 
   if (uploadResponse.isError) {
-    console.error("\n 🟢 Error creating todo", uploadResponse.error);
+    console.error("\n 🔴 Error creating todo", uploadResponse.error);
   }
 
   await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
 
   return uploadResponse;
 };
-
-// working example
-// {    "title": "test 404 with image",    "description": "test 404 with image",    "statusId": 7,    "dueDate": "2030-08-19T01:44:23", "priority": "MEDIUM", "tags": ["first tag"]}
-// not working
-//'{"title":"Første oppgave ","description":"dette er beskrivelsaen","statusId":"1","priority":"LOW","dueDate":"","content":null,"tags":"first"}'

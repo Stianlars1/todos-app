@@ -76,4 +76,59 @@
   .progressSummary .wrapper ul .summaryDeleted .description {
     color: hsl(var(--white)/0.5);
   }
+}
+.progressSummary .dueToday {
+  text-decoration: none;
+  cursor: pointer;
+}
+.progressSummary .dueToday:hover {
+  cursor: pointer !important;
+}
+.progressSummary .dueToday .summaryItem {
+  cursor: pointer !important;
+}
+.progressSummary .overdue {
+  background-color: hsl(var(--destructive)/0.5);
+}
+.progressSummary .overdue .description {
+  color: hsl(var(--black)/0.5);
+}
+@media screen and (prefers-color-scheme = dark) {
+  .progressSummary .overdue .description {
+    color: hsl(var(--white)/0.5);
+  }
+}
+.progressSummary .TaskSummary ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+  grid-gap: 1.25rem;
+  gap: 1.25rem;
+}
+.FadeIn {
+  opacity: 0;
+  animation: fadeIn 0.2s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.showMoreButton {
+  margin: 0 1.5rem;
+  margin: 1rem;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+.showMoreButton:hover {
+  cursor: pointer;
+}
+.showMoreButton p {
+  font-size: 1rem;
+  white-space: nowrap;
 }/*# sourceMappingURL=progressSummary.module.css.map */

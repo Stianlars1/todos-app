@@ -1,0 +1,176 @@
+.taskViewer {
+  flex: 1 0 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1rem;
+  gap: 32px;
+  position: absolute;
+  top: 0;
+  padding-top: calc(2rem + 4px);
+  right: 0;
+  bottom: 0;
+  width: calc(45% - 64px);
+  overflow: auto;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(120%);
+  background-color: hsl(var(--card));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  visibility: none;
+  display: none;
+}
+.taskViewer .topCTAwrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.taskViewer .topCTAwrapper .topCTAbuttonsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+.taskViewer .bottomButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.taskViewer .bottomButtons .delete {
+  background-color: hsl(var(--destructive)) !important;
+  text: hsl(var(--destructive-foreground)) !important;
+}
+.taskViewer .titleInput {
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-radius: 0;
+  border-color: hsl(var(--border));
+  white-space: nowrap;
+  font-size: 1.2rem;
+  overflow: hidden;
+  padding-left: 0;
+  text-overflow: ellipsis;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.backButton {
+  border: 1px solid hsl(var(--border));
+}
+
+.startAnimation {
+  visibility: visible;
+  display: flex;
+  animation: slideIn 0.3s ease-in-out forwards;
+}
+
+.endAnimation {
+  animation: slideOut 0.3s ease-in-out forwards;
+}
+
+.successButton {
+  background-color: hsl(var(--success)) !important;
+}
+
+.errorButton {
+  background-color: hsl(var(--destructive)) !important;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.info {
+  margin-top: 1rem;
+}
+
+.content {
+  width: 100%;
+  overflow: hidden;
+}
+.content p {
+  font-size: 0.975rem;
+  line-height: 1;
+}
+.content img {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+@media screen and (max-width: 1200px) {
+  .taskViewer {
+    flex: 1 0 55%;
+    width: calc(55% - 64px);
+  }
+}
+@media screen and (max-width: 1000px) {
+  .taskViewer {
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: calc(100% - 64px);
+    position: absolute;
+    z-index: 1000;
+    left: 64px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .taskViewer {
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 1000;
+    transform: translateX(0%) translateY(120%);
+    padding: 40px 2rem 64px;
+  }
+  .taskViewer::after {
+    content: "";
+    display: none;
+  }
+  @keyframes slideIn {
+    0% {
+      transform: translateY(120%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideOut {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(120%);
+    }
+  }
+}/*# sourceMappingURL=taskviewer.module.css.map */

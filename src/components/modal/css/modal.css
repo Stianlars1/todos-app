@@ -4,15 +4,20 @@
   position: fixed;
   inset-inline: 0px;
   margin-inline: auto;
+  inset-block-start: 60px;
   border-radius: 0.5rem;
   box-shadow: hsla(0, 0%, 0%, 0.1) 0 0 0.5rem 0.25rem;
   border: 1px solid #ccc;
   overflow-y: scroll;
-  inset-block-start: 60px;
   transition-duration: 350ms;
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.15, 1, 0.3, 1);
   background-color: hsl(var(--background));
+}
+.modal__closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 .modal__backdrop-clickable {
   position: fixed;
@@ -32,5 +37,19 @@
 @media screen and (max-width: 768px) {
   .modal {
     max-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    border: none;
+    border-radius: 0;
+    inset-inline: 0px;
+    margin-inline: 0;
+    inset-block-start: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 }/*# sourceMappingURL=modal.css.map */

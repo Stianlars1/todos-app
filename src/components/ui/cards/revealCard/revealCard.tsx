@@ -10,10 +10,10 @@ export const RevealCard = ({
   tags,
   priority,
   content,
-  todoId,
   className = " ",
-  statusCode,
   url,
+  style,
+  cardClickEnabled = false,
 }: RevealCardProps) => {
   const expanded = false;
   const [isExpanded, setIsExpanded] = useState(expanded);
@@ -25,15 +25,23 @@ export const RevealCard = ({
     url && router.push(url, undefined);
   };
 
+  const handleCardClick = () => {
+    if (cardClickEnabled) {
+      openTask();
+    }
+  };
+
   const handleChevronClick = () => {
     setIsExpanded(!isExpanded);
   };
 
   return (
     <div
+      style={style}
       className={`reveal-card ${className} ${
         isDragging ? "reveal-card-is-grabbed" : ""
       } reveal-card-simple `}
+      onClick={handleCardClick}
     >
       <div className="reveal-card__wrapper">
         <div className="reveal-card__wrapper__header">

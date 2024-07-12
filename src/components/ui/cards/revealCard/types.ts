@@ -1,4 +1,5 @@
 import { StatusCode, TodoPriority } from "@/types/types";
+import { CSSProperties } from "react";
 
 export interface RevealCardProps {
   title: string;
@@ -10,4 +11,6 @@ export interface RevealCardProps {
   className?: string;
   statusCode?: StatusCode;
   url?: string;
+  style?: CSSProperties;
+  cardClickEnabled?: boolean;
 }

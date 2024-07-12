@@ -85,4 +85,72 @@
       }
     }
   }
+
+  .dueToday {
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      cursor: pointer !important;
+    }
+    .summaryItem {
+      cursor: pointer !important;
+    }
+  }
+
+  .overdue {
+    background-color: hsl(var(--destructive) / 0.5);
+    .description {
+      color: hsl(var(--black) / 0.5);
+
+      @media screen and (prefers-color-scheme="dark") {
+        color: hsl(var(--white) / 0.5);
+      }
+    }
+  }
+
+  .TaskSummary {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+      grid-gap: 1.25rem;
+      gap: 1.25rem;
+      .TaskSummaryItem {
+      }
+    }
+  }
+}
+
+.FadeIn {
+  opacity: 0;
+  animation: fadeIn 0.2s forwards; // Adjust duration as needed
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.showMoreButton {
+  margin: 0 1.5rem;
+  margin: 1rem;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .arrow {
+  }
+
+  p {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
 }

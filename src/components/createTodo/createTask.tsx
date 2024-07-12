@@ -95,6 +95,7 @@ export const CreateTask = ({ onClose }: { onClose: () => void }) => {
       onClose={onClose}
       hasUnsavedChanges={hasUnsavedChanges}
       replaceUrl={true}
+      closeButton
     >
       <CustomForm action={dispatch} className="create-task">
         <FormContentWrapper>

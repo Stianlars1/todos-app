@@ -1,4 +1,4 @@
-import { TodayPage } from "@/LandingPages/todayPage/todayPage";
+import { TodayPage } from "@/LandingPages/todayPageTaskviewer/todayPage";
 
 export default async function Today() {
   return <TodayPage />;

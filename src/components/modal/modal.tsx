@@ -1,7 +1,9 @@
 "use client";
+import { Button } from "@stianlarsen/react-ui-kit";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
+import { MdClose } from "react-icons/md";
 import "./css/modal.css";
 
 export const Modal = ({
@@ -10,12 +12,14 @@ export const Modal = ({
   hasUnsavedChanges,
   replaceUrl = false,
   url = "",
+  closeButton,
 }: {
   children: ReactNode | ReactNode[] | ReactElement | ReactElement[];
   onClose: () => void;
   hasUnsavedChanges?: boolean;
   replaceUrl?: boolean;
   url?: string;
+  closeButton?: Boolean;
 }) => {
   const [isModalOpen, setModalOpen] = useState(true);
   const modalRef = useRef<HTMLDialogElement | null>(null);
@@ -70,6 +74,15 @@ export const Modal = ({
       ref={modalRef}
       onKeyDown={handleKeyDown}
     >
+      {closeButton && (
+        <Button
+          className="modal__closeButton"
+          variant="icon"
+          onClick={handleCloseModal}
+        >
+          <MdClose />
+        </Button>
+      )}
       <div
         className="modal__backdrop-clickable"
         onClick={handleCloseModal} // Close the modal if this backdrop is clicked

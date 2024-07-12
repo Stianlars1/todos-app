@@ -60,6 +60,7 @@ export const DashboardPage = async () => {
             isError={isError3}
             tasks={allTasks}
             overdueTasks={overdueTasks}
+            userSettings={userDetails?.settings}
           />
         </DashboardTabs>
       </div>

@@ -50,6 +50,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .create-task {
+    width: 100%;
+    min-width: 100vh;
+  }
   .create-task .selects {
     flex-direction: column;
   }

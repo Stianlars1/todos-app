@@ -2,7 +2,7 @@
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import { Taskviewer } from "./taskviewer/taskviewer";
+import { TodayPageTaskviewer } from "./taskviewer/taskviewer";
 
 // HELPER UTILS
 enum searchParams {
@@ -49,7 +49,7 @@ export const TaskviewerContainer = ({
   if (!selectedTaskId) return null;
 
   return (
-    <Taskviewer
+    <TodayPageTaskviewer
       sidebarOpen={!!userSettings?.sidebarOpen}
       taskId={selectedTaskId}
       userSettings={userSettings}

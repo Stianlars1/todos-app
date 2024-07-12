@@ -45,7 +45,7 @@ const initialUseState: UpdatedTodoDTO = {
   content: undefined,
 };
 
-export const Taskviewer = ({
+export const TodayPageTaskviewer = ({
   taskId,
   sidebarOpen,
   userSettings,
@@ -266,10 +266,20 @@ export const Taskviewer = ({
     setHasUnsavedChanges(content !== taskDTO?.content);
   };
 
-  console.log(
-    "formatDate(state.dueDate)",
-    state && state.dueDate && formatDate(state.dueDate, userSettings?.timeZone)
-  );
+  const handleMoveToTrash = async () => {
+    if (!taskId) return;
+    const updatedTask: UpdatedTodoDTO = { statusId: 6 };
+    const updateResponse = await updateTodo(taskId, updatedTask);
+    if (updateResponse.isError) {
+      toast.error(text("errorMovingToTrash"), "bottomRight");
+    } else {
+      cacheInvalidate({ cacheKey: CacheKeys.TODOS_TODAY });
+      cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+      cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
+      toast.success(text("movedToTrash"), "bottomRight");
+      router.replace(`/${locale}/today`, undefined);
+    }
+  };
 
   return (
     <Suspense fallback={<SuspenseFallback fixed={false} />}>
@@ -430,6 +440,25 @@ export const Taskviewer = ({
               <UpdateTaskButton />
               <Button onClick={handleCancel} variant="secondary">
                 {text("cancel")}
+              </Button>
+              <Button
+                className={styles.delete}
+                onClick={handleMoveToTrash}
+                variant="secondary"
+              >
+                {text("deleteTask")}
+              </Button>
+            </div>
+          )}
+
+          {!hasUnsavedChanges && (
+            <div className={styles.bottomButtons}>
+              <Button
+                className={styles.delete}
+                onClick={handleMoveToTrash}
+                variant="outline"
+              >
+                {text("deleteTask")}
               </Button>
             </div>
           )}

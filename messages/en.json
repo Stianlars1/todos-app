@@ -31,7 +31,9 @@
         "Due Today": "Due Today",
         "Due Tomorrow": "Due Tomorrow",
         "Due in 2 Days": "Due in 2 Days",
-        "Due in 3 Days": "Due in 3 Days"
+        "Due in 3 Days": "Due in 3 Days",
+        "SHOW_MORE": "Show more",
+        "SHOW_LESS": "Show less"
       }
     }
   },
@@ -171,7 +173,8 @@
       "formContent": "Content",
       "edit": "Edit",
       "taskUpdated": "Task updated successfully",
-      "markedAsCompleted": "Task marked as completed"
+      "markedAsCompleted": "Task marked as completed",
+      "movedToTrash": "Tasks status updated to deleted"
     }
   },
 

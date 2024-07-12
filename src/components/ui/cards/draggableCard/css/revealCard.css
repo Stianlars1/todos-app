@@ -40,6 +40,9 @@
           hyphens: auto;
   text-wrap: balance;
   min-width: 0;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
 }
 .reveal-card__wrapper__header p {
   font-size: 0.875rem;

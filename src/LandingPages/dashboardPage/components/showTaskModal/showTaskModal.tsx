@@ -1,12 +1,14 @@
 "use client";
-import { TodoModal } from "@/components/todoModal/todoModal";
+import { UserSettingsDTO } from "@/app/actions/user/types";
+import { TaskViewer } from "@/components/ui/taskviewer/taskviewer/taskviewer";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export const ShowTaskModalContainer = () => {
-  return <ShowTaskModal />;
-};
-export const ShowTaskModal = () => {
+export const ShowTaskModalContainer = ({
+  userSettings,
+}: {
+  userSettings: UserSettingsDTO | undefined;
+}) => {
   const selectedTaskId = useSelectedTaskId();
   const [showTaskModal, setShowTaskModal] = useState(false);
 
@@ -17,12 +19,14 @@ export const ShowTaskModal = () => {
   }, [selectedTaskId]);
   return (
     <>
-      {showTaskModal && selectedTaskId && (
+      {showTaskModal && selectedTaskId && userSettings && (
         <>
-          <TodoModal
+          {/* <TodoModal
             taskId={selectedTaskId}
             onClose={() => setShowTaskModal(false)}
-          />
+          /> */}
+
+          <TaskViewer taskId={selectedTaskId} userSettings={userSettings} />
         </>
       )}
     </>

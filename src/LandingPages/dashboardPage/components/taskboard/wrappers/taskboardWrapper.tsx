@@ -21,7 +21,7 @@ import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
-import { ToastContainer, toast } from "@/components/ui/toast/toast";
+import { toast } from "@/components/ui/toast/toast";
 import { useBrowserInfo } from "@/hooks/useBrowserInfo";
 import { TodoDTO } from "@/types/types";
 import { useEffect } from "react";
@@ -216,7 +216,7 @@ export const TaskboardWrapper = ({
         ))}
       </ul>
 
-      <ShowTaskModalContainer />
+      <ShowTaskModalContainer userSettings={userSettings} />
     </>
   );
 };
