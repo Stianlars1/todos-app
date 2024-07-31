@@ -1,15 +1,17 @@
 "use client";
 import { updateUserSettings } from "@/app/actions/user/api";
 import { toast } from "@/components/ui/toast/toast";
-import { Button } from "@stianlarsen/react-ui-kit";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import styles from "../../css/preferences.module.css";
 import { timezones } from "./zones";
-
 export const TimezoneSelect = ({
   currentTimezone,
 }: {
   currentTimezone?: string;
 }) => {
+  const texts = useTranslations("SettingsPage.preferences");
+
   const selectedTimezone =
     currentTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
   const [timezone, setTimezone] = useState(selectedTimezone);
@@ -17,6 +19,7 @@ export const TimezoneSelect = ({
   const handleChange = (event: React.ChangeEvent) => {
     const target = event.target as HTMLSelectElement;
     setTimezone(target.value);
+    saveTimezone();
     console.log(`Timezone set to ${target.value}`);
   };
 
@@ -31,6 +34,7 @@ export const TimezoneSelect = ({
   };
   return (
     <>
+      <h3 className={styles.preferences}>{texts("language")}</h3>
       <select value={timezone} onChange={handleChange}>
         {timezones.map((timezone) => (
           <option key={timezone} value={timezone}>
@@ -39,9 +43,9 @@ export const TimezoneSelect = ({
         ))}
       </select>
 
-      <Button variant="primary" onClick={saveTimezone}>
+      {/* <Button variant="primary" onClick={saveTimezone}>
         save
-      </Button>
+      </Button> */}
     </>
   );
 };

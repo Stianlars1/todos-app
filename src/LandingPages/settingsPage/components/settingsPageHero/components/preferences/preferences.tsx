@@ -1,15 +1,21 @@
 import { UserDTO } from "@/app/actions/user/types";
+import { useTranslations } from "next-intl";
 import { TimezoneSelect } from "./components/timezone/timezoneSelect";
-import styles from "./css/preferences.module.css";
 export const SettingsPreferencesContent = ({
   userDetails,
 }: {
   userDetails: UserDTO | null;
 }) => {
+  const texts = useTranslations("SettingsPage.preferences");
+
+  //   preferences
+  // title
+  // language
+  // savePreferences
+  // savingPreferences
+  // preferencesSaved
   return (
     <>
-      <h3 className={styles.preferences}>Preferences</h3>
-
       <TimezoneSelect
         currentTimezone={userDetails?.settings?.timeZone || "UTC"}
       />

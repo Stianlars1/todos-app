@@ -7,4 +7,6 @@ export enum CacheKeys {
   USER_PREFERENCES = "user-preferences",
   USER_DETAILS = "user-details",
   TODOS_UPCOMING_DEADLINES = "todos-upcoming-deadlines",
+  ALL_TAGS = "all-tags",
+  TODOS_BY_TAGNAME = "TODOS_BY_TAGNAME",
 }

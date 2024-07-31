@@ -43,17 +43,26 @@
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
+  cursor: text;
 }
 .reveal-card__wrapper__header p {
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: hsl(var(--muted-foreground));
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  cursor: text;
 }
 .reveal-card__wrapper__badges {
   margin-top: 4px;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  cursor: text;
 }
 .reveal-card-permanently-deleting {
   background-color: hsl(var(--background));
@@ -107,6 +116,16 @@
   shape-rendering: geometricprecision;
   fill-rule: evenodd;
   clip-rule: evenodd;
+}
+
+.reveal-card-mobile {
+  cursor: pointer;
+}
+.reveal-card-mobile:hover {
+  cursor: pointer;
+}
+.reveal-card-mobile:active {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

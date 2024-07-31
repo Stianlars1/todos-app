@@ -13,4 +13,5 @@ export interface RevealCardProps {
   url?: string;
   style?: CSSProperties;
   cardClickEnabled?: boolean;
+  onClick?: (event?: any) => void;
 }

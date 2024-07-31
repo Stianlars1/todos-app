@@ -92,7 +92,7 @@
   transform: translateX(26px);
 }
 
-@media screen and (prefers-color-scheme: light) {
+@media screen and (prefers-color-scheme: light), screen and (-webkit-prefers-color-scheme: light) {
   .switch {
     background-color: hsl(var(--muted-foreground));
   }

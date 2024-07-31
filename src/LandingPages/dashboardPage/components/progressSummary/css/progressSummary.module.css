@@ -61,7 +61,7 @@
 .progressSummary .wrapper ul .summaryCompleted .description {
   color: hsl(var(--black)/0.5);
 }
-@media screen and (prefers-color-scheme = dark) {
+@media screen and (prefers-color-scheme: dark), screen and (-webkit-prefers-color-scheme: dark) {
   .progressSummary .wrapper ul .summaryCompleted .description {
     color: hsl(var(--white)/0.5);
   }
@@ -72,7 +72,7 @@
 .progressSummary .wrapper ul .summaryDeleted .description {
   color: hsl(var(--black)/0.5);
 }
-@media screen and (prefers-color-scheme = dark) {
+@media screen and (prefers-color-scheme: dark), screen and (-webkit-prefers-color-scheme: dark) {
   .progressSummary .wrapper ul .summaryDeleted .description {
     color: hsl(var(--white)/0.5);
   }
@@ -93,7 +93,7 @@
 .progressSummary .overdue .description {
   color: hsl(var(--black)/0.5);
 }
-@media screen and (prefers-color-scheme = dark) {
+@media screen and (prefers-color-scheme: dark), screen and (-webkit-prefers-color-scheme: dark) {
   .progressSummary .overdue .description {
     color: hsl(var(--white)/0.5);
   }

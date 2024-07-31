@@ -40,13 +40,15 @@
 
       &:hover {
         background-color: hsl(var(--sidebar-bg));
-        @media (prefers-color-scheme: dark) {
+        @media screen and (prefers-color-scheme: dark),
+          screen and (-webkit-prefers-color-scheme: dark) {
           background-color: hsl(var(--muted)) !important;
         }
 
         svg {
           background-color: hsl(var(--sidebar-bg)) !important;
-          @media (prefers-color-scheme: dark) {
+          @media screen and (prefers-color-scheme: dark),
+            screen and (-webkit-prefers-color-scheme: dark) {
             background-color: hsl(var(--muted)) !important;
           }
         }

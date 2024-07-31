@@ -109,7 +109,7 @@ export async function customFetch<T>({
       data = await response.text(); // Fallback to plain text
     }
 
-    console.log("\n\n 🟢 customFetch data response : \n", data);
+    console.log("\n\n 🟢 customFetch data response was OK \n");
 
     return {
       ...state,

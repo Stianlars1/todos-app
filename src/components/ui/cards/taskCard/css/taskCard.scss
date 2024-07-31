@@ -1,0 +1,87 @@
+.reveal-card {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  list-style-type: none;
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--card-foreground));
+  background-color: hsl(var(--card));
+  cursor: default;
+  position: relative;
+
+  overflow: visible;
+
+  &__wrapper {
+    min-height: 100%;
+    padding: 1.5rem 2rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__header {
+      overflow: hidden;
+
+      h3 {
+        font-weight: 500;
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+        hyphens: auto;
+        text-wrap: pretty;
+        min-width: 0;
+        user-select: text;
+      }
+      p {
+        font-size: 13px;
+        line-height: 1.25rem;
+        color: hsl(var(--muted-foreground));
+        line-height: 0.875;
+      }
+    }
+    .clickPadding {
+      padding-right: calc(1.5rem);
+    }
+
+    &__badges {
+      margin-top: 8px;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+  }
+
+  cursor: default;
+
+  .click-icon {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .reveal-card {
+    &__wrapper {
+      &__header {
+        h3 {
+          font-weight: 500;
+          font-size: 0.875rem;
+          line-height: 1.5rem;
+        }
+        p {
+          font-size: 12px;
+          line-height: 1.25rem;
+        }
+      }
+
+      &__badges {
+        &__tags,
+        &__priority {
+          font-weight: 600;
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}

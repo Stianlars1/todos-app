@@ -66,7 +66,8 @@
         .description {
           color: hsl(var(--black) / 0.5);
 
-          @media screen and (prefers-color-scheme="dark") {
+          @media screen and (prefers-color-scheme: dark),
+            screen and (-webkit-prefers-color-scheme: dark) {
             color: hsl(var(--white) / 0.5);
           }
         }
@@ -76,7 +77,8 @@
         .description {
           color: hsl(var(--black) / 0.5);
 
-          @media screen and (prefers-color-scheme="dark") {
+          @media screen and (prefers-color-scheme: dark),
+            screen and (-webkit-prefers-color-scheme: dark) {
             color: hsl(var(--white) / 0.5);
           }
         }
@@ -103,7 +105,8 @@
     .description {
       color: hsl(var(--black) / 0.5);
 
-      @media screen and (prefers-color-scheme="dark") {
+      @media screen and (prefers-color-scheme: dark),
+        screen and (-webkit-prefers-color-scheme: dark) {
         color: hsl(var(--white) / 0.5);
       }
     }

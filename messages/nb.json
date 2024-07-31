@@ -140,7 +140,8 @@
     "In Progress": "Under arbeid",
     "Done": "Ferdig",
     "Settings": "Innstillinger",
-    "Logout": "Logg ut"
+    "Logout": "Logg ut",
+    "Tags": "Tagger"
   },
 
   "Categorized Todos": {
@@ -234,6 +235,22 @@
         "userNotFound": "Brukeren ble ikke funnet",
         "savingChanges": "Lagrer.."
       }
+    },
+
+    "preferences": {
+      "title": "Preferanser",
+      "language": "Språk",
+      "savePreferences": "Lagre",
+      "savingPreferences": "Lagrer..",
+      "preferencesSaved": "Preferanser lagret"
+    }
+  },
+
+  "TagsPage": {
+    "h1": "Finn oppgaver etter tagger",
+    "search": {
+      "label": "Søk",
+      "placeholder": "Søk etter tagger"
     }
   },
 

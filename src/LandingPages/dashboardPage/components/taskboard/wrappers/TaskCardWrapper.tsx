@@ -57,7 +57,7 @@ export const TaskCardWrapper = ({
   draggableColumnEditActive: boolean;
 }) => {
   // States
-  const { isMobile } = useBrowserInfo();
+  const { isMobile, isMobileSize } = useBrowserInfo();
   const [isDragging, setIsDragging] = useState(false);
   const [showHiddenTasks, setShowHiddenTasks] = useState(false);
   const text = useTranslations("Taskboard.taskCard");
@@ -85,6 +85,8 @@ export const TaskCardWrapper = ({
       !isColumnLayout && sortManual
         ? ".reveal-card-sort-manual-row-layout-handle"
         : isMobile && sortManual
+        ? ".reveal-card-sort-manual-row-layout-handle"
+        : isMobileSize && sortManual
         ? ".reveal-card-sort-manual-row-layout-handle"
         : undefined,
 

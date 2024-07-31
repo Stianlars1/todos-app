@@ -138,7 +138,8 @@
     "In Progress": "In Progress",
     "Done": "Done",
     "Settings": "Settings",
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "Tags": "Tags"
   },
 
   "Categorized Todos": {
@@ -229,6 +230,22 @@
         "userNotFound": "User not found",
         "incorrectPassword": "Current password is incorrect"
       }
+    },
+
+    "preferences": {
+      "title": "Preferences",
+      "language": "Language",
+      "savePreferences": "Save",
+      "savingPreferences": "Saving..",
+      "preferencesSaved": "Preferences saved successfully"
+    }
+  },
+
+  "TagsPage": {
+    "h1": "Find tasks by tags",
+    "search": {
+      "label": "Search",
+      "placeholder": "Search by tags"
     }
   },
 

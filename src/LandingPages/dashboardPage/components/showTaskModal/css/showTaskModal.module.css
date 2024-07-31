@@ -1,0 +1,34 @@
+.fetchingTaskDiv {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: var(--sidebar-width);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fetchingTaskDiv .loader {
+  background-color: transparent !important;
+}
+.fetchingTaskDiv .loader > div {
+  background-color: transparent !important;
+}
+.fetchingTaskDiv svg {
+  fill: hsl(var(--foreground));
+  z-index: 100000;
+  animation: spinner 1s linear infinite;
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=showTaskModal.module.css.map */

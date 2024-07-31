@@ -1,8 +1,18 @@
 import "./css/suspenseFallback.css";
-export const SuspenseFallback = ({ fixed = false }: { fixed: boolean }) => {
+export const SuspenseFallback = ({
+  fixed = false,
+  classname = "",
+}: {
+  fixed: boolean;
+  classname?: string;
+}) => {
   return (
     <div
-      className={` ${fixed ? "suspense-fallback-fixed" : "suspense-fallback"}`}
+      className={` ${
+        fixed
+          ? `suspense-fallback-fixed ${classname}`
+          : `suspense-fallback ${classname}`
+      }`}
     >
       <div
         className={` ${

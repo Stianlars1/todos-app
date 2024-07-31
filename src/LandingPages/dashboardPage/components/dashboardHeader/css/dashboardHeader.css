@@ -2,20 +2,22 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  margin-bottom: 2rem;
-}
-.dashboard-header > * {
-  transition: all 0.3s ease;
+  margin: 0 0 2rem 0;
 }
 .dashboard-header__title {
   padding: 0;
   line-height: 1;
   color: hsl(var(--muted-foreground));
   font-size: 1rem;
+  transition: all 0.3s ease;
+  margin: 0;
 }
 .dashboard-header__title:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+.dashboard-header .noSafariTitle {
+  transition: none !important;
 }
 .dashboard-header__slash {
   font-size: 2rem;

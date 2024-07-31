@@ -37,7 +37,7 @@ export const DraggableCard = ({
   deleteTaskFromTasklist,
   resetTaskList,
 }: DraggableCardProps) => {
-  const { isMobile } = useBrowserInfo();
+  const { isMobile, isMobileSize } = useBrowserInfo();
   const [isPerformingOperation, setIsPerformingOperation] = useState(false);
   const { todoId, title, description, priority, tags, content } = task;
   const sortManual = !!userSettings?.sortManual;
@@ -46,9 +46,11 @@ export const DraggableCard = ({
 
   const router = useRouter();
   const openTask = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target instanceof HTMLElement && event.target.nodeName === "H3") {
+    const shouldItReturn = shouldReturn(event);
+    if (shouldItReturn) {
       return;
     }
+
     event.preventDefault();
     router.push(`/?selectedTask=${todoId}`, undefined);
   };
@@ -108,7 +110,9 @@ export const DraggableCard = ({
       suppressHydrationWarning={true}
       aria-disabled={isPerformingOperation}
       className={`reveal-card  ${className} ${
-        sortManual ? "reveal-card-sortable" : "reveal-card-not-sortable"
+        sortManual && isColumnLayout
+          ? "reveal-card-sortable"
+          : "reveal-card-not-sortable"
       } ${
         sortManual && !isColumnLayout
           ? "reveal-card-sortable-and-is-row-layout"
@@ -116,6 +120,8 @@ export const DraggableCard = ({
           ? "reveal-card-sortable-and-is-row-layout"
           : " "
       }
+
+      ${isMobile || isMobileSize ? "reveal-card-mobile" : "reveal-card-desktop"}
       
       ${isPerformingOperation ? "reveal-card-permanently-deleting" : " "}`}
       data-group={TASKCARD_GROUP}
@@ -148,7 +154,7 @@ export const DraggableCard = ({
         )}
       </div>
 
-      {(!isColumnLayout || isMobile) && sortManual && (
+      {(!isColumnLayout || isMobile || isMobileSize) && sortManual && (
         <ArrowUpDownIcon
           id={DRAGGABLE_CARD_ID}
           data-label="REVEAL_CARD_DRAG_HANDLE"
@@ -156,6 +162,32 @@ export const DraggableCard = ({
           pathStyle={{ pointerEvents: "none" }}
         />
       )}
+
+      {/* <DragDropIcon
+        id={DRAGGABLE_CARD_ID}
+        data-label="REVEAL_CARD_DRAG_HANDLE"
+        className="reveal-card-sort-manual-row-layout-handle"
+      /> */}
     </div>
   );
+};
+
+export const shouldReturn = (event: React.MouseEvent<HTMLDivElement>) => {
+  if (
+    event.target instanceof HTMLElement &&
+    event.target.className.includes("tagBadge")
+  ) {
+    return true;
+  }
+
+  if (event.target instanceof HTMLElement) {
+    switch (event.target.nodeName) {
+      case "H3":
+        return true;
+      case "P":
+        return true;
+    }
+  }
+
+  return false;
 };

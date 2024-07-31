@@ -14,6 +14,7 @@ export const RevealCard = ({
   url,
   style,
   cardClickEnabled = false,
+  onClick,
 }: RevealCardProps) => {
   const expanded = false;
   const [isExpanded, setIsExpanded] = useState(expanded);
@@ -28,6 +29,8 @@ export const RevealCard = ({
   const handleCardClick = () => {
     if (cardClickEnabled) {
       openTask();
+    } else if (onClick) {
+      onClick();
     }
   };
 

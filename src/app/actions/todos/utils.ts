@@ -12,7 +12,9 @@ export const getCreateTodoFormData = (formData: FormData): CreateTodoDTO => {
     priority: formData.get("priority")
       ? (formData.get("priority") as Priority)
       : undefined,
-    dueDate: new Date(formData.get("dueDate") as string) ?? undefined,
+    dueDate: (formData.get("dueDate") as string)
+      ? new Date(formData.get("dueDate") as string)
+      : undefined,
     content: formData.get("content") as string,
     tags: formData.get("tags")
       ? (formData.get("tags") as string).split(",")

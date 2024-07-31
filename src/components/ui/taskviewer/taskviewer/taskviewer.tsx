@@ -48,9 +48,13 @@ const initialUseState: UpdatedTodoDTO = {
 export const TaskViewer = ({
   taskId,
   userSettings,
+  redirectUrl = "",
+  onTaskLoaded,
 }: {
   taskId: string | null;
   userSettings: UserSettingsDTO | null;
+  redirectUrl: string;
+  onTaskLoaded?: () => void;
 }) => {
   // Variables
   const { task: taskDTO } = useFetchTask(taskId);
@@ -77,13 +81,18 @@ export const TaskViewer = ({
 
   useEffect(() => {
     if (taskDTO) {
+      console.log("✅ task loaded");
+      onTaskLoaded && onTaskLoaded();
       setState(mapDTOtoUpdatedTodoDTO(taskDTO));
       setContent(taskDTO.content || "");
       const startAnimationTimeout = setTimeout(() => {
         setStartAnimation(true);
       }, 50);
 
-      return () => clearTimeout(startAnimationTimeout);
+      return () => {
+        setStartAnimation(false);
+        clearTimeout(startAnimationTimeout);
+      };
     }
   }, [taskDTO]);
 
@@ -109,7 +118,10 @@ export const TaskViewer = ({
       setEndAnimation(false);
       setStartAnimation(false);
 
-      router.replace(`/${locale}`, undefined);
+      router.replace(
+        `/${locale}${redirectUrl === "" ? "" : `/${redirectUrl}`}`,
+        undefined
+      );
     }, 350);
   };
 
@@ -255,11 +267,6 @@ export const TaskViewer = ({
 
     setHasUnsavedChanges(content !== taskDTO?.content);
   };
-
-  console.log(
-    "formatDate(state.dueDate)",
-    state && state.dueDate && formatDate(state.dueDate, userSettings?.timeZone)
-  );
 
   const handleMoveToTrash = async () => {
     if (!taskId) return;

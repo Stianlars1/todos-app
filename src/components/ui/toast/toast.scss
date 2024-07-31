@@ -69,7 +69,8 @@
   background-color: hsl(var(--card));
   color: hsl(var(--foreground));
 
-  @media screen and (prefers-color-scheme: dark) {
+  @media screen and (prefers-color-scheme: dark),
+    screen and (-webkit-prefers-color-scheme: dark) {
     background-color: hsl(var(--muted));
   }
 }

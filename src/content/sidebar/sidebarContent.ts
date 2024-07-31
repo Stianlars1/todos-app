@@ -4,6 +4,7 @@ import {
   IconDone,
   IconInProgress,
   IconSettings,
+  IconTag,
   IconToday,
   IconTodo,
   LogoutIcon,
@@ -36,6 +37,12 @@ export const sidebarContentList: sidebarContentListType[] = [
     href: "/backlog",
     icon: IconBacklog(),
     render: false,
+  },
+  {
+    title: "Tags",
+    href: "/tags",
+    icon: IconTag(),
+    render: true,
   },
   {
     title: "Todo",

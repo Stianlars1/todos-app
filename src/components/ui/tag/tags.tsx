@@ -9,7 +9,7 @@ export const Tag = (props: TagsProps) => {
     const priorityString = props.priority.toLowerCase();
     return (
       <div className={`tag priority-${priorityString}`}>
-        <span>{props.priority}</span>
+        <span className="tagBadge">{props.priority}</span>
       </div>
     );
   }
@@ -17,7 +17,7 @@ export const Tag = (props: TagsProps) => {
     <>
       {props.tags.map((tag) => (
         <div key={tag} className="tag default">
-          <span>{tag}</span>
+          <span className="tagBadge">{tag}</span>
         </div>
       ))}
     </>

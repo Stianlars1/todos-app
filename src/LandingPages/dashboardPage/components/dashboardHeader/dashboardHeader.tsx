@@ -2,6 +2,7 @@
 import { updateUserSettings } from "@/app/actions/user/api";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
+import { useBrowserInfo } from "@/hooks/useBrowserInfo";
 import { useTranslations } from "next-intl";
 import "./css/dashboardHeader.css";
 interface DashboardHeaderProps {
@@ -16,7 +17,7 @@ export const DashboardHeader = ({
   setActiveTab,
 }: DashboardHeaderProps) => {
   const texts = useTranslations("Dashboard.header.tabs");
-
+  const { isSafari } = useBrowserInfo();
   const handleTabChange = async (index: number) => {
     setActiveTab(index);
     const updateResponse = await updateUserSettings({
@@ -34,7 +35,7 @@ export const DashboardHeader = ({
         onClick={() => handleTabChange(0)}
         className={`dashboard-header__title ${
           activeTab === DASHBOARD_TAB_INDEX ? "dashboard-header__activeTab" : ""
-        }`}
+        } ${isSafari ? "noSafariTitle" : ""}`}
       >
         {texts("dashboard")}
       </h1>
@@ -43,7 +44,7 @@ export const DashboardHeader = ({
         onClick={() => handleTabChange(1)}
         className={`dashboard-header__title ${
           activeTab === OVERVIEW_TAB_INDEX ? "dashboard-header__activeTab" : ""
-        }`}
+        } ${isSafari ? "noSafariTitle" : ""}`}
       >
         {texts("overview")}
       </h1>

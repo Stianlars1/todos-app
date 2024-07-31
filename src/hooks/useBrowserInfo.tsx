@@ -11,7 +11,7 @@ const detectTouchDevice = () =>
 export const useBrowserInfo = () => {
   const [isSafari, setIsSafari] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  const [isMobileSize, setIsMobileSize] = useState(false);
   const updateDeviceInfo = () => {
     if (typeof window !== "undefined") {
       const userAgent = window.navigator.userAgent;
@@ -23,10 +23,18 @@ export const useBrowserInfo = () => {
     }
   };
 
+  const checkMobileSize = () => {
+    if (typeof window !== "undefined") {
+      setIsMobileSize(window.innerWidth < 768);
+    }
+  };
+
   useEffect(() => {
     updateDeviceInfo();
     // No need to listen to resize events anymore since we're not relying on window dimensions
+    checkMobileSize();
+    window.addEventListener("resize", checkMobileSize);
   }, []);
 
-  return { isSafari, isMobile };
+  return { isSafari, isMobile, isMobileSize };
 };

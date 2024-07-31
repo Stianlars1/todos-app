@@ -32,6 +32,10 @@ export const API_TASKS_URL = API_TODOS_URL; // GET
 export const API_TODOS_CATEGORIZED_URL =
   "https://app.taskbuddy.dev/api/todos/categorized"; // GET
 
+// Tags
+export const API_ALL_TAGS = "https://app.taskbuddy.dev/api/todos/all-tags"; // GET
+export const API_TAG_SEARCH = "https://app.taskbuddy.dev/api/todos/by-tag"; // GET with ?tagName=<tagname>
+
 // Drag Drop
 export const API_DRAG_DROP_TODOS_SORT_INDEX =
   "https://app.taskbuddy.dev/api/drag-drop/tasks/update-sort-index"; // post
