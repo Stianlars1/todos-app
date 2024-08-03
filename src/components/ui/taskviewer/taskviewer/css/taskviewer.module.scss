@@ -29,6 +29,7 @@
 
   visibility: none;
   display: none;
+  z-index: 1000;
 
   .topCTAwrapper {
     display: flex;
@@ -54,6 +55,21 @@
       background-color: hsl(var(--destructive));
       text: hsl(var(--destructive-foreground));
     }
+  }
+
+  .customSelect {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    padding: 6px 12px;
+    height: 45px;
+    font-family: inherit;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--input));
+    outline: none;
+    border-radius: calc(var(--radius) - 2px);
+    color: hsl(var(--foreground));
+    margin: 0;
+    transition: border-color 0.15s ease-in-out;
   }
 
   .titleInput {

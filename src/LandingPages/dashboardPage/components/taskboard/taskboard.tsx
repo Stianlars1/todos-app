@@ -7,9 +7,9 @@ import {
   StatusCodes,
 } from "@/types/todo/types";
 import { TaskboardHeader } from "./components/taskboardHeader";
+import styles from "./css/taskboard.module.css";
 import { GetCategorizedTodosTexts, GetTaskboardTexts } from "./utils";
 import { TaskboardWrapper } from "./wrappers/taskboardWrapper";
-import styles from "./css/taskboard.module.css";
 
 export const Taskboard = ({
   userSettings,
@@ -40,7 +40,7 @@ export const Taskboard = ({
   }
 
   return (
-    <div className={styles.taskboard}>
+    <div id="taskboard" className={`${styles.taskboard} taskboard`}>
       <TaskboardHeader
         taskboardHeaderTexts={taskboardTexts.header}
         userSettings={userSettings}

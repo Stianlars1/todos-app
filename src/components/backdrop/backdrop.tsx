@@ -14,9 +14,9 @@ export const Backdrop = () => {
     document.body.setAttribute("data-nav-open", "false");
 
     // close nav on ESC key click
-    document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 

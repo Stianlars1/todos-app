@@ -30,10 +30,11 @@ export const Search = () => {
 
       setTasks(response.data.data);
     }
-    console.log("response", response.data?.data);
   };
 
   const manualSearch = async () => {
+    if (document === undefined) return;
+
     const keyword = document.getElementById("search") as HTMLInputElement;
     if (keyword.value.length < 2) return;
     if (keyword) {
@@ -51,41 +52,43 @@ export const Search = () => {
     }
   };
 
+  const handleEnterKey = (event: KeyboardEvent) => {
+    if (event.key === "Enter") {
+      manualSearch();
+    }
+  };
+
+  const handleShortcut = (event: KeyboardEvent) => {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+      event.preventDefault();
+      searchInputRef.current?.focus();
+    }
+  };
+
+  const handleEscapeKey = (event: KeyboardEvent) => {
+    if (
+      event.key === "Escape" &&
+      searchInputRef.current &&
+      searchInputRef.current === document.activeElement
+    ) {
+      console.log("ESC pressed in Search");
+      searchInputRef.current.value = "";
+      searchInputRef.current.blur();
+      setTasks(undefined);
+      document.body.style.overflow = "auto";
+    }
+  };
   useEffect(() => {
-    const handleEnterKey = (event: KeyboardEvent) => {
-      if (event.key === "Enter") {
-        manualSearch();
-      }
-    };
+    if (window === undefined) return;
 
-    const handleShortcut = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        searchInputRef.current?.focus();
-      }
-    };
-
-    const handleEscapeKey = (event: KeyboardEvent) => {
-      if (
-        event.key === "Escape" &&
-        searchInputRef.current &&
-        searchInputRef.current === document.activeElement
-      ) {
-        searchInputRef.current.value = "";
-        searchInputRef.current.blur();
-        setTasks(undefined);
-        document.body.style.overflow = "auto";
-      }
-    };
-
-    document.addEventListener("keydown", handleEnterKey);
-    document.addEventListener("keydown", handleShortcut);
-    document.addEventListener("keydown", handleEscapeKey);
+    window.addEventListener("keydown", handleEnterKey);
+    window.addEventListener("keydown", handleShortcut);
+    window.addEventListener("keydown", handleEscapeKey);
 
     return () => {
-      document.removeEventListener("keydown", handleEnterKey);
-      document.removeEventListener("keydown", handleShortcut);
-      document.removeEventListener("keydown", handleEscapeKey);
+      window.removeEventListener("keydown", handleEnterKey);
+      window.removeEventListener("keydown", handleShortcut);
+      window.removeEventListener("keydown", handleEscapeKey);
       document.body.style.overflow = "auto";
     };
   }, []);
@@ -106,6 +109,8 @@ export const Search = () => {
     if (searchInputRef.current) {
       searchInputRef.current.value = "";
     }
+
+    window.removeEventListener("keydown", handleEscapeKey);
   };
   return (
     <div className={styles.searchWrapper}>

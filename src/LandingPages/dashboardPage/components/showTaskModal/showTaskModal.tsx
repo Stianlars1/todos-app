@@ -2,8 +2,9 @@
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { TaskViewer } from "@/components/ui/taskviewer/taskviewer/taskviewer";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./css/showTaskModal.module.css";
 export const ShowTaskModalContainer = ({
   userSettings,
@@ -13,8 +14,10 @@ export const ShowTaskModalContainer = ({
   userSettings: UserSettingsDTO | undefined;
 }) => {
   const selectedTaskId = useSelectedTaskId();
+  const pathName = usePathname();
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [fetchingTask, setFetchingTask] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     if (selectedTaskId) {
       console.log("✅ showing modal");
@@ -28,6 +31,11 @@ export const ShowTaskModalContainer = ({
 
     setFetchingTask(false);
   };
+
+  const handleCloseModal = () => {
+    setShowTaskModal(false);
+    router.replace(pathName.split("?")[0], { scroll: false });
+  };
   return (
     <>
       {showTaskModal && selectedTaskId && userSettings && (
@@ -36,18 +44,23 @@ export const ShowTaskModalContainer = ({
             taskId={selectedTaskId}
             onClose={() => setShowTaskModal(false)}
           /> */}
+          {createPortal(
+            <>
+              <TaskViewer
+                redirectUrl={redirectUrl}
+                taskId={selectedTaskId}
+                userSettings={userSettings}
+                onTaskLoaded={handleTaskLoaded}
+                onClose={handleCloseModal}
+              />
 
-          <TaskViewer
-            redirectUrl={redirectUrl}
-            taskId={selectedTaskId}
-            userSettings={userSettings}
-            onTaskLoaded={handleTaskLoaded}
-          />
-
-          {fetchingTask && (
-            <div className={styles.fetchingTaskDiv}>
-              <SuspenseFallback classname={styles.loader} fixed={false} />
-            </div>
+              {fetchingTask && (
+                <div className={styles.fetchingTaskDiv}>
+                  <SuspenseFallback classname={styles.loader} fixed={false} />
+                </div>
+              )}
+            </>,
+            document.getElementById("grid-container") ?? document.body
           )}
         </>
       )}

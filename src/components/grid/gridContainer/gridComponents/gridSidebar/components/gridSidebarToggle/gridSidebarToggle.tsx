@@ -14,7 +14,6 @@ export const GridSidebarToggle = ({
 }) => {
   const userSettings = Boolean(userDetails?.settings?.sidebarOpen);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(userSettings);
-
   // Effect to synchronize sidebarOpen state with userDetails.settings.sidebarOpen
   useEffect(() => {
     if (

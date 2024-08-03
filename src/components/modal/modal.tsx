@@ -47,6 +47,7 @@ export const Modal = ({
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {
     if (event.key === "Escape") {
+      console.log("ESC pressed in Modal");
       event.preventDefault();
       event.stopPropagation();
       handleCloseModal();

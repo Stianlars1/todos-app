@@ -20,10 +20,10 @@ import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallb
 import { Tag } from "@/components/ui/tag/tags";
 import { toast } from "@/components/ui/toast/toast";
 import { TodoDTO } from "@/types/types";
-import { arraysEqual, normalizeDate } from "@/utils/utils";
+import { arraysEqual, formatDate, normalizeDate } from "@/utils/utils";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { UpdateTaskButton } from "./components/updateTaskButton";
@@ -50,15 +50,17 @@ export const TaskViewer = ({
   userSettings,
   redirectUrl = "",
   onTaskLoaded,
+  onClose,
 }: {
   taskId: string | null;
   userSettings: UserSettingsDTO | null;
   redirectUrl: string;
   onTaskLoaded?: () => void;
+  onClose?: () => void;
 }) => {
   // Variables
   const { task: taskDTO } = useFetchTask(taskId);
-
+  const pathName = usePathname();
   // STATES
   const [formState, dispatch] = useFormState(updateTodoForm, undefined);
   const [state, setState] = useState<UpdatedTodoDTO>(initialUseState);
@@ -80,16 +82,24 @@ export const TaskViewer = ({
   const text = useTranslations("TodayPage.taskViewer");
   const textGeneral = useTranslations("general");
 
+  const closeModalOnESC = (event: any) => {
+    if (event.key === "Escape") {
+      console.log("ESC pressed in TaskViewer");
+
+      handleClose();
+      setTimeout(() => {
+        document.body.setAttribute("taskviewer-modal-open", false.toString());
+      }, 1000);
+    }
+  };
   useEffect(() => {
+    if (document === undefined) return;
     // close modal on ESC key
-    const closeModalOnESC = (event: any) => {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    };
-    document.addEventListener("keydown", closeModalOnESC);
+    window.addEventListener("keydown", closeModalOnESC);
     if (taskDTO) {
       document.body.style.overflow = "hidden";
+
+      document.body.setAttribute("taskviewer-modal-open", true.toString());
 
       console.log("✅ task loaded");
       onTaskLoaded && onTaskLoaded();
@@ -112,7 +122,7 @@ export const TaskViewer = ({
 
     return () => {
       document.body.style.overflow = "auto"; // Reset when component unmounts
-      document.removeEventListener("keydown", closeModalOnESC);
+      window.removeEventListener("keydown", closeModalOnESC);
     };
   }, [taskDTO]);
 
@@ -136,15 +146,15 @@ export const TaskViewer = ({
 
   const handleClose = () => {
     setEndAnimation(true);
-
     setTimeout(() => {
       setEndAnimation(false);
       setStartAnimation(false);
-
-      router.replace(
-        `/${locale}${redirectUrl === "" ? "" : `/${redirectUrl}`}`,
-        undefined
-      );
+      window.removeEventListener("keydown", closeModalOnESC);
+      if (onClose) {
+        onClose();
+      } else {
+        router.replace(`/${locale}${`/${pathName}`}`, undefined);
+      }
     }, 350);
 
     document.body.style.overflow = "auto"; // Reset when component unmounts
@@ -198,7 +208,6 @@ export const TaskViewer = ({
 
       setState(newState);
       setRawTagsInput(e.target.value);
-
       const titleChanged = newState.title !== taskDTO?.title;
       const descriptionChanged = newState.description !== taskDTO?.description;
       const statusChanged =
@@ -230,7 +239,14 @@ export const TaskViewer = ({
     } else {
       const isDueDate = e.target.name === "dueDate";
 
-      const valueDate = normalizeDate(new Date(e.target.value));
+      const dueDateInput = document.getElementById(
+        "dueDate"
+      ) as HTMLInputElement;
+      const valueDate = normalizeDate(new Date(dueDateInput.value || ""));
+      const taskDueDate = taskDTO?.dueDate
+        ? normalizeDate(new Date(taskDTO?.dueDate))
+        : undefined;
+
       const newState = {
         ...state,
         [e.target.name]: isDueDate ? valueDate : e.target.value,
@@ -245,15 +261,12 @@ export const TaskViewer = ({
       const priorityChanged =
         newState.priority?.toString().toLocaleUpperCase() !==
         taskDTO?.priority?.toString().toLocaleUpperCase();
-      const dueDateChanged =
-        valueDate !==
-        (taskDTO?.dueDate
-          ? normalizeDate(new Date(taskDTO?.dueDate))
-          : undefined);
+      const dueDateChanged = valueDate !== taskDueDate;
       const tagsChanged = !arraysEqual(
         newState.tags as any[],
         taskDTO?.tags as any[]
       );
+
       // console.log("titleChanged:", titleChanged);
       // console.log("descriptionChanged:", descriptionChanged);
       // console.log("statusChanged:", statusChanged);
@@ -291,6 +304,7 @@ export const TaskViewer = ({
           name="statusId"
           value={state.statusId || ""} // Fallback to the empty string if statusId is undefined
           onChange={handleOnChangeStatus}
+          className={styles.customSelect}
         >
           <option defaultValue={state.statusId} disabled>
             Select status
@@ -336,6 +350,7 @@ export const TaskViewer = ({
         <select
           id="priority"
           name="priority"
+          className={styles.customSelect}
           value={state.priority?.toLocaleUpperCase() || ""}
           onChange={handleOnChangePriority}
         >
@@ -475,11 +490,7 @@ export const TaskViewer = ({
                 </CustomInputLabel>
 
                 <CustomInput
-                  value={
-                    state?.dueDate
-                      ? new Date(state.dueDate).toISOString().split("T")[0]
-                      : undefined
-                  }
+                  value={state?.dueDate ? formatDate(state.dueDate) : undefined}
                   onChange={handleOnChange}
                   name="dueDate"
                   id="dueDate"

@@ -485,16 +485,13 @@ const mapDTOtoUpdatedTodoDTO = (taskDTO: TodoDTO) => {
 };
 
 const formatDate = (date: Date | string, timezone: string = "UTC"): string => {
-  console.log("format date: ", date);
   const d = moment.tz(date, timezone);
-  console.log("d: ", d.format());
 
   const month = d.format("MM");
   const day = d.format("DD");
   const year = d.format("YYYY");
 
   const result = `${year}-${month}-${day}`;
-  console.log("result: ", result);
   return result;
 };
 
