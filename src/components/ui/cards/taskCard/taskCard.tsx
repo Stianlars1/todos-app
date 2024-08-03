@@ -1,53 +1,61 @@
 "use client";
 import { Priority } from "@/app/actions/todos/types";
-import { TagsType, TodoPriority } from "@/types/types";
+import { TodoDTO } from "@/types/types";
+import { useTranslations } from "next-intl";
 import { CSSProperties } from "react";
 import { ClickIcon } from "../../icons/icons";
 import { Tag } from "../../tag/tags";
 import "./css/taskCard.css";
 
 export const TaskCard = ({
-  title,
-  description,
-  tags,
-  priority,
+  task,
   style = undefined,
   index,
   onClick,
   className = "",
+  options = { showPriority: true, showTags: true, showDate: false },
 }: {
-  title: string;
-  description: string;
-  tags: TagsType;
-  priority: TodoPriority | undefined;
+  task: TodoDTO;
   style?: CSSProperties;
   index: number;
   className?: string;
+  options?: {
+    showPriority?: boolean;
+    showTags?: boolean;
+    showDate?: boolean;
+  };
   onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
 }) => {
+  const text = useTranslations("taskCard");
   return (
     <li
       suppressHydrationWarning={true}
-      className={`reveal-card ${className}`}
+      className={`reveal-card ${className} ${onClick ? "clickable" : ""}`}
       style={style}
       id={index === 0 ? "one" : index === 1 ? "two" : "three"}
       onClick={onClick}
     >
-      <div className="reveal-card__wrapper">
+      <div className={`reveal-card__wrapper ${className}__wrapper`}>
         <div
           className={`reveal-card__wrapper__header ${
             onClick ? "clickPadding" : ""
           }`}
         >
-          <h3>{title}</h3>
-          <p>{description}</p>
+          <h3>{task.title}</h3>
+          <p>{task.description}</p>
         </div>
-        <div className="reveal-card__wrapper__badges">
-          {priority && (
-            <Tag variant="priority" priority={priority as Priority} />
+        <div
+          className={`reveal-card__wrapper__badges ${className}__wrapper__badges`}
+        >
+          {options.showPriority && task.priority && (
+            <Tag variant="priority" priority={task.priority as Priority} />
           )}
-          {tags && tags.length > 0 && (
-            <Tag key={JSON.stringify(tags)} variant="tag" tags={tags} />
+          {options.showTags && task.tags && task.tags.length > 0 && (
+            <Tag
+              key={JSON.stringify(task.tags)}
+              variant="tag"
+              tags={task.tags}
+            />
           )}
         </div>
       </div>
@@ -55,6 +63,16 @@ export const TaskCard = ({
       {onClick && (
         <>
           <ClickIcon className="click-icon" />
+        </>
+      )}
+      {options.showDate && (
+        <>
+          <span className="reveal-card__date">
+            {task.dueDate ? text("due") : text("updated")}{" "}
+            <i>
+              {new Date(task.dueDate ?? task.updatedAt).toLocaleDateString()}
+            </i>
+          </span>
         </>
       )}
     </li>

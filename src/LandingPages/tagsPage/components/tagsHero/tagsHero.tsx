@@ -1,25 +1,26 @@
 "use client";
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { TasksAndTagsGroupedType } from "@/app/actions/tags/types";
 import { TodoDTO } from "@/types/types";
 import { useState } from "react";
-import { TagsInputSearch } from "../tagsInputSearch/tagsInputSearch";
 import { TagsPreview } from "../tagsPreview/tagsPreview";
-import { TasksResults } from "../tasksResults/taskResults";
+import { TaskPreview } from "../taskPreview/taskPreview";
 
 export const TagsHero = ({
-  tags,
-  userSettings,
+  tasksAndTags,
 }: {
-  tags: string[] | null;
-  userSettings: UserSettingsDTO | undefined;
+  tasksAndTags: TasksAndTagsGroupedType;
 }) => {
   const [tasks, setTasks] = useState<TodoDTO[] | null>(null);
+  const [activeTag, setActiveTag] = useState<string | null>(null);
   return (
     <>
-      <TagsInputSearch userSettings={userSettings} setTasks={setTasks} />
-      {/* <TagsContainer userSettings={userSettings ?? undefined} tags={tags} /> */}
-      <TasksResults userSettings={userSettings ?? undefined} tasks={tasks} />
-      <TagsPreview tags={tags} />
+      <TagsPreview
+        activeTag={activeTag}
+        setActiveTag={setActiveTag}
+        setTasks={setTasks}
+        tasksAndTags={tasksAndTags}
+      />
+      <TaskPreview tasks={tasks} />
     </>
   );
 };

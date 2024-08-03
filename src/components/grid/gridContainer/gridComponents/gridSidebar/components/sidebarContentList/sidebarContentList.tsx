@@ -1,4 +1,5 @@
 import { getTodosDueTodayCount } from "@/app/actions/todos/fetch";
+import { LocaleSwitcher } from "@/components/languageSwitcher/localeSwitcher";
 import {
   sidebarContentList,
   sidebarContentListType,
@@ -37,6 +38,8 @@ export const SidebarContentList = async () => {
             />
           );
         })}
+
+      <LocaleSwitcher className={"sidebar__content__localeSwitcher"} />
     </ul>
   );
 };

@@ -9,6 +9,10 @@
   height: var(--nav-height);
   background-color: hsl(var(--background));
   z-index: 1000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 
   &__logo {
     display: flex;
@@ -28,7 +32,7 @@
       cursor: inherit;
     }
     &__logo-text {
-      font-size: 22px;
+      font-size: 1rem;
       line-height: 22px;
       font-weight: 400;
       color: inherit;
@@ -43,6 +47,8 @@
     gap: 1rem;
 
     &__logout-button {
+      font-size: 0.775rem !important;
+      padding: 0 !important;
     }
   }
 }
@@ -77,6 +83,16 @@
 
       &__hamburger-menu {
         display: flex;
+      }
+
+      .locale-switcher {
+        display: none;
+      }
+    }
+
+    &__logo {
+      &__logo-text {
+        display: none;
       }
     }
   }

@@ -33,7 +33,7 @@ export const LogoutButton = ({
       loadingText={buttonLoadingTitle}
       className={`logout-button ${className}`}
       onClick={handleLogout}
-      variant="secondary"
+      variant="link"
     >
       {buttonTitle}
     </Button>

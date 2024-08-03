@@ -1,0 +1,8 @@
+.taskPreview .tasksList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.875rem;
+}
+.taskPreview .tasksList .card {
+  padding: 0;
+}/*# sourceMappingURL=taskPreview.module.css.map */

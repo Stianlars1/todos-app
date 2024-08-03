@@ -31,12 +31,15 @@
   }
   &__wrapper {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
     &__header {
       overflow: hidden;
       h3 {
-        font-weight: 500;
-        font-size: 1rem;
-        line-height: 1.5rem;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 1rem;
         hyphens: auto;
         text-wrap: balance;
         min-width: 0;

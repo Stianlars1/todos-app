@@ -17,6 +17,7 @@ export const API_USER_UPDATE_PASSWORD_URL =
 
 // Todos
 export const API_TODOS_URL = "https://app.taskbuddy.dev/api/todos"; // GET
+export const API_TASKS_SEARCH = "https://app.taskbuddy.dev/api/todos/search"; // GET
 export const API_TODOS_UPCOMING_DEADLINES_URL =
   "https://app.taskbuddy.dev/api/todos/upcoming-deadlines"; // GET
 export const API_TODOS_OVERDUE_URL =
@@ -34,6 +35,8 @@ export const API_TODOS_CATEGORIZED_URL =
 
 // Tags
 export const API_ALL_TAGS = "https://app.taskbuddy.dev/api/todos/all-tags"; // GET
+export const API_TASKS_AND_TAGS_GROUPED =
+  "https://app.taskbuddy.dev/api/todos/tags-and-tasks"; // GET
 export const API_TAG_SEARCH = "https://app.taskbuddy.dev/api/todos/by-tag"; // GET with ?tagName=<tagname>
 
 // Drag Drop

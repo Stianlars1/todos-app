@@ -16,6 +16,8 @@ export const TodayPage = async () => {
     isLoading,
     error,
   } = await getTodosDueToday<ApiResponse<TodoDTO[]>>();
+
+  console.log("tasksDueToday: ", tasksDueToday);
   const { data: userSettings } = await getUserSettings();
   const text = await getTranslations("TodayPage");
   const tasksForProps = (tasksDueToday?.data as TodoDTO[]) || null;

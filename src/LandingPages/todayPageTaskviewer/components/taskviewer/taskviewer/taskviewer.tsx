@@ -99,6 +99,9 @@ export const TodayPageTaskviewer = ({
       cacheInvalidate({ cacheKey: CacheKeys.TODOS_TODAY });
       cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
       cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+      cacheInvalidate({ cacheKey: CacheKeys.ALL_TAGS });
+      cacheInvalidate({ cacheKey: CacheKeys.TODOS_BY_TAGNAME });
+      cacheInvalidate({ cacheKey: CacheKeys.ALL_TASKS_AND_TAGS_GROUPED });
 
       toast.success(text("taskUpdated"), "bottomRight");
     }

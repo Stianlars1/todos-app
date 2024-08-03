@@ -13,7 +13,7 @@
 }
 .filterTaskColumn ul li {
   list-style-type: none;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,6 +29,10 @@
   outline-color: transparent;
   color: hsl(var(--white));
   background-color: hsl(var(--primary));
+}
+.filterTaskColumn button svg {
+  width: 0.875rem;
+  height: 0.875rem;
 }
 .filterTaskColumn button:hover {
   background-color: hsl(var(--primary)/0.75);

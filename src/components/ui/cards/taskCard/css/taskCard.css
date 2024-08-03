@@ -35,7 +35,7 @@
           user-select: text;
 }
 .reveal-card__wrapper__header p {
-  font-size: 13px;
+  font-size: 0.875rem;
   line-height: 1.25rem;
   color: hsl(var(--muted-foreground));
   line-height: 0.875;
@@ -55,6 +55,13 @@
   right: 1.5rem;
   transform: translateY(-50%);
 }
+.reveal-card__date {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 12px;
+  color: hsl(var(--muted-foreground));
+}
 
 @media screen and (max-width: 768px) {
   .reveal-card__wrapper__header h3 {
@@ -70,4 +77,7 @@
     font-weight: 600;
     font-size: 10px;
   }
+}
+.clickable {
+  cursor: pointer !important;
 }/*# sourceMappingURL=taskCard.css.map */

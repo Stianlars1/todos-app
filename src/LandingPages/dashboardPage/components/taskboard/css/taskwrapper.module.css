@@ -10,6 +10,15 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  height: calc(100dvh - 75px - var(--nav-height) - 15rem);
+  overflow: scroll;
+}
+
+@media screen and (max-width: 768px) {
+  .taskContainer {
+    height: 100%;
+    overflow: auto;
+  }
 }
 
 .showMoreOrLessButton {

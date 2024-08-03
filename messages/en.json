@@ -175,8 +175,26 @@
       "edit": "Edit",
       "taskUpdated": "Task updated successfully",
       "markedAsCompleted": "Task marked as completed",
-      "movedToTrash": "Tasks status updated to deleted"
+      "movedToTrash": "Tasks status updated to deleted",
+      "tagsLabel": "Tags (separate tags with comma)",
+      "tagsPlaceholder": "Tags",
+      "tagsDescription": "Comma separated tags"
     }
+  },
+
+  "taskCard": {
+    "due": "Due",
+    "updated": "Updated"
+  },
+
+  "Search": {
+    "placeholder": "Search tasks",
+    "close": "Close",
+    "results": "Results",
+    "filterBy": "Filter by",
+    "filterTitle": "Title",
+    "filterDescription": "Description",
+    "filterTags": "Tags"
   },
 
   "SettingsPage": {
@@ -242,7 +260,10 @@
   },
 
   "TagsPage": {
-    "h1": "Find tasks by tags",
+    "header": { "title": "Find tasks by tags" },
+    "tags": {
+      "title": "Your tags"
+    },
     "search": {
       "label": "Search",
       "placeholder": "Search by tags"

@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { TaskBuddyLogo } from "./assets/taskBuddyLogoSvg";
 import "./css/gridNavbar.css";
+import { Search } from "./Search/Search";
 export const GridNavbar = async () => {
   const text = await getTranslations("Buttons.logout");
 
@@ -15,6 +16,8 @@ export const GridNavbar = async () => {
         <TaskBuddyLogo />
         <span className="grid-navbar__logo__logo-text">{DOMAIN_NAME}</span>
       </Link>
+
+      <Search />
 
       <div className="grid-navbar__right-side-wrapper">
         <LocaleSwitcher />

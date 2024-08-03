@@ -1,0 +1,15 @@
+.reveal-card {
+  &__wrapper {
+    &__badges {
+      .default {
+        color: rgb(27, 71, 153) !important;
+        background-color: rgb(226, 232, 254) !important;
+
+        @media screen and (prefers-color-scheme: dark) {
+          color: rgb(199, 210, 254) !important;
+          background-color: rgb(17, 24, 39) !important;
+        }
+      }
+    }
+  }
+}

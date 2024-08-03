@@ -7,7 +7,10 @@ html:root {
   --testMainMutedLightMode: 222 56% 88%;
   /* == layout sizes == */
   /* --nav-height: 65px; */
-  --nav-height: 56px;
+
+  /* --nav-height: 36px; */
+  --nav-height: 50px;
+  /* --nav-height: 56px; */
   --sidebar-width: 15rem;
   /* --sidebar-width: calc(24px + 3.5rem); */
 
@@ -159,14 +162,14 @@ html {
   }
 
   [data-nav-open="true"] {
-    --sidebar-width: 15rem !important;
+    --sidebar-width: 20rem !important;
   }
 }
 @media screen and (min-width: 769px) {
   [data-sidebar-open="true"] {
-    --sidebar-width: 15rem;
+    --sidebar-width: 11rem;
   }
   [data-sidebar-open="false"] {
-    --sidebar-width: calc(24px + 3.5rem);
+    --sidebar-width: calc(1.2rem + 3.5rem);
   }
 }

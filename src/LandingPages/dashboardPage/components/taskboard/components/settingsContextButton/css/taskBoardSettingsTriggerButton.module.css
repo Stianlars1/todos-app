@@ -2,6 +2,11 @@
   padding: calc(0.65rem - 1px);
 }
 
+.triggerButton svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
 @media screen and (max-width: 768px) {
   .triggerButton svg {
     width: 15px;

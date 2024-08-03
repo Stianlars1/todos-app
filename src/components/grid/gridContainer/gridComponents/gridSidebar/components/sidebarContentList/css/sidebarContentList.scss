@@ -27,15 +27,15 @@
       // styles
       font-weight: 500;
       font-size: 0.875rem;
-      line-height: 1.25rem;
+      line-height: 0.875rem;
 
       position: relative;
 
       svg {
-        flex: 0 0 24px;
-        background-color: hsl(
-          var(--background)
-        ); // Set a default that can be overridden
+        flex: 0 0 1.2rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        background-color: hsl(var(--background));
       }
 
       &:hover {
@@ -72,6 +72,8 @@
       }
     }
   }
+  &__localeSwitcher {
+  }
 
   &__item-mobile-only {
     display: none;
@@ -84,6 +86,10 @@
   [data-sidebar-open="false"] {
     .sidebar__content {
       width: fit-content;
+
+      &__localeSwitcher {
+        display: none;
+      }
 
       // ul
       &__item {
@@ -109,6 +115,9 @@
 
 [data-sidebar-open="true"] {
   .sidebar__content {
+    &__localeSwitcher {
+      display: none;
+    }
     width: 100%;
     // ul
     &__item {
@@ -147,6 +156,10 @@
           border: none;
           font-family: inherit;
         }
+      }
+
+      &__localeSwitcher {
+        display: flex;
       }
     }
   }

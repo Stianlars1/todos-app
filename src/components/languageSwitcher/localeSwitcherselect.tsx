@@ -7,12 +7,14 @@ import { ChangeEvent, ReactNode, useState } from "react";
 import "./css/localeSwitcher.css";
 type Props = {
   children: ReactNode;
+  className?: string;
   defaultValue: string;
 };
 
 export default function LocaleSwitcherSelect({
   children,
   defaultValue,
+  className = "",
 }: Props) {
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
@@ -39,7 +41,11 @@ export default function LocaleSwitcherSelect({
   return (
     <label
       aria-disabled={isPending}
-      className={isPending ? "locale-switcher is-pending" : "locale-switcher "}
+      className={
+        isPending
+          ? `locale-switcher is-pending ${className}`
+          : `locale-switcher ${className} `
+      }
     >
       <select
         className="inline-flex appearance-none bg-transparent py-3 pl-2 pr-6 locale-switcher__select-wrapper"

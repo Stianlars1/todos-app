@@ -1,10 +1,12 @@
 "use server";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
+import { ApiResponse } from "@/types/fetch";
 import { TodoDTO } from "@/types/types";
 import { customFetch } from "@/utils/fetch/customFetch";
 import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import {
+  API_TASKS_SEARCH,
   API_TODOS_CATEGORIZED_URL,
   API_TODOS_CREATE_URL,
   API_TODOS_DUE_TODAY_COUNT_URL,
@@ -14,8 +16,7 @@ import {
   API_TODOS_UPDATE_URL,
   API_TODOS_URL,
 } from "@/utils/urls";
-import { getTranslations } from "next-intl/server";
-import { UpdateTodoResponse, UpdatedTodoDTO } from "./types";
+import { UpdatedTodoDTO, UpdateTodoResponse } from "./types";
 import { getCreateTodoFormData } from "./utils";
 
 export const getTodoById = async (todoId: string) => {
@@ -68,6 +69,17 @@ export const getTodosDueToday = async <T>() => {
     cacheKey: CacheKeys.TODOS_TODAY,
   });
 };
+export const searchTodos = async <T>(keyword: string) => {
+  const url = `${API_TASKS_SEARCH}?keyword=${keyword}`;
+  return await customFetch<ApiResponse<TodoDTO[]>>({
+    url: url,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+
+    cacheKey: CacheKeys.TODOS_SEARCH,
+  });
+};
 export const getTodosDueTodayCount = async <T>() => {
   return await customFetch<T>({
     url: API_TODOS_DUE_TODAY_COUNT_URL,
@@ -103,7 +115,7 @@ export const updateTodo = async (
   const UPDATE_URL = `${API_TODOS_UPDATE_URL}/${todoId}`;
   const formData = new FormData();
   formData.append("todo", JSON.stringify(updatedTodo));
-
+  console.log("👀 updatedTodo", updatedTodo);
   return await customFetch<UpdateTodoResponse>({
     url: UPDATE_URL,
     options: {
@@ -114,7 +126,12 @@ export const updateTodo = async (
 };
 export const updateTodoForm = async (_state: unknown, formData: FormData) => {
   const todoId = formData.get("todoId") as string;
-
+  const newTags = formData.get("tags")
+    ? (formData.get("tags") as string)
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag !== "")
+    : undefined;
   const UPDATE_URL = `${API_TODOS_UPDATE_URL}/${todoId}`;
   const updatedTodo = {
     title: formData.get("title") as string,
@@ -123,9 +140,11 @@ export const updateTodoForm = async (_state: unknown, formData: FormData) => {
     dueDate: new Date(formData.get("dueDate") as string) ?? undefined,
     priority: formData.get("priority") as string,
     content: formData.get("content") as string,
+    tags: newTags,
     // tags: JSON.parse(formData.get("tags") as string),
   };
 
+  console.log("👀👀👀 updatedTodo", updatedTodo);
   formData.append("todo", JSON.stringify(updatedTodo));
 
   return await customFetch<UpdateTodoResponse>({
@@ -145,9 +164,6 @@ export const createTodo = async (
   const updatedTodo = getCreateTodoFormData(formData);
   const formDataDTO = new FormData();
   formDataDTO.append("todo", JSON.stringify(updatedTodo));
-  const text = await getTranslations("Toasts");
-
-  console.log("\n 🟢updatedTodo", updatedTodo);
 
   const uploadResponse = await customFetch<TodoDTO>({
     url: API_TODOS_CREATE_URL,

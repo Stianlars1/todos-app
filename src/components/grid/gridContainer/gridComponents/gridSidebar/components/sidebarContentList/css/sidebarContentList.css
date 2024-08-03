@@ -21,11 +21,13 @@
   background-color: transparent;
   font-weight: 500;
   font-size: 0.875rem;
-  line-height: 1.25rem;
+  line-height: 0.875rem;
   position: relative;
 }
 .sidebar__content__item__link svg {
-  flex: 0 0 24px;
+  flex: 0 0 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
   background-color: hsl(var(--background));
 }
 .sidebar__content__item__link:hover {
@@ -71,6 +73,9 @@
     width: -moz-fit-content;
     width: fit-content;
   }
+  [data-sidebar-open=false] .sidebar__content__localeSwitcher {
+    display: none;
+  }
   [data-sidebar-open=false] .sidebar__content__item {
     width: -moz-fit-content;
     width: fit-content;
@@ -90,6 +95,9 @@
 }
 [data-sidebar-open=true] .sidebar__content {
   width: 100%;
+}
+[data-sidebar-open=true] .sidebar__content__localeSwitcher {
+  display: none;
 }
 [data-sidebar-open=true] .sidebar__content__item {
   width: 100%;
@@ -121,5 +129,8 @@
   [data-nav-open=true] .sidebar__content__item-mobile-only button {
     border: none;
     font-family: inherit;
+  }
+  [data-nav-open=true] .sidebar__content__localeSwitcher {
+    display: flex;
   }
 }/*# sourceMappingURL=sidebarContentList.css.map */

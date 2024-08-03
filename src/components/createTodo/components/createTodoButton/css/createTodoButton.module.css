@@ -1,5 +1,5 @@
 .createTodoButton {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   background: hsl(var(--primary)) !important;
   display: flex;
   align-items: center;
@@ -8,8 +8,8 @@
   color: hsl(var(--white)) !important;
 }
 .createTodoButton svg {
-  width: 20px;
-  height: 20px;
+  width: 0.875rem;
+  height: 0.875rem;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -172,7 +172,9 @@ export const DraggableCard = ({
   );
 };
 
-export const shouldReturn = (event: React.MouseEvent<HTMLDivElement>) => {
+export const shouldReturn = (
+  event: React.MouseEvent<HTMLDivElement | HTMLLIElement>
+) => {
   if (
     event.target instanceof HTMLElement &&
     event.target.className.includes("tagBadge")

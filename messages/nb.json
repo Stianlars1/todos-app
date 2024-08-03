@@ -177,8 +177,26 @@
       "edit": "Rediger",
       "taskUpdated": "Oppgaven ble oppdatert",
       "markedAsCompleted": "Oppgaven ble markert som ferdig",
-      "movedToTrash": "Oppgaven ble flyttet til søppelkurven"
+      "movedToTrash": "Oppgaven ble flyttet til søppelkurven",
+      "tagsLabel": "Tags (separer taggene med komma)",
+      "tagsPlaceholder": "Tags",
+      "tagsDescription": "Komma separer taggene"
     }
+  },
+
+  "taskCard": {
+    "due": "Frist",
+    "updated": "Oppdatert"
+  },
+
+  "Search": {
+    "placeholder": "Søk etter oppgaver",
+    "close": "Close",
+    "results": "Resultater",
+    "filterBy": "Filtrer etter",
+    "filterTitle": "Tittel",
+    "filterDescription": "Beskrivelse",
+    "filterTags": "Tagger"
   },
 
   "SettingsPage": {
@@ -247,7 +265,10 @@
   },
 
   "TagsPage": {
-    "h1": "Finn oppgaver etter tagger",
+    "header": { "title": "Finn oppgaver etter tagger" },
+    "tags": {
+      "title": "Dine tagger"
+    },
     "search": {
       "label": "Søk",
       "placeholder": "Søk etter tagger"

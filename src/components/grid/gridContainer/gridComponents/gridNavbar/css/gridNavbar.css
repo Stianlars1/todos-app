@@ -8,6 +8,10 @@
   height: var(--nav-height);
   background-color: hsl(var(--background));
   z-index: 1000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 .grid-navbar__logo {
   display: flex;
@@ -26,7 +30,7 @@
   cursor: inherit;
 }
 .grid-navbar__logo__logo-text {
-  font-size: 22px;
+  font-size: 1rem;
   line-height: 22px;
   font-weight: 400;
   color: inherit;
@@ -38,6 +42,11 @@
   justify-content: center;
   gap: 1rem;
 }
+.grid-navbar__right-side-wrapper__logout-button {
+  font-size: 0.775rem !important;
+  padding: 0 !important;
+}
+
 @media screen and (min-width: 769px) {
   .grid-navbar__right-side-wrapper__hamburger-menu {
     display: none !important;
@@ -49,5 +58,11 @@
   }
   .grid-navbar__right-side-wrapper__hamburger-menu {
     display: flex;
+  }
+  .grid-navbar__right-side-wrapper .locale-switcher {
+    display: none;
+  }
+  .grid-navbar__logo__logo-text {
+    display: none;
   }
 }/*# sourceMappingURL=gridNavbar.css.map */

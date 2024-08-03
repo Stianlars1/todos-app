@@ -4,7 +4,6 @@ import { Priority, StatusId, UpdatedTodoDTO } from "@/app/actions/todos/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { CustomForm } from "@/components/form/components/customForm/customForm";
-import moment from "moment-timezone";
 
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import {
@@ -21,6 +20,7 @@ import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallb
 import { Tag } from "@/components/ui/tag/tags";
 import { toast } from "@/components/ui/toast/toast";
 import { TodoDTO } from "@/types/types";
+import { arraysEqual, normalizeDate } from "@/utils/utils";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -65,6 +65,7 @@ export const TaskViewer = ({
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [content, setContent] = useState<string>(taskDTO?.content || "");
   const [contentClicked, setContentClicked] = useState(false);
+  const [rawTagsInput, setRawTagsInput] = useState<string>("");
 
   const [startAnimation, setStartAnimation] = useState(false);
   const [endAnimation, setEndAnimation] = useState(false);
@@ -80,11 +81,22 @@ export const TaskViewer = ({
   const textGeneral = useTranslations("general");
 
   useEffect(() => {
+    // close modal on ESC key
+    const closeModalOnESC = (event: any) => {
+      if (event.key === "Escape") {
+        handleClose();
+      }
+    };
+    document.addEventListener("keydown", closeModalOnESC);
     if (taskDTO) {
+      document.body.style.overflow = "hidden";
+
       console.log("✅ task loaded");
       onTaskLoaded && onTaskLoaded();
       setState(mapDTOtoUpdatedTodoDTO(taskDTO));
       setContent(taskDTO.content || "");
+      setRawTagsInput(taskDTO?.tags?.join(", "));
+
       const startAnimationTimeout = setTimeout(() => {
         setStartAnimation(true);
       }, 50);
@@ -92,8 +104,16 @@ export const TaskViewer = ({
       return () => {
         setStartAnimation(false);
         clearTimeout(startAnimationTimeout);
+        document.body.style.overflow = "auto";
       };
+    } else {
+      document.body.style.overflow = "auto";
     }
+
+    return () => {
+      document.body.style.overflow = "auto"; // Reset when component unmounts
+      document.removeEventListener("keydown", closeModalOnESC);
+    };
   }, [taskDTO]);
 
   useEffect(() => {
@@ -106,6 +126,9 @@ export const TaskViewer = ({
       cacheInvalidate({ cacheKey: CacheKeys.TODOS_TODAY });
       cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
       cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+      cacheInvalidate({ cacheKey: CacheKeys.ALL_TAGS });
+      cacheInvalidate({ cacheKey: CacheKeys.TODOS_BY_TAGNAME });
+      cacheInvalidate({ cacheKey: CacheKeys.ALL_TASKS_AND_TAGS_GROUPED });
 
       toast.success(text("taskUpdated"), "bottomRight");
     }
@@ -123,6 +146,8 @@ export const TaskViewer = ({
         undefined
       );
     }, 350);
+
+    document.body.style.overflow = "auto"; // Reset when component unmounts
   };
 
   const handleMarkAsCompleted = async () => {
@@ -160,21 +185,94 @@ export const TaskViewer = ({
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    console.log("\n\nHandlee change");
-    console.log("\ne.target.name", e.target.name);
-    console.log("\n\n e.target.value", e.target.value);
+    if (e.target.name === "tags") {
+      const newTags = e.target.value
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag !== "");
+      console.log("new TAGSSS: ", newTags);
+      const newState = {
+        ...state,
+        tags: newTags,
+      };
 
-    const newState = { ...state, [e.target.name]: e.target.value };
-    setState(newState);
+      setState(newState);
+      setRawTagsInput(e.target.value);
 
-    setHasUnsavedChanges(
-      newState.title !== taskDTO?.title ||
-        newState.description !== taskDTO?.description ||
-        newState.statusId?.toString() !== taskDTO?.status.statusId.toString() ||
+      const titleChanged = newState.title !== taskDTO?.title;
+      const descriptionChanged = newState.description !== taskDTO?.description;
+      const statusChanged =
+        newState.statusId?.toString() !== taskDTO?.status.statusId.toString();
+      const priorityChanged =
         newState.priority?.toString().toLocaleUpperCase() !==
-          taskDTO?.priority?.toString().toLocaleUpperCase() ||
-        newState.dueDate !== taskDTO?.dueDate
-    );
+        taskDTO?.priority?.toString().toLocaleUpperCase();
+      const dueDateChanged = newState.dueDate !== taskDTO?.dueDate;
+      const tagsChanged = !arraysEqual(
+        newState.tags as any[],
+        taskDTO?.tags as any[]
+      );
+
+      // console.log("titleChanged:", titleChanged);
+      // console.log("descriptionChanged:", descriptionChanged);
+      // console.log("statusChanged:", statusChanged);
+      // console.log("priorityChanged:", priorityChanged);
+      // console.log("dueDateChanged:", dueDateChanged);
+      // console.log("tagsChanged:", tagsChanged);
+
+      setHasUnsavedChanges(
+        titleChanged ||
+          descriptionChanged ||
+          statusChanged ||
+          priorityChanged ||
+          dueDateChanged ||
+          tagsChanged
+      );
+    } else {
+      const isDueDate = e.target.name === "dueDate";
+
+      const valueDate = normalizeDate(new Date(e.target.value));
+      const newState = {
+        ...state,
+        [e.target.name]: isDueDate ? valueDate : e.target.value,
+      };
+
+      setState(newState);
+
+      const titleChanged = newState.title !== taskDTO?.title;
+      const descriptionChanged = newState.description !== taskDTO?.description;
+      const statusChanged =
+        newState.statusId?.toString() !== taskDTO?.status.statusId.toString();
+      const priorityChanged =
+        newState.priority?.toString().toLocaleUpperCase() !==
+        taskDTO?.priority?.toString().toLocaleUpperCase();
+      const dueDateChanged =
+        valueDate !==
+        (taskDTO?.dueDate
+          ? normalizeDate(new Date(taskDTO?.dueDate))
+          : undefined);
+      const tagsChanged = !arraysEqual(
+        newState.tags as any[],
+        taskDTO?.tags as any[]
+      );
+      // console.log("titleChanged:", titleChanged);
+      // console.log("descriptionChanged:", descriptionChanged);
+      // console.log("statusChanged:", statusChanged);
+      // console.log("priorityChanged:", priorityChanged);
+      // console.log("dueDateChanged:", dueDateChanged);
+      // console.log("due date new state:", newState.dueDate);
+      // console.log("due date state:", state.dueDate);
+      // console.log("due date taskDTO:", taskDTO?.dueDate);
+      // console.log("tagsChanged:", tagsChanged);
+
+      setHasUnsavedChanges(
+        titleChanged ||
+          descriptionChanged ||
+          statusChanged ||
+          priorityChanged ||
+          dueDateChanged ||
+          tagsChanged
+      );
+    }
   };
 
   const SelectStatus = () => {
@@ -276,10 +374,13 @@ export const TaskViewer = ({
       toast.error(text("errorMovingToTrash"), "bottomRight");
     } else {
       cacheInvalidate({ cacheKey: CacheKeys.TODOS_TODAY });
-      cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
       cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
+      cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+      cacheInvalidate({ cacheKey: CacheKeys.ALL_TAGS });
+      cacheInvalidate({ cacheKey: CacheKeys.TODOS_BY_TAGNAME });
+      cacheInvalidate({ cacheKey: CacheKeys.ALL_TASKS_AND_TAGS_GROUPED });
       toast.success(text("movedToTrash"), "bottomRight");
-      router.replace(`/${locale}/today`, undefined);
+      router.replace(`/${locale}/${redirectUrl}`, undefined);
     }
   };
 
@@ -343,7 +444,6 @@ export const TaskViewer = ({
                 name="todoId"
               />
             </CustomInputLabelWrapper>
-
             <CustomInputLabelWrapper>
               <CustomInputLabel htmlFor="description">
                 {text("formDescription")}
@@ -362,23 +462,24 @@ export const TaskViewer = ({
                 width="100%"
               />
             </CustomInputLabelWrapper>
-
-            {state.statusId !== undefined && (
-              <SelectStatus key={state.statusId} />
-            )}
-
-            {state.priority !== undefined && (
-              <TaskPriority key={state.priority} />
-            )}
-
-            {state?.dueDate !== undefined && (
+            <div className={styles.statusPriorityDueDateWrapper}>
+              {state.statusId !== undefined && (
+                <SelectStatus key={state.statusId} />
+              )}
+              {state.priority !== undefined && (
+                <TaskPriority key={state.priority} />
+              )}
               <CustomInputLabelWrapper>
                 <CustomInputLabel htmlFor="dueDate">
                   {text("formDueDate")}
                 </CustomInputLabel>
 
                 <CustomInput
-                  value={formatDate(state.dueDate, userSettings?.timeZone)}
+                  value={
+                    state?.dueDate
+                      ? new Date(state.dueDate).toISOString().split("T")[0]
+                      : undefined
+                  }
                   onChange={handleOnChange}
                   name="dueDate"
                   id="dueDate"
@@ -386,7 +487,7 @@ export const TaskViewer = ({
                   className={styles.dueDateInput}
                 />
               </CustomInputLabelWrapper>
-            )}
+            </div>
 
             {(contentClicked || content.length === 0) && (
               <>
@@ -429,13 +530,33 @@ export const TaskViewer = ({
           )}
 
           {(taskDTO?.priority || taskDTO?.tags) && (
-            <div className={styles.info}>
-              {taskDTO?.priority && (
-                <Tag variant="priority" priority={taskDTO.priority!} />
-              )}
+            <>
+              <>
+                <FormContentWrapper>
+                  <CustomInputLabelWrapper>
+                    <CustomInputLabel htmlFor="tags">
+                      {text("tagsLabel")}
+                    </CustomInputLabel>
 
-              {taskDTO?.tags && <Tag variant="tag" tags={taskDTO.tags} />}
-            </div>
+                    <CustomInput
+                      type="text"
+                      placeholder="Tags"
+                      id="tags"
+                      name="tags"
+                      value={rawTagsInput}
+                      onChange={handleOnChange}
+                    />
+                  </CustomInputLabelWrapper>
+                </FormContentWrapper>
+              </>
+              <div className={styles.info}>
+                {taskDTO?.priority && (
+                  <Tag variant="priority" priority={taskDTO.priority!} />
+                )}
+
+                {taskDTO?.tags && <Tag variant="tag" tags={taskDTO.tags} />}
+              </div>
+            </>
           )}
           {hasUnsavedChanges && (
             <div className={styles.bottomButtons}>
@@ -453,12 +574,13 @@ export const TaskViewer = ({
             </div>
           )}
 
-          {!hasUnsavedChanges && (
+          {!hasUnsavedChanges && state.statusId !== 6 && (
             <div className={styles.bottomButtons}>
               <Button
                 className={styles.delete}
                 onClick={handleMoveToTrash}
                 variant="outline"
+                type="button"
               >
                 {text("deleteTask")}
               </Button>
@@ -481,30 +603,4 @@ const mapDTOtoUpdatedTodoDTO = (taskDTO: TodoDTO) => {
     content: taskDTO?.content || "",
     todoId: taskDTO?.todoId || "",
   };
-};
-
-const formatDate = (date: Date | string, timezone: string = "UTC"): string => {
-  console.log("format date: ", date);
-  const d = moment.tz(date, timezone);
-  console.log("d: ", d.format());
-
-  const month = d.format("MM");
-  const day = d.format("DD");
-  const year = d.format("YYYY");
-
-  const result = `${year}-${month}-${day}`;
-  console.log("result: ", result);
-  return result;
-};
-
-const compareDates = (date1: string, date2: string): boolean => {
-  // Convert the first date to Date object
-  const d1 = new Date(date1);
-  // Extract only the date part from the second date and convert it to Date object
-  const d2 = new Date(date2.split("T")[0]);
-  return (
-    d1.getFullYear() === d2.getFullYear() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getDate() === d2.getDate()
-  );
 };

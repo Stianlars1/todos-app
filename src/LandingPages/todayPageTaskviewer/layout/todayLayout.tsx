@@ -1,7 +1,7 @@
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { TodayCard } from "@/components/ui/cards/todayCard/todayCard";
+import { ShowTaskModalContainer } from "@/LandingPages/dashboardPage/components/showTaskModal/showTaskModal";
 import { TodoDTO } from "@/types/types";
-import { TaskviewerContainer } from "../components/taskviewer/taskViewerContainer";
 import { TodayLayoutResizeWrapper } from "../components/todayLayoutResizeWrapper/todayLayoutResizeWrapper";
 import styles from "./css/todayLayout.module.css";
 export const TodayLayout = ({
@@ -32,7 +32,11 @@ export const TodayLayout = ({
         ))}
       </ul>
 
-      <TaskviewerContainer userSettings={userSettings} />
+      {/* <TaskviewerContainer userSettings={userSettings} /> */}
+      <ShowTaskModalContainer
+        userSettings={userSettings ?? undefined}
+        redirectUrl="today"
+      />
     </div>
   );
 };

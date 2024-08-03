@@ -22,5 +22,9 @@ export const SettingsPage = async () => {
 
 const SettingsPageHeader = async () => {
   const text = await getTranslations("SettingsPage.header");
-  return <h1 style={{ marginBottom: "1rem" }}>{text("title")}</h1>;
+  return (
+    <h1 style={{ marginBottom: "1rem", fontSize: "1.5rem" }}>
+      {text("title")}
+    </h1>
+  );
 };

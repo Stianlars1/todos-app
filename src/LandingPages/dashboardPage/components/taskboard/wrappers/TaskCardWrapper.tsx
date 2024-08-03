@@ -29,7 +29,6 @@ import {
   updateConfig,
 } from "@formkit/drag-and-drop";
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
-import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { DropHere } from "../components/dropHere";
@@ -59,7 +58,7 @@ export const TaskCardWrapper = ({
   // States
   const { isMobile, isMobileSize } = useBrowserInfo();
   const [isDragging, setIsDragging] = useState(false);
-  const [showHiddenTasks, setShowHiddenTasks] = useState(false);
+  // const [showHiddenTasks, setShowHiddenTasks] = useState(false);
   const text = useTranslations("Taskboard.taskCard");
 
   // Needed settings checks
@@ -67,7 +66,8 @@ export const TaskCardWrapper = ({
   const sortManual = !!userSettings?.sortManual;
 
   // defining the tasksList
-  const initialTasksList = tasks.slice(0, VISIBLE_TASKS);
+  // const initialTasksList = tasks.slice(0, VISIBLE_TASKS);
+  const initialTasksList = tasks;
 
   // only show first 5 tasks
   // The drag and drop hook-component
@@ -232,17 +232,17 @@ export const TaskCardWrapper = ({
     },
   });
 
-  useEffect(() => {
-    if (tasks) {
-      if (showHiddenTasks) {
-        setTaskList(tasks);
-      } else {
-        setTaskList(tasks.slice(0, VISIBLE_TASKS));
-      }
+  // useEffect(() => {
+  //   if (tasks) {
+  //     if (showHiddenTasks) {
+  //       setTaskList(tasks);
+  //     } else {
+  //       setTaskList(tasks.slice(0, VISIBLE_TASKS));
+  //     }
 
-      resetState();
-    }
-  }, [tasks]);
+  //     resetState();
+  //   }
+  // }, [tasks]);
 
   useEffect(() => {
     if (isMobile) {
@@ -252,11 +252,12 @@ export const TaskCardWrapper = ({
         });
       }
 
-      if (showHiddenTasks) {
-        setTaskList(tasks);
-      } else {
-        setTaskList(tasks.slice(0, VISIBLE_TASKS));
-      }
+      // if (showHiddenTasks) {
+      //   setTaskList(tasks);
+      // } else {
+      //   setTaskList(tasks.slice(0, VISIBLE_TASKS));
+      // }
+      setTaskList(tasks);
       resetState();
     }
   }, [isMobile]);
@@ -267,30 +268,32 @@ export const TaskCardWrapper = ({
   };
 
   const resetTaskList = () => {
-    if (showHiddenTasks) {
-      setTaskList(tasks);
-    } else {
-      setTaskList(tasks.slice(0, VISIBLE_TASKS));
-    }
+    // if (showHiddenTasks) {
+    //   setTaskList(tasks);
+    // } else {
+    //   setTaskList(tasks.slice(0, VISIBLE_TASKS));
+    // }
+    setTaskList(tasks);
+
     resetState();
   };
 
-  const handleShowHiddenTasks = () => {
-    setTaskList(showHiddenTasks ? tasks.slice(0, VISIBLE_TASKS) : tasks);
-    setShowHiddenTasks(!showHiddenTasks);
-    resetState();
-    // closing, scroll into view
-    if (showHiddenTasks) {
-      const el = document.getElementById(categoryCode);
-      const body = document.body;
-      if (el && body) {
-        body.scrollBy({
-          top: el.getBoundingClientRect().top - 150,
-          behavior: "smooth",
-        });
-      }
-    }
-  };
+  // const handleShowHiddenTasks = () => {
+  //   setTaskList(showHiddenTasks ? tasks.slice(0, VISIBLE_TASKS) : tasks);
+  //   setShowHiddenTasks(!showHiddenTasks);
+  //   resetState();
+  //   // closing, scroll into view
+  //   if (showHiddenTasks) {
+  //     const el = document.getElementById(categoryCode);
+  //     const body = document.body;
+  //     if (el && body) {
+  //       body.scrollBy({
+  //         top: el.getBoundingClientRect().top - 150,
+  //         behavior: "smooth",
+  //       });
+  //     }
+  //   }
+  // };
 
   return (
     <>
@@ -322,7 +325,7 @@ export const TaskCardWrapper = ({
           {tasksList.length === 0 && <DropHere />}
         </ul>
 
-        {tasks && tasks.length > VISIBLE_TASKS && (
+        {/* {tasks && tasks.length > VISIBLE_TASKS && (
           <Button
             className={taskWrapperStyles.showMoreOrLessButton}
             variant="link"
@@ -330,7 +333,7 @@ export const TaskCardWrapper = ({
           >
             {showHiddenTasks ? text("showLess") : text("showMore")}
           </Button>
-        )}
+        )} */}
         {isDragging && <DroppableDelete isDragging={isDragging} />}
       </div>
     </>

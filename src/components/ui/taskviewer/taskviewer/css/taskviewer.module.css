@@ -5,16 +5,17 @@
   justify-content: flex-start;
   padding: 1rem;
   gap: 32px;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: var(--nav-height);
   padding-top: calc(2rem + 4px);
   right: 0;
-  bottom: 0;
-  left: 0;
+  left: var(--sidebar-width);
+  height: calc(100dvh - var(--nav-height));
   padding-left: 2rem;
   overflow: auto;
   transition: transform 0.3s ease-in-out;
   transform: translateX(120%);
+  overflow: scroll !important; /* Adds a vertical scrollbar if content exceeds max-height */
   background-color: hsl(var(--card));
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -59,6 +60,12 @@
   height: fit-content;
 }
 
+.statusPriorityDueDateWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
 .backButton {
   border: 1px solid hsl(var(--border));
 }
@@ -90,6 +97,11 @@
 
 .info {
   margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
 }
 
 .content {
@@ -124,6 +136,9 @@
   }
 }
 @media screen and (max-width: 768px) {
+  .taskViewer {
+    left: 0;
+  }
   .taskViewer::after {
     content: "";
     display: none;

@@ -24,7 +24,7 @@ import { CacheKeys } from "@/app/lib/cache/keys";
 import { toast } from "@/components/ui/toast/toast";
 import { useBrowserInfo } from "@/hooks/useBrowserInfo";
 import { TodoDTO } from "@/types/types";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { ShowTaskModalContainer } from "../../showTaskModal/showTaskModal";
 import columnWrapper from "../css/columnWrapper.module.css";
 import { DraggableColumn } from "../draggables/draggableColumn";
@@ -48,6 +48,8 @@ export const TaskboardWrapper = ({
   taskboardTexts: { header: { sortSwitchTitle: string } };
 }) => {
   const { isMobile } = useBrowserInfo();
+  const columnRefs = useRef([]);
+
   const columnsList: ColumnListDND[] = Object.entries(tasks).map(
     ([categoryString, todosList]) => {
       let flatTasks: TodoDTO[] = [];
