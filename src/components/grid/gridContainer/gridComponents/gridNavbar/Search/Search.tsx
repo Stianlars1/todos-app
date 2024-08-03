@@ -71,7 +71,6 @@ export const Search = () => {
       searchInputRef.current &&
       searchInputRef.current === document.activeElement
     ) {
-      console.log("ESC pressed in Search");
       searchInputRef.current.value = "";
       searchInputRef.current.blur();
       setTasks(undefined);
@@ -122,11 +121,13 @@ export const Search = () => {
         className={styles.searchInput}
         onChange={handleOnChange}
         ref={searchInputRef}
+        width="100%"
       />
 
       <SearchIcon className={styles.searchIcon} />
 
       <TaskSearchResponse
+        fetchSuccess={!!tasks}
         searchTerm={searchInputRef.current?.value || ""}
         onClose={handleClose}
         tasks={tasks}

@@ -1,6 +1,6 @@
 .column {
   flex: 1;
-  padding: 1.2rem 1.2rem 2rem;
+  padding: 1.2rem 0.75rem 2rem;
   list-style-type: none;
   background-color: hsl(var(--card));
   height: 100%;
@@ -71,4 +71,14 @@
 .header .headerButtons .editColumnActive:hover {
   background-color: hsl(var(--accent));
   color: hsl(var(--white));
+}
+
+.deletedColumn {
+  background-color: hsl(var(--destructive) / 0.3);
+}
+
+@media screen and (prefers-color-scheme=dark) {
+  .deletedColumn {
+    background-color: hsl(var(--destructive) / 0.5);
+  }
 }

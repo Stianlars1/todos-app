@@ -60,7 +60,6 @@ export const getTasksByTagsGrouped = async () => {
 };
 
 export const findTasksByTag = async (state: unknown, formData: FormData) => {
-  console.log("Find tasks by tagname");
   const tagName = formData.get("tagName") as string;
   const tasksResponse = await customFetch<ApiResponse<TodoDTO[]>>({
     url: `${API_TAG_SEARCH}?tagName=${tagName}`,

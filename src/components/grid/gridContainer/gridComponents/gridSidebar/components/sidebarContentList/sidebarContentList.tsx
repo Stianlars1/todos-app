@@ -12,7 +12,6 @@ import "./css/sidebarContentList.css";
 export const SidebarContentList = async () => {
   const texts = await getTranslations("Sidebar");
   const todosDueTodayCount = await getTodosDueTodayCount<ApiResponse<number>>();
-  console.log("todosDueTodayCount", todosDueTodayCount);
 
   return (
     <ul className="sidebar__content">

@@ -20,15 +20,12 @@ export const ShowTaskModalContainer = ({
   const router = useRouter();
   useEffect(() => {
     if (selectedTaskId) {
-      console.log("✅ showing modal");
       setShowTaskModal(true);
       setFetchingTask(true);
     }
   }, [selectedTaskId]);
 
   const handleTaskLoaded = () => {
-    console.log("✅ closing modal");
-
     setFetchingTask(false);
   };
 

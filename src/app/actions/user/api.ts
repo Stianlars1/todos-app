@@ -52,14 +52,9 @@ export const uploadProfilePicture = async (
   _state: unknown,
   formDataArgument: FormData
 ): Promise<FetchState<string>> => {
-  console.log(
-    "🛜 ==== uploadProfilePicture ==== \n\nForm Data argument file: \n",
-    formDataArgument
-  );
   // Fetch url
   const userId = await getUserId();
   const Url = `${API_PROFILE_PICTURES_URL}/${userId}`;
-  console.log("\n🛜 Url", Url);
 
   // Define form data
   const formData = new FormData();
@@ -83,12 +78,9 @@ export const updateUserProfile = async (
   _state: unknown,
   formData: FormData
 ): Promise<FetchState<string>> => {
-  console.log("🛜 ==== update user details (profile) ==== \n");
-
   // Fetch url
   const userId = await getUserId();
   const Url = `${API_USER_URL}/${userId}`;
-  console.log("\n🛜 Url", Url);
   const updatedUser: UpdatedUserDetails = {
     email: formData.get("email") as string,
     firstName: formData.get("firstName") as string,
@@ -114,7 +106,6 @@ export const updateUserPassword = async (
   _state: unknown,
   formData: FormData
 ): Promise<FetchStateForm<any> | FetchState<ApiResponse<any>>> => {
-  console.log("🛜 ==== update user password ==== \n");
   const validatedFields = UpdatePasswordSchema.safeParse({
     password: formData.get("password"),
   });
@@ -143,9 +134,6 @@ export const updateUserPassword = async (
     currentPassword: formData.get("currentPassword") as string,
   };
 
-  console.log("\n🛜 Url", Url);
-  console.log("\n🛜 updatedUser", updatedUser);
-
   // Define form data
 
   // Get auth header and content type
@@ -158,8 +146,6 @@ export const updateUserPassword = async (
     },
     headers: authHeader,
   };
-
-  console.log("\n🛜 fetchObj", fetchObj);
 
   return await customFetch<ApiResponse<any>>(fetchObj);
 };

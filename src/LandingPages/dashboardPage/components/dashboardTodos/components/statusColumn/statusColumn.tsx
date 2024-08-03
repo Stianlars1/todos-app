@@ -40,7 +40,6 @@ export const StatusColumn = ({
   };
 
   const handleDrop = async (event: DragEvent<HTMLUListElement>) => {
-    console.log("🟢 handleDrop");
     event.preventDefault();
     setIsActive(false); // Reset on drop
 
@@ -58,7 +57,6 @@ export const StatusColumn = ({
 
     // check if new status is the same as old status to prevent unneccessary updated
     if (todo.statusCode === newStatuses.statusCode) {
-      console.log("🔴status is the same, no need to update");
       return;
     }
     const updateResponse = await updateTodo(todo.todoId, updatedStatusObject);
@@ -66,7 +64,6 @@ export const StatusColumn = ({
     if (updateResponse.isSuccess) {
       // cache invalidate to update UI in background
       cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
-      console.log("🟢 updateResponse", updateResponse);
     }
   };
 

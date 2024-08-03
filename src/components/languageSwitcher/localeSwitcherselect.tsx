@@ -33,7 +33,6 @@ export default function LocaleSwitcherSelect({
         `/${nextLocale}`
       );
     } catch (e) {
-      console.log("errrr", e);
       return null;
     }
   }

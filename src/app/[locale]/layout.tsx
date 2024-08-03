@@ -19,10 +19,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <NextIntlClientProvider messages={messages}>
-        <body className={GeistSans.className}>
-          <div className="modal-root" id="modal-root" />
-          {children}
-        </body>
+        <body className={GeistSans.className}>{children}</body>
       </NextIntlClientProvider>
     </html>
   );

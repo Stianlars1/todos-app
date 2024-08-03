@@ -24,6 +24,23 @@
     }
   }
 }
+
+.taskSectionEmpty {
+  position: fixed;
+  width: 100%;
+  top: var(--nav-height);
+  left: var(--sidebar-width);
+  padding: var(--main-padding);
+  right: 0;
+  height: 100px;
+  //background-color: hsl(var(--background));
+  background-color: hsl(var(--muted) / 0.5);
+  backdrop-filter: blur(10px);
+  max-height: 100vh;
+  overflow: hidden;
+  z-index: 100;
+}
+
 .taskSection {
   position: fixed;
   top: var(--nav-height);
@@ -116,20 +133,21 @@
 }
 
 @media screen and (max-width: 768px) {
-  .taskSection {
+  .taskSection,
+  .taskSectionEmpty {
     left: 0;
     padding: 3rem 1rem 0rem !important;
   }
 }
 
 [data-sidebar-open="true"] {
-  .taskSection {
+  .taskSection .taskSectionEmpty {
     left: var(--sidebar-width);
   }
 }
 
 [data-sidebar-open="false"] {
-  .taskSection {
+  .taskSection .taskSectionEmpty {
     left: var(--sidebar-width);
   }
 }

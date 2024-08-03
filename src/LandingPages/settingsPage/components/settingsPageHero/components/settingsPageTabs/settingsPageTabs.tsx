@@ -13,7 +13,6 @@ export const SettingsPageTabs = ({
 }) => {
   const texts = useTranslations("SettingsPage.tabs");
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
-  console.log("activeTab", activeTab);
   const [underlineStyle, setUnderlineStyle] = useState({
     left:
       activeTab === Tabs.PROFILE
@@ -35,9 +34,6 @@ export const SettingsPageTabs = ({
     const tabElement = tabsRef.current[tabIndex];
     if (tabElement) {
       const { offsetLeft, clientWidth } = tabElement;
-      console.log("\nTab", newTab);
-      console.log("\noffsetLeft", offsetLeft);
-      console.log("\nclientWidth", clientWidth);
       setUnderlineStyle({
         left: `${offsetLeft}px`,
         width: `${clientWidth}px`,

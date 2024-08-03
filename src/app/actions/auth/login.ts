@@ -43,7 +43,6 @@ export const login = async (_currentState: unknown, formData: FormData) => {
   const token: TokenType = { refreshToken, accessToken };
   const decryptedToken = decodeToken(JSON.stringify(token)) as DecryptedToken;
   await createSession(token);
-  console.log("Login successful,  session created: ", decryptedToken);
 
   const userLanguagePreference = decryptedToken.locale;
 

@@ -22,8 +22,6 @@ export const ResetForm = () => {
   const [state, dispatch] = useFormState(resetPassword, null);
   const { pending } = useFormStatus();
 
-  console.log("state", state);
-
   if (!validToken) {
     return (
       <ErrorMessage

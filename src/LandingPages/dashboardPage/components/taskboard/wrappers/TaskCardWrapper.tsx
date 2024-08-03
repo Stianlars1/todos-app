@@ -312,7 +312,7 @@ export const TaskCardWrapper = ({
             tasksList.length > 0 &&
             tasksList.map((task: TodoDTO) => (
               <DraggableCard
-                key={task.todoId}
+                key={JSON.stringify(task)}
                 task={task}
                 categoryCode={categoryCode}
                 userSettings={userSettings}

@@ -20,7 +20,6 @@ export const TimezoneSelect = ({
     const target = event.target as HTMLSelectElement;
     setTimezone(target.value);
     saveTimezone();
-    console.log(`Timezone set to ${target.value}`);
   };
 
   const saveTimezone = async () => {

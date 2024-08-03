@@ -8,11 +8,7 @@ export const cacheInvalidate = async ({
   cacheKey: CacheKeys;
 }) => {
   revalidateTag(cacheKey);
-
-  console.log("\n🟢 Invalidated cache for key: ", cacheKey);
 };
 export const cacheInvalidatePage = async (path: string) => {
-  revalidatePath(path, "page");
-
-  console.log("\n🟢 Invalidated cache for page ");
+  revalidatePath(path, "layout");
 };

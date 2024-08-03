@@ -105,9 +105,7 @@ export async function decryptSession(
 
 // Delete
 export const deleteSession = async () => {
-  console.log("\n\n\n 🗑️ Deleting session");
   if (!cookies().get("session")) {
-    console.warn("No session found in cookies");
     return;
   }
   cookies().delete("session");

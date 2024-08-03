@@ -13,7 +13,6 @@ export const useFetchTask = (taskId: string | null) => {
     const fetchTask = async () => {
       setIsLoading(true);
       try {
-        console.log(`Fetching task with ID: ${taskId}`); // Debug log
         const response = await fetch(`/frontend-api?taskId=${taskId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch");

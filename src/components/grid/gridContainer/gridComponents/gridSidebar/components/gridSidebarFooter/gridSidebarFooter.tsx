@@ -13,7 +13,6 @@ export const GridSidebarFooter = async ({
 }) => {
   const linkUrl = useLinkUrl(navLinks.SETTINGS.href);
   const full_name = userDetails ? `${userDetails.firstName}` : undefined;
-  console.log("\n\n\nGridSidebarFooter userDetails", userDetails, "\n\n");
   return (
     <>
       <Link href={linkUrl} className="sidebar__footer">

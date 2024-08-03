@@ -20,7 +20,6 @@ export const DroppableDelete = ({ isDragging }: { isDragging: boolean }) => {
       setDraggedOver(true);
     },
     handleEnd: (data: any) => {
-      console.log("\n\n🛜handleEnd on droppable delete", data);
       setDraggedOver(false);
     },
   });

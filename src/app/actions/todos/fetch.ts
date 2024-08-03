@@ -115,7 +115,6 @@ export const updateTodo = async (
   const UPDATE_URL = `${API_TODOS_UPDATE_URL}/${todoId}`;
   const formData = new FormData();
   formData.append("todo", JSON.stringify(updatedTodo));
-  console.log("👀 updatedTodo", updatedTodo);
   return await customFetch<UpdateTodoResponse>({
     url: UPDATE_URL,
     options: {
@@ -144,23 +143,31 @@ export const updateTodoForm = async (_state: unknown, formData: FormData) => {
     // tags: JSON.parse(formData.get("tags") as string),
   };
 
-  console.log("👀👀👀 updatedTodo", updatedTodo);
   formData.append("todo", JSON.stringify(updatedTodo));
 
-  return await customFetch<UpdateTodoResponse>({
+  const response = await customFetch<UpdateTodoResponse>({
     url: UPDATE_URL,
     options: {
       method: HTTP_REQUEST.PUT,
       body: formData,
     },
+    revalidate: 0,
   });
+
+  if (response.isSuccess) {
+    await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+    await cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
+    await cacheInvalidate({ cacheKey: CacheKeys.ALL_TASKS_AND_TAGS_GROUPED });
+    await cacheInvalidate({ cacheKey: CacheKeys.ALL_TAGS });
+  }
+
+  return response;
 };
 
 export const createTodo = async (
   __initialState: unknown,
   formData: FormData
 ) => {
-  console.log("\n\n\n\n 🟢 == CREATE TODO CALLED == ");
   const updatedTodo = getCreateTodoFormData(formData);
   const formDataDTO = new FormData();
   formDataDTO.append("todo", JSON.stringify(updatedTodo));

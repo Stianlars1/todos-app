@@ -22,7 +22,6 @@ export const RevealCard = ({
 
   const handleDragStart = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
-      console.log("🟢 handleDragStart");
       // Set data for dragging
       const dragData = {
         todoId: todoId.toString(),
@@ -51,10 +50,6 @@ export const RevealCard = ({
         event.clientX - rect.left,
         event.clientY - rect.top
       );
-
-      console.log("rect", rect);
-      console.log("clone", clone);
-      console.log("event", event);
 
       // Delay hiding the original element to ensure it's used as the drag image
       setTimeout(() => {

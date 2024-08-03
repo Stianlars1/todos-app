@@ -6,6 +6,7 @@ import { CacheKeys } from "@/app/lib/cache/keys";
 import { IconSort } from "@/components/ui/icons/icons";
 import { StatusCodes } from "@/types/todo/types";
 import { Button } from "@stianlarsen/react-ui-kit";
+import { usePathname } from "next/navigation";
 import "./css/statusColumnSortButton.css";
 import { useSortingStuff } from "./utils";
 
@@ -20,6 +21,7 @@ export const StatusColumnSortButton = ({
     categoryString,
     userSettings
   );
+  const pathName = usePathname();
 
   if (!sortOrder || !sortKey) return;
 
@@ -38,6 +40,7 @@ export const StatusColumnSortButton = ({
     if (response.isSuccess) {
       setSortOrder(response.data?.data[sortKey]);
       await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+      await cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
     }
   };
 

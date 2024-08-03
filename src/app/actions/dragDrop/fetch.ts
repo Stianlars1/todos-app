@@ -17,11 +17,6 @@ import {
 export const updateTaskSortIndex = async (
   updatedTask: UpdateTaskSortIndexProps
 ) => {
-  console.log(
-    "\n\n ## USE SERVER ##\nupdateTaskSortIndex\nUpdating task index",
-    updatedTask
-  );
-
   const response = await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_TODOS_SORT_INDEX,
     options: {
@@ -30,13 +25,9 @@ export const updateTaskSortIndex = async (
     },
     headers: APPLICATION_JSON_V1,
   });
-  console.log("Response from updateTaskSortIndex", response);
-
   return response;
 };
 export const moveTask = async (movedTask: MoveTaskProps) => {
-  console.log("\n\n ## USE SERVER ##\n moveTask\n", movedTask);
-
   const response = await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_TODOS_MOVE,
     options: {
@@ -49,7 +40,6 @@ export const moveTask = async (movedTask: MoveTaskProps) => {
   return response;
 };
 export const deleteTask = async (todoId: number) => {
-  console.log("\n\n ## USE SERVER ##\n delete Task\ntodoiD: ", todoId);
   const DELETE_URL = `${API_TODOS_URL}/${todoId}`;
   const response = await customFetch<FetchState<undefined>>({
     url: DELETE_URL,
@@ -65,11 +55,6 @@ export const deleteTask = async (todoId: number) => {
 export const updateColumnDisplayOrder = async (
   columns: UpdateColumnOrderDTO[]
 ) => {
-  console.log(
-    "\n\n ## USE SERVER ##\nupdateColumnDisplayOrder\nUpdating columns order",
-    columns
-  );
-
   const response = await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_CATEGORIZED_UPDATE_ORDER,
     options: {

@@ -17,7 +17,6 @@ export const MULTIPART_FORM_DATA_V1 = {
 };
 
 export const getAuthHeaders = async () => {
-  console.log("\n\n\n\n\n 🟢 ===  getAuthHeaders called === ");
   const tokenDetails = await getToken(); // Assuming getToken is now an async function if you're retrieving token from an async source.
   return {
     Authorization: `Bearer ${tokenDetails?.accessToken || ""}`,
@@ -25,7 +24,6 @@ export const getAuthHeaders = async () => {
   };
 };
 export const getAuthHeaderOnly = async () => {
-  console.log("\n\n\n\n\n 🟢 ===  getAuthHeaderOnly called === ");
   const tokenDetails = await getToken(); // Assuming getToken is now an async function if you're retrieving token from an async source.
   return {
     Authorization: `Bearer ${tokenDetails?.accessToken || ""}`,

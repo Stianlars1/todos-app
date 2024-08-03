@@ -12,7 +12,6 @@ import { useFormState } from "react-dom";
 import { FormError } from "./components/formError/formError";
 export const SignUpForm = () => {
   const [state, dispatch] = useFormState(signup, null);
-  console.log("== SignUpForm\nstate", state);
   return (
     <>
       {state?.error?.additional && (

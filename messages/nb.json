@@ -196,7 +196,8 @@
     "filterBy": "Filtrer etter",
     "filterTitle": "Tittel",
     "filterDescription": "Beskrivelse",
-    "filterTags": "Tagger"
+    "filterTags": "Tagger",
+    "noResults": "Ingen treff på søket"
   },
 
   "SettingsPage": {

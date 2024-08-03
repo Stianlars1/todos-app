@@ -16,7 +16,6 @@ export const forgotPasswordFetcher = async (
   });
 
   if (response.status === 400) {
-    console.log("error was 400", response);
     return {
       success: false,
       message: "Email address not found.",
@@ -24,15 +23,11 @@ export const forgotPasswordFetcher = async (
   }
 
   if (!response.ok) {
-    console.log("!response.ok", response);
-
     return {
       success: false,
       message: "Something went wrong. Please try again later.",
     };
   }
-
-  console.log("response", response);
 
   return {
     success: true,
@@ -66,7 +61,6 @@ export const resetPasswordFetcher = async (
         errorMessage = "The password reset token is invalid or has expired.";
       }
     }
-    console.error("Fetch error: ", response.status, responseText);
     return {
       success: false,
       message: errorMessage,

@@ -3,7 +3,7 @@ import { TasksAndTagsGroupedType } from "@/app/actions/tags/types";
 import { Tag } from "@/components/ui/tag/tags";
 import { TodoDTO } from "@/types/types";
 import { useTranslations } from "next-intl";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import styles from "./css/tagsPreview.module.css";
 export const TagsPreview = ({
   tasksAndTags,
@@ -22,6 +22,13 @@ export const TagsPreview = ({
     setTasks(tasks);
     setActiveTag(tag);
   };
+
+  useEffect(() => {
+    if (tasksAndTags && activeTag) {
+      handleTagClick(tasksAndTags[activeTag], activeTag);
+    }
+  }, [activeTag, tasksAndTags]);
+
   return (
     <div className={styles.tagsPreview}>
       <header className={styles.header}>
@@ -29,9 +36,9 @@ export const TagsPreview = ({
       </header>
       <ul>
         {tasksAndTags &&
-          Object.entries(tasksAndTags).map(([tag, value]) => (
+          Object.entries(tasksAndTags).map(([tag, tasks]) => (
             <Tag
-              onClick={() => handleTagClick(value, tag)}
+              onClick={() => handleTagClick(tasks, tag)}
               className={`${styles.tag} ${
                 activeTag === tag ? styles.active : ""
               }`}
@@ -39,7 +46,7 @@ export const TagsPreview = ({
               tags={[tag]}
               variant="tag"
             >
-              <span className={styles.tagNumber}>{value.length}</span>
+              <span className={styles.tagNumber}>{tasks.length}</span>
             </Tag>
           ))}
       </ul>

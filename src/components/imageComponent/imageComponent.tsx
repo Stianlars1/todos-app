@@ -14,7 +14,6 @@ const ImageComponent = ({
   width: number;
   height: number;
 }) => {
-  console.log("blob", blob);
   const [imageUrl, setImageUrl] = useState("");
   const widthAndHeight: CSSProperties = {
     width: `${width}px`,

@@ -7,7 +7,7 @@ import { sortTasks } from "@/utils/utils";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./css/taskSearchResponse.module.css";
 
@@ -15,15 +15,19 @@ export const TaskSearchResponse = ({
   tasks,
   searchTerm,
   onClose,
+  fetchSuccess,
 }: {
   tasks: TodoDTO[] | undefined;
   searchTerm: string;
+  fetchSuccess: boolean;
   onClose?: () => void;
 }) => {
   const text = useTranslations("Search");
   const pathName = usePathname();
   const [hasMounted, setHasMounted] = useState(false);
   const [filteredTasks, setFilteredTasks] = useState<TodoDTO[]>(tasks || []);
+  const emptySectionRef = useRef<HTMLDivElement>(null);
+
   const [filters, setFilters] = useState({
     title: true,
     description: true,
@@ -43,20 +47,30 @@ export const TaskSearchResponse = ({
             return;
           }
 
-          console.log("ESC pressed in TaskSearchResponse");
           document.body.setAttribute("search-modal-open", false.toString());
           onClose && onClose();
         }
       };
 
-      if (tasks && tasks.length > 0) {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          emptySectionRef.current &&
+          !emptySectionRef.current.contains(event.target as Node)
+        ) {
+          onClose && onClose();
+        }
+      };
+
+      if (fetchSuccess && tasks) {
         window.addEventListener("keydown", closeModalOnESC);
+        window.addEventListener("click", handleClickOutside);
         document.body.setAttribute("search-modal-open", true.toString());
         document.body.style.overflow = "hidden";
       }
 
       return () => {
         window.removeEventListener("keydown", closeModalOnESC);
+        window.removeEventListener("click", handleClickOutside);
         document.body.style.overflow = "auto";
       };
     }
@@ -113,7 +127,6 @@ export const TaskSearchResponse = ({
     }
 
     event.preventDefault();
-    console.log("pathName", pathName);
     router.push(`${pathName}?selectedTask=${todoId}`, {
       scroll: false,
     });
@@ -123,7 +136,16 @@ export const TaskSearchResponse = ({
     ? createPortal(
         <>
           <>
-            {tasks && tasks.length > 0 && (
+            {fetchSuccess && tasks && tasks.length === 0 && (
+              <section
+                ref={emptySectionRef}
+                className={styles.taskSectionEmpty}
+              >
+                <h2>{text("noResults")}</h2>
+              </section>
+            )}
+
+            {fetchSuccess && tasks && tasks.length > 0 && (
               <section className={styles.taskSection}>
                 <Button
                   className={styles.close}

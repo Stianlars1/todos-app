@@ -10,8 +10,8 @@ import styles from "./css/taskPreview.module.css";
 export const TaskPreview = ({ tasks }: { tasks: TodoDTO[] | null }) => {
   const locale = useLocale();
   const router = useRouter();
-  console.log("TASKS", tasks);
   if (!tasks) return null;
+
   const handleOnCardClick = (
     event: React.MouseEvent<HTMLLIElement>,
     todoId: any
@@ -24,14 +24,15 @@ export const TaskPreview = ({ tasks }: { tasks: TodoDTO[] | null }) => {
     event.preventDefault();
     router.push(`/${locale}/tags?selectedTask=${todoId}`, { scroll: false });
   };
+
   return (
     <div className={styles.taskPreview}>
       <ul className={styles.tasksList}>
         {sortTasks(tasks).map((task, index) => (
           <TaskCard
+            key={JSON.stringify(task)}
             className={styles.card}
             onClick={(event) => handleOnCardClick(event, task.todoId)}
-            key={task.todoId}
             task={task}
             index={index}
             options={{ showPriority: false, showTags: true, showDate: true }}

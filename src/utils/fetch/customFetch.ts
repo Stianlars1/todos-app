@@ -35,8 +35,6 @@ export async function customFetch<T>({
   revalidate?: number;
   noAuthHeader?: boolean;
 }): Promise<FetchState<T>> {
-  console.log("\n\n\n\n\n 🟢 ===  customFetch called === ");
-
   const authHeader = await getAuthHeaderOnly();
   const headersOptions = noAuthHeader
     ? headers
@@ -58,10 +56,9 @@ export async function customFetch<T>({
     headers: headersOptions,
     next: {
       revalidate: revalidate || 0,
+      tags: cacheKey ? [cacheKey] : undefined,
     },
   };
-
-  console.log("\n\n 🟢 fetchOptions", fetchOptions);
 
   const state: FetchState<T> = {
     isLoading: true,
@@ -71,11 +68,8 @@ export async function customFetch<T>({
     error: null,
   };
 
-  console.log("\n\n 🟢 customFetch url: \n", url);
   try {
-    console.log("\n\n 🟢 customFetch trying: \n");
     const response = await fetch(url, fetchOptions);
-    console.log("\n\n 🟢 await fetch res: \n", response);
     // if (!response.ok) {
     //   console.log("\n\n 🔴 response customFetch: \n", await response.json());
     //   const errorMessage = getErrorMessage(response.status);
@@ -92,10 +86,10 @@ export async function customFetch<T>({
       } else {
         errorData = await response.text(); // Fallback to plain text
       }
-      console.log("\n\n 🔴 response customFetch: \n", errorData);
+      // console.log("\n\n 🔴 response customFetch: \n", errorData);
       const errorMessage =
         errorData.message || errorData || getErrorMessage(response.status);
-      console.log("\n\n 🔴 errorMessage: \n", errorMessage);
+      // console.log("\n\n 🔴 errorMessage: \n", errorMessage);
       throw new Error(errorMessage);
     }
 
@@ -109,7 +103,7 @@ export async function customFetch<T>({
       data = await response.text(); // Fallback to plain text
     }
 
-    console.log("\n\n 🟢 customFetch data response was OK \n");
+    // console.log("\n\n 🟢 customFetch data response was OK \n");
 
     return {
       ...state,
@@ -118,7 +112,7 @@ export async function customFetch<T>({
       data,
     };
   } catch (error: any) {
-    console.log("\n\n 🔴 customFetch error: \n", error);
+    // console.log("\n\n 🔴 customFetch error: \n", error);
     let message = error.message;
 
     if (error instanceof TypeError) {
@@ -130,10 +124,10 @@ export async function customFetch<T>({
     //   `error:\n ${error}\n === \n ${AccessRestrictedOrCacheHasCleaned}`
     // );
     if (message === AccessRestrictedOrCacheHasCleaned) {
-      console.log(
-        "\n\n 🔴 Access restricted or cache has cleaned and session expired. \n",
-        error
-      );
+      // console.log(
+      //   "\n\n 🔴 Access restricted or cache has cleaned and session expired. \n",
+      //   error
+      // );
       await deleteSession();
       return redirect("/login");
     }

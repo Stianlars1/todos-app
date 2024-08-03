@@ -159,13 +159,7 @@ export const TodayPageTaskviewer = ({
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    console.log("\n\nHandlee change");
-    console.log("\ne.target.name", e.target.name);
-    console.log("\n\n e.target.value", e.target.value);
-
     const newState = { ...state, [e.target.name]: e.target.value };
-    console.log("\n\n jewState");
-    console.log("\n\n jewState.dueDate", newState.dueDate);
     setState(newState);
 
     setHasUnsavedChanges(

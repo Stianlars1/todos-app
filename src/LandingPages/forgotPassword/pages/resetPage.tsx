@@ -19,7 +19,6 @@ export const ResetPage = () => {
   const description =
     "Please enter your new password below. Make sure it's strong and secure to protect your account.";
 
-  console.log("passwordUpdatedWithSuccess, ", passwordUpdatedWithSuccess);
   if (passwordUpdatedWithSuccess) {
     return (
       <>

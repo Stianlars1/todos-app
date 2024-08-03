@@ -1,8 +1,6 @@
 import { CreateTodoDTO, Priority, StatusId } from "./types";
 
 export const getCreateTodoFormData = (formData: FormData): CreateTodoDTO => {
-  console.log("\n\n\n\n 🟢 == getCreateTodoFormData called == \nformData:\n ");
-
   return {
     title: formData.get("title") as string,
     description: formData.get("description") as string,

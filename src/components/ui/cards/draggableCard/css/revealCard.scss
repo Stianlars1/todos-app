@@ -30,16 +30,19 @@
     }
   }
   &__wrapper {
-    padding: 1.5rem;
+    padding: 0.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.5rem;
     &__header {
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
       h3 {
         font-weight: 300;
         font-size: 14px;
-        line-height: 1rem;
+        line-height: 1.15;
         hyphens: auto;
         text-wrap: balance;
         min-width: 0;
@@ -47,8 +50,9 @@
         cursor: text;
       }
       p {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
+        font-size: 12px;
+        font-weight: 200;
+        line-height: 1.1;
         color: hsl(var(--muted-foreground));
         user-select: text;
 

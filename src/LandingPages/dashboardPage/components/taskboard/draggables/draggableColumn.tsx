@@ -25,10 +25,14 @@ export const DraggableColumn = ({
   const handleColumnEditClick = () => {
     setDraggableColumnEditActive(!draggableColumnEditActive);
   };
+  const isDeletedColumn = columnObject.categoryCode === "DELETED";
+
   return (
     <>
       <li
-        className={`${draggableColumn.column} ${COLUMN_GROUP}`}
+        className={`${draggableColumn.column} ${COLUMN_GROUP} ${
+          isDeletedColumn ? draggableColumn.deletedColumn : ""
+        }`}
         key={columnObject.column}
         data-group={COLUMN_GROUP}
         data-label={columnObject.column}

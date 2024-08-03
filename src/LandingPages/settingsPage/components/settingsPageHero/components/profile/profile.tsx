@@ -89,7 +89,6 @@ export const SettingsProfileContent = ({
 
   if (!isClient) return null;
 
-  console.log("\nstateFromUpdate", state);
   return (
     <>
       <div className={styles.profile}>

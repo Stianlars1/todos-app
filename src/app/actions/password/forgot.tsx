@@ -11,7 +11,6 @@ export const forgotPassword = async (
   const email = formData.get("email")?.toString();
 
   if (!email) {
-    console.log("Please enter your email address");
     return {
       success: false,
       message: "Please enter your email address",

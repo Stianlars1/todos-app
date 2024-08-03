@@ -82,11 +82,6 @@ const SecurityChangePassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordUpdatedSuccessfully, setPasswordUpdatedSuccessfully] =
     useState(false);
-  console.log("\n\nstate", state);
-  console.log(
-    "\n\n state && 'formErrors' in state && state.formErrors",
-    state && "formErrors" in state && (state as FetchStateForm<any>).formErrors
-  );
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "password") {
       setNewPassword(e.target.value);

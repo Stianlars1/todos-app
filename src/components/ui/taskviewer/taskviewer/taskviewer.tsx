@@ -84,8 +84,6 @@ export const TaskViewer = ({
 
   const closeModalOnESC = (event: any) => {
     if (event.key === "Escape") {
-      console.log("ESC pressed in TaskViewer");
-
       handleClose();
       setTimeout(() => {
         document.body.setAttribute("taskviewer-modal-open", false.toString());
@@ -101,7 +99,6 @@ export const TaskViewer = ({
 
       document.body.setAttribute("taskviewer-modal-open", true.toString());
 
-      console.log("✅ task loaded");
       onTaskLoaded && onTaskLoaded();
       setState(mapDTOtoUpdatedTodoDTO(taskDTO));
       setContent(taskDTO.content || "");
@@ -200,7 +197,6 @@ export const TaskViewer = ({
         .split(",")
         .map((tag) => tag.trim())
         .filter((tag) => tag !== "");
-      console.log("new TAGSSS: ", newTags);
       const newState = {
         ...state,
         tags: newTags,
@@ -490,11 +486,12 @@ export const TaskViewer = ({
                 </CustomInputLabel>
 
                 <CustomInput
-                  value={state?.dueDate ? formatDate(state.dueDate) : undefined}
+                  value={state.dueDate ? formatDate(state.dueDate) : undefined}
                   onChange={handleOnChange}
                   name="dueDate"
                   id="dueDate"
                   type="date"
+                  suppressHydrationWarning
                   className={styles.dueDateInput}
                 />
               </CustomInputLabelWrapper>
@@ -542,24 +539,22 @@ export const TaskViewer = ({
 
           {(taskDTO?.priority || taskDTO?.tags) && (
             <>
-              <>
-                <FormContentWrapper>
-                  <CustomInputLabelWrapper>
-                    <CustomInputLabel htmlFor="tags">
-                      {text("tagsLabel")}
-                    </CustomInputLabel>
+              <FormContentWrapper>
+                <CustomInputLabelWrapper>
+                  <CustomInputLabel htmlFor="tags">
+                    {text("tagsLabel")}
+                  </CustomInputLabel>
 
-                    <CustomInput
-                      type="text"
-                      placeholder="Tags"
-                      id="tags"
-                      name="tags"
-                      value={rawTagsInput}
-                      onChange={handleOnChange}
-                    />
-                  </CustomInputLabelWrapper>
-                </FormContentWrapper>
-              </>
+                  <CustomInput
+                    type="text"
+                    placeholder="Tags"
+                    id="tags"
+                    name="tags"
+                    value={rawTagsInput}
+                    onChange={handleOnChange}
+                  />
+                </CustomInputLabelWrapper>
+              </FormContentWrapper>
               <div className={styles.info}>
                 {taskDTO?.priority && (
                   <Tag variant="priority" priority={taskDTO.priority!} />

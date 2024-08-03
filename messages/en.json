@@ -194,7 +194,8 @@
     "filterBy": "Filter by",
     "filterTitle": "Title",
     "filterDescription": "Description",
-    "filterTags": "Tags"
+    "filterTags": "Tags",
+    "noResults": "No results found"
   },
 
   "SettingsPage": {

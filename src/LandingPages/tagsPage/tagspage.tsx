@@ -1,5 +1,6 @@
 import { getTasksByTagsGrouped } from "@/app/actions/tags/api";
 import { getUserSettings } from "@/app/actions/user/userApi";
+import { ToastContainer } from "@/components/ui/toast/toast";
 import { getTranslations } from "next-intl/server";
 import { ShowTaskModalContainer } from "../dashboardPage/components/showTaskModal/showTaskModal";
 import { TagsHero } from "./components/tagsHero/tagsHero";
@@ -8,7 +9,6 @@ export const TagsPage = async () => {
   const { data: TasksAndTags } = await getTasksByTagsGrouped();
 
   const { data: userSettings } = await getUserSettings();
-  console.log("incoming tags: ", TasksAndTags);
   const text = await getTranslations("TagsPage");
   return (
     <div className={styles.tagsPage}>
@@ -22,6 +22,8 @@ export const TagsPage = async () => {
         redirectUrl="tags"
         userSettings={userSettings ?? undefined}
       />
+
+      <ToastContainer />
     </div>
   );
 };

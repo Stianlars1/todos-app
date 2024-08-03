@@ -12,6 +12,7 @@ export const TagsHero = ({
 }) => {
   const [tasks, setTasks] = useState<TodoDTO[] | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
+
   return (
     <>
       <TagsPreview

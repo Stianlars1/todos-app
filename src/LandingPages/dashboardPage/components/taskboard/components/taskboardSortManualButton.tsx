@@ -15,7 +15,6 @@ export const TaskboardSortManualButton = ({
 
   const handleToggle = () => {
     setIsActive(!isActive);
-    console.log("Toggle active state");
   };
 
   const handleToggleSort = async () => {
