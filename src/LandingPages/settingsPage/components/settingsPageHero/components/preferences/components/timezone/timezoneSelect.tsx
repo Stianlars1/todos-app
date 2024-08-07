@@ -16,25 +16,36 @@ export const TimezoneSelect = ({
     currentTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
   const [timezone, setTimezone] = useState(selectedTimezone);
 
-  const handleChange = (event: React.ChangeEvent) => {
+  const handleChange = async (event: React.ChangeEvent) => {
     const target = event.target as HTMLSelectElement;
+    const timeZone = target.value;
     setTimezone(target.value);
-    saveTimezone();
-  };
-
-  const saveTimezone = async () => {
-    const updateResponse = await updateUserSettings({ timeZone: timezone });
+    const updateResponse = await updateUserSettings({ timeZone: timeZone });
 
     if (!updateResponse.success) {
       console.error(updateResponse);
     }
 
-    toast.success(`Timezone set to ${timezone}`, "bottomRight");
+    toast.success(`Timezone set to ${timeZone}`, "bottomRight");
   };
+
+  // const saveTimezone = async () => {
+  //   const updateResponse = await updateUserSettings({ timeZone: timezone });
+
+  //   if (!updateResponse.success) {
+  //     console.error(updateResponse);
+  //   }
+
+  //   toast.success(`Timezone set to ${timezone}`, "bottomRight");
+  // };
   return (
     <>
       <h3 className={styles.preferences}>{texts("language")}</h3>
-      <select value={timezone} onChange={handleChange}>
+      <select
+        className={styles.select}
+        value={timezone}
+        onChange={handleChange}
+      >
         {timezones.map((timezone) => (
           <option key={timezone} value={timezone}>
             {timezone.replace("_", " ")}

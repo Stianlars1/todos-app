@@ -59,7 +59,7 @@
   background-color: hsl(var(--card));
   z-index: -1;
   left: 50%;
-  top: 0;
+  top: var(--nav-height);
   right: 0;
   bottom: 0;
 }

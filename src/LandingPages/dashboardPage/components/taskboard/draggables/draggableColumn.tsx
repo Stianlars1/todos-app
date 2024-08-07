@@ -47,14 +47,16 @@ export const DraggableColumn = ({
                 key={columnObject.categoryCode}
               />
             )}
-            <MdEdit
-              onClick={handleColumnEditClick}
-              className={`${draggableColumn.editColumn} ${
-                draggableColumnEditActive
-                  ? draggableColumn.editColumnActive
-                  : ""
-              }`}
-            />
+            {columnObject.tasks.length > 0 && (
+              <MdEdit
+                onClick={handleColumnEditClick}
+                className={`${draggableColumn.editColumn} ${
+                  draggableColumnEditActive
+                    ? draggableColumn.editColumnActive
+                    : ""
+                }`}
+              />
+            )}
             <DragDropIcon
               id="dragHandle"
               className={`${draggableColumn.columnDragButtonSVG} column-drag-handle `}

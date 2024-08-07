@@ -48,11 +48,9 @@ export const Taskboard = ({
 
       {taskResponse?.data && (
         <TaskboardWrapper
-          key={JSON.stringify(categorizedTodosFiltered)}
           userSettings={userSettings}
           tasks={categorizedTodosFiltered}
           categorizedTexts={categorizedTexts}
-          taskboardTexts={taskboardTexts}
         />
       )}
     </div>

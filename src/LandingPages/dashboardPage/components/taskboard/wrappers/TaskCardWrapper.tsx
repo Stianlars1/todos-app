@@ -29,7 +29,6 @@ import {
   updateConfig,
 } from "@formkit/drag-and-drop";
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
-import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { DropHere } from "../components/dropHere";
 import taskWrapperStyles from "../css/taskwrapper.module.css";
@@ -59,7 +58,6 @@ export const TaskCardWrapper = ({
   const { isMobile, isMobileSize } = useBrowserInfo();
   const [isDragging, setIsDragging] = useState(false);
   // const [showHiddenTasks, setShowHiddenTasks] = useState(false);
-  const text = useTranslations("Taskboard.taskCard");
 
   // Needed settings checks
   const isColumnLayout = !!userSettings?.isColumnLayout;
@@ -232,17 +230,12 @@ export const TaskCardWrapper = ({
     },
   });
 
-  // useEffect(() => {
-  //   if (tasks) {
-  //     if (showHiddenTasks) {
-  //       setTaskList(tasks);
-  //     } else {
-  //       setTaskList(tasks.slice(0, VISIBLE_TASKS));
-  //     }
-
-  //     resetState();
-  //   }
-  // }, [tasks]);
+  useEffect(() => {
+    if (tasks) {
+      setTaskList(tasks);
+      resetState();
+    }
+  }, [tasks]);
 
   useEffect(() => {
     if (isMobile) {
@@ -299,7 +292,11 @@ export const TaskCardWrapper = ({
     <>
       <div
         suppressHydrationWarning={true}
-        className={`${taskWrapperStyles.taskContainer} `}
+        className={`${taskWrapperStyles.taskContainer} ${
+          isColumnLayout
+            ? taskWrapperStyles.taskContainerColumnLayout
+            : taskWrapperStyles.taskContainerRowLayout
+        } `}
       >
         <ul
           id={categoryCode}

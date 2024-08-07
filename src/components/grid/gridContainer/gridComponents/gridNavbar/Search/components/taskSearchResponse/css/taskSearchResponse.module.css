@@ -19,15 +19,22 @@
   width: 100%;
   top: var(--nav-height);
   left: var(--sidebar-width);
-  padding: var(--main-padding);
   right: 0;
-  height: 100px;
+  height: 24px;
   background-color: hsl(var(--muted)/0.5);
+  color: hsl(var(--foreground));
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   max-height: 100vh;
   overflow: hidden;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.taskSectionEmpty h2 {
+  font-size: 0.875rem;
+  margin: 0 2rem;
 }
 
 .taskSection {

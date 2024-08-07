@@ -11,7 +11,7 @@
     //   border-top: none !important;
     //   border-right: none !important;
     //   border-left: none !important;
-    height: min-content !important;
+    height: 38px !important;
     display: flex;
     align-items: center;
     color: hsl(var(--foreground));
@@ -35,6 +35,15 @@
 
     color: hsl(var(--foreground) / 0.8);
     transition: color 0.3s ease;
+  }
+
+  .shortcuts {
+    position: absolute;
+    top: 50%;
+    transform: translateY((-50%));
+    right: calc(10px + 0.5rem);
+    display: flex;
+    gap: 4px;
   }
 }
 

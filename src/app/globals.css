@@ -1,4 +1,8 @@
 /* --background: 20 14.3% 4.1%; dark */
+html body {
+  --nav-height: 50px;
+}
+
 html:root {
   --testMainBG: #f3f4f6;
   --test: 0 0% 83%;

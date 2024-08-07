@@ -231,7 +231,7 @@ const ShowMoreButton = ({
           onClick={() => setShowAll()}
         />
       )}
-      <p>{!showALL ? texts("SHOW_LESS") : texts("SHOW_MORE")}</p>
+      <p>{showALL ? texts("SHOW_LESS") : texts("SHOW_MORE")}</p>
     </div>
   );
 };

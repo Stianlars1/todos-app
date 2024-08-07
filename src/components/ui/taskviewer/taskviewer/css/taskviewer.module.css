@@ -6,11 +6,11 @@
   padding: 1rem;
   gap: 32px;
   position: fixed;
-  top: var(--nav-height);
+  top: calc(var(--nav-height) + 0.5rem);
   padding-top: calc(2rem + 4px);
   right: 0;
   left: var(--sidebar-width);
-  height: calc(100dvh - var(--nav-height));
+  height: calc(100dvh - var(--nav-height) - 1rem);
   padding-left: 2rem;
   overflow: auto;
   transition: transform 0.3s ease-in-out;
@@ -41,6 +41,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 .taskViewer .bottomButtons .delete {
   background-color: hsl(var(--destructive));
@@ -73,6 +75,10 @@
   text-overflow: ellipsis;
   height: -moz-fit-content;
   height: fit-content;
+}
+
+.taskBackdrop {
+  display: 0;
 }
 
 .statusPriorityDueDateWrapper {
@@ -148,6 +154,38 @@
   }
   100% {
     transform: translateX(120%);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .taskViewer {
+    right: 0;
+    left: 50%;
+  }
+  .taskBackdrop {
+    display: 0;
+    background-color: hsl(var(--black)/0.5);
+    position: fixed;
+    top: var(--nav-height);
+    left: var(--sidebar-width);
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+}
+@media screen and (min-width: 850px) and (max-width: 1279px) {
+  .taskViewer {
+    right: 0;
+    left: 20%;
+  }
+  .taskBackdrop {
+    display: 0;
+    background-color: hsl(var(--black)/0.5);
+    position: fixed;
+    top: var(--nav-height);
+    left: var(--sidebar-width);
+    right: 0;
+    bottom: 0;
+    z-index: 1;
   }
 }
 @media screen and (max-width: 768px) {

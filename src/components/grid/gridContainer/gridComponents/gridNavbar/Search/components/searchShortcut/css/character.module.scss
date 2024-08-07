@@ -1,0 +1,15 @@
+.character {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 2px;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foregorund));
+  font-size: 1rem;
+  font-weight: 100;
+
+  padding: 1px 3px;
+
+  border: 0.75px solid hsl(var(--border));
+}

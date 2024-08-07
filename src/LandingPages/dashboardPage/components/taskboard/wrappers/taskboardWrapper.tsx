@@ -40,12 +40,10 @@ export const TaskboardWrapper = ({
   tasks,
   userSettings,
   categorizedTexts,
-  taskboardTexts,
 }: {
   tasks: CategorizedTodosDTO;
   userSettings: UserSettingsDTO | undefined;
   categorizedTexts: { [key in StatusCodes]: string };
-  taskboardTexts: { header: { sortSwitchTitle: string } };
 }) => {
   const { isMobile } = useBrowserInfo();
 

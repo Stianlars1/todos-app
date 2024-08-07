@@ -1,0 +1,62 @@
+.signupFirstSection3d {
+  background-color: hsl(var(--card));
+
+  .svgWrapper {
+    position: fixed;
+    top: var(--nav-height);
+    right: calc(50% + 2rem);
+
+    bottom: 0;
+    left: calc(0% + 1rem);
+    perspective: 4000px;
+    perspective-origin: 100% 0;
+    transform-style: preserve-3d;
+    .svg {
+      min-width: 100%;
+      contain: strict;
+      min-height: 100%;
+
+      transform: translateX(200%) translateY(100%) scale(3) rotateX(45deg)
+        rotateY(45deg) rotate(324deg);
+      transform-origin: bottom right;
+      backface-visibility: hidden;
+
+      .svgElements {
+        width: 100%;
+        height: 100%;
+        transform: scale(0.2) translateY(-150%) translateX(-200%);
+
+        .navbar {
+          width: fit-content;
+          height: fit-content;
+        }
+
+        .sidebar {
+          width: fit-content;
+          height: fit-content;
+
+          transform: translateY(-1%);
+        }
+
+        .content {
+          width: fit-content;
+          height: fit-content;
+
+          transform: translateY(-101%) translateX(11%);
+        }
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: hsl(var(--card));
+    z-index: -1;
+    left: 0;
+    top: var(--nav-height);
+    right: 49%;
+    bottom: 0;
+  }
+}

@@ -2,16 +2,18 @@
 import { searchTodos } from "@/app/actions/todos/fetch";
 import { CustomInput } from "@/components/form/components/customInput/customInput";
 import { SearchIcon } from "@/components/ui/icons/icons";
+import { toast } from "@/components/ui/toast/toast";
 import { TodoDTO } from "@/types/types";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import { SearchShortcut } from "./components/searchShortcut/searchShortcut";
 import { TaskSearchResponse } from "./components/taskSearchResponse/taskSearchResponse";
 import styles from "./css/search.module.css";
 export const Search = () => {
   const text = useTranslations("Search");
   const [tasks, setTasks] = useState<TodoDTO[] | undefined>(undefined);
   const searchInputRef = useRef<HTMLInputElement>(null); // Add ref for the input field
-
+  const [hideShortcuts, setHideShortcuts] = useState(false);
   const handleOnChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
@@ -61,6 +63,17 @@ export const Search = () => {
   const handleShortcut = (event: KeyboardEvent) => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
       event.preventDefault();
+      const taskViewerOpened =
+        document.body.getAttribute("taskviewer-modal-open") === true.toString();
+
+      if (taskViewerOpened) {
+        toast.info("Close the task viewer to search", "bottomRight");
+        const searchInput = document.getElementById(
+          "search"
+        ) as HTMLInputElement;
+        searchInput.blur();
+        return;
+      }
       searchInputRef.current?.focus();
     }
   };
@@ -122,9 +135,13 @@ export const Search = () => {
         onChange={handleOnChange}
         ref={searchInputRef}
         width="100%"
+        onFocus={() => setHideShortcuts(true)}
+        onBlur={() => setHideShortcuts(false)}
       />
 
       <SearchIcon className={styles.searchIcon} />
+
+      <SearchShortcut hide={hideShortcuts} className={styles.shortcuts} />
 
       <TaskSearchResponse
         fetchSuccess={!!tasks}

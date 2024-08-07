@@ -17,13 +17,15 @@
     position: absolute;
     width: 1.2rem;
     height: 1.2rem;
-    top: -0.5rem;
-    right: -0.5rem;
+    top: -0.14rem;
+    right: -0.14rem;
     cursor: pointer;
     fill: hsl(var(--destructive));
     color: hsl(var(--destructive));
     transition: color 0.15s ease-in-out;
     pointer-events: all;
+    cursor: pointer;
+    z-index: 100;
 
     &:hover {
       color: hsl(var(--foreground));

@@ -53,6 +53,7 @@ export const DashboardPage = async () => {
             categorizedTexts={categorizedTexts}
             taskboardTexts={taskboardTexts}
             userSettings={userDetails?.settings}
+            key={JSON.stringify(userDetails?.settings)}
           />
           <ProgressSummaryContainer
             upcomingDeadlines={upcomingDeadlines}

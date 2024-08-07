@@ -401,7 +401,9 @@ export const TaskViewer = ({
         suppressHydrationWarning={true}
         className={`${styles.taskViewer} ${
           startAnimation ? styles.startAnimation : ""
-        } ${endAnimation ? styles.endAnimation : ""}`}
+        } ${endAnimation ? styles.endAnimation : ""}
+        
+        `}
       >
         <div className={styles.topCTAwrapper}>
           <h2>{text("task")}</h2>
@@ -594,6 +596,7 @@ export const TaskViewer = ({
           )}
         </CustomForm>
       </div>
+      <div onClick={handleClose} className={styles.taskBackdrop} />
     </Suspense>
   );
 };

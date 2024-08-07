@@ -1,10 +1,17 @@
 .triggerButton {
   padding: calc(0.65rem - 1px);
+  background-color: hsl(var(--card));
 }
 
 .triggerButton svg {
   width: 0.875rem;
   height: 0.875rem;
+}
+
+@media screen and (prefers-color-scheme="dark") {
+  .triggerButton {
+    background-color: hsl(var(--background));
+  }
 }
 
 @media screen and (max-width: 768px) {
