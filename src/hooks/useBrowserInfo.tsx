@@ -3,23 +3,27 @@ import { useEffect, useState } from "react";
 
 const detectSafari = (userAgent: string) =>
   /^((?!chrome|android).)*safari/i.test(userAgent);
-const detectMobile = (userAgent: string) =>
+export const detectMobile = (userAgent: string) =>
   /iPhone|iPad|iPod|Android/i.test(userAgent);
-const detectTouchDevice = () =>
+export const detectTouchDevice = () =>
   "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
 export const useBrowserInfo = () => {
   const [isSafari, setIsSafari] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isMobileSize, setIsMobileSize] = useState(false);
+  const [loading, isLoading] = useState(true);
   const updateDeviceInfo = () => {
     if (typeof window !== "undefined") {
       const userAgent = window.navigator.userAgent;
       setIsSafari(detectSafari(userAgent));
 
       // Detect mobile based on user agent and touch capabilities
+
       const mobileDetected = detectMobile(userAgent) || detectTouchDevice();
       setIsMobile(mobileDetected);
+
+      isLoading(false);
     }
   };
 
@@ -36,5 +40,5 @@ export const useBrowserInfo = () => {
     window.addEventListener("resize", checkMobileSize);
   }, []);
 
-  return { isSafari, isMobile, isMobileSize };
+  return { isSafari, isMobile, isMobileSize, loading };
 };

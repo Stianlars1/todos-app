@@ -49,6 +49,9 @@ export const deleteTask = async (todoId: number) => {
     headers: APPLICATION_JSON_V1,
   });
 
+  console.log("response", response);
+  console.table(response.error);
+
   return response;
 };
 

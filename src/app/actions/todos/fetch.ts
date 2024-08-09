@@ -7,6 +7,7 @@ import { customFetch } from "@/utils/fetch/customFetch";
 import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import {
   API_TASKS_SEARCH,
+  API_TODOS_BY_ACTIVE_DASHBOARD,
   API_TODOS_CATEGORIZED_URL,
   API_TODOS_CREATE_URL,
   API_TODOS_DUE_TODAY_COUNT_URL,
@@ -35,6 +36,15 @@ export const getTodoById = async (todoId: string) => {
 export const getAllTodos = async <T>() => {
   return await customFetch<T>({
     url: API_TODOS_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    cacheKey: CacheKeys.ALL_TODOS,
+  });
+};
+export const getAllTodosByActiveDashboard = async <T>() => {
+  return await customFetch<T>({
+    url: API_TODOS_BY_ACTIVE_DASHBOARD,
     options: {
       method: HTTP_REQUEST.GET,
     },
@@ -141,6 +151,8 @@ export const updateTodoForm = async (_state: unknown, formData: FormData) => {
     content: formData.get("content") as string,
     tags: newTags,
     // tags: JSON.parse(formData.get("tags") as string),
+    dashboardIds:
+      [parseInt(formData.get("dashboardIds") as string)] || undefined,
   };
 
   formData.append("todo", JSON.stringify(updatedTodo));

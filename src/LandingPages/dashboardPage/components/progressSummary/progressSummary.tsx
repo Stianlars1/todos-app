@@ -17,7 +17,7 @@ export interface ProgressSummaryProps {
   error: string | null;
   upcomingDeadlines: ApiResponse<SoonDueTodosDTO> | null;
   overdueTasks: ApiResponse<TodoDTO[]> | null;
-  userSettings: UserSettingsDTO | undefined;
+  userSettings: UserSettingsDTO | null;
 }
 export const ProgressSummaryContainer = ({
   tasks,
@@ -42,7 +42,7 @@ export const ProgressSummaryContainer = ({
 
         <OverdueTasks userSettings={userSettings} overdueTasks={overdueTasks} />
 
-        <ShowTaskModalContainer userSettings={userSettings} />
+        {/* <ShowTaskModalContainer userSettings={userSettings} /> */}
       </div>
     </>
   );
@@ -150,7 +150,7 @@ const OverdueTasks = ({
   userSettings,
 }: {
   overdueTasks: ApiResponse<TodoDTO[]> | null;
-  userSettings: UserSettingsDTO | undefined;
+  userSettings: UserSettingsDTO | null;
 }) => {
   const overdueTasksMap = overdueTasks?.data as TodoDTO[];
   const texts = useTranslations("Dashboard.header.taskSummary");

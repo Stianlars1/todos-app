@@ -28,6 +28,8 @@ export interface UserSettingsDTO {
   isColumnLayout?: boolean;
   timeZone?: string;
   isDashboardTabActive?: boolean;
+  activeDashboardId?: number;
+  limitTasks?: boolean;
 }
 export type ExcludeBooleanKeys<T> = {
   [K in keyof T]: T[K] extends boolean ? never : K;

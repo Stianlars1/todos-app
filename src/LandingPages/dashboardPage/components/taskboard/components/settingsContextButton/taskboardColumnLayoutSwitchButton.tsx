@@ -7,7 +7,7 @@ import { SwitchButton } from "@/components/ui/buttons/switch/switchButton";
 export const TaskboardColumnLayoutSwitchButton = ({
   userSettings,
 }: {
-  userSettings: UserSettingsDTO | undefined;
+  userSettings: UserSettingsDTO | null;
 }) => {
   const isColumnLayout = userSettings?.isColumnLayout;
   const handleSort = async () => {

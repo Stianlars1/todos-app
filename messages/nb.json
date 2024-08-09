@@ -44,7 +44,8 @@
       "sortSwitch": "Sorter manuelt",
       "settings": {
         "dragAndDrop": "Dra & slipp",
-        "layout": "Kolonneoppsett"
+        "layout": "Kolonneoppsett",
+        "limitTasks": "Begrens synlige oppgaver"
       },
       "createTask": "Opprett"
     },
@@ -65,6 +66,20 @@
     "taskCard": {
       "showMore": "Vis alle",
       "showLess": "Vis mindre"
+    }
+  },
+
+  "CreateDashboard": {
+    "header": {
+      "title": "Opprett nytt dashboard",
+      "description": "Klikk utenfor boksen for å lukke"
+    },
+    "form": {
+      "label": "Navn",
+      "placeholder": "Navn på dashboard",
+      "submit": "Opprett dashboard",
+      "loadingSubmit": "Creating dashboard...",
+      "cancel": "Cancel"
     }
   },
 

@@ -13,6 +13,7 @@ export const Modal = ({
   replaceUrl = false,
   url = "",
   closeButton,
+  className = "",
 }: {
   children: ReactNode | ReactNode[] | ReactElement | ReactElement[];
   onClose: () => void;
@@ -20,6 +21,7 @@ export const Modal = ({
   replaceUrl?: boolean;
   url?: string;
   closeButton?: Boolean;
+  className?: string;
 }) => {
   const [isModalOpen, setModalOpen] = useState(true);
   const modalRef = useRef<HTMLDialogElement | null>(null);
@@ -69,7 +71,7 @@ export const Modal = ({
   }, [isModalOpen, modalRef.current]);
   return (
     <dialog
-      className="modal"
+      className={`modal ${className}`}
       id="modal"
       ref={modalRef}
       onKeyDown={handleKeyDown}

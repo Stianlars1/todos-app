@@ -16,7 +16,7 @@ export const DraggableColumn = ({
 }: {
   columnObject: ColumnListDND;
   title: string;
-  userSettings: UserSettingsDTO | undefined;
+  userSettings: UserSettingsDTO | null;
 }) => {
   const [draggableColumnEditActive, setDraggableColumnEditActive] =
     useState(false);

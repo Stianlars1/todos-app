@@ -1,10 +1,12 @@
+import { getDashboards } from "@/app/actions/dashboards/fetch";
+import { getUserPreferences } from "@/app/actions/preferences/fetch";
 import {
-  getAllTodos,
+  getAllTodosByActiveDashboard,
   getCategorizedTodos,
   getOverdueTodos,
   getUpcomingDeadlinesTodos,
 } from "@/app/actions/todos/fetch";
-import { getUserDetails } from "@/app/actions/user/userApi";
+import { getUserSettings } from "@/app/actions/user/userApi";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { ToastContainer } from "@/components/ui/toast/toast";
@@ -15,15 +17,11 @@ import { Suspense } from "react";
 import { DashboardTabs } from "./components/dashboardTabs/dashboardTabs";
 import { ProgressSummaryContainer } from "./components/progressSummary/progressSummary";
 import { Taskboard } from "./components/taskboard/taskboard";
-import {
-  getCategorizedTodosTexts,
-  getTaskboardTexts,
-} from "./components/taskboard/utils";
-
+import { getCategorizedTodosTexts } from "./components/taskboard/utils";
+import styles from "./css/dashboard.module.css";
 export const DashboardPage = async () => {
-  const { data: userDetails, error, isError } = await getUserDetails();
+  const { data: userSettings, error, isError } = await getUserSettings();
   const categorizedTexts = await getCategorizedTodosTexts();
-  const taskboardTexts = await getTaskboardTexts();
   const {
     data: taskResponse,
     isError: isError2,
@@ -33,27 +31,33 @@ export const DashboardPage = async () => {
     data: allTasks,
     isError: isError3,
     error: error3,
-  } = await getAllTodos<TodoDTO[]>();
+  } = await getAllTodosByActiveDashboard<TodoDTO[]>();
   const { data: upcomingDeadlines } = await getUpcomingDeadlinesTodos<
     ApiResponse<SoonDueTodosDTO>
   >();
   const { data: overdueTasks } = await getOverdueTodos<
     ApiResponse<ApiResponse<TodoDTO[]>>
   >();
+
+  const { data: dashboards } = await getDashboards();
+  const { data: userPreferences } = await getUserPreferences();
+
   return (
     <Suspense fallback={<SuspenseFallback fixed={false} />}>
-      <div className="dashboard">
-        <ErrorMessage isError={isError} errorMessage={error} />
+      <div className={`dashboard ${styles.dashboard}`}>
+        <ErrorMessage closeButton isError={isError} errorMessage={error} />
 
-        <DashboardTabs userDetails={userDetails}>
+        <DashboardTabs
+          userPreferences={userPreferences}
+          dashboards={dashboards}
+          userSettings={userSettings}
+        >
           <Taskboard
             isError={isError2}
             error={error2}
             taskResponse={taskResponse}
             categorizedTexts={categorizedTexts}
-            taskboardTexts={taskboardTexts}
-            userSettings={userDetails?.settings}
-            key={JSON.stringify(userDetails?.settings)}
+            userSettings={userSettings}
           />
           <ProgressSummaryContainer
             upcomingDeadlines={upcomingDeadlines}
@@ -61,7 +65,7 @@ export const DashboardPage = async () => {
             isError={isError3}
             tasks={allTasks}
             overdueTasks={overdueTasks}
-            userSettings={userDetails?.settings}
+            userSettings={userSettings}
           />
         </DashboardTabs>
       </div>

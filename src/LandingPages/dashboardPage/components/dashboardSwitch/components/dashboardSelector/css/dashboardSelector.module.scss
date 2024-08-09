@@ -1,0 +1,34 @@
+.dashboardSelector {
+  position: fixed;
+  top: calc(var(--nav-height) + 0.5rem);
+  left: calc(var(--sidebar-width) + 1rem);
+  margin-bottom: 1rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .select {
+    padding: 0;
+    border: 0;
+
+    background: transparent;
+    border-bottom: 2px solid hsl(var(--border));
+    color: hsl(var(--muted-foreground));
+    cursor: pointer;
+
+    .option {
+      padding: 1rem;
+    }
+
+    &::selection {
+      color: red;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dashboardSelector {
+    left: 1rem;
+  }
+}

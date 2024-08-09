@@ -33,10 +33,10 @@ export const TodayLayout = ({
       </ul>
 
       {/* <TaskviewerContainer userSettings={userSettings} /> */}
-      <ShowTaskModalContainer
+      {/* <ShowTaskModalContainer
         userSettings={userSettings ?? undefined}
         redirectUrl="today"
-      />
+      /> */}
     </div>
   );
 };

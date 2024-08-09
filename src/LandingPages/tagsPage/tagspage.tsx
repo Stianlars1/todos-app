@@ -18,10 +18,10 @@ export const TagsPage = async () => {
 
       {/* <TagsContainer userSettings={userSettings ?? undefined} tags={tags} /> */}
       <TagsHero tasksAndTags={TasksAndTags} />
-      <ShowTaskModalContainer
+      {/* <ShowTaskModalContainer
         redirectUrl="tags"
         userSettings={userSettings ?? undefined}
-      />
+      /> */}
 
       <ToastContainer />
     </div>

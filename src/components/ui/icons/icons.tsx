@@ -312,7 +312,7 @@ export const IconCalender = () => {
     </svg>
   );
 };
-export const IconAdd = () => {
+export const IconAdd = ({ className = "" }: { className?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -324,6 +324,7 @@ export const IconAdd = () => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
     >
       <path d="M5 12h14"></path>
       <path d="M12 5v14"></path>

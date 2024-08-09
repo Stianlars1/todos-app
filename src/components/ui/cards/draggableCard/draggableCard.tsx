@@ -5,7 +5,6 @@ import { Priority } from "@/app/actions/todos/types";
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
-import { useBrowserInfo } from "@/hooks/useBrowserInfo";
 import { StatusCodes } from "@/types/todo/types";
 import { TodoDTO } from "@/types/types";
 import { useRouter } from "next/navigation";
@@ -14,15 +13,16 @@ import { MdRemoveCircle } from "react-icons/md";
 import { ArrowUpDownIcon } from "../../icons/icons";
 import { Tag } from "../../tag/tags";
 import { toast } from "../../toast/toast";
-import "./css/revealCard.css";
+import "./css/draggableCard.css";
 interface DraggableCardProps {
   task: TodoDTO;
   className?: string;
   categoryCode: StatusCodes;
   style?: CSSProperties;
   sortManual?: boolean;
-  userSettings?: UserSettingsDTO | undefined;
+  userSettings?: UserSettingsDTO | null;
   draggableColumnEditActive?: boolean;
+  isMobile?: boolean;
   deleteTaskFromTasklist?: (idToRemove: number) => void;
   resetTaskList?: () => void;
 }
@@ -34,10 +34,10 @@ export const DraggableCard = ({
   style,
   userSettings,
   draggableColumnEditActive = false,
+  isMobile,
   deleteTaskFromTasklist,
   resetTaskList,
 }: DraggableCardProps) => {
-  const { isMobile, isMobileSize } = useBrowserInfo();
   const [isPerformingOperation, setIsPerformingOperation] = useState(false);
   const { todoId, title, description, priority, tags, content } = task;
   const sortManual = !!userSettings?.sortManual;
@@ -67,6 +67,7 @@ export const DraggableCard = ({
       const permanentlyDelete = await deleteTask(todoId);
 
       if (permanentlyDelete.isError) {
+        console.log("Error:", permanentlyDelete.error);
         toast.error("Error deleting task", "bottomRight");
         setIsPerformingOperation(false);
         resetTaskList && resetTaskList();
@@ -121,7 +122,7 @@ export const DraggableCard = ({
           : " "
       }
 
-      ${isMobile || isMobileSize ? "reveal-card-mobile" : "reveal-card-desktop"}
+      ${isMobile ? "reveal-card-mobile" : "reveal-card-desktop"}
       
       ${isPerformingOperation ? "reveal-card-permanently-deleting" : " "}`}
       data-group={TASKCARD_GROUP}
@@ -138,7 +139,7 @@ export const DraggableCard = ({
       <div className="reveal-card__wrapper">
         <div className="reveal-card__wrapper__header">
           <h3>{title}</h3>
-          <p>{description}</p>
+          {!isMobile && <p>{description}</p>}
         </div>
         <div className="reveal-card__wrapper__badges">
           <Tag variant="priority" priority={priority as Priority} />
@@ -154,7 +155,7 @@ export const DraggableCard = ({
         )}
       </div>
 
-      {(!isColumnLayout || isMobile || isMobileSize) && sortManual && (
+      {(!isColumnLayout || isMobile) && sortManual && (
         <ArrowUpDownIcon
           id={DRAGGABLE_CARD_ID}
           data-label="REVEAL_CARD_DRAG_HANDLE"

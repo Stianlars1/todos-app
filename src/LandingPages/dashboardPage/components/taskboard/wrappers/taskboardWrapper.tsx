@@ -25,7 +25,6 @@ import { toast } from "@/components/ui/toast/toast";
 import { useBrowserInfo } from "@/hooks/useBrowserInfo";
 import { TodoDTO } from "@/types/types";
 import { useEffect } from "react";
-import { ShowTaskModalContainer } from "../../showTaskModal/showTaskModal";
 import columnWrapper from "../css/columnWrapper.module.css";
 import { DraggableColumn } from "../draggables/draggableColumn";
 import { ColumnListDND } from "../types";
@@ -42,7 +41,7 @@ export const TaskboardWrapper = ({
   categorizedTexts,
 }: {
   tasks: CategorizedTodosDTO;
-  userSettings: UserSettingsDTO | undefined;
+  userSettings: UserSettingsDTO | null;
   categorizedTexts: { [key in StatusCodes]: string };
 }) => {
   const { isMobile } = useBrowserInfo();
@@ -216,7 +215,7 @@ export const TaskboardWrapper = ({
         ))}
       </ul>
 
-      <ShowTaskModalContainer userSettings={userSettings} />
+      {/* <ShowTaskModalContainer userSettings={userSettings} /> */}
     </>
   );
 };

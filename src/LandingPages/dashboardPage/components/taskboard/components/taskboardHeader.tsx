@@ -1,22 +1,24 @@
+import { GetUserPreferencesDTO } from "@/app/actions/preferences/types";
 import { UserSettingsDTO } from "@/app/actions/user/types";
+import { DashboardType } from "../../dashboardSwitch/switchUtils";
 import styles from "../css/taskboardHeader.module.css";
 import { TaskboardSettings } from "./taskboardSettings";
-export const TaskboardHeader = async ({
-  taskboardHeaderTexts,
+export const TaskboardHeader = ({
   userSettings,
+  dashboards,
+  userPreferences,
 }: {
-  taskboardHeaderTexts: { title: string; sortSwitchTitle: string };
-  userSettings: UserSettingsDTO | undefined;
+  userSettings: UserSettingsDTO | null;
+  dashboards: DashboardType[] | null;
+  userPreferences: GetUserPreferencesDTO | null;
 }) => {
   return (
-    <>
-      <header className={styles.taskboardHeader}>
-        <h1>{taskboardHeaderTexts.title}</h1>
-        <TaskboardSettings
-          sortSwitchTitle={taskboardHeaderTexts.sortSwitchTitle}
-          userSettings={userSettings}
-        />
-      </header>
-    </>
+    <header className={styles.taskboardHeader}>
+      <TaskboardSettings
+        userPreferences={userPreferences}
+        dashboards={dashboards}
+        userSettings={userSettings}
+      />
+    </header>
   );
 };

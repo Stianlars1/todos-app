@@ -1,0 +1,36 @@
+.createDashboardModal {
+  padding: 1rem;
+
+  background-color: hsl(var(--card));
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 1.2rem;
+    font-size: 0.875rem;
+    max-width: calc(100% - 45px);
+  }
+
+  .CTA {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal {
+    min-width: 0;
+    min-height: 0;
+    align-self: center;
+    width: max-content !important;
+    margin: 0 auto;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+}

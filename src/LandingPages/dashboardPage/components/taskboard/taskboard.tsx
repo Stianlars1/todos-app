@@ -6,22 +6,19 @@ import {
   DUE_SOON_KEY,
   StatusCodes,
 } from "@/types/todo/types";
-import { TaskboardHeader } from "./components/taskboardHeader";
 import styles from "./css/taskboard.module.css";
-import { GetCategorizedTodosTexts, GetTaskboardTexts } from "./utils";
+import { GetCategorizedTodosTexts } from "./utils";
 import { TaskboardWrapper } from "./wrappers/taskboardWrapper";
 
-export const Taskboard = ({
+export const Taskboard = async ({
   userSettings,
   categorizedTexts,
-  taskboardTexts,
   taskResponse,
   isError,
   error,
 }: {
-  userSettings: UserSettingsDTO | undefined;
+  userSettings: UserSettingsDTO | null;
   categorizedTexts: GetCategorizedTodosTexts;
-  taskboardTexts: GetTaskboardTexts;
   taskResponse: CategorizedTodosResponseDTO | null;
   isError: boolean;
   error: string;
@@ -41,11 +38,6 @@ export const Taskboard = ({
 
   return (
     <div id="taskboard" className={`${styles.taskboard} taskboard`}>
-      <TaskboardHeader
-        taskboardHeaderTexts={taskboardTexts.header}
-        userSettings={userSettings}
-      />
-
       {taskResponse?.data && (
         <TaskboardWrapper
           userSettings={userSettings}

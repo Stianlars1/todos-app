@@ -46,7 +46,7 @@
 }
 .taskViewer .bottomButtons .delete {
   background-color: hsl(var(--destructive));
-  text: hsl(var(--destructive-foreground));
+  color: hsl(var(--destructive-foreground));
 }
 .taskViewer .customSelect {
   font-size: 1rem;

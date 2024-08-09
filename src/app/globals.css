@@ -1,6 +1,7 @@
 /* --background: 20 14.3% 4.1%; dark */
 html body {
   --nav-height: 50px;
+  --sidebar-width: 15rem;
 }
 
 html:root {
@@ -160,7 +161,8 @@ html {
 }
 
 @media screen and (max-width: 768px) {
-  :root {
+  :root,
+  body {
     --main-padding: calc(2rem + 4px) 24px;
     --footer-height: 231px;
   }
@@ -169,6 +171,7 @@ html {
     --sidebar-width: 20rem !important;
   }
 }
+
 @media screen and (min-width: 769px) {
   [data-sidebar-open="true"] {
     --sidebar-width: 11rem;
@@ -177,7 +180,6 @@ html {
     --sidebar-width: calc(1.2rem + 3.5rem);
   }
 }
-
 .modal-root {
   position: fixed;
   top: 0;

@@ -17,6 +17,8 @@ export const API_USER_UPDATE_PASSWORD_URL =
 
 // Todos
 export const API_TODOS_URL = "https://app.taskbuddy.dev/api/todos"; // GET
+export const API_TODOS_BY_ACTIVE_DASHBOARD =
+  "https://app.taskbuddy.dev/api/todos/by-active-dashboard"; // GET
 export const API_TASKS_SEARCH = "https://app.taskbuddy.dev/api/todos/search"; // GET
 export const API_TODOS_UPCOMING_DEADLINES_URL =
   "https://app.taskbuddy.dev/api/todos/upcoming-deadlines"; // GET
@@ -57,6 +59,9 @@ export const API_PASSWORD_FORGOT_URL =
   "https://app.taskbuddy.dev/api/user/forgot-password";
 export const API_PASSWORD_RESET_URL =
   "https://app.taskbuddy.dev/api/user/reset-password";
+
+// DASHBOARDS
+export const API_DASHBOARD_URL = "https://app.taskbuddy.dev/api/dashboards";
 
 // Frontend URLS
 export const ROOT_URL = "/";

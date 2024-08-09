@@ -13,6 +13,7 @@ export interface TodoDTO {
   content?: string;
   tags: TagsType;
   sortIndex: number;
+  dashboardIds: number[];
 }
 
 export interface SoonDueTodosDTO {

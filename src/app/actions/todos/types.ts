@@ -32,6 +32,7 @@ export interface CreateTodoDTO {
   content?: string;
   tags?: TagsType;
   timezone?: string;
+  dashboardIds?: number[];
 }
 
 export interface UpdatedTodoDTO extends CreateTodoDTO {}

@@ -19,6 +19,7 @@ import { TextEditor } from "@/components/ui/richTextEditor/richTextEditor";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { Tag } from "@/components/ui/tag/tags";
 import { toast } from "@/components/ui/toast/toast";
+import { DashboardType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
 import { TodoDTO } from "@/types/types";
 import { arraysEqual, formatDate, normalizeDate } from "@/utils/utils";
 import { Button } from "@stianlarsen/react-ui-kit";
@@ -28,7 +29,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { UpdateTaskButton } from "./components/updateTaskButton";
 import styles from "./css/taskviewer.module.scss";
-
+const DASHBOARD_DEFAULT_NAME = "Default";
 type UPDATE_TASK = {
   isUpdating: boolean;
   isError: boolean | undefined;
@@ -49,12 +50,14 @@ export const TaskViewer = ({
   taskId,
   userSettings,
   redirectUrl = "",
+  dashboards,
   onTaskLoaded,
   onClose,
 }: {
   taskId: string | null;
   userSettings: UserSettingsDTO | null;
   redirectUrl: string;
+  dashboards: DashboardType[] | null;
   onTaskLoaded?: () => void;
   onClose?: () => void;
 }) => {
@@ -74,6 +77,14 @@ export const TaskViewer = ({
 
   const [markAsCompletedState, setMarkAsCompletedState] = useState<UPDATE_TASK>(
     { isUpdating: false, isError: undefined, isSuccess: undefined }
+  );
+
+  const [activeDashboardId, setActiveDashboardId] = useState<
+    number | undefined
+  >(userSettings?.activeDashboardId);
+
+  const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
+    activeDashboardId ? [activeDashboardId] : []
   );
 
   const router = useRouter();
@@ -364,6 +375,62 @@ export const TaskViewer = ({
     );
   };
 
+  const TaskDashboard = () => {
+    console.log("activeDashboardId", activeDashboardId);
+    console.log(
+      "dashboard",
+      dashboards?.find((d) => d.dashboardId === userSettings?.activeDashboardId)
+    );
+
+    const handleDashboardSelectsOnChange = (
+      e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+      const options = e.target.options;
+      const selectedIds: number[] = [];
+
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].selected) {
+          selectedIds.push(parseInt(options[i].value, 10));
+        }
+      }
+
+      setSelectedDashboardIds(selectedIds);
+      if (taskDTO && taskDTO.dashboardIds) {
+        setHasUnsavedChanges(!arraysEqual(taskDTO?.dashboardIds, selectedIds));
+      } else {
+        setHasUnsavedChanges(true);
+      }
+    };
+
+    console.log("SelectedDashboardIds", selectedDashboardIds);
+
+    return (
+      <>
+        <select
+          id="dashboardIds"
+          name="dashboardIds"
+          multiple
+          value={selectedDashboardIds.map(String)}
+          onChange={handleDashboardSelectsOnChange}
+        >
+          <>
+            {dashboards &&
+              dashboards.map((dashboard) => {
+                return (
+                  <option
+                    key={dashboard.dashboardId}
+                    value={dashboard.dashboardId}
+                  >
+                    {dashboard.name}
+                  </option>
+                );
+              })}
+          </>
+        </select>
+      </>
+    );
+  };
+
   const handleCancel = () => {
     if (taskDTO) {
       setState(mapDTOtoUpdatedTodoDTO(taskDTO));
@@ -482,6 +549,13 @@ export const TaskViewer = ({
               {state.priority !== undefined && (
                 <TaskPriority key={state.priority} />
               )}
+
+              <CustomInputLabelWrapper>
+                <CustomInputLabel>Dashboard</CustomInputLabel>
+
+                <TaskDashboard />
+              </CustomInputLabelWrapper>
+
               <CustomInputLabelWrapper>
                 <CustomInputLabel htmlFor="dueDate">
                   {text("formDueDate")}

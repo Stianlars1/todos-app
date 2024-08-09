@@ -47,6 +47,6 @@
     grid-template-areas: "navbar" "main";
   }
   .grid-container__main {
-    padding: 1rem;
+    padding: calc(2rem + 4px) 1rem;
   }
 }/*# sourceMappingURL=gridContainer.css.map */

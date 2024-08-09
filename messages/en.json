@@ -43,7 +43,8 @@
       "sortSwitch": "Sort manually",
       "settings": {
         "dragAndDrop": "Drag & drop",
-        "layout": "Column Layout"
+        "layout": "Column Layout",
+        "limitTasks": "Limit visible tasks"
       },
       "createTask": "Create"
     },
@@ -75,6 +76,20 @@
     "login": {
       "title": "Login",
       "loadingTitle": "Logging in..."
+    }
+  },
+
+  "CreateDashboard": {
+    "header": {
+      "title": "Create dashboard",
+      "description": "Click outside the modal to close it."
+    },
+    "form": {
+      "label": "Dashboard name",
+      "placeholder": "Dashboard name",
+      "submit": "Create dashboard",
+      "loadingSubmit": "Creating dashboard...",
+      "cancel": "Cancel"
     }
   },
 

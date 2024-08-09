@@ -11,3 +11,9 @@
 .taskboard {
   animation: slideDown 0.35s ease-in-out;
 }
+
+@media screen and (max-width: 768px) {
+  .taskboard {
+    overflow: scroll;
+  }
+}

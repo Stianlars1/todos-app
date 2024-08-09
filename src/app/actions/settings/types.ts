@@ -24,10 +24,3 @@ export enum SortKeys {
   PRIORITY = "sortByPriority",
   DUE_DATE = "sortByDueDate",
 }
-
-// The data stored in the database
-// each value in each columns coul dhave either _desc or _asc appended to it
-
-// #,user_id,sidebar_open,sort_backlog,sort_inprogresstasks,sort_completedtasks,sort_by_updated_at,sort_by_created_at,sort_by_title,sort_by_priority,sort_by_due_date,sort_completed_tasks,sort_in_progress_tasks
-// 1,33,false,updatedAt_desc,updatedAt_desc,updatedAt_desc,updatedAt_desc,createdAt_desc,title_asc,priority_asc,dueDate_asc,,
-// 2,20,false,updatedAt_desc,updatedAt_desc,updatedAt_desc,updatedAt_desc,createdAt_desc,title_asc,priority_asc,dueDate_asc,,

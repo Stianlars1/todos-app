@@ -1,12 +1,16 @@
-import { getUserPreferences } from "@/app/actions/preferences/fetch";
+"use client";
+import { GetUserPreferencesDTO } from "@/app/actions/preferences/types";
 import ContextButton from "@/components/ui/buttons/contextButton/contextButton";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "use-intl";
 import { TriggerFilterbutton } from "../settingsContextButton/taskBoardSettingsTriggerButton";
 import { FilterTaskColumn } from "./FilterTaskColumn";
 import styles from "./filtering.module.css";
-export const FilterTasksWrapper = async () => {
-  const { data: userPreferences } = await getUserPreferences();
-  const text = await getTranslations("Taskboard.filter");
+export const FilterTasksWrapper = ({
+  userPreferences,
+}: {
+  userPreferences: GetUserPreferencesDTO | null;
+}) => {
+  const text = useTranslations("Taskboard.filter");
 
   if (!userPreferences) return;
   return (

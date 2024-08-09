@@ -7,7 +7,7 @@ import { SwitchButton } from "@/components/ui/buttons/switch/switchButton";
 export const TaskboardSortManualSwitchButton = ({
   userSettings,
 }: {
-  userSettings: UserSettingsDTO | undefined;
+  userSettings: UserSettingsDTO | null;
 }) => {
   const isChecked = userSettings?.sortManual;
   const handleSort = async () => {

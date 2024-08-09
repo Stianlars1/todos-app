@@ -18,6 +18,8 @@ export const getCreateTodoFormData = (formData: FormData): CreateTodoDTO => {
       ? (formData.get("tags") as string).split(",")
       : undefined,
     timezone: getLocalTimezone(),
+    dashboardIds:
+      [parseInt(formData.get("dashboardIds") as string)] || undefined,
   };
 };
 

@@ -22,7 +22,10 @@ export const GridSidebar = async () => {
 
       {/* <GridSidebarFooter userDetails={userDetails.data} /> */}
 
-      <GridSidebarToggle userDetails={userDetails.data} />
+      <GridSidebarToggle
+        key={JSON.stringify(userDetails.data?.settings)}
+        userDetails={userDetails.data}
+      />
       <Backdrop />
     </aside>
   );

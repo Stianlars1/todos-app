@@ -54,7 +54,7 @@
 
     .delete {
       background-color: hsl(var(--destructive));
-      text: hsl(var(--destructive-foreground));
+      color: hsl(var(--destructive-foreground));
     }
   }
 

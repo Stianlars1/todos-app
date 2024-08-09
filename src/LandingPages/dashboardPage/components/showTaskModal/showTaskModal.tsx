@@ -5,13 +5,16 @@ import { TaskViewer } from "@/components/ui/taskviewer/taskviewer/taskviewer";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { DashboardType } from "../dashboardSwitch/switchUtils";
 import styles from "./css/showTaskModal.module.css";
 export const ShowTaskModalContainer = ({
   userSettings,
+  dashboards,
   redirectUrl = "",
 }: {
   redirectUrl?: string;
-  userSettings: UserSettingsDTO | undefined;
+  userSettings: UserSettingsDTO | null;
+  dashboards: DashboardType[] | null;
 }) => {
   const selectedTaskId = useSelectedTaskId();
   const pathName = usePathname();
@@ -47,6 +50,7 @@ export const ShowTaskModalContainer = ({
                 redirectUrl={redirectUrl}
                 taskId={selectedTaskId}
                 userSettings={userSettings}
+                dashboards={dashboards}
                 onTaskLoaded={handleTaskLoaded}
                 onClose={handleCloseModal}
               />

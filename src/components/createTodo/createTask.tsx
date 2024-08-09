@@ -1,6 +1,8 @@
 "use client";
 import { createTodo } from "@/app/actions/todos/fetch";
 import { Priority, StatusId } from "@/app/actions/todos/types";
+import { UserSettingsDTO } from "@/app/actions/user/types";
+import { DashboardType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useFormState } from "react-dom";
@@ -17,11 +19,29 @@ import { toast } from "../ui/toast/toast";
 import { ConfirmCreateTaskButton } from "./components/createTaskButton";
 import "./css/createTask.css";
 
-export const CreateTask = ({ onClose }: { onClose: () => void }) => {
+const DASHBOARD_DEFAULT_NAME = "Default";
+export const CreateTask = ({
+  userSettings,
+  dashboards,
+  onClose,
+}: {
+  userSettings: UserSettingsDTO | null;
+  dashboards: DashboardType[] | null;
+  onClose: () => void;
+}) => {
+  console.log("dashboards", dashboards);
+
   const [state, dispatch] = useFormState(createTodo, undefined);
   const [content, setContent] = useState<string>("");
   const [statusId, setStatusId] = useState<StatusId>(StatusId.CREATED);
   const [priority, setPriority] = useState<Priority>(Priority.MEDIUM);
+  const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
+    []
+  );
+
+  const [activeDashboardId, setActiveDashboardId] = useState<
+    number | undefined
+  >(userSettings?.activeDashboardId);
   const text = useTranslations("general");
   const createText = useTranslations("Create-task");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -29,6 +49,8 @@ export const CreateTask = ({ onClose }: { onClose: () => void }) => {
   const handleInputChange = () => {
     setHasUnsavedChanges(true);
   };
+
+  console.log("userSettings", userSettings?.activeDashboardId);
 
   const SelectStatus = () => {
     const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -81,6 +103,55 @@ export const CreateTask = ({ onClose }: { onClose: () => void }) => {
         <option value={Priority.MEDIUM}>{text("tasks.priority.MEDIUM")}</option>
         <option value={Priority.HIGH}>{text("tasks.priority.HIGH")}</option>
       </select>
+    );
+  };
+
+  const TaskDashboard = () => {
+    console.log("activeDashboardId", activeDashboardId);
+    console.log(
+      "dashboard",
+      dashboards?.find((d) => d.dashboardId === userSettings?.activeDashboardId)
+    );
+
+    const handleDashboardSelectsOnChange = (
+      e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+      const options = e.target.options;
+      const selectedIds: number[] = [];
+
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].selected) {
+          selectedIds.push(parseInt(options[i].value, 10));
+        }
+      }
+
+      setSelectedDashboardIds(selectedIds);
+    };
+
+    return (
+      <>
+        <select
+          id="dashboardIds"
+          name="dashboardIds"
+          multiple
+          value={selectedDashboardIds.map(String)}
+          onChange={handleDashboardSelectsOnChange}
+        >
+          <>
+            {dashboards &&
+              dashboards.map((dashboard) => {
+                return (
+                  <option
+                    key={dashboard.dashboardId}
+                    value={dashboard.dashboardId}
+                  >
+                    {dashboard.name}
+                  </option>
+                );
+              })}
+          </>
+        </select>
+      </>
     );
   };
 
@@ -145,6 +216,11 @@ export const CreateTask = ({ onClose }: { onClose: () => void }) => {
               </CustomInputLabel>
 
               <TaskPriority />
+            </CustomInputLabelWrapper>
+            <CustomInputLabelWrapper>
+              <CustomInputLabel>Dashboard</CustomInputLabel>
+
+              <TaskDashboard />
             </CustomInputLabelWrapper>
           </div>
           <CustomInputLabelWrapper>
