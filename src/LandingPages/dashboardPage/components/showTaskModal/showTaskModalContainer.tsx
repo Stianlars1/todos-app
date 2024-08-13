@@ -5,7 +5,7 @@ import { TaskViewer } from "@/components/ui/taskviewer/taskviewer/taskviewer";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { DashboardType } from "../dashboardSwitch/switchUtils";
+import { DashboardOnlyTypeDTO } from "../dashboardSwitch/switchUtils";
 import styles from "./css/showTaskModal.module.css";
 export const ShowTaskModalContainer = ({
   userSettings,
@@ -14,7 +14,7 @@ export const ShowTaskModalContainer = ({
 }: {
   redirectUrl?: string;
   userSettings: UserSettingsDTO | null;
-  dashboards: DashboardType[] | null;
+  dashboards: DashboardOnlyTypeDTO[] | null;
 }) => {
   const selectedTaskId = useSelectedTaskId();
   const pathName = usePathname();

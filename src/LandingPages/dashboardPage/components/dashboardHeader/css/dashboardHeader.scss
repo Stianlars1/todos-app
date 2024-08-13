@@ -46,7 +46,20 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .dashboard-header {
+    &__header {
+      &__title {
+        font-size: 0.875rem;
+      }
+
+      &__slash {
+        font-size: 1.5rem;
+      }
+
+      &__activeTab {
+        font-size: 1.5rem;
+      }
+    }
   }
 }

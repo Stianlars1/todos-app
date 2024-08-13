@@ -76,6 +76,16 @@
   height: -moz-fit-content;
   height: fit-content;
 }
+.taskViewer .dashboardSelect {
+  padding: 4px;
+}
+.taskViewer .dashboardSelect .dashboardOption {
+  padding: 4px 5px;
+}
+.taskViewer .dashboardSelectDescription {
+  font-size: 12px;
+  color: hsl(var(--muted-foreground));
+}
 
 .taskBackdrop {
   display: 0;
@@ -191,6 +201,7 @@
 @media screen and (max-width: 768px) {
   .taskViewer {
     left: 0;
+    top: var(--nav-height);
   }
   .taskViewer::after {
     content: "";

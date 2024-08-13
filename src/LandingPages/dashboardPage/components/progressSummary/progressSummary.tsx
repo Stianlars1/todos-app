@@ -6,7 +6,6 @@ import { SoonDueTodosDTO, StatusCode, TodoDTO } from "@/types/types";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { MdAdd, MdArrowCircleLeft } from "react-icons/md";
-import { ShowTaskModalContainer } from "../showTaskModal/showTaskModal";
 import { ProgressSummaryItem } from "./components/progressSummaryItem";
 import { ProgressTaskSummaryItem } from "./components/progressTaskSummaryItem";
 import styles from "./css/progressSummary.module.css";
@@ -41,8 +40,6 @@ export const ProgressSummaryContainer = ({
         <UpcomingDeadlines upcomingDeadlines={upcomingDeadlines?.data} />
 
         <OverdueTasks userSettings={userSettings} overdueTasks={overdueTasks} />
-
-        {/* <ShowTaskModalContainer userSettings={userSettings} /> */}
       </div>
     </>
   );

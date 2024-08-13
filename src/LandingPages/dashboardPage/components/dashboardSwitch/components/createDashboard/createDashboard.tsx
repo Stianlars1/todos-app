@@ -14,24 +14,32 @@ import { toast } from "@/components/ui/toast/toast";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { CreateDashboardConfirmButton } from "./components/CreateDashboardConfirmButton";
 import styles from "./css/createDashboard.module.css";
 
 export const CreateDashboard = ({ onClose }: { onClose: () => void }) => {
   const text = useTranslations("CreateDashboard");
   const [newName, setNewName] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [nameAlreadyExists, setNameAlreadyExists] = useState(false);
   const handleSubmit = async () => {
     setLoading(true);
     const response = await createDashboard(newName);
 
     if (response.isError) {
-      console.error("Error creating dashboard", response.error);
+      const alreadyExists = doesDashboardNameAlreadyExist(response.error);
+      console.error("Error creating dashboard", response);
+      console.error("alreadyExists", alreadyExists);
+
       toast.error("Error creating dashboard", "bottomRight");
       setLoading(false);
+      setNameAlreadyExists(true);
     }
 
     if (response.isSuccess && response.data) {
+      if (nameAlreadyExists) {
+        setNameAlreadyExists(false);
+      }
       // update active dashboard id
       const updateResponse = await updateUserSettings({
         activeDashboardId: response.data.dashboardId,
@@ -67,17 +75,29 @@ export const CreateDashboard = ({ onClose }: { onClose: () => void }) => {
               <CustomInputLabelWrapper>
                 <CustomInputLabel>{text("form.label")}</CustomInputLabel>
                 <CustomInput
+                  width="100%"
                   type="text"
                   placeholder={text("form.placeholder")}
                   onChange={(event) => setNewName(event.target.value)}
                 />
+
+                {nameAlreadyExists && (
+                  <ul>
+                    <li className={styles.errorMessageLi}>
+                      {text("form.dashboardNameAlreadyExists")}
+                    </li>
+                  </ul>
+                )}
               </CustomInputLabelWrapper>
             </FormContentWrapper>
 
             <div className={styles.CTA}>
-              <Button type="button" onClick={handleSubmit} variant="primary">
-                {text("form.submit")}
-              </Button>
+              <CreateDashboardConfirmButton
+                title={text("form.submit")}
+                loadingTitle={text("form.loadingSubmit")}
+                onClick={handleSubmit}
+                pending={loading}
+              />
               <Button onClick={onClose} variant="secondary">
                 {text("form.cancel")}
               </Button>
@@ -87,4 +107,14 @@ export const CreateDashboard = ({ onClose }: { onClose: () => void }) => {
       </Modal>
     </>
   );
+};
+
+const doesDashboardNameAlreadyExist = (error: any) => {
+  switch (error) {
+    case "Dashboard name already in use. Please choose a different name.":
+      return true;
+
+    default:
+      return false;
+  }
 };

@@ -13,6 +13,7 @@ import {
   getAuthHeaders,
 } from "@/utils/fetch/fetch";
 import {
+  API_DASHBOARD_UPDATE_ID_URL,
   API_PROFILE_PICTURES_URL,
   API_USER_SETTINGS_URL,
   API_USER_UPDATE_PASSWORD_URL,
@@ -48,6 +49,23 @@ export const updateUserSettings = async (
     };
   }
 };
+export const updateActiveDashboardId = async (
+  dashboardId: number
+): Promise<boolean> => {
+  const URL = `${API_DASHBOARD_UPDATE_ID_URL}?dashboardId=${dashboardId}`;
+  const response = await fetch(URL, {
+    method: HTTP_REQUEST.PUT,
+    headers: await getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    console.error("Failed to update active dashboard");
+    return false;
+  } else {
+    return true;
+  }
+};
+
 export const uploadProfilePicture = async (
   _state: unknown,
   formDataArgument: FormData

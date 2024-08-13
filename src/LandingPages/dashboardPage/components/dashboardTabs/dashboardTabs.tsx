@@ -7,13 +7,13 @@ import {
   DashboardHeader,
   OVERVIEW_TAB_INDEX,
 } from "../dashboardHeader/dashboardHeader";
-import { DashboardType } from "../dashboardSwitch/switchUtils";
+import { DashboardOnlyType } from "../dashboardSwitch/switchUtils";
 import { TaskboardHeader } from "../taskboard/components/taskboardHeader";
 
 interface DashboardTabsProps {
   children: ReactElement | ReactElement[];
   userSettings: UserSettingsDTO | null;
-  dashboards: DashboardType[] | null;
+  dashboards: DashboardOnlyType[] | null;
   userPreferences: GetUserPreferencesDTO | null;
 }
 

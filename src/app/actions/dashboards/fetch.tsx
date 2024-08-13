@@ -1,18 +1,33 @@
 "use server";
 
 import { CacheKeys } from "@/app/lib/cache/keys";
-import { DashboardTypeDTO } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import {
+  DashboardOnlyTypeDTO,
+  DashboardTypeDTO,
+} from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
 import { customFetch } from "@/utils/fetch/customFetch";
 import { HTTP_REQUEST, getAuthHeaderOnly } from "@/utils/fetch/fetch";
-import { API_DASHBOARD_URL, API_USER_SETTINGS_URL } from "@/utils/urls";
+import {
+  API_DASHBOARD_ONLY_URL,
+  API_DASHBOARD_URL,
+  API_USER_SETTINGS_URL,
+} from "@/utils/urls";
 import { UserSettingsDTO } from "../user/types";
 import { getUserId } from "../user/userUtils";
 
 export const getDashboards = async () => {
-  const dashboardUrl = API_DASHBOARD_URL;
-
   return await customFetch<DashboardTypeDTO[]>({
-    url: dashboardUrl,
+    url: API_DASHBOARD_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+      headers: await getAuthHeaderOnly(),
+    },
+    cacheKey: CacheKeys.DASHBOARDS,
+  });
+};
+export const getOnlyDashboards = async () => {
+  return await customFetch<DashboardOnlyTypeDTO[]>({
+    url: API_DASHBOARD_ONLY_URL,
     options: {
       method: HTTP_REQUEST.GET,
       headers: await getAuthHeaderOnly(),

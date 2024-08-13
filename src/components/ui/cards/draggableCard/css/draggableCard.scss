@@ -50,6 +50,7 @@
         min-width: 0;
         user-select: text;
         cursor: text;
+        // pointer-events: none; // delete
       }
       p {
         font-size: 12px;
@@ -57,7 +58,7 @@
         line-height: 1.1;
         color: hsl(var(--muted-foreground));
         user-select: text;
-
+        // pointer-events: none; // delete
         cursor: text;
       }
     }
@@ -67,6 +68,7 @@
       gap: 0.5rem;
       flex-wrap: wrap;
       user-select: text;
+      // pointer-events: none; // delete
 
       cursor: text;
     }

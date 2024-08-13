@@ -12,17 +12,20 @@
   transform-style: preserve-3d;
 }
 .signupFirstSection3d .svgWrapper .svg {
-  min-width: 100%;
-  contain: strict;
-  min-height: 100%;
-  transform: translateX(200%) translateY(100%) scale(3) rotateX(45deg) rotateY(45deg) rotate(324deg);
+  max-width: 50%;
+  max-height: 50%;
+  transform: scale(0.7) translateX(0%) translateY(0) rotateX(45deg) rotateY(37deg) rotate(324deg);
   transform-origin: bottom right;
   backface-visibility: hidden;
+  border-radius: 1rem;
 }
-.signupFirstSection3d .svgWrapper .svg .svgElements {
-  width: 100%;
-  height: 100%;
-  transform: scale(0.2) translateY(-150%) translateX(-200%);
+.signupFirstSection3d .svgWrapper .svg::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to bottom, transparent 50%, var(--background) 100%);
 }
 .signupFirstSection3d .svgWrapper .svg .svgElements .navbar {
   width: -moz-fit-content;

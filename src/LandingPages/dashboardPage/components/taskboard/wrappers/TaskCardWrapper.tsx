@@ -36,7 +36,7 @@ import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { DropHere } from "../components/dropHere";
+import { DropHere } from "../components/dropHereWrapper/dropHere";
 import taskWrapperStyles from "../css/taskwrapper.module.css";
 import { DroppableDelete } from "../droppables/droppableDelete";
 import {
@@ -94,6 +94,11 @@ export const TaskCardWrapper = ({
     sortable: true,
     draggingClass: "dragging",
     touchDraggingClass: "dragging",
+    scrollBehavior: {
+      x: 0.5,
+      y: 0.5,
+      scrollOutside: true,
+    },
     dragHandle:
       !isColumnLayout && sortManual
         ? ".reveal-card-sort-manual-row-layout-handle"
@@ -102,7 +107,6 @@ export const TaskCardWrapper = ({
         : isMobileSize && sortManual
         ? ".reveal-card-sort-manual-row-layout-handle"
         : undefined,
-
     draggable: (el) => {
       return (
         el.attributes.getNamedItem("data-group")?.value == TASKCARD_GROUP &&
@@ -112,6 +116,7 @@ export const TaskCardWrapper = ({
 
     // dragHandle: ".reveal-card",
     handleDragstart: (data) => {
+      console.log("handleDragstart");
       if (!parent.current) return;
       handleDragstart(data);
 
@@ -120,7 +125,9 @@ export const TaskCardWrapper = ({
       }
     },
     longTouch: true,
+    longTouchTimeout: 200,
     handleTouchstart: (data) => {
+      console.log("handleTouchstart");
       if (isMobile && sortManual) {
         if (data.e.target instanceof HTMLElement) {
           if (data.e.target.id !== DRAGGABLE_CARD_ID) {
@@ -360,7 +367,7 @@ export const TaskCardWrapper = ({
               />
             ))}
 
-          {tasksList.length === 0 && <DropHere />}
+          {tasksList.length === 0 && <DropHere status={categoryCode} />}
           {tasks &&
             tasks.length > VISIBLE_TASKS &&
             (isMobile || isMobileSize || userSettings?.limitTasks) && (

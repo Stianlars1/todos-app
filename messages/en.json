@@ -79,6 +79,10 @@
     }
   },
 
+  "DashboardsPage": {
+    "title": "Dashboards"
+  },
+
   "CreateDashboard": {
     "header": {
       "title": "Create dashboard",
@@ -89,8 +93,10 @@
       "placeholder": "Dashboard name",
       "submit": "Create dashboard",
       "loadingSubmit": "Creating dashboard...",
-      "cancel": "Cancel"
-    }
+      "cancel": "Cancel",
+      "dashboardNameAlreadyExists": "Dashboard name already exists"
+    },
+    "create_dashboard": "Create dashboard"
   },
 
   "Create-task": {
@@ -193,7 +199,9 @@
       "movedToTrash": "Tasks status updated to deleted",
       "tagsLabel": "Tags (separate tags with comma)",
       "tagsPlaceholder": "Tags",
-      "tagsDescription": "Comma separated tags"
+      "tagsDescription": "Comma separated tags",
+      "formDashboardSelect": "Select dashboard",
+      "formDashboardSelectDescription": "Select the dashboard the task belongs to"
     }
   },
 
@@ -288,6 +296,8 @@
 
   "general": {
     "tasks": {
+      "total_tasks": "Total tasks",
+      "no_tasks": "No tasks yet",
       "priority": {
         "LOW": "Low",
         "MEDIUM": "Medium",
@@ -309,7 +319,9 @@
         "messages": {
           "UNSAVED_CHANGES": "Are you sure you want to close? Unsaved changes will be lost."
         }
-      }
+      },
+      "loading_tasks": "Loading tasks..",
+      "loading_dashboard": "Loading dashboard.."
     },
     "buttons": {
       "save": "Save",

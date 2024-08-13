@@ -38,4 +38,16 @@
 .dashboard-header__header__activeTab span {
   font-size: 2rem !important;
   color: hsl(var(--foreground));
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-header__header__title {
+    font-size: 0.875rem;
+  }
+  .dashboard-header__header__slash {
+    font-size: 1.5rem;
+  }
+  .dashboard-header__header__activeTab {
+    font-size: 1.5rem;
+  }
 }/*# sourceMappingURL=dashboardHeader.css.map */

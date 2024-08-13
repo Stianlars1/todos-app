@@ -121,11 +121,14 @@ export const TaskSearchResponse = ({
     event: React.MouseEvent<HTMLLIElement>,
     todoId: any
   ) => {
+    console.log("openTask");
     const shouldItReturn = shouldReturn(event);
     if (shouldItReturn) {
+      console.log("shouldItReturn");
       return;
     }
 
+    console.log("pushing selectedtask to router");
     event.preventDefault();
     router.push(`${pathName}?selectedTask=${todoId}`, {
       scroll: false,

@@ -24,7 +24,7 @@ export const loginPageMeta: Metadata = {
   openGraph: {
     type: "website",
     url: BASE_URL,
-    title: "TodoBuddy",
+    title: "TaskBuddy",
     description:
       "This is the website for creating and structuring your daily tasks.",
     images: [
@@ -32,7 +32,7 @@ export const loginPageMeta: Metadata = {
         url: `${SUB_URL}/android-chrome-512x512.png`,
         width: 512,
         height: 512,
-        alt: "TodoBuddy logo",
+        alt: "TaskBuddy logo",
       },
       {
         url: `${SUB_URL}/android-chrome-192x192.png`,
@@ -41,11 +41,11 @@ export const loginPageMeta: Metadata = {
         alt: "Todo logo",
       },
     ],
-    siteName: "todobuddy.dev",
+    siteName: "TaskBuddy.dev",
   },
   twitter: {
     card: "app",
-    title: "todobuddy.dev",
+    title: "TaskBuddy.dev",
     description:
       "This is the website for creating and structuring your daily tasks.",
     siteId: "882276408",

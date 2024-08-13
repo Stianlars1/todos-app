@@ -19,11 +19,17 @@ export const API_USER_UPDATE_PASSWORD_URL =
 export const API_TODOS_URL = "https://app.taskbuddy.dev/api/todos"; // GET
 export const API_TODOS_BY_ACTIVE_DASHBOARD =
   "https://app.taskbuddy.dev/api/todos/by-active-dashboard"; // GET
+export const API_TODOS_ALL_BY_DASHBOARDNAME =
+  "https://app.taskbuddy.dev/api/todos/by-dashboard-name"; // GET
 export const API_TASKS_SEARCH = "https://app.taskbuddy.dev/api/todos/search"; // GET
 export const API_TODOS_UPCOMING_DEADLINES_URL =
   "https://app.taskbuddy.dev/api/todos/upcoming-deadlines"; // GET
+export const API_TODOS_UPCOMING_DEADLINES_BY_DASHBOARDNAME_URL =
+  "https://app.taskbuddy.dev/api/todos/upcoming-deadlines-by-dashboard-name"; // GET
 export const API_TODOS_OVERDUE_URL =
   "https://app.taskbuddy.dev/api/todos/overdue"; // GET
+export const API_TODOS_OVERDUE_BY_DASHBOARDNAME_URL =
+  "https://app.taskbuddy.dev/api/todos/overdue-by-dashboard-name"; // GET
 export const API_TODOS_DUE_TODAY_URL =
   "https://app.taskbuddy.dev/api/todos/today"; // GET
 export const API_TODOS_DUE_TODAY_COUNT_URL =
@@ -34,6 +40,8 @@ export const API_TASKS_URL = API_TODOS_URL; // GET
 
 export const API_TODOS_CATEGORIZED_URL =
   "https://app.taskbuddy.dev/api/todos/categorized"; // GET
+export const API_TODOS_CATEGORIZED_BY_DASHBOARDNAME_URL =
+  "https://app.taskbuddy.dev/api/todos/categorized-by-dashboard-name"; // GET
 
 // Tags
 export const API_ALL_TAGS = "https://app.taskbuddy.dev/api/todos/all-tags"; // GET
@@ -62,6 +70,10 @@ export const API_PASSWORD_RESET_URL =
 
 // DASHBOARDS
 export const API_DASHBOARD_URL = "https://app.taskbuddy.dev/api/dashboards";
+export const API_DASHBOARD_ONLY_URL =
+  "https://app.taskbuddy.dev/api/dashboards/only";
+export const API_DASHBOARD_UPDATE_ID_URL =
+  "https://app.taskbuddy.dev/api/dashboards/update-active-dashboard";
 
 // Frontend URLS
 export const ROOT_URL = "/";

@@ -63,6 +63,7 @@ html:root {
   /* --accent: 210 40% 96.1%;
   --accent-foreground: 222.2 47.4% 11.2%; */
   --destructive: 0 84.2% 60.2%;
+  --destructive-text: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
   --warning: 47.9 95.8% 53.1%;
   --warning-foreground: 26 83.3% 14.1%;
@@ -98,6 +99,7 @@ html:root {
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
+    --destructive-text: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --warning: 47.9 95.8% 53.1%;
@@ -117,6 +119,7 @@ html:root {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: inherit;
 }
 
 html body {
@@ -126,6 +129,9 @@ html body {
   overflow-x: hidden;
   color: hsl(var(--foreground));
   background: hsl(var(--background));
+  font-family: "Geist Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
 }
 
 body:has(dialog[open]) {

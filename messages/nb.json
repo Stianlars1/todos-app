@@ -79,8 +79,10 @@
       "placeholder": "Navn på dashboard",
       "submit": "Opprett dashboard",
       "loadingSubmit": "Creating dashboard...",
-      "cancel": "Cancel"
-    }
+      "cancel": "Cancel",
+      "dashboardNameAlreadyExists": "Dashboard med dette navnet eksisterer allerede"
+    },
+    "create_dashboard": "Opprett dashboard"
   },
 
   "Buttons": {
@@ -195,7 +197,9 @@
       "movedToTrash": "Oppgaven ble flyttet til søppelkurven",
       "tagsLabel": "Tags (separer taggene med komma)",
       "tagsPlaceholder": "Tags",
-      "tagsDescription": "Komma separer taggene"
+      "tagsDescription": "Komma separer taggene",
+      "formDashboardSelect": "Velg dashboard",
+      "formDashboardSelectDescription": "Velg dashboard oppgaven tilhører"
     }
   },
 
@@ -293,6 +297,8 @@
 
   "general": {
     "tasks": {
+      "total_tasks": "Antall oppgaver",
+      "no_tasks": "Ingen oppgaver å vise",
       "priority": {
         "LOW": "Lav",
         "MEDIUM": "Middels",
@@ -315,7 +321,9 @@
         "messages": {
           "UNSAVED_CHANGES": "Du har ulagrede endringer. Vil du forlate siden uten å lagre?"
         }
-      }
+      },
+      "loading_tasks": "Laster oppgaver..",
+      "loading_dashboard": "Laster dashboard.."
     },
 
     "buttons": {
@@ -328,5 +336,9 @@
       "update": "Oppdater",
       "loading": "Laster.."
     }
+  },
+
+  "DashboardsPage": {
+    "title": "Mine dashboard"
   }
 }

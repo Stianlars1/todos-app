@@ -87,6 +87,18 @@
     text-overflow: ellipsis;
     height: fit-content;
   }
+
+  .dashboardSelect {
+    padding: 4px;
+    .dashboardOption {
+      padding: 4px 5px;
+    }
+  }
+
+  .dashboardSelectDescription {
+    font-size: 12px;
+    color: hsl(var(--muted-foreground));
+  }
 }
 
 .taskBackdrop {
@@ -219,6 +231,7 @@
 @media screen and (max-width: 768px) {
   .taskViewer {
     left: 0;
+    top: var(--nav-height);
     &::after {
       content: "";
       display: none;

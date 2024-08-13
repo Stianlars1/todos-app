@@ -2,7 +2,7 @@
 import { createTodo } from "@/app/actions/todos/fetch";
 import { Priority, StatusId } from "@/app/actions/todos/types";
 import { UserSettingsDTO } from "@/app/actions/user/types";
-import { DashboardType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useFormState } from "react-dom";
@@ -12,6 +12,7 @@ import {
   CustomInputLabel,
   CustomInputLabelWrapper,
 } from "../form/components/customInput/customInput";
+import { CustomTextArea } from "../form/components/customTextArea/customTextArea";
 import { FormContentWrapper } from "../form/formContentWrapper";
 import { Modal } from "../modal/modal";
 import { TextEditor } from "../ui/richTextEditor/richTextEditor";
@@ -26,17 +27,22 @@ export const CreateTask = ({
   onClose,
 }: {
   userSettings: UserSettingsDTO | null;
-  dashboards: DashboardType[] | null;
+  dashboards: DashboardOnlyType[] | null;
   onClose: () => void;
 }) => {
   console.log("dashboards", dashboards);
 
   const [state, dispatch] = useFormState(createTodo, undefined);
+
   const [content, setContent] = useState<string>("");
   const [statusId, setStatusId] = useState<StatusId>(StatusId.CREATED);
   const [priority, setPriority] = useState<Priority>(Priority.MEDIUM);
   const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
-    []
+    userSettings && userSettings.activeDashboardId
+      ? [userSettings.activeDashboardId]
+      : dashboards
+      ? dashboards?.filter((d) => d.isDefault).map((d) => d.dashboardId)
+      : []
   );
 
   const [activeDashboardId, setActiveDashboardId] = useState<
@@ -161,13 +167,15 @@ export const CreateTask = ({
     onClose && onClose();
   }
 
+  if (state && "isError" in state && state.isError) {
+    toast.error(
+      state.error ? state.error : "An error occured creating the task",
+      "bottomRight"
+    );
+  }
+
   return (
-    <Modal
-      onClose={onClose}
-      hasUnsavedChanges={hasUnsavedChanges}
-      replaceUrl={true}
-      closeButton
-    >
+    <Modal onClose={onClose} hasUnsavedChanges={hasUnsavedChanges} closeButton>
       <CustomForm action={dispatch} className="create-task">
         <FormContentWrapper>
           <header className="create-task__header">
@@ -193,11 +201,12 @@ export const CreateTask = ({
             <CustomInputLabel htmlFor="description">
               {createText("form.description.label")}
             </CustomInputLabel>
-            <CustomInput
-              type="text"
+            <CustomTextArea
               placeholder={createText("form.description.placeholder")}
+              width="100%"
               id="description"
               name="description"
+              className="custom-text-area"
               onChange={handleInputChange}
             />
           </CustomInputLabelWrapper>

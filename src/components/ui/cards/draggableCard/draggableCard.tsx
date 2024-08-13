@@ -7,7 +7,7 @@ import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { StatusCodes } from "@/types/todo/types";
 import { TodoDTO } from "@/types/types";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { CSSProperties, useState } from "react";
 import { MdRemoveCircle } from "react-icons/md";
 import { ArrowUpDownIcon } from "../../icons/icons";
@@ -43,16 +43,19 @@ export const DraggableCard = ({
   const sortManual = !!userSettings?.sortManual;
   const isColumnLayout = !!userSettings?.isColumnLayout;
   const expanded = false;
-
+  const pathName = usePathname();
   const router = useRouter();
   const openTask = (event: React.MouseEvent<HTMLDivElement>) => {
+    console.log("openTask");
     const shouldItReturn = shouldReturn(event);
     if (shouldItReturn) {
+      console.log("shouldItReturn");
       return;
     }
 
     event.preventDefault();
-    router.push(`/?selectedTask=${todoId}`, undefined);
+    console.log("pushing selectedtask to router");
+    router.push(`${pathName}?selectedTask=${todoId}`, undefined);
   };
 
   const handleRemoveTask = async (event: React.MouseEvent<SVGElement>) => {
@@ -127,8 +130,8 @@ export const DraggableCard = ({
       ${isPerformingOperation ? "reveal-card-permanently-deleting" : " "}`}
       data-group={TASKCARD_GROUP}
       data-status={categoryCode}
-      onClick={openTask}
       style={style}
+      onClick={openTask}
     >
       {draggableColumnEditActive && (
         <MdRemoveCircle
@@ -163,8 +166,8 @@ export const DraggableCard = ({
           pathStyle={{ pointerEvents: "none" }}
         />
       )}
-
-      {/* <DragDropIcon
+      {/* 
+      <DragDropIcon
         id={DRAGGABLE_CARD_ID}
         data-label="REVEAL_CARD_DRAG_HANDLE"
         className="reveal-card-sort-manual-row-layout-handle"

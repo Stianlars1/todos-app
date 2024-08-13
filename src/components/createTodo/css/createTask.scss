@@ -31,6 +31,10 @@
     max-width: 450px !important;
   }
 
+  .custom-text-area {
+    max-width: 450px !important;
+  }
+
   select {
     padding: 0.5rem;
   }
@@ -63,8 +67,8 @@
 
 @media screen and (max-width: 768px) {
   .create-task {
-    width: 100%;
-    min-width: 100vh;
+    min-width: 100vw;
+    max-width: 100vw;
     .selects {
       flex-direction: column;
     }

@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
 import { MdClose } from "react-icons/md";
 import "./css/modal.css";
@@ -27,6 +27,7 @@ export const Modal = ({
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const locale = useLocale();
   const router = useRouter();
+  const pathName = usePathname();
   const text = useTranslations("general");
   const handleCloseModal = () => {
     if (hasUnsavedChanges) {
@@ -37,6 +38,8 @@ export const Modal = ({
         return;
       }
     }
+
+    const redirectUrl = `${pathName}`;
 
     if (replaceUrl) {
       const replaceUrl = url ? `/${locale}/${url}` : `/${locale}`;

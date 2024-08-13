@@ -49,6 +49,44 @@
   z-index: 1000000000;
 }
 
+.loaderWrapper {
+  background-color: transparent;
+  color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  z-index: 100;
+  width: 100%;
+  height: auto;
+}
+.loaderWrapper__loader {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.loaderWrapper__loader::after {
+  content: "";
+  display: block;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 0.25rem solid hsl(var(--muted));
+  border-top-color: hsl(var(--primary));
+  border-right-color: hsl(var(--primary-foreground)/0.8);
+  border-bottom-color: hsl(var(--primary-foreground)/0.8);
+  border-left-color: hsl(var(--primary-foreground)/0.8);
+  animation: spin 1s linear infinite;
+  z-index: 1000000000;
+}
+.loaderWrapper__title {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  z-index: 1000;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);

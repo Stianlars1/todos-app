@@ -19,7 +19,7 @@ import { TextEditor } from "@/components/ui/richTextEditor/richTextEditor";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { Tag } from "@/components/ui/tag/tags";
 import { toast } from "@/components/ui/toast/toast";
-import { DashboardType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import { DashboardOnlyTypeDTO } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
 import { TodoDTO } from "@/types/types";
 import { arraysEqual, formatDate, normalizeDate } from "@/utils/utils";
 import { Button } from "@stianlarsen/react-ui-kit";
@@ -57,7 +57,7 @@ export const TaskViewer = ({
   taskId: string | null;
   userSettings: UserSettingsDTO | null;
   redirectUrl: string;
-  dashboards: DashboardType[] | null;
+  dashboards: DashboardOnlyTypeDTO[] | null;
   onTaskLoaded?: () => void;
   onClose?: () => void;
 }) => {
@@ -84,8 +84,13 @@ export const TaskViewer = ({
   >(userSettings?.activeDashboardId);
 
   const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
-    activeDashboardId ? [activeDashboardId] : []
+    taskDTO && dashboards ? getActiveDashboardIds(taskDTO, dashboards) : []
   );
+
+  console.log("selectedDashboardIds", selectedDashboardIds);
+  // const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
+  //   activeDashboardId ? [activeDashboardId] : []
+  // );
 
   const router = useRouter();
   const locale = useLocale();
@@ -98,7 +103,7 @@ export const TaskViewer = ({
       handleClose();
       setTimeout(() => {
         document.body.setAttribute("taskviewer-modal-open", false.toString());
-      }, 1000);
+      }, 500);
     }
   };
   useEffect(() => {
@@ -114,6 +119,10 @@ export const TaskViewer = ({
       setState(mapDTOtoUpdatedTodoDTO(taskDTO));
       setContent(taskDTO.content || "");
       setRawTagsInput(taskDTO?.tags?.join(", "));
+      if (taskDTO && dashboards) {
+        const activeDashboardIds = getActiveDashboardIds(taskDTO, dashboards);
+        setSelectedDashboardIds(activeDashboardIds);
+      }
 
       const startAnimationTimeout = setTimeout(() => {
         setStartAnimation(true);
@@ -376,12 +385,6 @@ export const TaskViewer = ({
   };
 
   const TaskDashboard = () => {
-    console.log("activeDashboardId", activeDashboardId);
-    console.log(
-      "dashboard",
-      dashboards?.find((d) => d.dashboardId === userSettings?.activeDashboardId)
-    );
-
     const handleDashboardSelectsOnChange = (
       e: React.ChangeEvent<HTMLSelectElement>
     ) => {
@@ -402,8 +405,6 @@ export const TaskViewer = ({
       }
     };
 
-    console.log("SelectedDashboardIds", selectedDashboardIds);
-
     return (
       <>
         <select
@@ -412,12 +413,14 @@ export const TaskViewer = ({
           multiple
           value={selectedDashboardIds.map(String)}
           onChange={handleDashboardSelectsOnChange}
+          className={styles.dashboardSelect}
         >
           <>
             {dashboards &&
               dashboards.map((dashboard) => {
                 return (
                   <option
+                    className={styles.dashboardOption}
                     key={dashboard.dashboardId}
                     value={dashboard.dashboardId}
                   >
@@ -551,12 +554,6 @@ export const TaskViewer = ({
               )}
 
               <CustomInputLabelWrapper>
-                <CustomInputLabel>Dashboard</CustomInputLabel>
-
-                <TaskDashboard />
-              </CustomInputLabelWrapper>
-
-              <CustomInputLabelWrapper>
                 <CustomInputLabel htmlFor="dueDate">
                   {text("formDueDate")}
                 </CustomInputLabel>
@@ -570,6 +567,17 @@ export const TaskViewer = ({
                   suppressHydrationWarning
                   className={styles.dueDateInput}
                 />
+              </CustomInputLabelWrapper>
+
+              <CustomInputLabelWrapper>
+                <CustomInputLabel>
+                  {text("formDashboardSelect")}
+                </CustomInputLabel>
+                <p className={styles.dashboardSelectDescription}>
+                  {text("formDashboardSelectDescription")}
+                </p>
+
+                <TaskDashboard />
               </CustomInputLabelWrapper>
             </div>
 
@@ -686,4 +694,24 @@ const mapDTOtoUpdatedTodoDTO = (taskDTO: TodoDTO) => {
     content: taskDTO?.content || "",
     todoId: taskDTO?.todoId || "",
   };
+};
+
+const getTheTasksActiveDashboardIds = (
+  dashboardId: number,
+  aTasksDashboardIds: number[]
+) => {
+  for (let i = 0; i < aTasksDashboardIds.length; i++) {
+    if (aTasksDashboardIds[i] === dashboardId) {
+      return true;
+    }
+  }
+};
+
+const getActiveDashboardIds = (
+  taskDTO: TodoDTO,
+  dashboards: DashboardOnlyTypeDTO[]
+) => {
+  return dashboards
+    .filter((dashboard) => taskDTO.dashboardIds.includes(dashboard.dashboardId))
+    .map((dashboard) => dashboard.dashboardId);
 };

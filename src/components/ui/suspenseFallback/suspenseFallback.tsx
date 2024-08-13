@@ -24,3 +24,24 @@ export const SuspenseFallback = ({
     </div>
   );
 };
+export const Spinner = ({ classname = "" }: { classname?: string }) => {
+  return (
+    <div className={` ${`loaderWrapper ${classname}`}`}>
+      <div className={` loaderWrapper__loader`} />
+    </div>
+  );
+};
+export const SpinnerWithTitle = ({
+  title,
+  classname = "",
+}: {
+  title: string;
+  classname?: string;
+}) => {
+  return (
+    <div className={` ${`loaderWrapper ${classname}`}`}>
+      <div className={` loaderWrapper__loader`} />
+      <i className="loaderWrapper__title">{title}</i>
+    </div>
+  );
+};

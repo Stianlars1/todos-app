@@ -1,11 +1,4 @@
-import { DashboardSwitch } from "@/LandingPages/dashboardPage/components/dashboardSwitch/dashboardSwitch";
-import { DashboardPage } from "@/LandingPages/dashboardPage/dashboard";
-
-export default async function Dashboard() {
-  return (
-    <>
-      <DashboardSwitch />
-      <DashboardPage />
-    </>
-  );
+import DashboardsPage from "@/LandingPages/dashboardsPage/dashboardsPage";
+export default async function Main() {
+  return <DashboardsPage />;
 }

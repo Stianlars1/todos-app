@@ -1,7 +1,7 @@
 import { GetUserPreferencesDTO } from "@/app/actions/preferences/types";
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { CreateTodoButton } from "@/components/createTodo/components/createTodoButton/createTodoButton";
-import { DashboardType } from "../../dashboardSwitch/switchUtils";
+import { DashboardOnlyType } from "../../dashboardSwitch/switchUtils";
 import styles from "../css/taskboardSettings.module.css";
 import { FilterTasksWrapper } from "./FilterTasksWrapper/FilterTasksWrapper";
 import { TaskboardSettingsContextButton } from "./settingsContextButton/taskboardSettingsContextButton";
@@ -11,7 +11,7 @@ export const TaskboardSettings = ({
   userPreferences,
 }: {
   userSettings: UserSettingsDTO | null;
-  dashboards: DashboardType[] | null;
+  dashboards: DashboardOnlyType[] | null;
   userPreferences: GetUserPreferencesDTO | null;
 }) => {
   return (

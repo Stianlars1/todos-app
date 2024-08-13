@@ -1,4 +1,4 @@
-import { getDashboards } from "@/app/actions/dashboards/fetch";
+import { getOnlyDashboards } from "@/app/actions/dashboards/fetch";
 import { getUserPreferences } from "@/app/actions/preferences/fetch";
 import {
   getAllTodosByActiveDashboard,
@@ -14,11 +14,11 @@ import { ApiResponse } from "@/types/fetch";
 import { CategorizedTodosResponseDTO } from "@/types/todo/types";
 import { SoonDueTodosDTO, TodoDTO } from "@/types/types";
 import { Suspense } from "react";
+import styles from "../../LandingPages/dashboardPage/css/dashboard.module.css";
 import { DashboardTabs } from "./components/dashboardTabs/dashboardTabs";
 import { ProgressSummaryContainer } from "./components/progressSummary/progressSummary";
 import { Taskboard } from "./components/taskboard/taskboard";
 import { getCategorizedTodosTexts } from "./components/taskboard/utils";
-import styles from "./css/dashboard.module.css";
 export const DashboardPage = async () => {
   const { data: userSettings, error, isError } = await getUserSettings();
   const categorizedTexts = await getCategorizedTodosTexts();
@@ -39,7 +39,7 @@ export const DashboardPage = async () => {
     ApiResponse<ApiResponse<TodoDTO[]>>
   >();
 
-  const { data: dashboards } = await getDashboards();
+  const { data: dashboards } = await getOnlyDashboards();
   const { data: userPreferences } = await getUserPreferences();
 
   return (

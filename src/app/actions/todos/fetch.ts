@@ -7,12 +7,16 @@ import { customFetch } from "@/utils/fetch/customFetch";
 import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import {
   API_TASKS_SEARCH,
+  API_TODOS_ALL_BY_DASHBOARDNAME,
   API_TODOS_BY_ACTIVE_DASHBOARD,
+  API_TODOS_CATEGORIZED_BY_DASHBOARDNAME_URL,
   API_TODOS_CATEGORIZED_URL,
   API_TODOS_CREATE_URL,
   API_TODOS_DUE_TODAY_COUNT_URL,
   API_TODOS_DUE_TODAY_URL,
+  API_TODOS_OVERDUE_BY_DASHBOARDNAME_URL,
   API_TODOS_OVERDUE_URL,
+  API_TODOS_UPCOMING_DEADLINES_BY_DASHBOARDNAME_URL,
   API_TODOS_UPCOMING_DEADLINES_URL,
   API_TODOS_UPDATE_URL,
   API_TODOS_URL,
@@ -51,6 +55,16 @@ export const getAllTodosByActiveDashboard = async <T>() => {
     cacheKey: CacheKeys.ALL_TODOS,
   });
 };
+export const getAllTodosByDashboardName = async <T>(dashboardName: string) => {
+  const url = `${API_TODOS_ALL_BY_DASHBOARDNAME}?dashboardName=${dashboardName}`;
+  return await customFetch<T>({
+    url: url,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    cacheKey: CacheKeys.ALL_TODOS,
+  });
+};
 export const getUpcomingDeadlinesTodos = async <T>() => {
   return await customFetch<T>({
     url: API_TODOS_UPCOMING_DEADLINES_URL,
@@ -60,9 +74,33 @@ export const getUpcomingDeadlinesTodos = async <T>() => {
     cacheKey: CacheKeys.ALL_TODOS,
   });
 };
+export const getUpcomingDeadlinesTodosByDashboardName = async <T>(
+  dashboardName: string
+) => {
+  const url = `${API_TODOS_UPCOMING_DEADLINES_BY_DASHBOARDNAME_URL}?dashboardName=${dashboardName}`;
+  return await customFetch<T>({
+    url: url,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    cacheKey: CacheKeys.ALL_TODOS,
+  });
+};
 export const getOverdueTodos = async <T>() => {
   return await customFetch<T>({
     url: API_TODOS_OVERDUE_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    cacheKey: CacheKeys.ALL_TODOS,
+  });
+};
+export const getOverdueTodosByDashboardName = async <T>(
+  dashboardName: string
+) => {
+  const url = `${API_TODOS_OVERDUE_BY_DASHBOARDNAME_URL}?dashboardName=${dashboardName}`;
+  return await customFetch<T>({
+    url: url,
     options: {
       method: HTTP_REQUEST.GET,
     },
@@ -102,6 +140,27 @@ export const getTodosDueTodayCount = async <T>() => {
 export const getCategorizedTodos = async <T>() => {
   const categorized = await customFetch<T>({
     url: API_TODOS_CATEGORIZED_URL,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    headers: APPLICATION_JSON_V1,
+    cacheKey: CacheKeys.CATEGORIZED_TODOS,
+    revalidate: 0,
+  });
+
+  let error = "";
+  if (categorized.isError) {
+    error = "Couldn't load todos";
+  }
+
+  return { ...categorized, error: error };
+};
+export const getCategorizedTodosByDashboardName = async <T>(
+  dashboardName: string
+) => {
+  const url = `${API_TODOS_CATEGORIZED_BY_DASHBOARDNAME_URL}?dashboardName=${dashboardName}`;
+  const categorized = await customFetch<T>({
+    url: url,
     options: {
       method: HTTP_REQUEST.GET,
     },
