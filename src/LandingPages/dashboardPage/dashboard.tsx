@@ -1,43 +1,50 @@
 import { getOnlyDashboards } from "@/app/actions/dashboards/fetch";
 import { getUserPreferences } from "@/app/actions/preferences/fetch";
 import {
-  getAllTodosByActiveDashboard,
-  getCategorizedTodos,
-  getOverdueTodos,
-  getUpcomingDeadlinesTodos,
+  getAllTodosByDashboardName,
+  getCategorizedTodosByDashboardName,
+  getOverdueTodosByDashboardName,
+  getUpcomingDeadlinesTodosByDashboardName,
 } from "@/app/actions/todos/fetch";
 import { getUserSettings } from "@/app/actions/user/userApi";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
-import { ToastContainer } from "@/components/ui/toast/toast";
 import { ApiResponse } from "@/types/fetch";
 import { CategorizedTodosResponseDTO } from "@/types/todo/types";
 import { SoonDueTodosDTO, TodoDTO } from "@/types/types";
 import { Suspense } from "react";
-import styles from "../../LandingPages/dashboardPage/css/dashboard.module.css";
 import { DashboardTabs } from "./components/dashboardTabs/dashboardTabs";
 import { ProgressSummaryContainer } from "./components/progressSummary/progressSummary";
 import { Taskboard } from "./components/taskboard/taskboard";
 import { getCategorizedTodosTexts } from "./components/taskboard/utils";
-export const DashboardPage = async () => {
+import styles from "./css/dashboard.module.css";
+export const DashboardPage = async ({
+  dashboardName,
+}: {
+  dashboardName: string;
+}) => {
   const { data: userSettings, error, isError } = await getUserSettings();
   const categorizedTexts = await getCategorizedTodosTexts();
   const {
     data: taskResponse,
     isError: isError2,
     error: error2,
-  } = await getCategorizedTodos<CategorizedTodosResponseDTO>();
+  } = await getCategorizedTodosByDashboardName<CategorizedTodosResponseDTO>(
+    dashboardName,
+  );
   const {
     data: allTasks,
     isError: isError3,
     error: error3,
-  } = await getAllTodosByActiveDashboard<TodoDTO[]>();
-  const { data: upcomingDeadlines } = await getUpcomingDeadlinesTodos<
-    ApiResponse<SoonDueTodosDTO>
-  >();
-  const { data: overdueTasks } = await getOverdueTodos<
-    ApiResponse<ApiResponse<TodoDTO[]>>
-  >();
+  } = await getAllTodosByDashboardName<TodoDTO[]>(dashboardName);
+  const { data: upcomingDeadlines } =
+    await getUpcomingDeadlinesTodosByDashboardName<
+      ApiResponse<SoonDueTodosDTO>
+    >(dashboardName);
+  const { data: overdueTasks } =
+    await getOverdueTodosByDashboardName<ApiResponse<ApiResponse<TodoDTO[]>>>(
+      dashboardName,
+    );
 
   const { data: dashboards } = await getOnlyDashboards();
   const { data: userPreferences } = await getUserPreferences();
@@ -69,8 +76,6 @@ export const DashboardPage = async () => {
           />
         </DashboardTabs>
       </div>
-
-      <ToastContainer />
     </Suspense>
   );
 };

@@ -5,7 +5,6 @@ import { ApiResponse } from "@/types/fetch";
 import { TodoDTO } from "@/types/types";
 import { getTranslations } from "next-intl/server";
 
-import { ToastContainer } from "@/components/ui/toast/toast";
 import styles from "./css/todayPage.module.css";
 import { TodayLayout } from "./layout/todayLayout";
 export const TodayPage = async () => {
@@ -43,7 +42,6 @@ export const TodayPage = async () => {
         </>
       )}
       <TodayLayout tasksToday={tasksForProps} userSettings={userSettings} />
-      <ToastContainer />
     </>
   );
 };

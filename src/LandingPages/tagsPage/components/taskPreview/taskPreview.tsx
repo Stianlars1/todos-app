@@ -14,7 +14,7 @@ export const TaskPreview = ({ tasks }: { tasks: TodoDTO[] | null }) => {
 
   const handleOnCardClick = (
     event: React.MouseEvent<HTMLLIElement>,
-    todoId: any
+    todoId: any,
   ) => {
     const shouldItReturn = shouldReturn(event);
     if (shouldItReturn) {

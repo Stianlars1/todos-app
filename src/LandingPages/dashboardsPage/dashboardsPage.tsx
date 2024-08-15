@@ -16,7 +16,6 @@ export default async function DashboardsPage() {
     error,
   } = await getOnlyDashboards();
 
-  console.log("\nDashboardsPage allDashboards", allDashboards);
   const text = await getTranslations("DashboardsPage");
 
   if (isError) {
@@ -29,16 +28,15 @@ export default async function DashboardsPage() {
   return (
     <Suspense fallback={<SuspenseFallback fixed={true} />}>
       <div className={styles.dashboardsPage}>
-        <h1 className={styles.h1}>{text("title")}</h1>
-
+        <header className={styles.header}>
+          <h1 className={styles.h1}>{text("title")}</h1>
+          <CreateNewDashboard className={styles.createDashboard} />
+        </header>
         {allDashboards && (
           <ul className={styles.dashboardMain}>
-            <CreateNewDashboard />
-
             {allDashboards.map((dashboard, index) => {
               return (
                 <DashboardLink
-                  index={index}
                   key={dashboard.dashboardId}
                   dashboard={dashboard}
                 />

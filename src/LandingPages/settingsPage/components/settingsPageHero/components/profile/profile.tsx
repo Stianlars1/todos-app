@@ -41,7 +41,7 @@ export const SettingsProfileContent = ({
   const handleOnChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const newState = { ...userState, [e.target.name]: e.target.value };
     setUserState(newState);
@@ -49,7 +49,7 @@ export const SettingsProfileContent = ({
     setHasUnsavedChanges(
       newState.firstName !== userDetails.firstName ||
         newState.lastName !== userDetails.lastName ||
-        newState.email !== userDetails.email
+        newState.email !== userDetails.email,
     );
   };
 
@@ -62,7 +62,7 @@ export const SettingsProfileContent = ({
       setHasUnsavedChanges(false);
       toast.success(
         SettingsPageTexts("profile.userUpdatedSuccessfully"),
-        "bottomRight"
+        "bottomRight",
       );
       cacheInvalidate({ cacheKey: CacheKeys.USER_DETAILS });
     }
@@ -72,7 +72,7 @@ export const SettingsProfileContent = ({
       if (isConflictError) {
         toast.error(
           SettingsPageTexts("profile.emailConflict") || "",
-          "bottomRight"
+          "bottomRight",
         );
       } else {
         toast.error(state.error || "", "bottomRight");
@@ -113,7 +113,7 @@ export const SettingsProfileContent = ({
                     id="firstName"
                     onChange={handleOnChange}
                     placeholder={SettingsPageTexts(
-                      "profile.firstname.placeholder"
+                      "profile.firstname.placeholder",
                     )}
                     width="100%"
                   />
@@ -131,7 +131,7 @@ export const SettingsProfileContent = ({
                     id="lastName"
                     onChange={handleOnChange}
                     placeholder={SettingsPageTexts(
-                      "profile.lastname.placeholder"
+                      "profile.lastname.placeholder",
                     )}
                     width="100%"
                   />
@@ -201,7 +201,7 @@ const SaveButton = () => {
 };
 
 const mapUserDTOtoUpdatedUserDetails = (
-  userDetails: UserDTO
+  userDetails: UserDTO,
 ): UpdatedUserDetails => {
   return {
     firstName: userDetails.firstName,

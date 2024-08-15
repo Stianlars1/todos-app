@@ -64,7 +64,7 @@ export const TaskboardWrapper = ({
         tasks: flatTasks,
         categoryCode: categoryString as StatusCodes,
       };
-    }
+    },
   );
 
   const isColumnLayout = userSettings?.isColumnLayout;
@@ -166,7 +166,7 @@ export const TaskboardWrapper = ({
 
         if (columnsUpdateResponse.isError) {
           toast.error(
-            "An error occured while updating the sort preference of the status columns"
+            "An error occured while updating the sort preference of the status columns",
           );
         }
         await cacheInvalidate({ cacheKey: CacheKeys.USER_PREFERENCES });
@@ -183,7 +183,7 @@ export const TaskboardWrapper = ({
       },
 
       sortable: true,
-    }
+    },
   );
 
   useEffect(() => {

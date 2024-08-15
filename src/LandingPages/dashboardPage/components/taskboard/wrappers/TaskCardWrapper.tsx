@@ -103,10 +103,10 @@ export const TaskCardWrapper = ({
       !isColumnLayout && sortManual
         ? ".reveal-card-sort-manual-row-layout-handle"
         : isMobile && sortManual
-        ? ".reveal-card-sort-manual-row-layout-handle"
-        : isMobileSize && sortManual
-        ? ".reveal-card-sort-manual-row-layout-handle"
-        : undefined,
+          ? ".reveal-card-sort-manual-row-layout-handle"
+          : isMobileSize && sortManual
+            ? ".reveal-card-sort-manual-row-layout-handle"
+            : undefined,
     draggable: (el) => {
       return (
         el.attributes.getNamedItem("data-group")?.value == TASKCARD_GROUP &&

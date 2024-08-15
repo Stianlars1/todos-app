@@ -22,8 +22,27 @@
   &__header {
     overflow: hidden;
     text-wrap: pretty;
-    overflow-wrap: break-word;
-    hyphens: auto;
+    margin-top: 1rem;
+
+    &__activeDashboard {
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      margin-left: calc(1.2rem + 0.5rem + 0.75rem);
+      color: hsl(var(--activeText));
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: hsl(var(--success));
+      }
+    }
   }
 
   &__content {

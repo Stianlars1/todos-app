@@ -14,7 +14,7 @@ export const TASKCARD_GROUP = "TasksList";
 export const DELETE_GROUP = "DeleteList";
 
 export const convertColumnsListToHandleUp = (
-  columns: ColumnListDND[]
+  columns: ColumnListDND[],
 ): StatusCodes[] => {
   const converted = columns.map((column) => {
     return column.column as StatusCodes;
@@ -35,35 +35,35 @@ export const handleUpdateColumnsOrder = async (columns: ColumnListDND[]) => {
 };
 
 export const getNewCategoryCode = (
-  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>
+  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>,
 ) => {
   return data.targetData.parent.el.attributes.getNamedItem("data-column-status")
     ?.value as StatusCodes;
 };
 export const getNewTaskList = (
-  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>
+  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>,
 ) => {
   return data.targetData.parent.data.getValues(data.targetData.parent.el);
 };
 export const getOldTaskIndex = (
   tasks: TodoDTO[],
-  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>
+  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>,
 ) => {
   const currentTask = data.targetData.node.data.value;
   return tasks.findIndex((task) => task.todoId === currentTask.todoId);
 };
 export const getNewTaskIndex = (
-  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>
+  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>,
 ) => {
   const newList: TodoDTO[] = data.targetData.parent.data.getValues(
-    data.targetData.parent.el
+    data.targetData.parent.el,
   );
   const currentTask: TodoDTO = data.targetData.node.data.value;
   return newList.findIndex((task) => task.todoId === currentTask.todoId);
 };
 
 export const getTodoId = (
-  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>
+  data: NodeDragEventData<TodoDTO> | NodeTouchEventData<TodoDTO>,
 ) => {
   return data.targetData.node.data.value.todoId;
 };

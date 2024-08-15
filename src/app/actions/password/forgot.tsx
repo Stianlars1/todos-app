@@ -6,7 +6,7 @@ import { ForgotPasswordFetcherProps, ResetPasswordResponse } from "./types";
 
 export const forgotPassword = async (
   _currentState: unknown,
-  formData: FormData
+  formData: FormData,
 ) => {
   const email = formData.get("email")?.toString();
 
@@ -22,7 +22,7 @@ export const forgotPassword = async (
   };
 
   const forgotResponse: ResetPasswordResponse = await forgotPasswordFetcher(
-    forgotObject
+    forgotObject,
   ).catch((error) => {
     return {
       success: false,

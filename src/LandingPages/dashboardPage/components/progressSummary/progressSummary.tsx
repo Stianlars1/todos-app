@@ -46,17 +46,20 @@ export const ProgressSummaryContainer = ({
 };
 
 const getProgressSummaryTasks = (
-  tasks: TodoDTO[]
+  tasks: TodoDTO[],
 ): Record<StatusCode, number> => {
   const TOTAL_TASKS = tasks.length;
 
-  const tasksMap = tasks.reduce((acc, task) => {
-    const status = task.status.statusCode;
-    if (status) {
-      acc[status] = (acc[status] || 0) + 1;
-    }
-    return acc;
-  }, {} as Record<StatusCode, number>);
+  const tasksMap = tasks.reduce(
+    (acc, task) => {
+      const status = task.status.statusCode;
+      if (status) {
+        acc[status] = (acc[status] || 0) + 1;
+      }
+      return acc;
+    },
+    {} as Record<StatusCode, number>,
+  );
 
   // Ensure all status codes are included in the result, even if they are zero
   const tasksMapSummary = {
@@ -71,7 +74,7 @@ const getProgressSummaryTasks = (
 
   // Filter out status codes with zero values
   const filteredTasksMapSummary = Object.fromEntries(
-    Object.entries(tasksMapSummary).filter(([_, value]) => value > 0)
+    Object.entries(tasksMapSummary).filter(([_, value]) => value > 0),
   ) as Record<StatusCode, number>;
 
   // Return the final summary including totalTasks

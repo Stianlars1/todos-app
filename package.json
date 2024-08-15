@@ -6,7 +6,8 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,less,md}\""
   },
   "dependencies": {
     "@formkit/drag-and-drop": "^0.1.6",
@@ -38,6 +39,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
+    "prettier": "^3.3.3",
     "typescript": "^5"
   }
 }

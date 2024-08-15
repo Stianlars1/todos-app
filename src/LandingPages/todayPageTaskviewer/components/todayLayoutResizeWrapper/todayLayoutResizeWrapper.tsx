@@ -20,7 +20,7 @@ export const TodayLayoutResizeWrapper = ({
           if (gridContainer) {
             gridContainer.setAttribute(
               "data-sidebar-open",
-              String(sidebarOpen || true)
+              String(sidebarOpen || true),
             );
           }
         }

@@ -23,7 +23,7 @@ import { UserSettingsDTO } from "./types";
 import { getUserId } from "./userUtils";
 
 export const updateUserSettings = async (
-  settings: UserSettingsDTO
+  settings: UserSettingsDTO,
 ): Promise<ApiResponse<UserSettingsDTO | null>> => {
   const userId = await getUserId();
   const userSettingsUrl = `${API_USER_SETTINGS_URL}/${userId}`;
@@ -50,7 +50,7 @@ export const updateUserSettings = async (
   }
 };
 export const updateActiveDashboardId = async (
-  dashboardId: number
+  dashboardId: number,
 ): Promise<boolean> => {
   const URL = `${API_DASHBOARD_UPDATE_ID_URL}?dashboardId=${dashboardId}`;
   const response = await fetch(URL, {
@@ -68,7 +68,7 @@ export const updateActiveDashboardId = async (
 
 export const uploadProfilePicture = async (
   _state: unknown,
-  formDataArgument: FormData
+  formDataArgument: FormData,
 ): Promise<FetchState<string>> => {
   // Fetch url
   const userId = await getUserId();
@@ -94,7 +94,7 @@ export const uploadProfilePicture = async (
 
 export const updateUserProfile = async (
   _state: unknown,
-  formData: FormData
+  formData: FormData,
 ): Promise<FetchState<string>> => {
   // Fetch url
   const userId = await getUserId();
@@ -122,7 +122,7 @@ export const updateUserProfile = async (
 
 export const updateUserPassword = async (
   _state: unknown,
-  formData: FormData
+  formData: FormData,
 ): Promise<FetchStateForm<any> | FetchState<ApiResponse<any>>> => {
   const validatedFields = UpdatePasswordSchema.safeParse({
     password: formData.get("password"),

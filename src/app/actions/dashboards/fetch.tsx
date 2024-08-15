@@ -5,10 +5,17 @@ import {
   DashboardOnlyTypeDTO,
   DashboardTypeDTO,
 } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import { ApiResponse } from "@/types/fetch";
 import { customFetch } from "@/utils/fetch/customFetch";
-import { HTTP_REQUEST, getAuthHeaderOnly } from "@/utils/fetch/fetch";
 import {
+  APPLICATION_JSON_V1,
+  HTTP_REQUEST,
+  getAuthHeaderOnly,
+} from "@/utils/fetch/fetch";
+import {
+  API_DASHBOARD_DELETE_URL,
   API_DASHBOARD_ONLY_URL,
+  API_DASHBOARD_UPDATE_URL,
   API_DASHBOARD_URL,
   API_USER_SETTINGS_URL,
 } from "@/utils/urls";
@@ -59,6 +66,34 @@ export const createDashboard = async (dashboardName: string) => {
       method: HTTP_REQUEST.POST,
       headers: await getAuthHeaderOnly(),
     },
+    cacheKey: CacheKeys.DASHBOARDS,
+  });
+};
+export const updateDashboard = async (
+  dashboardId: number,
+  dashboardName: string,
+) => {
+  const UPDATE_URL = `${API_DASHBOARD_UPDATE_URL}/${dashboardId}`;
+  const authHeader = await getAuthHeaderOnly();
+  return await customFetch<ApiResponse<any>>({
+    url: UPDATE_URL,
+    options: {
+      method: HTTP_REQUEST.PUT,
+      body: JSON.stringify({ name: dashboardName }),
+    },
+    headers: { ...authHeader, ...APPLICATION_JSON_V1 },
+    cacheKey: CacheKeys.DASHBOARDS,
+  });
+};
+export const deleteDashboardAndTasks = async (dashboardId: number) => {
+  const DELETE_URL = `${API_DASHBOARD_DELETE_URL}/${dashboardId}`;
+  const authHeader = await getAuthHeaderOnly();
+  return await customFetch<ApiResponse<any>>({
+    url: DELETE_URL,
+    options: {
+      method: HTTP_REQUEST.DELETE,
+    },
+    headers: { ...authHeader, ...APPLICATION_JSON_V1 },
     cacheKey: CacheKeys.DASHBOARDS,
   });
 };

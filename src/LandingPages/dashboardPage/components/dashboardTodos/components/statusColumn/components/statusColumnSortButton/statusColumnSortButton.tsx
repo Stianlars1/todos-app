@@ -19,7 +19,7 @@ export const StatusColumnSortButton = ({
 }) => {
   const { sortKey, sortOrder, setSortOrder } = useSortingStuff(
     categoryString,
-    userSettings
+    userSettings,
   );
   const pathName = usePathname();
 

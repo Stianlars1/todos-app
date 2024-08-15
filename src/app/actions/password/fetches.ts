@@ -3,7 +3,7 @@ import { API_PASSWORD_FORGOT_URL, API_PASSWORD_RESET_URL } from "@/utils/urls";
 import { ForgotPasswordFetcherProps, ResetPasswordFetcherProps } from "./types";
 
 export const forgotPasswordFetcher = async (
-  forgotObject: ForgotPasswordFetcherProps
+  forgotObject: ForgotPasswordFetcherProps,
 ): Promise<{
   success: boolean;
   message: string;
@@ -35,7 +35,7 @@ export const forgotPasswordFetcher = async (
   };
 };
 export const resetPasswordFetcher = async (
-  forgotObject: ResetPasswordFetcherProps
+  forgotObject: ResetPasswordFetcherProps,
 ): Promise<{
   success: boolean;
   message: string;

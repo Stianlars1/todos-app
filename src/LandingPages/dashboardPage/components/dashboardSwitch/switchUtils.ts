@@ -35,7 +35,7 @@ export interface DashboardOnlyType {
 }
 
 export const mapDashboardDTO = (
-  dashboard: DashboardOnlyTypeDTO[]
+  dashboard: DashboardOnlyTypeDTO[],
 ): DashboardType[] => {
   return dashboard.map((d) => {
     return {
@@ -48,7 +48,7 @@ export const mapDashboardDTO = (
   });
 };
 export const mapDashboardOnlyDTO = (
-  dashboard: DashboardOnlyTypeDTO[]
+  dashboard: DashboardOnlyTypeDTO[],
 ): DashboardType[] => {
   return dashboard.map((d) => {
     return {

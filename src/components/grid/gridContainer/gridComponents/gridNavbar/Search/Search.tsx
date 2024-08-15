@@ -69,7 +69,7 @@ export const Search = () => {
       if (taskViewerOpened) {
         toast.info("Close the task viewer to search", "bottomRight");
         const searchInput = document.getElementById(
-          "search"
+          "search",
         ) as HTMLInputElement;
         searchInput.blur();
         return;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const usePlatform = () => {
   const [platform, setPlatform] = useState<"mac" | "windows" | "unknown">(
-    "unknown"
+    "unknown",
   );
 
   useEffect(() => {

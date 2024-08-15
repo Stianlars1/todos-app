@@ -27,6 +27,13 @@
   gap: 1rem;
 }
 
+.deleteButton {
+  background-color: hsl(var(--destructive));
+}
+.deleteButton:hover {
+  background-color: hsl(var(--destructive) / 0.75) !important;
+}
+
 @media screen and (max-width: 768px) {
   .createDashboardModal {
     padding: 2rem 1rem;
@@ -41,4 +48,4 @@
     border-radius: 1rem;
     overflow: hidden;
   }
-}/*# sourceMappingURL=createDashboard.module.css.map */
+} /*# sourceMappingURL=createDashboard.module.css.map */

@@ -9,7 +9,6 @@ import {
 import { getUserSettings } from "@/app/actions/user/userApi";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
-import { ToastContainer } from "@/components/ui/toast/toast";
 import { DashboardTabs } from "@/LandingPages/dashboardPage/components/dashboardTabs/dashboardTabs";
 import { ProgressSummaryContainer } from "@/LandingPages/dashboardPage/components/progressSummary/progressSummary";
 import { Taskboard } from "@/LandingPages/dashboardPage/components/taskboard/taskboard";
@@ -31,7 +30,7 @@ export const NewDashboardPage = async ({
     isError: isError2,
     error: error2,
   } = await getCategorizedTodosByDashboardName<CategorizedTodosResponseDTO>(
-    dashboardName
+    dashboardName,
   );
   const {
     data: allTasks,
@@ -42,9 +41,10 @@ export const NewDashboardPage = async ({
     await getUpcomingDeadlinesTodosByDashboardName<
       ApiResponse<SoonDueTodosDTO>
     >(dashboardName);
-  const { data: overdueTasks } = await getOverdueTodosByDashboardName<
-    ApiResponse<ApiResponse<TodoDTO[]>>
-  >(dashboardName);
+  const { data: overdueTasks } =
+    await getOverdueTodosByDashboardName<ApiResponse<ApiResponse<TodoDTO[]>>>(
+      dashboardName,
+    );
 
   const { data: dashboards } = await getOnlyDashboards();
   const { data: userPreferences } = await getUserPreferences();
@@ -76,8 +76,6 @@ export const NewDashboardPage = async ({
           />
         </DashboardTabs>
       </div>
-
-      <ToastContainer />
     </Suspense>
   );
 };

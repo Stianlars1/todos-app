@@ -85,7 +85,7 @@
 
   "CreateDashboard": {
     "header": {
-      "title": "Create dashboard",
+      "title": "New board",
       "description": "Click outside the modal to close it."
     },
     "form": {
@@ -97,6 +97,25 @@
       "dashboardNameAlreadyExists": "Dashboard name already exists"
     },
     "create_dashboard": "Create dashboard"
+  },
+  "UpdateDashboard": {
+    "header": {
+      "title": "Update dashboard",
+      "description": "Click outside the modal to close it."
+    },
+    "form": {
+      "label": "New dashboard name",
+      "placeholder": "Dashboard name",
+      "submit": "Update dashboard",
+      "loadingSubmit": "updating...",
+      "cancel": "Cancel",
+      "delete": "Delete dashboard",
+      "delete_are_you_sure": "Are you sure you want to delete this dashboard?",
+      "delete_all_tasks": "All tasks in this dashboard will be permanently deleted",
+      "delete_loading": "Deleting dashboard...",
+      "dashboardNameAlreadyExists": "Dashboard name already exists"
+    },
+    "create_dashboard": "Update dashboard"
   },
 
   "Create-task": {

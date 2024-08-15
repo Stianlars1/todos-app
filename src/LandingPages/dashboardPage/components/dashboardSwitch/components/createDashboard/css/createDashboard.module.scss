@@ -32,6 +32,13 @@
   }
 }
 
+.deleteButton {
+  background-color: hsl(var(--destructive));
+  &:hover {
+    background-color: hsl(var(--destructive) / 0.75) !important;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .createDashboardModal {
     padding: 2rem 1rem;

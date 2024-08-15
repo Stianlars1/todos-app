@@ -121,8 +121,8 @@ export const DraggableCard = ({
         sortManual && !isColumnLayout
           ? "reveal-card-sortable-and-is-row-layout"
           : sortManual && isMobile
-          ? "reveal-card-sortable-and-is-row-layout"
-          : " "
+            ? "reveal-card-sortable-and-is-row-layout"
+            : " "
       }
 
       ${isMobile ? "reveal-card-mobile" : "reveal-card-desktop"}
@@ -177,7 +177,7 @@ export const DraggableCard = ({
 };
 
 export const shouldReturn = (
-  event: React.MouseEvent<HTMLDivElement | HTMLLIElement>
+  event: React.MouseEvent<HTMLDivElement | HTMLLIElement>,
 ) => {
   if (
     event.target instanceof HTMLElement &&

@@ -3,7 +3,7 @@ import { StatusCodes } from "@/types/todo/types";
 import { useState } from "react";
 
 export const mapCategoryStringToSortKey = (
-  categoryString: StatusCodes
+  categoryString: StatusCodes,
 ): UserSettingsSortKey => {
   switch (categoryString) {
     case "CREATED":
@@ -27,7 +27,7 @@ export const mapCategoryStringToSortKey = (
 
 export const useSortingStuff = (
   categoryString: StatusCodes,
-  userSettings: UserSettingsDTO
+  userSettings: UserSettingsDTO,
 ) => {
   const sortKey = mapCategoryStringToSortKey(categoryString); // sortBackend, sortInProgressTasks, etc..
   const currentSort = userSettings[sortKey]!; // BE AWARE !!!!

@@ -31,7 +31,7 @@ export const CategorizedTodos = async () => {
 };
 
 const getDashboardTasks = (
-  categorizedTodos: CategorizedTodosDTO | null
+  categorizedTodos: CategorizedTodosDTO | null,
 ): CategorizedTodosFiltered | null => {
   const dashboardStatuses = ["backlog", "inProgressTasks", "completedTasks"];
 
@@ -44,7 +44,7 @@ const getDashboardTasks = (
           }
           return acc;
         },
-        {}
+        {},
       )
     : dashboardStatuses.reduce((acc, curr) => {
         return { ...acc, [curr]: null };

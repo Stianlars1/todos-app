@@ -26,10 +26,10 @@
 }
 
 @media screen and (max-width: 768px) {
-  [data-nav-open=true] .fetchingTaskDiv {
+  [data-nav-open="true"] .fetchingTaskDiv {
     left: var(--sidebar-width);
   }
-  [data-nav-open=false] .fetchingTaskDiv {
+  [data-nav-open="false"] .fetchingTaskDiv {
     left: 0;
   }
 }
@@ -40,4 +40,4 @@
   100% {
     transform: rotate(360deg);
   }
-}/*# sourceMappingURL=showTaskModal.module.css.map */
+} /*# sourceMappingURL=showTaskModal.module.css.map */

@@ -13,7 +13,7 @@ const statusMapping = {
 };
 
 export const determineStatusBasedOnDropZone = (
-  event: DragEvent<HTMLUListElement>
+  event: DragEvent<HTMLUListElement>,
 ): {
   statusId: number;
   statusCode: StatusCode;

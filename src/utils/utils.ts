@@ -16,7 +16,7 @@ export function debounce(fn: Function, delay: number) {
 
 export const formatDate = (
   date: Date | string,
-  timezone: string = "UTC"
+  timezone: string = "UTC",
 ): string => {
   const d = moment.tz(date, timezone);
 

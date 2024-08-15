@@ -4,10 +4,20 @@
   gap: 1rem;
   align-items: center;
 }
-.dashboardsPage .h1 {
+.dashboardsPage .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.dashboardsPage .header .h1 {
   font-size: 1.2rem;
   text-align: left;
-  align-self: flex-start;
+  align-self: center;
+}
+.dashboardsPage .header .createDashboard {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 .dashboardsPage .dashboardMain {
   width: 100%;
@@ -21,4 +31,4 @@
   .dashboards .dashboardMain {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-}/*# sourceMappingURL=dashboardsPage.module.css.map */
+} /*# sourceMappingURL=dashboardsPage.module.css.map */

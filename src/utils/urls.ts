@@ -70,6 +70,10 @@ export const API_PASSWORD_RESET_URL =
 
 // DASHBOARDS
 export const API_DASHBOARD_URL = "https://app.taskbuddy.dev/api/dashboards";
+export const API_DASHBOARD_UPDATE_URL =
+  "https://app.taskbuddy.dev/api/dashboards/update";
+export const API_DASHBOARD_DELETE_URL =
+  "https://app.taskbuddy.dev/api/dashboards/delete";
 export const API_DASHBOARD_ONLY_URL =
   "https://app.taskbuddy.dev/api/dashboards/only";
 export const API_DASHBOARD_UPDATE_ID_URL =

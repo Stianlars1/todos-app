@@ -7,7 +7,7 @@ import { ResetPasswordFetcherProps, ResetPasswordResponse } from "./types";
 
 export const resetPassword = async (
   _currentState: unknown,
-  formData: FormData
+  formData: FormData,
 ) => {
   // Validate password field
   const validatedFields = ResetPasswordSchema.safeParse({
@@ -31,9 +31,8 @@ export const resetPassword = async (
     token: validatedFields.data.token,
   };
 
-  const resetResponse: ResetPasswordResponse = await resetPasswordFetcher(
-    resetObject
-  );
+  const resetResponse: ResetPasswordResponse =
+    await resetPasswordFetcher(resetObject);
   // .catch((error) => {
   //   return {
   //     success: false,

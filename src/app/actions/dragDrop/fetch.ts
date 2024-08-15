@@ -15,7 +15,7 @@ import {
 } from "./types";
 
 export const updateTaskSortIndex = async (
-  updatedTask: UpdateTaskSortIndexProps
+  updatedTask: UpdateTaskSortIndexProps,
 ) => {
   const response = await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_TODOS_SORT_INDEX,
@@ -56,7 +56,7 @@ export const deleteTask = async (todoId: number) => {
 };
 
 export const updateColumnDisplayOrder = async (
-  columns: UpdateColumnOrderDTO[]
+  columns: UpdateColumnOrderDTO[],
 ) => {
   const response = await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_CATEGORIZED_UPDATE_ORDER,

@@ -23,7 +23,7 @@ export interface FetchStateForm<T> extends FetchState<T> {
 export async function customFetch<T>({
   url,
   options,
-  headers,
+  headers = {},
   cacheKey,
   revalidate,
   noAuthHeader,
@@ -43,13 +43,13 @@ export async function customFetch<T>({
         }
       : undefined
     : authHeader
-    ? {
-        ...authHeader,
-        ...headers, // Include passed headers as well
-      }
-    : {
-        ...headers,
-      };
+      ? {
+          ...authHeader,
+          ...headers, // Include passed headers as well
+        }
+      : {
+          ...headers,
+        };
 
   const fetchOptions: RequestInit = {
     ...options,
@@ -69,16 +69,11 @@ export async function customFetch<T>({
   };
 
   try {
+    console.log("\nfetchOptions\n", fetchOptions);
     const response = await fetch(url, fetchOptions);
-    // if (!response.ok) {
-    //   console.log("\n\n 🔴 response customFetch: \n", await response.json());
-    //   const errorMessage = getErrorMessage(response.status);
-    //   // console.log("\n\n 🔴 errorMessage: \n", errorMessage);
-    //   console.log("\n\n 🔴 errorMessage: \n", errorMessage);
-    //   throw new Error(errorMessage);
-    // }
 
     if (!response.ok) {
+      console.log("response", response);
       const contentType = response.headers.get("Content-Type");
       let errorData: any;
       if (contentType && contentType.includes("application/json")) {
@@ -86,10 +81,11 @@ export async function customFetch<T>({
       } else {
         errorData = await response.text(); // Fallback to plain text
       }
-      // console.log("\n\n 🔴 response customFetch: \n", errorData);
+
+      console.log("\n\n errorData", errorData);
       const errorMessage =
         errorData.message || errorData || getErrorMessage(response.status);
-      // console.log("\n\n 🔴 errorMessage: \n", errorMessage);
+      console.log("\n\n errorMessage", errorMessage);
       throw new Error(errorMessage);
     }
 
@@ -103,8 +99,6 @@ export async function customFetch<T>({
       data = await response.text(); // Fallback to plain text
     }
 
-    // console.log("\n\n 🟢 customFetch data response was OK \n");
-
     return {
       ...state,
       isLoading: false,
@@ -112,22 +106,13 @@ export async function customFetch<T>({
       data,
     };
   } catch (error: any) {
-    // console.log("\n\n 🔴 customFetch error: \n", error);
     let message = error.message;
 
     if (error instanceof TypeError) {
       message = vpnInternetError;
     }
 
-    // console.log("\n\n 🔴 customFetch error: \n", error);
-    // console.log(
-    //   `error:\n ${error}\n === \n ${AccessRestrictedOrCacheHasCleaned}`
-    // );
     if (message === AccessRestrictedOrCacheHasCleaned) {
-      // console.log(
-      //   "\n\n 🔴 Access restricted or cache has cleaned and session expired. \n",
-      //   error
-      // );
       await deleteSession();
       return redirect("/login");
     }

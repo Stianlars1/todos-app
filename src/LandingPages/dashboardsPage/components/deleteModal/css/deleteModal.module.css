@@ -1,0 +1,39 @@
+.deleteModal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1.5rem;
+  background-color: hsl(var(--card));
+  z-index: 100;
+}
+.deleteModal .title {
+  font-size: 1.5rem;
+  color: hsl(var(--destructive-text));
+}
+.deleteModal .description {
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+.deleteModal .warning {
+  color: hsl(var(--destructive-text));
+  font-size: 1.2rem;
+  margin: 0.5rem 0 1.2rem 1rem;
+  list-style-type: disc !important;
+  line-height: 1.25rem;
+  text-decoration: underline;
+}
+.deleteModal .CTA {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.deleteModal .CTA .delete {
+  background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+}
+.deleteModal .CTA .delete:hover {
+  background-color: hsl(var(--destructive) / 0.75) !important;
+} /*# sourceMappingURL=deleteModal.module.css.map */

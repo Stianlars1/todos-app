@@ -8,12 +8,11 @@ export const HTTP_REQUEST = {
   PATCH: "PATCH",
 };
 
-export const APPLICATION_JSON_V1: HeadersInit = {
-  "Content-Type": "application/json",
-};
-
 export const MULTIPART_FORM_DATA_V1 = {
   "Content-Type": "multipart/form-data",
+};
+export const APPLICATION_JSON_V1: HeadersInit = {
+  "Content-Type": "application/json",
 };
 
 export const getAuthHeaders = async () => {

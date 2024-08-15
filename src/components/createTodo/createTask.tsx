@@ -19,6 +19,7 @@ import { TextEditor } from "../ui/richTextEditor/richTextEditor";
 import { toast } from "../ui/toast/toast";
 import { ConfirmCreateTaskButton } from "./components/createTaskButton";
 import "./css/createTask.css";
+import styles from "./css/dashboardSelect.module.css";
 
 const DASHBOARD_DEFAULT_NAME = "Default";
 export const CreateTask = ({
@@ -30,8 +31,6 @@ export const CreateTask = ({
   dashboards: DashboardOnlyType[] | null;
   onClose: () => void;
 }) => {
-  console.log("dashboards", dashboards);
-
   const [state, dispatch] = useFormState(createTodo, undefined);
 
   const [content, setContent] = useState<string>("");
@@ -41,14 +40,15 @@ export const CreateTask = ({
     userSettings && userSettings.activeDashboardId
       ? [userSettings.activeDashboardId]
       : dashboards
-      ? dashboards?.filter((d) => d.isDefault).map((d) => d.dashboardId)
-      : []
+        ? dashboards?.filter((d) => d.isDefault).map((d) => d.dashboardId)
+        : [],
   );
 
   const [activeDashboardId, setActiveDashboardId] = useState<
     number | undefined
   >(userSettings?.activeDashboardId);
   const text = useTranslations("general");
+  const dashboardText = useTranslations("TodayPage.taskViewer");
   const createText = useTranslations("Create-task");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const toastText = useTranslations("Toasts");
@@ -116,11 +116,13 @@ export const CreateTask = ({
     console.log("activeDashboardId", activeDashboardId);
     console.log(
       "dashboard",
-      dashboards?.find((d) => d.dashboardId === userSettings?.activeDashboardId)
+      dashboards?.find(
+        (d) => d.dashboardId === userSettings?.activeDashboardId,
+      ),
     );
 
     const handleDashboardSelectsOnChange = (
-      e: React.ChangeEvent<HTMLSelectElement>
+      e: React.ChangeEvent<HTMLSelectElement>,
     ) => {
       const options = e.target.options;
       const selectedIds: number[] = [];
@@ -142,12 +144,14 @@ export const CreateTask = ({
           multiple
           value={selectedDashboardIds.map(String)}
           onChange={handleDashboardSelectsOnChange}
+          className={styles.dashboardSelect}
         >
           <>
             {dashboards &&
               dashboards.map((dashboard) => {
                 return (
                   <option
+                    className={styles.dashboardOption}
                     key={dashboard.dashboardId}
                     value={dashboard.dashboardId}
                   >
@@ -170,7 +174,7 @@ export const CreateTask = ({
   if (state && "isError" in state && state.isError) {
     toast.error(
       state.error ? state.error : "An error occured creating the task",
-      "bottomRight"
+      "bottomRight",
     );
   }
 
@@ -226,24 +230,31 @@ export const CreateTask = ({
 
               <TaskPriority />
             </CustomInputLabelWrapper>
+
             <CustomInputLabelWrapper>
-              <CustomInputLabel>Dashboard</CustomInputLabel>
+              <CustomInputLabel htmlFor="dueDate">
+                {createText("form.dueDate.label")}
+              </CustomInputLabel>
+              <CustomInput
+                type="date"
+                placeholder={createText("form.dueDate.placeholder")}
+                id="dueDate"
+                name="dueDate"
+                onChange={handleInputChange}
+              />
+            </CustomInputLabelWrapper>
+
+            <CustomInputLabelWrapper>
+              <CustomInputLabel>
+                {dashboardText("formDashboardSelect")}
+              </CustomInputLabel>
+              <p className={styles.dashboardSelectDescription}>
+                {dashboardText("formDashboardSelectDescription")}
+              </p>
 
               <TaskDashboard />
             </CustomInputLabelWrapper>
           </div>
-          <CustomInputLabelWrapper>
-            <CustomInputLabel htmlFor="dueDate">
-              {createText("form.dueDate.label")}
-            </CustomInputLabel>
-            <CustomInput
-              type="date"
-              placeholder={createText("form.dueDate.placeholder")}
-              id="dueDate"
-              name="dueDate"
-              onChange={handleInputChange}
-            />
-          </CustomInputLabelWrapper>
 
           <CustomInputLabelWrapper>
             <CustomInputLabel>
@@ -280,6 +291,7 @@ export const CreateTask = ({
           </CustomInputLabelWrapper>
           <div className="create-task__footer">
             <ConfirmCreateTaskButton
+              disabled={selectedDashboardIds.length === 0}
               loadingText={createText("submit.loadingTitle")}
             >
               {createText("submit.title")}

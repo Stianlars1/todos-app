@@ -1,67 +1,116 @@
-.dashboardLink {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 1.5rem;
+.dashboardLinkWrapper {
+  position: relative;
   border: 1px solid hsl(var(--border));
   background-color: hsl(var(--muted));
   border-radius: var(--radius);
   position: relative;
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),
+    var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
   transition: all 0.25s ease;
+  z-index: 1;
+}
+.dashboardLinkWrapper:hover {
+  background-color: hsl(var(--muted) / 0.5);
+}
+.dashboardLinkWrapper .dashboardLink {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   text-decoration: none;
 }
-.dashboardLink .header {
+.dashboardLinkWrapper .dashboardLink .header {
   align-items: flex-start;
 }
-.dashboardLink .header .h2 {
+.dashboardLinkWrapper .dashboardLink .header .h2 {
   color: hsl(var(--foreground));
   font-size: 1rem;
   text-decoration: none;
 }
-.dashboardLink .info {
+.dashboardLinkWrapper .dashboardLink .info {
   display: flex;
   justify-content: space-between;
 }
-.dashboardLink .info span {
+.dashboardLinkWrapper .dashboardLink .info span {
   color: hsl(var(--muted-foreground));
-  font-size: 12px;
+  font-size: 14px;
 }
-.dashboardLink .info i {
+.dashboardLinkWrapper .dashboardLink .info i {
   color: hsl(var(--muted-foreground));
-  font-size: 12px;
+  font-size: 14px;
 }
-.dashboardLink:hover {
-  background-color: hsl(var(--muted)/0.5);
+.dashboardLinkWrapper .editButton {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  z-index: 100;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  pointer-events: all;
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  user-select: all;
+}
+.dashboardLinkWrapper .editButton .editIcon {
+  color: hsl(var(--muted-foreground));
+  width: 28px;
+  height: 28px;
+  padding: 0.3rem;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: 100;
+  transition: all 0.145s ease;
+}
+.dashboardLinkWrapper .editButton .editIconMobile {
+  color: hsl(var(--white));
+  background-color: hsl(var(--muted-foreground));
+  width: 22px;
+  height: 22px;
+  z-index: 10000;
+}
+@media screen and (prefers-color-scheme: dark),
+  screen and (-webkit-prefers-color-scheme: dark) {
+  .dashboardLinkWrapper .editButton .editIconMobile {
+    background-color: hsl(var(--muted-foreground) / 0.4);
+    color: hsl(var(--white));
+  }
+}
+.dashboardLinkWrapper .editButton:hover .editIcon {
+  color: hsl(var(--white));
+  background-color: hsl(var(--muted-foreground));
+  z-index: 10000;
+}
+@media screen and (prefers-color-scheme: dark),
+  screen and (-webkit-prefers-color-scheme: dark) {
+  .dashboardLinkWrapper .editButton:hover .editIcon {
+    background-color: hsl(var(--muted-foreground) / 0.4);
+    color: hsl(var(--white));
+  }
 }
 
 .createDashboardLink {
-  background-color: hsl(var(--card)/0.25);
   display: flex;
-  width: 100% !important;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  padding: 0.45rem 0.65re;
 }
-.createDashboardLink:hover {
-  background-color: hsl(var(--muted)/0.5);
-  text-decoration: none;
-}
-.createDashboardLink .header {
+.createDashboardLink header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
 }
-.createDashboardLink .header .add {
-  width: 1.1rem;
-  height: 1.1rem;
-  margin-right: 0.5rem;
-}
-.createDashboardLink .header:hover {
-  text-decoration: none;
-}/*# sourceMappingURL=dashboardLink.module.css.map */
+.createDashboardLink .plus {
+  width: 1rem;
+  height: 1rem;
+} /*# sourceMappingURL=dashboardLink.module.css.map */

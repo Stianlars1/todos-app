@@ -1,0 +1,11 @@
+.dashboardSelect {
+  padding: 4px;
+}
+.dashboardSelect .dashboardOption {
+  padding: 4px 5px;
+}
+
+.dashboardSelectDescription {
+  font-size: 12px;
+  color: hsl(var(--muted-foreground));
+} /*# sourceMappingURL=dashboardSelect.module.css.map */

@@ -78,11 +78,31 @@
       "label": "Navn",
       "placeholder": "Navn på dashboard",
       "submit": "Opprett dashboard",
-      "loadingSubmit": "Creating dashboard...",
-      "cancel": "Cancel",
+      "loadingSubmit": "Oppretter dashboard...",
+      "cancel": "Avbryt",
       "dashboardNameAlreadyExists": "Dashboard med dette navnet eksisterer allerede"
     },
-    "create_dashboard": "Opprett dashboard"
+    "create_dashboard": "Nytt dashboard"
+  },
+
+  "UpdateDashboard": {
+    "header": {
+      "title": "Oppdater dashboard",
+      "description": "Klikk utenfor boksen for å lukke"
+    },
+    "form": {
+      "label": "Nytt navn",
+      "placeholder": "Navn på dashboard",
+      "submit": "Oppdater dashboard",
+      "loadingSubmit": "Oppdaterer..",
+      "cancel": "Avbryt",
+      "delete": "Slett dashboard",
+      "delete_are_you_sure": "Er du sikker på at du vil slette dette dashboardet?",
+      "delete_all_tasks": "Alle oppgaver i dette dashboardet vil bli slettet",
+      "delete_loading": "Sletter..",
+      "dashboardNameAlreadyExists": "Dashboard med dette navnet eksisterer allerede"
+    },
+    "create_dashboard": "Oppdater dashboard"
   },
 
   "Buttons": {

@@ -19,6 +19,33 @@
     z-index: 10;
   }
 
+  &__activeDashboardName {
+    position: absolute;
+    top: calc(var(--nav-height) + 0.5rem);
+    left: calc(var(--sidebar-width) + 2rem);
+    color: hsl(var(--activeText));
+    z-index: 100;
+    font-size: 12px;
+    font-weight: 400;
+    transition: all 0.15s ease-in-out;
+    position: relative;
+    display: inline;
+    width: min-content;
+    height: min-content;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -0.75rem;
+      width: 5px;
+      height: 5px;
+      background-color: hsl(var(--activeText));
+      border-radius: 50%;
+    }
+  }
+
   // Main content setup
   &__main {
     grid-area: main; // Assigning to the main area
@@ -55,6 +82,10 @@
     grid-template-areas:
       "navbar"
       "main";
+
+    &__activeDashboardName {
+      left: calc(0rem + 1rem + 0.75rem);
+    }
 
     &__main {
       padding: 2.5rem 1rem 1rem;

@@ -101,7 +101,7 @@ const ContextButton: React.FC<ContextButtonProps> = ({ trigger, children }) => {
           >
             {children}
           </div>,
-          document.body
+          document.body,
         )}
     </div>
   );

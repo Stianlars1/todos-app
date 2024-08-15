@@ -1,7 +1,7 @@
 "use client";
 
 import { updateUserSettings } from "@/app/actions/user/api";
-import { UserDTO } from "@/app/actions/user/types";
+import { UserSettingsDTO } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { useEffect, useState } from "react";
@@ -10,18 +10,15 @@ import "./css/gridSidebarToggle.css";
 export const GridSidebarToggle = ({
   userDetails,
 }: {
-  userDetails: UserDTO | null;
+  userDetails: UserSettingsDTO | null;
 }) => {
-  const userSettings = Boolean(userDetails?.settings?.sidebarOpen);
+  const userSettings = Boolean(userDetails);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(userSettings);
+  console.log("userDetails ", userDetails);
   // Effect to synchronize sidebarOpen state with userDetails.settings.sidebarOpen
   useEffect(() => {
-    if (
-      userDetails &&
-      userDetails.settings &&
-      userDetails.settings.sidebarOpen
-    ) {
-      setSidebarOpen(userDetails.settings.sidebarOpen);
+    if (userDetails && userDetails.sidebarOpen !== undefined) {
+      setSidebarOpen(userDetails.sidebarOpen);
     }
   }, [userSettings]); // Depend on userDetails
 

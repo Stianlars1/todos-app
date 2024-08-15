@@ -8,7 +8,7 @@ import {
 } from "../types";
 
 export const loginFetcher = async (
-  loginCredentials: LoginCredentials
+  loginCredentials: LoginCredentials,
 ): Promise<authResponseDTO> => {
   const response = await fetch(API_AUTH_URL, {
     method: HTTP_REQUEST.POST,
@@ -21,7 +21,7 @@ export const loginFetcher = async (
   return data;
 };
 export const signUpFetcher = async (
-  signupCredentials: SignUpCredentials
+  signupCredentials: SignUpCredentials,
 ): Promise<signupResponseDTO> => {
   const response = await fetch(API_USER_URL, {
     method: HTTP_REQUEST.POST,

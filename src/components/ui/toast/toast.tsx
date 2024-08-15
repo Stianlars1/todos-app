@@ -13,19 +13,19 @@ export const toast = {
     document.dispatchEvent(
       new CustomEvent("add-toast", {
         detail: { message, type: "success", position: position },
-      })
+      }),
     ),
   error: (message: string, position?: ToastPositions) =>
     document.dispatchEvent(
       new CustomEvent("add-toast", {
         detail: { message, type: "error", position: position },
-      })
+      }),
     ),
   info: (message: string, position?: ToastPositions) =>
     document.dispatchEvent(
       new CustomEvent("add-toast", {
         detail: { message, type: "info", position: position },
-      })
+      }),
     ),
 };
 
@@ -68,7 +68,7 @@ export const ToastContainer = () => {
     return () =>
       document.removeEventListener(
         "add-toast",
-        handleAddToast as EventListener
+        handleAddToast as EventListener,
       );
   }, [isClient]);
 
@@ -105,7 +105,7 @@ export const ToastContainer = () => {
         })}
       </ol>
     </div>,
-    document.body
+    document.body,
   );
 };
 

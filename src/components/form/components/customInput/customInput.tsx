@@ -29,7 +29,7 @@ export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
         className={`custom-input ${props.className ? props.className : " "}`}
       />
     );
-  }
+  },
 );
 
 CustomInput.displayName = "CustomInput";

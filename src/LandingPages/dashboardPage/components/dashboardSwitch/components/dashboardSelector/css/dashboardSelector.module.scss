@@ -1,20 +1,21 @@
 .dashboardSelector {
   position: fixed;
   top: calc(var(--nav-height) + 0.5rem);
-  left: calc(var(--sidebar-width) + 1rem);
+  left: calc(var(--sidebar-width) + 2rem + 2rem);
   margin-bottom: 1rem;
 
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: all 0.15s ease-in-out;
 
   .select {
     padding: 0;
     border: 0;
 
     background: transparent;
-    border-bottom: 2px solid hsl(var(--border));
-    color: hsl(var(--muted-foreground));
+    border-bottom: 1.5px solid hsl(var(--activeText));
+    color: hsl(var(--activeText));
     cursor: pointer;
 
     .option {

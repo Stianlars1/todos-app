@@ -18,14 +18,14 @@ export const SettingsPageTabs = ({
       activeTab === Tabs.PROFILE
         ? "0"
         : activeTab === Tabs.SECURITY
-        ? "68px"
-        : "162px",
+          ? "68px"
+          : "162px",
     width:
       activeTab === Tabs.PROFILE
         ? "64px"
         : activeTab === Tabs.SECURITY
-        ? "90px"
-        : "105px",
+          ? "90px"
+          : "105px",
   });
 
   const updateActiveTab = (tabIndex: number, newTab: Tabs) => {

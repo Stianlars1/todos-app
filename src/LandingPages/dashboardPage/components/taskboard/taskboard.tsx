@@ -24,7 +24,7 @@ export const Taskboard = async ({
   error: string;
 }) => {
   const categorizedTodosFiltered = Object.entries(
-    taskResponse?.data || {}
+    taskResponse?.data || {},
   ).reduce<CategorizedTodosDTO>((acc, [key, value]) => {
     if (key !== DUE_SOON_KEY) {
       acc[key as StatusCodes] = value;

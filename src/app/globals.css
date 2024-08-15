@@ -40,6 +40,8 @@ html:root {
   --sidebar-bg: 0 0% 100%;
 
   /* == Theme == */
+  --activeText: 124, 84%, 25%;
+
   /* --background: 0 0% 100%; */
   --background: 220 14% 96%;
   --foreground: 222.2 84% 4.9%;
@@ -81,6 +83,8 @@ html:root {
   html:root {
     --sidebar-bg: 222.2 84% 4.9%;
     /* == Theme == */
+    --activeText: 88, 50%, 53%;
+
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -129,8 +133,18 @@ html body {
   overflow-x: hidden;
   color: hsl(var(--foreground));
   background: hsl(var(--background));
-  font-family: "Geist Sans", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+  font-family:
+    "Geist Sans",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
     sans-serif;
 }
 

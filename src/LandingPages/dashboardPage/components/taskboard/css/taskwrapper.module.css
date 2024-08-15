@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  height: calc(100dvh - 75px - var(--nav-height) - 15rem);
+  height: calc(100dvh - 75px - var(--nav-height) - 10rem);
   overflow: scroll;
   padding: 0rem;
 
@@ -22,7 +22,7 @@
   display: none;
 }
 .taskContainerColumnLayout {
-  height: calc(100dvh - 75px - var(--nav-height) - 15rem);
+  height: calc(100dvh - 75px - var(--nav-height) - 10rem);
 }
 
 .taskContainerRowLayout {
@@ -30,6 +30,8 @@
   padding-bottom: 2rem;
 }
 
+@media screen and (min-width: 769px) {
+}
 @media screen and (max-width: 768px) {
   .taskContainer {
     height: 100%;
@@ -42,6 +44,9 @@
 
   margin: 1.5rem auto -1rem !important;
   padding: 0;
+  z-index: 10000;
+  position: sticky;
+  bottom: 0;
 }
 
 /* .taskCardSortable {

@@ -70,7 +70,7 @@ export const CreateTodoButton = ({
             userSettings={userSettings}
             onClose={() => setOpen(!open)}
           />,
-          document.body
+          document.body,
         )}
     </>
   );

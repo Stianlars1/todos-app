@@ -4,10 +4,20 @@
   gap: 1rem;
   align-items: center;
 
-  .h1 {
-    font-size: 1.2rem;
-    text-align: left;
-    align-self: flex-start;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .h1 {
+      font-size: 1.2rem;
+      text-align: left;
+      align-self: center;
+    }
+
+    .createDashboard {
+      max-width: fit-content;
+    }
   }
   .dashboardMain {
     width: 100%;

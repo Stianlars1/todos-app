@@ -1,8 +1,6 @@
-.dashboardLink {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 1.5rem;
+.dashboardLinkWrapper {
+  position: relative;
+
   border: 1px solid hsl(var(--border));
   background-color: hsl(var(--muted));
   border-radius: var(--radius);
@@ -13,61 +11,140 @@
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
-
-  cursor: pointer;
-  text-decoration: none;
-  .header {
-    align-items: flex-start;
-    .h2 {
-      color: hsl(var(--foreground));
-      font-size: 1rem;
-      text-decoration: none;
-    }
-  }
-
-  .info {
-    display: flex;
-    justify-content: space-between;
-    span {
-      color: hsl(var(--muted-foreground));
-      font-size: 12px;
-    }
-    i {
-      color: hsl(var(--muted-foreground));
-      font-size: 12px;
-    }
-  }
-
+  z-index: 1;
   &:hover {
     background-color: hsl(var(--muted) / 0.5);
+  }
+
+  .dashboardLink {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+
+    cursor: pointer;
+    text-decoration: none;
+    .header {
+      align-items: flex-start;
+      .h2 {
+        color: hsl(var(--foreground));
+        font-size: 1rem;
+        text-decoration: none;
+      }
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      span {
+        color: hsl(var(--muted-foreground));
+        font-size: 14px;
+      }
+      i {
+        color: hsl(var(--muted-foreground));
+        font-size: 14px;
+      }
+    }
+  }
+
+  .editButton {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    z-index: 100;
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    pointer-events: all;
+    user-select: all;
+
+    .editIcon {
+      color: hsl(var(--muted-foreground));
+      width: 28px;
+      height: 28px;
+      padding: 0.3rem;
+      background-color: transparent;
+      border-radius: 50%;
+      z-index: 100;
+      transition: all 0.145s ease;
+    }
+
+    .editIconMobile {
+      color: hsl(var(--white));
+      background-color: hsl(var(--muted-foreground));
+      width: 22px;
+      height: 22px;
+      z-index: 10000;
+      @media screen and (prefers-color-scheme: dark),
+        screen and (-webkit-prefers-color-scheme: dark) {
+        background-color: hsl(var(--muted-foreground) / 0.4);
+        color: hsl(var(--white));
+      }
+    }
+  }
+
+  .editButton:hover {
+    .editIcon {
+      color: hsl(var(--white));
+      background-color: hsl(var(--muted-foreground));
+      z-index: 10000;
+      @media screen and (prefers-color-scheme: dark),
+        screen and (-webkit-prefers-color-scheme: dark) {
+        background-color: hsl(var(--muted-foreground) / 0.4);
+        color: hsl(var(--white));
+      }
+    }
   }
 }
 
 .createDashboardLink {
-  background-color: hsl(var(--card) / 0.25);
   display: flex;
-  width: 100% !important;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-  position: relative;
-
-  &:hover {
-    background-color: hsl(var(--muted) / 0.5);
-    text-decoration: none;
-  }
-  .header {
+  padding: 0.45rem 0.65re;
+  header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    .add {
-      width: 1.1rem;
-      height: 1.1rem;
-      margin-right: 0.5rem;
-    }
-    &:hover {
-      text-decoration: none;
-    }
+    gap: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .plus {
+    width: 1rem;
+    height: 1rem;
   }
 }
+
+// .createDashboardLink {
+//   background-color: hsl(var(--card) / 0.25);
+//   display: flex;
+//   width: 100% !important;
+//   align-items: center;
+//   justify-content: center;
+//   position: relative;
+
+//   &:hover {
+//     background-color: hsl(var(--muted) / 0.5);
+//     text-decoration: none;
+//   }
+//   .header {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     .add {
+//       width: 1.1rem;
+//       height: 1.1rem;
+//       margin-right: 0.5rem;
+//     }
+//     &:hover {
+//       text-decoration: none;
+//     }
+//   }
+// }

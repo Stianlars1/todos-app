@@ -58,6 +58,6 @@
     max-width: 100vw;
   }
   .create-task .selects {
-    flex-direction: column;
+    flex-wrap: wrap;
   }
-}/*# sourceMappingURL=createTask.css.map */
+} /*# sourceMappingURL=createTask.css.map */

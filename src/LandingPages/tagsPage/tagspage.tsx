@@ -1,6 +1,5 @@
 import { getTasksByTagsGrouped } from "@/app/actions/tags/api";
 import { getUserSettings } from "@/app/actions/user/userApi";
-import { ToastContainer } from "@/components/ui/toast/toast";
 import { getTranslations } from "next-intl/server";
 import { TagsHero } from "./components/tagsHero/tagsHero";
 import styles from "./css/tagsPage.module.css";
@@ -17,7 +16,6 @@ export const TagsPage = async () => {
 
       {/* <TagsContainer userSettings={userSettings ?? undefined} tags={tags} /> */}
       <TagsHero tasksAndTags={TasksAndTags} />
-      <ToastContainer />
     </div>
   );
 };

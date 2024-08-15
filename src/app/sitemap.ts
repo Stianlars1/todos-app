@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date().toISOString(),
       priority: 1,
       changeFrequency: "monthly",
-    })
+    }),
   );
 
   return [...staticRoutes];

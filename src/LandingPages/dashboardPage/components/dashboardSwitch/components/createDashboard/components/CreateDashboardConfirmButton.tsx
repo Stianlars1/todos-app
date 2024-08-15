@@ -12,13 +12,37 @@ export const CreateDashboardConfirmButton = ({
   onClick: () => void;
   pending: boolean;
 }) => {
-  console.log("title", title);
-
   return (
     <Button
       loadingText={loadingTitle}
       loading={pending}
       disabled={pending}
+      onClick={() => onClick()}
+      variant="primary"
+      type="button"
+    >
+      {title}
+    </Button>
+  );
+};
+export const UpdateDashboardConfirmButton = ({
+  title,
+  loadingTitle,
+  onClick,
+  pending,
+  updateDisabled,
+}: {
+  title: string;
+  loadingTitle: string;
+  onClick: () => void;
+  pending: boolean;
+  updateDisabled: boolean;
+}) => {
+  return (
+    <Button
+      loadingText={loadingTitle}
+      loading={pending}
+      disabled={pending || updateDisabled}
       onClick={() => onClick()}
       variant="primary"
       type="button"

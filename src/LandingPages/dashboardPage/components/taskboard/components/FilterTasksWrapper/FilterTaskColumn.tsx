@@ -32,7 +32,7 @@ export const FilterTaskColumn = ({
           (pref: UserPreferenceDTO) => ({
             categoryName: pref.categoryCode,
             visible: pref.visible,
-          })
+          }),
         ),
       });
 
@@ -41,7 +41,7 @@ export const FilterTaskColumn = ({
       console.error("Failed to update preferences:", error);
       toast.error(
         "Failed to update preferences. Please try again.",
-        "bottomRight"
+        "bottomRight",
       );
     }
     setIsSaving(false);

@@ -1,6 +1,5 @@
 import { getUserDetails } from "@/app/actions/user/userApi";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
-import { ToastContainer } from "@/components/ui/toast/toast";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 import { SettingsPageHero } from "./components/settingsPageHero/settingsPageHero";
@@ -14,8 +13,6 @@ export const SettingsPage = async () => {
 
         <SettingsPageHero userDetails={userDetails.data} />
       </div>
-
-      <ToastContainer />
     </Suspense>
   );
 };

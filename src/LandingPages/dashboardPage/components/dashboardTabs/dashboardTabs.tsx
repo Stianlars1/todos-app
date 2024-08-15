@@ -26,7 +26,7 @@ export const DashboardTabs = ({
   const [activeTab, setActiveTab] = useState(
     userSettings?.isDashboardTabActive
       ? DASHBOARD_TAB_INDEX
-      : OVERVIEW_TAB_INDEX
+      : OVERVIEW_TAB_INDEX,
   );
 
   const childrenArray = Array.isArray(children) ? children : [children];
