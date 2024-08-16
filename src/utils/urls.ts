@@ -8,12 +8,15 @@ export const API_REFRESH_TOKEN_URL =
 
 // User
 export const API_USER_URL = "https://app.taskbuddy.dev/api/user";
+export const API_DELETE_USER_URL = "https://app.taskbuddy.dev/api/user";
 export const API_USER_SETTINGS_URL =
   "https://app.taskbuddy.dev/api/user/settings"; // add /:userId to get a specific user's profile picture (PATCH)
 export const API_USER_PREFERENCES =
   "https://app.taskbuddy.dev/api/user/preferences"; // add /:userId to get a specific user's profile picture (PATCH)
 export const API_USER_UPDATE_PASSWORD_URL =
   "https://app.taskbuddy.dev/api/user/update-current-password"; // add /:userId to get a specific user's profile picture (PATCH)
+export const API_USER_PASSWORD_MATCH_URL =
+  "https://app.taskbuddy.dev/api/user/password-match"; // add /:userId to get a specific user's profile picture (PATCH)
 
 // Todos
 export const API_TODOS_URL = "https://app.taskbuddy.dev/api/todos"; // GET

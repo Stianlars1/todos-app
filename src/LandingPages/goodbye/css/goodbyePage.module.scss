@@ -1,0 +1,63 @@
+// logo === 22 x 22px
+
+.main {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1.2rem;
+  .nav {
+    height: calc(var(--nav-height) + 1rem);
+    display: flex;
+    justify-self: start;
+    margin-right: auto;
+    align-items: center;
+    gap: 0.5rem;
+    .navImageWrapper {
+      width: 40px;
+      height: 40px;
+      .navImage {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .navText {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    .imageWrapper {
+      width: 200px;
+      height: 200px;
+      .svg {
+        width: 200px;
+        height: 200px;
+      }
+    }
+    h1 {
+      font-size: 2.25rem;
+    }
+  }
+  .hero {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    .section {
+      p {
+      }
+    }
+  }
+}
+
+.mutedText {
+  color: hsl(var(--muted-foreground));
+}

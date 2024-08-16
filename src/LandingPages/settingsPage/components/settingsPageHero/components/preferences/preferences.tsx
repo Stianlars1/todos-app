@@ -1,5 +1,6 @@
 import { UserDTO } from "@/app/actions/user/types";
 import { useTranslations } from "next-intl";
+import { DeleteAccount } from "./components/deleteAccount/deleteAccount";
 import { TimezoneSelect } from "./components/timezone/timezoneSelect";
 import styles from "./css/preferences.module.css";
 export const SettingsPreferencesContent = ({
@@ -20,6 +21,8 @@ export const SettingsPreferencesContent = ({
       <TimezoneSelect
         currentTimezone={userDetails?.settings?.timeZone || "UTC"}
       />
+
+      <DeleteAccount />
     </section>
   );
 };

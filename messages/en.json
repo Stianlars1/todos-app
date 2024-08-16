@@ -352,5 +352,20 @@
       "update": "Update",
       "loading": "Loading.."
     }
+  },
+
+  "DeleteAccount": {
+    "header": {
+      "title": "Delete account",
+      "description": "Are you sure you want to delete your account? This action cannot be undone. All your tasks and dashboards will be deleted permanently."
+    },
+    "form": {
+      "label": "Enter your password",
+      "placeholder": "Enter your password",
+      "submit": "Delete account",
+      "loadingSubmit": "Deleting account...",
+      "cancel": "Cancel",
+      "passwordIncorrect": "Password is incorrect"
+    }
   }
 }

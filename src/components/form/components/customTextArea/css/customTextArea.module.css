@@ -20,32 +20,27 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   -webkit-appearance: textfield;
-  appearance: textfield;
+          appearance: textfield;
 }
 .customTextArea:autofill {
   box-shadow: inset 0 0 0 100px hsl(var(--card));
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
 }
 .customTextArea::-moz-placeholder {
-  color: hsl(var(--foreground) / 0.5);
+  color: hsl(var(--foreground)/0.5);
 }
 .customTextArea::placeholder {
-  color: hsl(var(--foreground) / 0.5);
+  color: hsl(var(--foreground)/0.5);
 }
-.customTextArea:hover,
-.customTextArea:focus,
-.customTextArea:active {
+.customTextArea:hover, .customTextArea:focus, .customTextArea:active {
   border-color: hsl(var(--input-hover));
 }
-@media screen and (prefers-color-scheme: dark),
-  screen and (-webkit-prefers-color-scheme: dark) {
-  .customTextArea:hover,
-  .customTextArea:focus,
-  .customTextArea:active {
+@media screen and (prefers-color-scheme: dark), screen and (-webkit-prefers-color-scheme: dark) {
+  .customTextArea:hover, .customTextArea:focus, .customTextArea:active {
     border-color: hsl(var(--input-hover));
   }
-} /*# sourceMappingURL=customTextArea.module.css.map */
+}/*# sourceMappingURL=customTextArea.module.css.map */

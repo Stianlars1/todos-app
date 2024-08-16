@@ -15,13 +15,13 @@
   color: hsl(var(--foreground));
 }
 .searchWrapper .searchInput::-moz-placeholder {
-  color: hsl(var(--foreground) / 0.8);
+  color: hsl(var(--foreground)/0.8);
   -moz-transition: color 0.3s ease;
   transition: color 0.3s ease;
   font-size: 0.875rem;
 }
 .searchWrapper .searchInput::placeholder {
-  color: hsl(var(--foreground) / 0.8);
+  color: hsl(var(--foreground)/0.8);
   transition: color 0.3s ease;
   font-size: 0.875rem;
 }
@@ -33,7 +33,7 @@
   top: 50%;
   transform: translateY(-50%);
   left: calc(10px + 0.5rem);
-  color: hsl(var(--foreground) / 0.8);
+  color: hsl(var(--foreground)/0.8);
   transition: color 0.3s ease;
 }
 .searchWrapper .shortcuts {
@@ -54,4 +54,4 @@
 }
 .searchWrapper:hover .searchIcon {
   color: hsl(var(--foreground));
-} /*# sourceMappingURL=search.module.css.map */
+}/*# sourceMappingURL=search.module.css.map */

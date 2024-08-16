@@ -1,16 +1,16 @@
 @media screen and (min-width: 769px) {
-  [data-sidebar-open="true"] .taskSection {
+  [data-sidebar-open=true] .taskSection {
     --sidebar-width: 11rem;
   }
-  [data-sidebar-open="false"] .taskSection {
+  [data-sidebar-open=false] .taskSection {
     --sidebar-width: calc(1.2rem + 3.5rem);
   }
 }
 @media screen and (max-width: 768px) {
-  [data-nav-open="true"] .taskSection {
+  [data-nav-open=true] .taskSection {
     --sidebar-width: 15rem;
   }
-  [data-nav-open="false"] .taskSection {
+  [data-nav-open=false] .taskSection {
     --sidebar-width: 0;
   }
 }
@@ -21,10 +21,10 @@
   left: var(--sidebar-width);
   right: 0;
   height: 24px;
-  background-color: hsl(var(--muted) / 0.5);
+  background-color: hsl(var(--muted)/0.5);
   color: hsl(var(--foreground));
   -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   max-height: 100vh;
   overflow: hidden;
   z-index: 100;
@@ -44,9 +44,9 @@
   padding: var(--main-padding);
   right: 0;
   bottom: 0;
-  background-color: hsl(var(--muted) / 0.5);
+  background-color: hsl(var(--muted)/0.5);
   -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   max-height: 100vh;
   overflow: hidden;
   z-index: 100;
@@ -107,7 +107,7 @@
   right: 0;
   bottom: 0;
   z-index: -10;
-  background-color: hsl(var(--background) / 0.5);
+  background-color: hsl(var(--background)/0.5);
 }
 .taskSection .close {
   position: absolute;
@@ -126,10 +126,10 @@
     padding: 3rem 1rem 0rem !important;
   }
 }
-[data-sidebar-open="true"] .taskSection .taskSectionEmpty {
+[data-sidebar-open=true] .taskSection .taskSectionEmpty {
   left: var(--sidebar-width);
 }
 
-[data-sidebar-open="false"] .taskSection .taskSectionEmpty {
+[data-sidebar-open=false] .taskSection .taskSectionEmpty {
   left: var(--sidebar-width);
-} /*# sourceMappingURL=taskSearchResponse.module.css.map */
+}/*# sourceMappingURL=taskSearchResponse.module.css.map */

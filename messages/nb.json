@@ -360,5 +360,20 @@
 
   "DashboardsPage": {
     "title": "Mine dashboard"
+  },
+
+  "DeleteAccount": {
+    "header": {
+      "title": "Slett konto",
+      "description": "Er du sikker på at du vil slette kontoen din? Denne handlingen kan ikke angres. Alle dine oppgaver og dashboards vil bli slettet permanent."
+    },
+    "form": {
+      "label": "Skriv inn passordet ditt for å bekrefte",
+      "placeholder": "Passord",
+      "submit": "Slett konto",
+      "loadingSubmit": "Sletter konto...",
+      "cancel": "Avbryt",
+      "passwordIncorrect": "Passordet er feil"
+    }
   }
 }

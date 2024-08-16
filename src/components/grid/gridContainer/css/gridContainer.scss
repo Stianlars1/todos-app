@@ -29,21 +29,41 @@
     font-weight: 400;
     transition: all 0.15s ease-in-out;
     position: relative;
-    display: inline;
-    width: min-content;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: max-content;
+    max-width: 150px;
+    gap: 0.35rem;
+
     height: min-content;
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: -0.75rem;
-      width: 5px;
-      height: 5px;
-      background-color: hsl(var(--activeText));
+    &__circle {
+      width: 5px !important;
+      height: 5px !important;
+      flex: 0 0 5px;
       border-radius: 50%;
+      background-color: hsl(var(--success));
+      display: flex;
     }
+
+    &__name {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   top: 50%;
+    //   transform: translateY(-50%);
+    //   left: -0.75rem;
+    //   width: 5px;
+    //   height: 5px;
+    //   background-color: hsl(var(--activeText));
+    //   border-radius: 50%;
+    // }
   }
 
   // Main content setup

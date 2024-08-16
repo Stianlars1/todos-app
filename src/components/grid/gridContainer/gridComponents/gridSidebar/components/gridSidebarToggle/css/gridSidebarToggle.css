@@ -14,17 +14,13 @@
   border-top-left-radius: 9999px;
   border-top-right-radius: 9999px;
   transform: translateY(0.15rem);
-  transition:
-    all 0.3s ease-in-out,
-    rotate 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out, rotate 0.3s ease-in-out;
 }
 .sidebar-toggle__secondLine {
   border-bottom-left-radius: 9999px;
   border-bottom-right-radius: 9999px;
   transform: translateY(-0.15rem);
-  transition:
-    all 0.3s ease-in-out,
-    rotate 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out, rotate 0.3s ease-in-out;
 }
 
 .sidebar-toggle:hover {
@@ -43,13 +39,13 @@
   transform: translateY(-0.15rem);
 }
 
-[data-sidebar-open="false"] .sidebar-toggle:hover .sidebar-toggle__firstLine {
+[data-sidebar-open=false] .sidebar-toggle:hover .sidebar-toggle__firstLine {
   border-bottom-left-radius: 9999px;
   border-bottom-right-radius: 9999px;
   rotate: -15deg;
   transform: translateY(0.15rem);
 }
-[data-sidebar-open="false"] .sidebar-toggle:hover .sidebar-toggle__secondLine {
+[data-sidebar-open=false] .sidebar-toggle:hover .sidebar-toggle__secondLine {
   border-top-left-radius: 9999px;
   border-top-right-radius: 9999px;
   rotate: 15deg;
@@ -57,7 +53,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  [data-sidebar-open="true"] #dragButton {
+  [data-sidebar-open=true] #dragButton {
     display: none;
   }
-} /*# sourceMappingURL=gridSidebarToggle.css.map */
+}/*# sourceMappingURL=gridSidebarToggle.css.map */

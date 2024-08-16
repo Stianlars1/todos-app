@@ -19,26 +19,7 @@ import styles from "./css/security.module.css";
 export const SettingsSecurityContent = () => {
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const securityTexts = useTranslations("SettingsPage.security");
-  // "security": {
-  //   "password": {
-  //     "title": "Endre passord",
-  //     "currentPassword": {
-  //       "label": "Nåværende passord",
-  //       "placeholder": "Skriv inn ditt nåværende passord"
-  //     },
-  //     "newPassword": {
-  //       "label": "Nytt passord",
-  //       "placeholder": "Skriv inn ditt nye passord"
-  //     },
-  //     "confirmPassword": {
-  //       "label": "Bekreft passord",
-  //       "placeholder": "Bekreft ditt nye passord"
-  //     },
-  //     "passwordUpdatedSuccessfully": "Passordet ble oppdatert",
-  //     "passwordsDoNotMatch": "Passordene stemmer ikke overens",
-  //     "incorrectPassword": "Feil passord"
-  //   }
-  // }
+
   return (
     <>
       <div className={styles.securityPage}></div>
@@ -96,7 +77,7 @@ const SecurityChangePassword = () => {
     if (state?.isSuccess) {
       toast.success(
         securityTexts("password.passwordUpdatedSuccessfully"),
-        "bottomRight",
+        "bottomRight"
       );
       setNewPassword("");
       setConfirmPassword("");
@@ -116,19 +97,19 @@ const SecurityChangePassword = () => {
           toast.error(
             securityTexts("password.passwordSameAsCurrent"),
 
-            "bottomRight",
+            "bottomRight"
           );
           break;
         case "Current password is incorrect.":
           toast.error(
             securityTexts("password.incorrectPassword"),
-            "bottomRight",
+            "bottomRight"
           );
           break;
         default:
           toast.error(
             state.error || "Error occured, please try again later",
-            "bottomRight",
+            "bottomRight"
           );
       }
     }
@@ -171,7 +152,7 @@ const SecurityChangePassword = () => {
                 autoComplete="new-password"
                 onChange={handleOnChange}
                 placeholder={securityTexts(
-                  "password.currentPassword.placeholder",
+                  "password.currentPassword.placeholder"
                 )}
               />
             </CustomInputLabelWrapper>
@@ -192,7 +173,7 @@ const SecurityChangePassword = () => {
                   type="password"
                   autoComplete="new-password"
                   placeholder={securityTexts(
-                    "password.newPassword.placeholder",
+                    "password.newPassword.placeholder"
                   )}
                 />
 
@@ -217,7 +198,7 @@ const SecurityChangePassword = () => {
                   value={confirmPassword}
                   type="password"
                   placeholder={securityTexts(
-                    "password.confirmPassword.placeholder",
+                    "password.confirmPassword.placeholder"
                   )}
                 />
                 {newPassword.length > 0 &&

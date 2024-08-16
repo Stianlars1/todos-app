@@ -1,0 +1,70 @@
+.deleteAccountModal {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  align-self: center !important;
+  width: max-content !important;
+  margin: 0 auto !important;
+  border-radius: 1rem !important;
+  overflow: hidden !important;
+}
+
+@media screen and (max-width: 768px) {
+  .deleteAccountModal {
+    min-width: 0;
+    min-height: 0;
+    align-self: center;
+    width: max-content;
+    margin: 0 auto;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+}
+
+.deleteAccount {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-self: flex-start;
+  padding: 1.2rem;
+
+  background-color: hsl(var(--card));
+  min-width: 400px;
+  cursor: default;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    p {
+      max-width: 500px;
+      color: hsl(var(--destructive-text));
+    }
+  }
+  .form {
+    .incorrect {
+      color: hsl(var(--destructive-text));
+    }
+  }
+  .CTA {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+
+    .delete {
+      background-color: hsl(var(--destructive));
+      color: hsl(var(--destructive-foreground));
+      &:hover {
+        background-color: hsl(var(--destructive) / 0.75) !important;
+      }
+    }
+  }
+}
+
+.isDeleting {
+  min-width: 200px;
+
+  height: max-content;
+  min-height: 100px;
+}

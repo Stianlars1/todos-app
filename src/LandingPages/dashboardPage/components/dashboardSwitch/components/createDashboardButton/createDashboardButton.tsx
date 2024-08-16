@@ -47,7 +47,7 @@ export const CreateDashboardButton = () => {
       {open &&
         createPortal(
           <CreateDashboard onClose={() => setOpen(!open)} />,
-          document.body,
+          document.body
         )}
     </>
   );

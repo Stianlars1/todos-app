@@ -89,7 +89,7 @@ export const verifySession = cache(async () => {
 
 // decrypt session ( Get the decoded accessToken's information ie: userId, firstName, exp, etc...)
 export async function decryptSession(
-  session: string | undefined = "",
+  session: string | undefined = ""
 ): Promise<DecryptedToken | null> {
   try {
     const decryptedToken =
@@ -109,6 +109,13 @@ export const deleteSession = async () => {
     return;
   }
   cookies().delete("session");
+};
+export const deleteSessionBoolean = async () => {
+  if (!cookies().get("session")) {
+    return false;
+  }
+  cookies().delete("session");
+  return true;
 };
 //
 //

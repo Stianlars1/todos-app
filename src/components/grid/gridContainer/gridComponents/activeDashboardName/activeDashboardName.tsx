@@ -10,20 +10,27 @@ export const ActiveDashboardName = ({
   dashboards: DashboardOnlyTypeDTO[] | null;
 }) => {
   const pathName = usePathname();
-  const isAtDashboardPage = checkIfPathIsAtDashboard(pathName, dashboards);
-
+  const isAtDashboardPage = checkIfPathIsAtDashboard(
+    decodeURI(pathName),
+    dashboards
+  );
+  console.log("isAtDashboardPage", isAtDashboardPage);
+  console.log("path", pathName);
   if (!activeDashboardName || isAtDashboardPage) return null;
 
   return (
     <div className="grid-container__activeDashboardName">
-      {activeDashboardName}
+      <div className="grid-container__activeDashboardName__circle" />
+      <div className="grid-container__activeDashboardName__name">
+        {activeDashboardName}
+      </div>
     </div>
   );
 };
 
 const checkIfPathIsAtDashboard = (
   pathName: string,
-  dashboards: DashboardOnlyTypeDTO[] | null,
+  dashboards: DashboardOnlyTypeDTO[] | null
 ) => {
   const match = dashboards?.some((board) => pathName.includes(board.name));
   return match;

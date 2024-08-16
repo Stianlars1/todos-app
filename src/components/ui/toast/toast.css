@@ -13,8 +13,8 @@
   right: 0;
   pointer-events: none;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   padding: var(--base-padding);
 }
 
@@ -35,8 +35,7 @@
   font-size: 0.975rem;
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),
-    var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
   border: 1px solid hsl(var(--border));
   display: flex;
   align-items: center;
@@ -44,9 +43,7 @@
   gap: 0.5rem;
   opacity: 0.4;
   transform: translateY(-20px);
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease-out;
+  transition: opacity 0.5s ease, transform 0.5s ease-out;
 }
 
 .entering,
@@ -58,17 +55,14 @@
 .exiting {
   opacity: 0;
   transform: scale(0.9) translateY(-40px); /* Scale down and move up slightly */
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease-in;
+  transition: opacity 0.5s ease, transform 0.5s ease-in;
 }
 
 .success {
   background-color: hsl(var(--card));
   color: hsl(var(--foreground));
 }
-@media screen and (prefers-color-scheme: dark),
-  screen and (-webkit-prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark), screen and (-webkit-prefers-color-scheme: dark) {
   .success {
     background-color: hsl(var(--muted));
   }
@@ -119,4 +113,4 @@
 .bottomRight {
   bottom: var(--base-spacing);
   right: var(--base-spacing);
-} /*# sourceMappingURL=toast.css.map */
+}/*# sourceMappingURL=toast.css.map */

@@ -2,6 +2,12 @@
 html body {
   --nav-height: 50px;
   --sidebar-width: 15rem;
+
+  /* --background: #020817;
+  --foreground: #f8fafc;
+  --muted2: #1e293b;
+  --muted2-foreground: #94a3b8;
+  --border: #1e293b; */
 }
 
 html:root {
