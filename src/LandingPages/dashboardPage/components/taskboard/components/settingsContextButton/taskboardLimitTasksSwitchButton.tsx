@@ -10,7 +10,6 @@ export const TaskboardLimitTasksSwitchButton = ({
   userSettings: UserSettingsDTO | null;
 }) => {
   const limitTasks = userSettings?.limitTasks;
-  console.log("limitTasks", userSettings);
   const handleSort = async () => {
     if (userSettings?.limitTasks !== undefined) {
       const sortResponse = await updateUserSettings({

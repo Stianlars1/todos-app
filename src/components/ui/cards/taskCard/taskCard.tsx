@@ -34,6 +34,7 @@ export const TaskCard = ({
       style={style}
       id={index === 0 ? "one" : index === 1 ? "two" : "three"}
       onClick={onClick}
+      aria-label={`task with title ${task.title}`}
     >
       <div className={`reveal-card__wrapper ${className}__wrapper`}>
         <div

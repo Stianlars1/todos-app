@@ -41,7 +41,7 @@ export const TaskSearchResponse = ({
       const closeModalOnESC = (event: KeyboardEvent) => {
         if (event.key === "Escape") {
           const taskViewer = document.body.getAttribute(
-            "taskviewer-modal-open",
+            "taskviewer-modal-open"
           );
           if (taskViewer === "true") {
             return;
@@ -100,14 +100,14 @@ export const TaskSearchResponse = ({
               if (
                 filters.tags &&
                 task.tags.some((tag) =>
-                  tag.toLowerCase().includes(searchTerm.toLowerCase()),
+                  tag.toLowerCase().includes(searchTerm.toLowerCase())
                 )
               ) {
                 return true;
               }
               return false;
-            }),
-          ),
+            })
+          )
         );
       }
     }
@@ -119,16 +119,13 @@ export const TaskSearchResponse = ({
 
   const handleOnCardClick = (
     event: React.MouseEvent<HTMLLIElement>,
-    todoId: any,
+    todoId: any
   ) => {
-    console.log("openTask");
     const shouldItReturn = shouldReturn(event);
     if (shouldItReturn) {
-      console.log("shouldItReturn");
       return;
     }
 
-    console.log("pushing selectedtask to router");
     event.preventDefault();
     router.push(`${pathName}?selectedTask=${todoId}`, {
       scroll: false,
@@ -217,7 +214,7 @@ export const TaskSearchResponse = ({
             )}
           </>
         </>,
-        document.getElementById("grid-container") ?? document.body,
+        document.getElementById("grid-container") ?? document.body
       )
     : null;
 };

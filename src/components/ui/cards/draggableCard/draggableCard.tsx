@@ -46,15 +46,12 @@ export const DraggableCard = ({
   const pathName = usePathname();
   const router = useRouter();
   const openTask = (event: React.MouseEvent<HTMLDivElement>) => {
-    console.log("openTask");
     const shouldItReturn = shouldReturn(event);
     if (shouldItReturn) {
-      console.log("shouldItReturn");
       return;
     }
 
     event.preventDefault();
-    console.log("pushing selectedtask to router");
     router.push(`${pathName}?selectedTask=${todoId}`, undefined);
   };
 
@@ -177,7 +174,7 @@ export const DraggableCard = ({
 };
 
 export const shouldReturn = (
-  event: React.MouseEvent<HTMLDivElement | HTMLLIElement>,
+  event: React.MouseEvent<HTMLDivElement | HTMLLIElement>
 ) => {
   if (
     event.target instanceof HTMLElement &&

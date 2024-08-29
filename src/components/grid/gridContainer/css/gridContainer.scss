@@ -21,10 +21,9 @@
 
   &__activeDashboardName {
     position: absolute;
-    top: calc(var(--nav-height) + 0.5rem);
+    top: calc(var(--nav-height) + 1rem);
     left: calc(var(--sidebar-width) + 2rem);
     color: hsl(var(--activeText));
-    z-index: 100;
     font-size: 12px;
     font-weight: 400;
     transition: all 0.15s ease-in-out;

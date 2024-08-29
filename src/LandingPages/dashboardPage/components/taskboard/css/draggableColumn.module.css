@@ -8,6 +8,7 @@
   border: 1px solid hsl(var(--border));
   border-radius: calc(var(--radius) + 2px * 2);
   position: relative;
+  overflow: hidden;
   &::after {
     content: "";
     position: absolute;

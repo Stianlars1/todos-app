@@ -33,7 +33,7 @@ export const CustomTextArea = ({ width, ...props }: CustomTextAreaProps) => {
       textArea.addEventListener("input", adjustHeight); // Adjust height on input
       return () => textArea.removeEventListener("input", adjustHeight); // Cleanup
     }
-  }, []);
+  }, [props]);
   return (
     <textarea
       ref={textAreaRef}
@@ -41,7 +41,7 @@ export const CustomTextArea = ({ width, ...props }: CustomTextAreaProps) => {
       {...props}
       className={`${styles.customTextArea} ${GeistSans.className} ${
         props.className ? props.className : " "
-      }`}
+      } `}
     />
   );
 };

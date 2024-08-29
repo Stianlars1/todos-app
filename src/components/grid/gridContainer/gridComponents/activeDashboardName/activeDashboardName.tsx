@@ -14,8 +14,6 @@ export const ActiveDashboardName = ({
     decodeURI(pathName),
     dashboards
   );
-  console.log("isAtDashboardPage", isAtDashboardPage);
-  console.log("path", pathName);
   if (!activeDashboardName || isAtDashboardPage) return null;
 
   return (

@@ -16,6 +16,7 @@
 
   max-width: 100%;
   height: fit-content;
+  overflow: visible;
 
   &:autofill {
     box-shadow: inset 0 0 0 100px hsl(var(--card));

@@ -18,6 +18,7 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
+  background-color: hsl(var(--muted));
 }
 .modal__backdrop-clickable {
   position: fixed;
@@ -51,5 +52,8 @@
     left: 0;
     right: 0;
     bottom: 0;
+  }
+  .modal::backdrop {
+    background: hsla(0, 0%, 0%, 0.9);
   }
 }/*# sourceMappingURL=modal.css.map */

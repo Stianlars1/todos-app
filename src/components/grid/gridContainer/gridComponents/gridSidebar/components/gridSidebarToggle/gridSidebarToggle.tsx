@@ -1,5 +1,4 @@
 "use client";
-
 import { updateUserSettings } from "@/app/actions/user/api";
 import { UserSettingsDTO } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
@@ -12,30 +11,34 @@ export const GridSidebarToggle = ({
 }: {
   userDetails: UserSettingsDTO | null;
 }) => {
-  const userSettings = Boolean(userDetails);
-  const [sidebarOpen, setSidebarOpen] = useState<boolean>(userSettings);
-  console.log("userDetails ", userDetails);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(
+    userDetails?.sidebarOpen || false
+  );
+
   // Effect to synchronize sidebarOpen state with userDetails.settings.sidebarOpen
   useEffect(() => {
     if (userDetails && userDetails.sidebarOpen !== undefined) {
       setSidebarOpen(userDetails.sidebarOpen);
     }
-  }, [userSettings]); // Depend on userDetails
+  }, [userDetails]);
 
+  // Effect to update the data attribute on the grid container
   useEffect(() => {
     const GridContainerId = "grid-container";
-    document
-      ?.getElementById(GridContainerId)
-      ?.setAttribute("data-sidebar-open", String(sidebarOpen));
+    const gridContainer = document.getElementById(GridContainerId);
+    if (gridContainer) {
+      gridContainer.setAttribute("data-sidebar-open", String(sidebarOpen));
+    }
   }, [sidebarOpen]);
 
+  // Effect to add the keydown event listener for CMD + B or CTRL + B
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const handleKeydown = async (event: KeyboardEvent) => {
+    const handleKeydown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "b") {
-        console.log(event);
-        await toggleSidebar();
+        event.preventDefault(); // Prevent default browser action (usually bold text)
+        toggleSidebar();
       }
     };
 
@@ -44,18 +47,18 @@ export const GridSidebarToggle = ({
     return () => {
       window.removeEventListener("keydown", handleKeydown);
     };
-  }, []);
+  }, [sidebarOpen]);
 
   const toggleSidebar = async () => {
-    console.log("toggleSidebar");
     const newSidebarOpen = !sidebarOpen;
     setSidebarOpen(newSidebarOpen);
+
     const updated = await updateUserSettings({ sidebarOpen: newSidebarOpen });
-    console.log(updated);
     if (updated.success) {
-      cacheInvalidate({ cacheKey: CacheKeys.USER_DETAILS });
+      cacheInvalidate({ cacheKey: CacheKeys.USER_SETTINGS });
     }
   };
+
   return (
     <div onClick={toggleSidebar} id="dragButton" className="sidebar-toggle">
       <div className="sidebar-toggle__firstLine sidebar-toggle__lines" />

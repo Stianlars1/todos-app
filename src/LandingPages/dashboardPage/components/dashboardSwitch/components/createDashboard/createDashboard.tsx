@@ -56,7 +56,6 @@ export const CreateDashboard = ({ onClose }: { onClose: () => void }) => {
         cacheInvalidate({ cacheKey: CacheKeys.DASHBOARDS });
       }
       setNewName("");
-      console.log("response", response);
       toast.success("Dashboard created successfully", "bottomRight");
       cacheInvalidate({ cacheKey: CacheKeys.DASHBOARDS });
       onClose();

@@ -1,6 +1,6 @@
 .dashboardSelector {
   position: fixed;
-  top: calc(var(--nav-height) + 0.5rem);
+  top: calc(var(--nav-height) + 0.75rem);
   left: calc(var(--sidebar-width) + 2rem + 2rem);
   margin-bottom: 1rem;
 
@@ -14,8 +14,9 @@
     border: 0;
 
     background: transparent;
-    border-bottom: 1.5px solid hsl(var(--activeText));
+    border-bottom: 1px solid hsl(var(--activeText));
     color: hsl(var(--activeText));
+    font-size: 12px;
     cursor: pointer;
 
     .option {

@@ -220,7 +220,7 @@
       "tagsPlaceholder": "Tags",
       "tagsDescription": "Comma separated tags",
       "formDashboardSelect": "Select dashboard",
-      "formDashboardSelectDescription": "Select the dashboard the task belongs to"
+      "formDashboardSelectDescription": "Select the dashboard(s) the task belongs to"
     }
   },
 

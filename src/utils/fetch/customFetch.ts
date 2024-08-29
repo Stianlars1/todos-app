@@ -69,11 +69,9 @@ export async function customFetch<T>({
   };
 
   try {
-    console.log("\nfetchOptions\n", fetchOptions);
     const response = await fetch(url, fetchOptions);
 
     if (!response.ok) {
-      console.log("response", response);
       const contentType = response.headers.get("Content-Type");
       let errorData: any;
       if (contentType && contentType.includes("application/json")) {
@@ -82,10 +80,8 @@ export async function customFetch<T>({
         errorData = await response.text(); // Fallback to plain text
       }
 
-      console.log("\n\n errorData", errorData);
       const errorMessage =
         errorData.message || errorData || getErrorMessage(response.status);
-      console.log("\n\n errorMessage", errorMessage);
       throw new Error(errorMessage);
     }
 

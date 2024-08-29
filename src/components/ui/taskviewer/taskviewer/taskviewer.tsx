@@ -64,6 +64,8 @@ export const TaskViewer = ({
   // Variables
   const { task: taskDTO } = useFetchTask(taskId);
   const pathName = usePathname();
+
+  console.log("TASKKK", taskDTO);
   // STATES
   const [formState, dispatch] = useFormState(updateTodoForm, undefined);
   const [state, setState] = useState<UpdatedTodoDTO>(initialUseState);
@@ -76,7 +78,7 @@ export const TaskViewer = ({
   const [endAnimation, setEndAnimation] = useState(false);
 
   const [markAsCompletedState, setMarkAsCompletedState] = useState<UPDATE_TASK>(
-    { isUpdating: false, isError: undefined, isSuccess: undefined },
+    { isUpdating: false, isError: undefined, isSuccess: undefined }
   );
 
   const [activeDashboardId, setActiveDashboardId] = useState<
@@ -84,13 +86,8 @@ export const TaskViewer = ({
   >(userSettings?.activeDashboardId);
 
   const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
-    taskDTO && dashboards ? getActiveDashboardIds(taskDTO, dashboards) : [],
+    taskDTO && dashboards ? getActiveDashboardIds(taskDTO, dashboards) : []
   );
-
-  console.log("selectedDashboardIds", selectedDashboardIds);
-  // const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
-  //   activeDashboardId ? [activeDashboardId] : []
-  // );
 
   const router = useRouter();
   const locale = useLocale();
@@ -166,6 +163,7 @@ export const TaskViewer = ({
     setTimeout(() => {
       setEndAnimation(false);
       setStartAnimation(false);
+      document.body.setAttribute("taskviewer-modal-open", false.toString());
       window.removeEventListener("keydown", closeModalOnESC);
       if (onClose) {
         onClose();
@@ -210,7 +208,7 @@ export const TaskViewer = ({
   const handleOnChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    >
   ) => {
     if (e.target.name === "tags") {
       const newTags = e.target.value
@@ -234,15 +232,8 @@ export const TaskViewer = ({
       const dueDateChanged = newState.dueDate !== taskDTO?.dueDate;
       const tagsChanged = !arraysEqual(
         newState.tags as any[],
-        taskDTO?.tags as any[],
+        taskDTO?.tags as any[]
       );
-
-      // console.log("titleChanged:", titleChanged);
-      // console.log("descriptionChanged:", descriptionChanged);
-      // console.log("statusChanged:", statusChanged);
-      // console.log("priorityChanged:", priorityChanged);
-      // console.log("dueDateChanged:", dueDateChanged);
-      // console.log("tagsChanged:", tagsChanged);
 
       setHasUnsavedChanges(
         titleChanged ||
@@ -250,13 +241,13 @@ export const TaskViewer = ({
           statusChanged ||
           priorityChanged ||
           dueDateChanged ||
-          tagsChanged,
+          tagsChanged
       );
     } else {
       const isDueDate = e.target.name === "dueDate";
 
       const dueDateInput = document.getElementById(
-        "dueDate",
+        "dueDate"
       ) as HTMLInputElement;
       const valueDate = normalizeDate(new Date(dueDateInput.value || ""));
       const taskDueDate = taskDTO?.dueDate
@@ -280,18 +271,8 @@ export const TaskViewer = ({
       const dueDateChanged = valueDate !== taskDueDate;
       const tagsChanged = !arraysEqual(
         newState.tags as any[],
-        taskDTO?.tags as any[],
+        taskDTO?.tags as any[]
       );
-
-      // console.log("titleChanged:", titleChanged);
-      // console.log("descriptionChanged:", descriptionChanged);
-      // console.log("statusChanged:", statusChanged);
-      // console.log("priorityChanged:", priorityChanged);
-      // console.log("dueDateChanged:", dueDateChanged);
-      // console.log("due date new state:", newState.dueDate);
-      // console.log("due date state:", state.dueDate);
-      // console.log("due date taskDTO:", taskDTO?.dueDate);
-      // console.log("tagsChanged:", tagsChanged);
 
       setHasUnsavedChanges(
         titleChanged ||
@@ -299,7 +280,7 @@ export const TaskViewer = ({
           statusChanged ||
           priorityChanged ||
           dueDateChanged ||
-          tagsChanged,
+          tagsChanged
       );
     }
   };
@@ -353,7 +334,7 @@ export const TaskViewer = ({
 
   const TaskPriority = () => {
     const handleOnChangePriority = (
-      e: React.ChangeEvent<HTMLSelectElement>,
+      e: React.ChangeEvent<HTMLSelectElement>
     ) => {
       handleOnChange(e);
     };
@@ -386,7 +367,7 @@ export const TaskViewer = ({
 
   const TaskDashboard = () => {
     const handleDashboardSelectsOnChange = (
-      e: React.ChangeEvent<HTMLSelectElement>,
+      e: React.ChangeEvent<HTMLSelectElement>
     ) => {
       const options = e.target.options;
       const selectedIds: number[] = [];
@@ -411,6 +392,7 @@ export const TaskViewer = ({
           id="dashboardIds"
           name="dashboardIds"
           multiple
+          size={(dashboards && dashboards.length) || 1}
           value={selectedDashboardIds.map(String)}
           onChange={handleDashboardSelectsOnChange}
           className={styles.dashboardSelect}
@@ -476,8 +458,6 @@ export const TaskViewer = ({
         `}
       >
         <div className={styles.topCTAwrapper}>
-          <h2>{text("task")}</h2>
-
           <div className={styles.topCTAbuttonsWrapper}>
             <Button
               loading={markAsCompletedState.isUpdating}
@@ -545,6 +525,14 @@ export const TaskViewer = ({
                 width="100%"
               />
             </CustomInputLabelWrapper>
+            <CustomInputLabelWrapper>
+              <CustomInputLabel>{text("formDashboardSelect")}</CustomInputLabel>
+              <p className={styles.dashboardSelectDescription}>
+                {text("formDashboardSelectDescription")}
+              </p>
+
+              <TaskDashboard />
+            </CustomInputLabelWrapper>
             <div className={styles.statusPriorityDueDateWrapper}>
               {state.statusId !== undefined && (
                 <SelectStatus key={state.statusId} />
@@ -568,17 +556,6 @@ export const TaskViewer = ({
                   className={styles.dueDateInput}
                 />
               </CustomInputLabelWrapper>
-
-              <CustomInputLabelWrapper>
-                <CustomInputLabel>
-                  {text("formDashboardSelect")}
-                </CustomInputLabel>
-                <p className={styles.dashboardSelectDescription}>
-                  {text("formDashboardSelectDescription")}
-                </p>
-
-                <TaskDashboard />
-              </CustomInputLabelWrapper>
             </div>
 
             {(contentClicked || content.length === 0) && (
@@ -586,6 +563,7 @@ export const TaskViewer = ({
                 <CustomInputLabelWrapper
                   style={{ overflow: "visible" }}
                   key={taskDTO?.content}
+                  className={styles.contentWrapper}
                 >
                   <CustomInputLabel suppressHydrationWarning htmlFor="content">
                     {text("formContent")}
@@ -698,7 +676,7 @@ const mapDTOtoUpdatedTodoDTO = (taskDTO: TodoDTO) => {
 
 const getTheTasksActiveDashboardIds = (
   dashboardId: number,
-  aTasksDashboardIds: number[],
+  aTasksDashboardIds: number[]
 ) => {
   for (let i = 0; i < aTasksDashboardIds.length; i++) {
     if (aTasksDashboardIds[i] === dashboardId) {
@@ -709,7 +687,7 @@ const getTheTasksActiveDashboardIds = (
 
 const getActiveDashboardIds = (
   taskDTO: TodoDTO,
-  dashboards: DashboardOnlyTypeDTO[],
+  dashboards: DashboardOnlyTypeDTO[]
 ) => {
   return dashboards
     .filter((dashboard) => taskDTO.dashboardIds.includes(dashboard.dashboardId))

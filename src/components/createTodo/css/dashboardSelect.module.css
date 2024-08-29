@@ -8,4 +8,8 @@
 .dashboardSelectDescription {
   font-size: 12px;
   color: hsl(var(--muted-foreground));
+}
+
+.contentWrapper {
+  overflow: visible !important;
 }/*# sourceMappingURL=dashboardSelect.module.css.map */

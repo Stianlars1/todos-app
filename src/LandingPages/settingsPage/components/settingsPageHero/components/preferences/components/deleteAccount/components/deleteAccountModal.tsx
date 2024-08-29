@@ -61,7 +61,6 @@ export const DeleteAccountModal = ({
     }
 
     if (passwordMatch.isSuccess) {
-      console.log("Deleting account...");
       const deleteAccountRequest = await deleteAccount();
 
       if (deleteAccountRequest.isError) {
@@ -80,7 +79,6 @@ export const DeleteAccountModal = ({
       }
 
       if (deleteAccountRequest.isSuccess) {
-        console.log("Account deleted successfully", deleteAccountRequest);
         toast.success("Account deleted successfully", "bottomRight");
         return onAccountDeleted();
       }

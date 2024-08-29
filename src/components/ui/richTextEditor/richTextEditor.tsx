@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "react-quill/dist/quill.snow.css"; // Ensure CSS is loaded
 import { SuspenseFallback } from "../suspenseFallback/suspenseFallback";
+import "./css/textEditor.css";
 interface TextEditorProps {
   content: string;
   setContent?: Dispatch<SetStateAction<string>>;
@@ -21,10 +22,29 @@ export const TextEditor: React.FC<TextEditorProps> = ({
 }) => {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
   // This useEffect will only run once, during the first client render
+
   useEffect(() => {
-    // Updating a state causes a re-render
     setInitialRenderComplete(true);
+
+    // Once the editor is rendered, disable tabbing into its elements
+    if (typeof document !== "undefined") {
+      const editorElement = document.querySelector(".ql-editor");
+      if (editorElement) {
+        editorElement.setAttribute("tabIndex", "-1"); // Disable tabbing into the editor
+      }
+
+      // Optionally, remove tabbing from the toolbar as well
+      const toolbarElement = document.querySelector(".ql-toolbar");
+      if (toolbarElement) {
+        const toolbarButtons =
+          toolbarElement.querySelectorAll("button, [tabindex]");
+        toolbarButtons.forEach((button) => {
+          button.setAttribute("tabindex", "-1");
+        });
+      }
+    }
   }, []);
+
   // if document is not defined
   if (typeof document === "undefined") {
     return undefined;
@@ -39,7 +59,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
       ["bold", "italic", "underline", "strike"],
       [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image", "video"],
+      ["link", "image"],
       ["clean"],
     ],
   };
@@ -47,12 +67,19 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   return (
     <>
       {initialRenderComplete && (
-        <div suppressHydrationWarning suppressContentEditableWarning>
+        <div
+          suppressHydrationWarning
+          suppressContentEditableWarning
+          tabIndex={-1} // Set tabIndex to -1 to skip tabbing into the editor
+        >
           <ReactQuill
             theme="snow"
             value={content}
             onChange={handleChange}
             modules={modules}
+            className={"qlTooltip"}
+            aria-label="text-editor"
+            tabIndex={-1}
           />
         </div>
       )}

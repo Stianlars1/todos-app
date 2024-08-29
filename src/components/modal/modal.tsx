@@ -32,7 +32,7 @@ export const Modal = ({
   const handleCloseModal = () => {
     if (hasUnsavedChanges) {
       const userConfirmed = window.confirm(
-        text("tasks.CREATION.messages.UNSAVED_CHANGES"),
+        text("tasks.CREATION.messages.UNSAVED_CHANGES")
       );
       if (!userConfirmed) {
         return;
@@ -64,6 +64,8 @@ export const Modal = ({
 
     if (modalElement) {
       if (isModalOpen) {
+        modalElement.setAttribute("tabindex", "0");
+        modalElement.focus();
         modalElement.showModal();
       } else {
         modalElement.close();
@@ -78,12 +80,14 @@ export const Modal = ({
       id="modal"
       ref={modalRef}
       onKeyDown={handleKeyDown}
+      role="dialog"
     >
       {closeButton && (
         <Button
           className="modal__closeButton"
           variant="icon"
           onClick={handleCloseModal}
+          tabIndex={0}
         >
           <MdClose />
         </Button>

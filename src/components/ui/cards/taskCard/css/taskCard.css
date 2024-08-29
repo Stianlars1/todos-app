@@ -57,7 +57,7 @@
 }
 .reveal-card__date {
   position: absolute;
-  top: 12px;
+  bottom: 12px;
   right: 12px;
   font-size: 12px;
   color: hsl(var(--muted-foreground));

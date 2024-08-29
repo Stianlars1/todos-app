@@ -13,6 +13,7 @@
   max-width: 100%;
   height: -moz-fit-content;
   height: fit-content;
+  overflow: visible;
   resize: none;
 }
 .customTextArea:-webkit-autofill {

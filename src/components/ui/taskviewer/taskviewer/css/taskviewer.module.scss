@@ -6,7 +6,6 @@
 
   padding: 1rem;
 
-  gap: 32px;
   position: fixed;
   top: calc(var(--nav-height) + 0.5rem);
   padding-top: calc(2rem + 4px);
@@ -32,8 +31,11 @@
   z-index: 1000;
 
   .topCTAwrapper {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
 
@@ -79,6 +81,8 @@
     border-right: none;
     border-radius: 0;
     border-color: hsl(var(--border));
+    margin-top: 0;
+    padding-top: 0;
 
     white-space: nowrap;
     font-size: 1.2rem;
@@ -90,6 +94,12 @@
 
   .dashboardSelect {
     padding: 4px;
+    appearance: none; /* Reset default appearance */
+    -webkit-appearance: none; /* For Safari and Chrome */
+    -moz-appearance: none; /* For Firefox */
+    height: auto;
+    box-sizing: content-box;
+
     .dashboardOption {
       padding: 4px 5px;
     }
@@ -143,6 +153,10 @@
 }
 
 .description {
+}
+
+.contentWrapper {
+  overflow: visible !important;
 }
 
 .info {

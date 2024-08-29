@@ -10,7 +10,7 @@ import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { LoadingTasks } from "./components/loadingTasks/loadingTasks";
@@ -33,7 +33,7 @@ export const DashboardLink = ({
       day: "numeric",
       month: "numeric",
       year: "numeric",
-    },
+    }
   );
 
   const [longPressTimeout, setLongPressTimeout] =
@@ -66,7 +66,7 @@ export const DashboardLink = ({
     }
     setLoading(true);
     const updateActiveDashboardSuccess = await updateActiveDashboardId(
-      dashboard.dashboardId,
+      dashboard.dashboardId
     );
 
     // Explicitly specify the locale and options for consistent date formatting
@@ -88,7 +88,7 @@ export const DashboardLink = ({
     setModalOpen(true);
   };
   const handleCloseEdit = (
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined,
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined
   ) => {
     event && event.stopPropagation();
     setModalOpen(false);
@@ -160,7 +160,7 @@ export const DashboardLink = ({
               handleCloseEdit(event)
             }
           />,
-          document.body,
+          document.body
         )}
     </div>
   );
@@ -173,20 +173,39 @@ export const CreateNewDashboard = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const text = useTranslations("CreateDashboard");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleKeydown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "d") {
+        event.preventDefault(); // Prevent default browser action (usually bold text)
+        setIsOpen(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeydown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeydown);
+    };
+  }, []);
   return (
-    <Button
-      variant="primary"
-      onClick={() => setIsOpen(true)}
-      className={`${styles.createDashboardLink} ${className}`}
-    >
-      <header className={styles.header}>
-        <IconAdd className={styles.plus} /> {text("create_dashboard")}
-      </header>
-      {isOpen && (
-        <>
-          <CreateDashboard onClose={() => setIsOpen(false)} />
-        </>
-      )}
-    </Button>
+    <>
+      <Button
+        variant="primary"
+        onClick={() => setIsOpen(!isOpen)}
+        className={`${styles.createDashboardLink} ${className}`}
+      >
+        <header className={styles.header}>
+          <IconAdd className={styles.plus} /> {text("create_dashboard")}
+        </header>
+      </Button>
+      {isOpen &&
+        createPortal(
+          <CreateDashboard onClose={() => setIsOpen(false)} />,
+          document.body
+        )}
+    </>
   );
 };

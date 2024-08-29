@@ -28,6 +28,9 @@
 .create-task .custom-text-area {
   max-width: 450px !important;
 }
+.create-task .customTextArea {
+  overflow: visible !important;
+}
 .create-task select {
   padding: 0.5rem;
 }

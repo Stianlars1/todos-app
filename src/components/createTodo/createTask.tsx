@@ -41,7 +41,7 @@ export const CreateTask = ({
       ? [userSettings.activeDashboardId]
       : dashboards
         ? dashboards?.filter((d) => d.isDefault).map((d) => d.dashboardId)
-        : [],
+        : []
   );
 
   const [activeDashboardId, setActiveDashboardId] = useState<
@@ -55,8 +55,6 @@ export const CreateTask = ({
   const handleInputChange = () => {
     setHasUnsavedChanges(true);
   };
-
-  console.log("userSettings", userSettings?.activeDashboardId);
 
   const SelectStatus = () => {
     const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -113,16 +111,8 @@ export const CreateTask = ({
   };
 
   const TaskDashboard = () => {
-    console.log("activeDashboardId", activeDashboardId);
-    console.log(
-      "dashboard",
-      dashboards?.find(
-        (d) => d.dashboardId === userSettings?.activeDashboardId,
-      ),
-    );
-
     const handleDashboardSelectsOnChange = (
-      e: React.ChangeEvent<HTMLSelectElement>,
+      e: React.ChangeEvent<HTMLSelectElement>
     ) => {
       const options = e.target.options;
       const selectedIds: number[] = [];
@@ -174,7 +164,7 @@ export const CreateTask = ({
   if (state && "isError" in state && state.isError) {
     toast.error(
       state.error ? state.error : "An error occured creating the task",
-      "bottomRight",
+      "bottomRight"
     );
   }
 
@@ -256,7 +246,7 @@ export const CreateTask = ({
             </CustomInputLabelWrapper>
           </div>
 
-          <CustomInputLabelWrapper>
+          <CustomInputLabelWrapper className={styles.contentWrapper}>
             <CustomInputLabel>
               {createText("form.content.label")}
             </CustomInputLabel>

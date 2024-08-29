@@ -35,7 +35,6 @@ export const UpdateDashboardModal = ({
   const updateDisabled = newName === dashboard.name;
   const handleSubmit = async () => {
     setLoading(true);
-    console.log("newName to update to", newName);
     const response = await updateDashboard(dashboard.dashboardId, newName);
 
     if (response.isError) {
@@ -58,7 +57,6 @@ export const UpdateDashboardModal = ({
       // update active dashboard id
 
       setNewName("");
-      console.log("response", response);
       toast.success("Dashboard updated", "bottomRight");
       cacheInvalidate({ cacheKey: CacheKeys.DASHBOARDS });
       onClose();
@@ -109,7 +107,7 @@ export const UpdateDashboardModal = ({
                   onClose={() => setIsDeleting(false)}
                   onDeleted={handleOnDeleted}
                 />,
-                document.body,
+                document.body
               )}
 
             <div className={styles.CTA}>

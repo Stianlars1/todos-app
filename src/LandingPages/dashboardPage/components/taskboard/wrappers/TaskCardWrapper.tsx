@@ -116,7 +116,6 @@ export const TaskCardWrapper = ({
 
     // dragHandle: ".reveal-card",
     handleDragstart: (data) => {
-      console.log("handleDragstart");
       if (!parent.current) return;
       handleDragstart(data);
 
@@ -127,7 +126,6 @@ export const TaskCardWrapper = ({
     longTouch: true,
     longTouchTimeout: 200,
     handleTouchstart: (data) => {
-      console.log("handleTouchstart");
       if (isMobile && sortManual) {
         if (data.e.target instanceof HTMLElement) {
           if (data.e.target.id !== DRAGGABLE_CARD_ID) {
@@ -279,7 +277,6 @@ export const TaskCardWrapper = ({
 
   useEffect(() => {
     if (isMobile || isMobileSize || userSettings?.limitTasks) {
-      console.log("isMobile", isMobile);
       if (parent.current) {
         updateConfig(parent.current, {
           dragHandle: ".reveal-card-sort-manual-row-layout-handle",

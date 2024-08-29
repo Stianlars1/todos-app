@@ -79,8 +79,8 @@
     .editIconMobile {
       color: hsl(var(--white));
       background-color: hsl(var(--muted-foreground));
-      width: 22px;
-      height: 22px;
+      width: 25px;
+      height: 25px;
       z-index: 10000;
       @media screen and (prefers-color-scheme: dark),
         screen and (-webkit-prefers-color-scheme: dark) {
