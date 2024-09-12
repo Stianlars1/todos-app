@@ -89,7 +89,7 @@ export const verifySession = cache(async () => {
 
 // decrypt session ( Get the decoded accessToken's information ie: userId, firstName, exp, etc...)
 export async function decryptSession(
-  session: string | undefined = ""
+  session: string | undefined = "",
 ): Promise<DecryptedToken | null> {
   try {
     const decryptedToken =

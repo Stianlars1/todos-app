@@ -1,7 +1,8 @@
 .reveal-card {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),
+    var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
   color: hsl(var(--card-foreground));
   background-color: hsl(var(--card));
   border-radius: var(--radius);
@@ -21,7 +22,7 @@
   font-size: 1rem;
   line-height: 1.5rem;
   -webkit-hyphens: auto;
-          hyphens: auto;
+  hyphens: auto;
   text-wrap: balance;
   min-width: 0;
 }
@@ -34,7 +35,8 @@
   display: flex;
   gap: 0.5rem;
 }
-.reveal-card__wrapper__badges__tags, .reveal-card__wrapper__badges__priority {
+.reveal-card__wrapper__badges__tags,
+.reveal-card__wrapper__badges__priority {
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
   font-weight: 600;
@@ -88,4 +90,4 @@
 .reveal-card-is-grabbed {
   opacity: 0.25;
   overflow: visible;
-}/*# sourceMappingURL=revealCard.css.map */
+} /*# sourceMappingURL=revealCard.css.map */

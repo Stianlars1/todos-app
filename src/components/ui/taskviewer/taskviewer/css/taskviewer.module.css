@@ -18,7 +18,8 @@
   background-color: hsl(var(--card));
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),
+    var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
   visibility: none;
   display: none;
   z-index: 1000;
@@ -186,7 +187,7 @@
   }
   .taskBackdrop {
     display: 0;
-    background-color: hsl(var(--black)/0.5);
+    background-color: hsl(var(--black) / 0.5);
     position: fixed;
     top: var(--nav-height);
     left: var(--sidebar-width);
@@ -202,7 +203,7 @@
   }
   .taskBackdrop {
     display: 0;
-    background-color: hsl(var(--black)/0.5);
+    background-color: hsl(var(--black) / 0.5);
     position: fixed;
     top: var(--nav-height);
     left: var(--sidebar-width);
@@ -236,4 +237,4 @@
       transform: translateY(120%);
     }
   }
-}/*# sourceMappingURL=taskviewer.module.css.map */
+} /*# sourceMappingURL=taskviewer.module.css.map */

@@ -17,9 +17,12 @@
   cursor: pointer;
 }
 
-[data-sidebar-open=false] .sidebar__footer .sidebar__footer__wrapper .link-text {
+[data-sidebar-open="false"]
+  .sidebar__footer
+  .sidebar__footer__wrapper
+  .link-text {
   display: none;
 }
-[data-sidebar-open=false] .sidebar__footer .IconSettings {
+[data-sidebar-open="false"] .sidebar__footer .IconSettings {
   display: none;
-}/*# sourceMappingURL=gridSidebarFooter.css.map */
+} /*# sourceMappingURL=gridSidebarFooter.css.map */

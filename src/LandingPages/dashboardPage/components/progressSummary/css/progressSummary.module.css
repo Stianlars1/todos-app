@@ -39,7 +39,8 @@
   gap: 8px;
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),
+    var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
   background-color: hsl(var(--muted2));
   border-radius: var(--radius);
   cursor: default;
@@ -56,25 +57,27 @@
   font-weight: 700;
 }
 .progressSummary .wrapper ul .summaryCompleted {
-  background-color: hsl(var(--success)/0.5);
+  background-color: hsl(var(--success) / 0.5);
 }
 .progressSummary .wrapper ul .summaryCompleted .description {
-  color: hsl(var(--black)/0.5);
+  color: hsl(var(--black) / 0.5);
 }
-@media screen and (prefers-color-scheme: dark), screen and (-webkit-prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark),
+  screen and (-webkit-prefers-color-scheme: dark) {
   .progressSummary .wrapper ul .summaryCompleted .description {
-    color: hsl(var(--white)/0.5);
+    color: hsl(var(--white) / 0.5);
   }
 }
 .progressSummary .wrapper ul .summaryDeleted {
-  background-color: hsl(var(--destructive)/0.5);
+  background-color: hsl(var(--destructive) / 0.5);
 }
 .progressSummary .wrapper ul .summaryDeleted .description {
-  color: hsl(var(--black)/0.5);
+  color: hsl(var(--black) / 0.5);
 }
-@media screen and (prefers-color-scheme: dark), screen and (-webkit-prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark),
+  screen and (-webkit-prefers-color-scheme: dark) {
   .progressSummary .wrapper ul .summaryDeleted .description {
-    color: hsl(var(--white)/0.5);
+    color: hsl(var(--white) / 0.5);
   }
 }
 .progressSummary .dueToday {
@@ -88,14 +91,15 @@
   cursor: pointer !important;
 }
 .progressSummary .overdue {
-  background-color: hsl(var(--destructive)/0.5);
+  background-color: hsl(var(--destructive) / 0.5);
 }
 .progressSummary .overdue .description {
-  color: hsl(var(--black)/0.5);
+  color: hsl(var(--black) / 0.5);
 }
-@media screen and (prefers-color-scheme: dark), screen and (-webkit-prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark),
+  screen and (-webkit-prefers-color-scheme: dark) {
   .progressSummary .overdue .description {
-    color: hsl(var(--white)/0.5);
+    color: hsl(var(--white) / 0.5);
   }
 }
 .progressSummary .TaskSummary ul {
@@ -131,4 +135,4 @@
 .showMoreButton p {
   font-size: 1rem;
   white-space: nowrap;
-}/*# sourceMappingURL=progressSummary.module.css.map */
+} /*# sourceMappingURL=progressSummary.module.css.map */

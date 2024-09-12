@@ -75,9 +75,9 @@
   border-radius: 50%;
   border: 0.25rem solid hsl(var(--muted));
   border-top-color: hsl(var(--primary));
-  border-right-color: hsl(var(--primary-foreground)/0.8);
-  border-bottom-color: hsl(var(--primary-foreground)/0.8);
-  border-left-color: hsl(var(--primary-foreground)/0.8);
+  border-right-color: hsl(var(--primary-foreground) / 0.8);
+  border-bottom-color: hsl(var(--primary-foreground) / 0.8);
+  border-left-color: hsl(var(--primary-foreground) / 0.8);
   animation: spin 1s linear infinite;
   z-index: 1000000000;
 }
@@ -91,4 +91,4 @@
   to {
     transform: rotate(360deg);
   }
-}/*# sourceMappingURL=suspenseFallback.css.map */
+} /*# sourceMappingURL=suspenseFallback.css.map */

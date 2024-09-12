@@ -12,7 +12,7 @@ export const ActiveDashboardName = ({
   const pathName = usePathname();
   const isAtDashboardPage = checkIfPathIsAtDashboard(
     decodeURI(pathName),
-    dashboards
+    dashboards,
   );
   if (!activeDashboardName || isAtDashboardPage) return null;
 
@@ -28,7 +28,7 @@ export const ActiveDashboardName = ({
 
 const checkIfPathIsAtDashboard = (
   pathName: string,
-  dashboards: DashboardOnlyTypeDTO[] | null
+  dashboards: DashboardOnlyTypeDTO[] | null,
 ) => {
   const match = dashboards?.some((board) => pathName.includes(board.name));
   return match;

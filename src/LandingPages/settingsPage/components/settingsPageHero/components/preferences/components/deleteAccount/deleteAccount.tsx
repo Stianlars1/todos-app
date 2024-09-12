@@ -57,7 +57,7 @@ export const DeleteAccount = () => {
               onAccountDeleted={handleDeletedAccount}
               onClose={() => setOkToDelete(false)}
             />,
-            document.body
+            document.body,
           )}
         </>
       )}

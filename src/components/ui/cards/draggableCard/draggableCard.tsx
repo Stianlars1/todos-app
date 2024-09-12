@@ -174,7 +174,7 @@ export const DraggableCard = ({
 };
 
 export const shouldReturn = (
-  event: React.MouseEvent<HTMLDivElement | HTMLLIElement>
+  event: React.MouseEvent<HTMLDivElement | HTMLLIElement>,
 ) => {
   if (
     event.target instanceof HTMLElement &&

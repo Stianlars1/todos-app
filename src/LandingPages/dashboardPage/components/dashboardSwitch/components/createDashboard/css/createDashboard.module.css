@@ -32,7 +32,7 @@
   background-color: hsl(var(--destructive));
 }
 .deleteButton:hover {
-  background-color: hsl(var(--destructive)/0.75) !important;
+  background-color: hsl(var(--destructive) / 0.75) !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -48,4 +48,4 @@
     justify-content: center;
     padding: 1rem;
   }
-}/*# sourceMappingURL=createDashboard.module.css.map */
+} /*# sourceMappingURL=createDashboard.module.css.map */

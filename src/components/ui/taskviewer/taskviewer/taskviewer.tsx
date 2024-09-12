@@ -78,7 +78,7 @@ export const TaskViewer = ({
   const [endAnimation, setEndAnimation] = useState(false);
 
   const [markAsCompletedState, setMarkAsCompletedState] = useState<UPDATE_TASK>(
-    { isUpdating: false, isError: undefined, isSuccess: undefined }
+    { isUpdating: false, isError: undefined, isSuccess: undefined },
   );
 
   const [activeDashboardId, setActiveDashboardId] = useState<
@@ -86,7 +86,7 @@ export const TaskViewer = ({
   >(userSettings?.activeDashboardId);
 
   const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
-    taskDTO && dashboards ? getActiveDashboardIds(taskDTO, dashboards) : []
+    taskDTO && dashboards ? getActiveDashboardIds(taskDTO, dashboards) : [],
   );
 
   const router = useRouter();
@@ -208,7 +208,7 @@ export const TaskViewer = ({
   const handleOnChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     if (e.target.name === "tags") {
       const newTags = e.target.value
@@ -232,7 +232,7 @@ export const TaskViewer = ({
       const dueDateChanged = newState.dueDate !== taskDTO?.dueDate;
       const tagsChanged = !arraysEqual(
         newState.tags as any[],
-        taskDTO?.tags as any[]
+        taskDTO?.tags as any[],
       );
 
       setHasUnsavedChanges(
@@ -241,13 +241,13 @@ export const TaskViewer = ({
           statusChanged ||
           priorityChanged ||
           dueDateChanged ||
-          tagsChanged
+          tagsChanged,
       );
     } else {
       const isDueDate = e.target.name === "dueDate";
 
       const dueDateInput = document.getElementById(
-        "dueDate"
+        "dueDate",
       ) as HTMLInputElement;
       const valueDate = normalizeDate(new Date(dueDateInput.value || ""));
       const taskDueDate = taskDTO?.dueDate
@@ -271,7 +271,7 @@ export const TaskViewer = ({
       const dueDateChanged = valueDate !== taskDueDate;
       const tagsChanged = !arraysEqual(
         newState.tags as any[],
-        taskDTO?.tags as any[]
+        taskDTO?.tags as any[],
       );
 
       setHasUnsavedChanges(
@@ -280,7 +280,7 @@ export const TaskViewer = ({
           statusChanged ||
           priorityChanged ||
           dueDateChanged ||
-          tagsChanged
+          tagsChanged,
       );
     }
   };
@@ -334,7 +334,7 @@ export const TaskViewer = ({
 
   const TaskPriority = () => {
     const handleOnChangePriority = (
-      e: React.ChangeEvent<HTMLSelectElement>
+      e: React.ChangeEvent<HTMLSelectElement>,
     ) => {
       handleOnChange(e);
     };
@@ -367,7 +367,7 @@ export const TaskViewer = ({
 
   const TaskDashboard = () => {
     const handleDashboardSelectsOnChange = (
-      e: React.ChangeEvent<HTMLSelectElement>
+      e: React.ChangeEvent<HTMLSelectElement>,
     ) => {
       const options = e.target.options;
       const selectedIds: number[] = [];
@@ -676,7 +676,7 @@ const mapDTOtoUpdatedTodoDTO = (taskDTO: TodoDTO) => {
 
 const getTheTasksActiveDashboardIds = (
   dashboardId: number,
-  aTasksDashboardIds: number[]
+  aTasksDashboardIds: number[],
 ) => {
   for (let i = 0; i < aTasksDashboardIds.length; i++) {
     if (aTasksDashboardIds[i] === dashboardId) {
@@ -687,7 +687,7 @@ const getTheTasksActiveDashboardIds = (
 
 const getActiveDashboardIds = (
   taskDTO: TodoDTO,
-  dashboards: DashboardOnlyTypeDTO[]
+  dashboards: DashboardOnlyTypeDTO[],
 ) => {
   return dashboards
     .filter((dashboard) => taskDTO.dashboardIds.includes(dashboard.dashboardId))

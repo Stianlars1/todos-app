@@ -26,7 +26,9 @@
         content: "";
         left: 4px;
         background-color: hsl(var(--white));
-        transition: transform 0.4s, background-color 0.4s;
+        transition:
+          transform 0.4s,
+          background-color 0.4s;
         border-radius: 50%;
       }
     }

@@ -107,7 +107,7 @@ export const UpdateDashboardModal = ({
                   onClose={() => setIsDeleting(false)}
                   onDeleted={handleOnDeleted}
                 />,
-                document.body
+                document.body,
               )}
 
             <div className={styles.CTA}>

@@ -32,7 +32,7 @@ export const Modal = ({
   const handleCloseModal = () => {
     if (hasUnsavedChanges) {
       const userConfirmed = window.confirm(
-        text("tasks.CREATION.messages.UNSAVED_CHANGES")
+        text("tasks.CREATION.messages.UNSAVED_CHANGES"),
       );
       if (!userConfirmed) {
         return;

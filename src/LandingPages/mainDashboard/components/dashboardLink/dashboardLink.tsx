@@ -33,7 +33,7 @@ export const DashboardLink = ({
       day: "numeric",
       month: "numeric",
       year: "numeric",
-    }
+    },
   );
 
   const [longPressTimeout, setLongPressTimeout] =
@@ -66,7 +66,7 @@ export const DashboardLink = ({
     }
     setLoading(true);
     const updateActiveDashboardSuccess = await updateActiveDashboardId(
-      dashboard.dashboardId
+      dashboard.dashboardId,
     );
 
     // Explicitly specify the locale and options for consistent date formatting
@@ -88,7 +88,7 @@ export const DashboardLink = ({
     setModalOpen(true);
   };
   const handleCloseEdit = (
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined,
   ) => {
     event && event.stopPropagation();
     setModalOpen(false);
@@ -160,7 +160,7 @@ export const DashboardLink = ({
               handleCloseEdit(event)
             }
           />,
-          document.body
+          document.body,
         )}
     </div>
   );
@@ -204,7 +204,7 @@ export const CreateNewDashboard = ({
       {isOpen &&
         createPortal(
           <CreateDashboard onClose={() => setIsOpen(false)} />,
-          document.body
+          document.body,
         )}
     </>
   );

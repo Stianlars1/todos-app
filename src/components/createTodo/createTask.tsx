@@ -41,7 +41,7 @@ export const CreateTask = ({
       ? [userSettings.activeDashboardId]
       : dashboards
         ? dashboards?.filter((d) => d.isDefault).map((d) => d.dashboardId)
-        : []
+        : [],
   );
 
   const [activeDashboardId, setActiveDashboardId] = useState<
@@ -112,7 +112,7 @@ export const CreateTask = ({
 
   const TaskDashboard = () => {
     const handleDashboardSelectsOnChange = (
-      e: React.ChangeEvent<HTMLSelectElement>
+      e: React.ChangeEvent<HTMLSelectElement>,
     ) => {
       const options = e.target.options;
       const selectedIds: number[] = [];
@@ -164,7 +164,7 @@ export const CreateTask = ({
   if (state && "isError" in state && state.isError) {
     toast.error(
       state.error ? state.error : "An error occured creating the task",
-      "bottomRight"
+      "bottomRight",
     );
   }
 

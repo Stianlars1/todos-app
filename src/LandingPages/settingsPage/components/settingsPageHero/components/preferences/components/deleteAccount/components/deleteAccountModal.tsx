@@ -43,7 +43,7 @@ export const DeleteAccountModal = ({
     setIsDeleting(true);
     toast.info("Deleting account", "bottomRight");
     const passwordElement = document.getElementById(
-      "password"
+      "password",
     ) as HTMLInputElement;
     const password = passwordElement.value;
     const passwordMatch = await checkPasswordMatch(password);

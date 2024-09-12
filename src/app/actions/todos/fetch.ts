@@ -75,7 +75,7 @@ export const getUpcomingDeadlinesTodos = async <T>() => {
   });
 };
 export const getUpcomingDeadlinesTodosByDashboardName = async <T>(
-  dashboardName: string
+  dashboardName: string,
 ) => {
   const url = `${API_TODOS_UPCOMING_DEADLINES_BY_DASHBOARDNAME_URL}?dashboardName=${dashboardName}`;
   return await customFetch<T>({
@@ -96,7 +96,7 @@ export const getOverdueTodos = async <T>() => {
   });
 };
 export const getOverdueTodosByDashboardName = async <T>(
-  dashboardName: string
+  dashboardName: string,
 ) => {
   const url = `${API_TODOS_OVERDUE_BY_DASHBOARDNAME_URL}?dashboardName=${dashboardName}`;
   return await customFetch<T>({
@@ -156,7 +156,7 @@ export const getCategorizedTodos = async <T>() => {
   return { ...categorized, error: error };
 };
 export const getCategorizedTodosByDashboardName = async <T>(
-  dashboardName: string
+  dashboardName: string,
 ) => {
   const url = `${API_TODOS_CATEGORIZED_BY_DASHBOARDNAME_URL}?dashboardName=${dashboardName}`;
   const categorized = await customFetch<T>({
@@ -179,7 +179,7 @@ export const getCategorizedTodosByDashboardName = async <T>(
 
 export const updateTodo = async (
   todoId: string,
-  updatedTodo: UpdatedTodoDTO
+  updatedTodo: UpdatedTodoDTO,
 ) => {
   const UPDATE_URL = `${API_TODOS_UPDATE_URL}/${todoId}`;
   const formData = new FormData();
@@ -237,7 +237,7 @@ export const updateTodoForm = async (_state: unknown, formData: FormData) => {
 
 export const createTodo = async (
   __initialState: unknown,
-  formData: FormData
+  formData: FormData,
 ) => {
   const updatedTodo = getCreateTodoFormData(formData);
   const formDataDTO = new FormData();
