@@ -35,5 +35,5 @@
   color: hsl(var(--destructive-foreground));
 }
 .deleteModal .CTA .delete:hover {
-  background-color: hsl(var(--destructive) / 0.75) !important;
-} /*# sourceMappingURL=deleteModal.module.css.map */
+  background-color: hsl(var(--destructive)/0.75) !important;
+}/*# sourceMappingURL=deleteModal.module.css.map */

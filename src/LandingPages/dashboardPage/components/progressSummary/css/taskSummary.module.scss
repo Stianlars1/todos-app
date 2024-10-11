@@ -1,0 +1,126 @@
+.ul__Wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+  grid-gap: 1.25rem;
+  gap: 1.25rem;
+}
+
+.taskItem {
+  list-style-type: none;
+  padding: 1rem 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+  background-color: hsl(var(--muted2));
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: 1px solid hsl(var(--border));
+
+  .title {
+    color: hsl(var(--foreground));
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .description {
+    color: hsl(var(--muted2-foreground));
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+}
+
+.cardOpen {
+  order: -1;
+  grid-column: 1 / -1;
+  grid-row: auto;
+  z-index: 0;
+  position: relative;
+  cursor: default;
+
+  .taskListOpenCloseIcon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  .taskList {
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr);
+    gap: 0.5rem;
+    background-color: transparent;
+    min-width: 100%;
+    z-index: 5;
+    position: relative;
+    margin-top: 1rem;
+
+    .taskCard {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid hsl(var(--border));
+      padding: 0.75rem 1rem;
+
+      background-color: hsl(var(--card));
+
+      border-radius: 6px;
+
+      z-index: 10;
+      position: relative;
+      cursor: pointer;
+
+      &:hover {
+        background-color: hsl(var(--card) / 0.7);
+      }
+
+      .taskContent {
+        .taskContentTitle {
+          font-size: 0.875rem;
+          color: hsl(var(--card-foreground));
+        }
+        .taskContentDesc {
+          font-size: 0.775rem;
+          color: hsl(var(--muted-foreground));
+          margin-top: 4px;
+        }
+      }
+      .taskInfo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+.taskCompleted {
+  background-color: hsl(var(--success) / 0.5);
+  .description {
+    color: hsl(var(--black) / 0.5);
+
+    @media screen and (prefers-color-scheme: dark),
+      screen and (-webkit-prefers-color-scheme: dark) {
+      color: hsl(var(--white) / 0.5);
+    }
+  }
+}
+.taskDeleted {
+  background-color: hsl(var(--destructive) / 0.5);
+  .description {
+    color: hsl(var(--black) / 0.5);
+
+    @media screen and (prefers-color-scheme: dark),
+      screen and (-webkit-prefers-color-scheme: dark) {
+      color: hsl(var(--white) / 0.5);
+    }
+  }
+}

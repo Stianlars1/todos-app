@@ -61,7 +61,7 @@ export const ShowTaskModalContainer = ({
                 </div>
               )}
             </>,
-            document.getElementById("grid-container") ?? document.body,
+            document.getElementById("grid-container") ?? document.body
           )}
         </>
       )}

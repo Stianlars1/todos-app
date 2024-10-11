@@ -1,8 +1,7 @@
 .reveal-card {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),
-    var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
   list-style-type: none;
   border-radius: var(--radius);
   border: 1px solid hsl(var(--border));
@@ -28,12 +27,12 @@
   font-size: 0.875rem;
   line-height: 1.5rem;
   -webkit-hyphens: auto;
-  hyphens: auto;
+          hyphens: auto;
   text-wrap: pretty;
   min-width: 0;
   -webkit-user-select: text;
-  -moz-user-select: text;
-  user-select: text;
+     -moz-user-select: text;
+          user-select: text;
 }
 .reveal-card__wrapper__header p {
   font-size: 0.875rem;
@@ -74,12 +73,11 @@
     font-size: 12px;
     line-height: 1.25rem;
   }
-  .reveal-card__wrapper__badges__tags,
-  .reveal-card__wrapper__badges__priority {
+  .reveal-card__wrapper__badges__tags, .reveal-card__wrapper__badges__priority {
     font-weight: 600;
     font-size: 10px;
   }
 }
 .clickable {
   cursor: pointer !important;
-} /*# sourceMappingURL=taskCard.css.map */
+}/*# sourceMappingURL=taskCard.css.map */

@@ -12,7 +12,7 @@
   border: 1px solid hsl(var(--muted));
 }
 
-[data-nav-open="false"] [data-sidebar-open="false"] .sidebarDueCount {
+[data-nav-open=false] [data-sidebar-open=false] .sidebarDueCount {
   position: absolute;
   top: 0;
   right: 0;
@@ -33,7 +33,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  [data-nav-open="true"] .sidebarDueCount {
+  [data-nav-open=true] .sidebarDueCount {
     position: absolute;
     right: 1rem;
     width: 24px;
@@ -47,4 +47,4 @@
     font-size: 13px;
     border: 1px solid hsl(var(--muted));
   }
-} /*# sourceMappingURL=sidebarDueCount.module.css.map */
+}/*# sourceMappingURL=sidebarDueCount.module.css.map */

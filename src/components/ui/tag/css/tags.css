@@ -18,7 +18,7 @@
 .default {
   background-color: hsl(var(--muted));
   color: hsl(var(--muted-foreground));
-  border-color: hsl(var(--muted-foreground) / 0.2);
+  border-color: hsl(var(--muted-foreground)/0.2);
 }
 
 .priority-low {
@@ -34,4 +34,4 @@
 .priority-high {
   color: rgb(153, 27, 27);
   background-color: rgb(254, 226, 226);
-} /*# sourceMappingURL=tags.css.map */
+}/*# sourceMappingURL=tags.css.map */

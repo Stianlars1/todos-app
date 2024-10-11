@@ -24,7 +24,7 @@
     .headerTitle {
       font-size: 1rem;
     }
-    ul {
+    .summaryList {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: 1.25rem;
@@ -92,6 +92,10 @@
     text-decoration: none;
     cursor: pointer;
 
+    li {
+      background-color: hsl(var(--muted)) !important;
+    }
+
     &:hover {
       cursor: pointer !important;
     }
@@ -113,6 +117,7 @@
   }
 
   .TaskSummary {
+    .ul,
     ul {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, max-content));

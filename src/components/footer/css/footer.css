@@ -4,7 +4,7 @@ footer {
   background-color: transparent;
   text-align: center;
   font-family: Arial, sans-serif;
-  background-color: hsl(var(--muted) / 0.2);
+  background-color: hsl(var(--muted)/0.2);
   color: hsl(var(--muted-foreground));
   min-width: 100%;
 }
@@ -45,4 +45,4 @@ footer .social-links a svg {
   footer a {
     justify-content: center;
   }
-} /*# sourceMappingURL=footer.css.map */
+}/*# sourceMappingURL=footer.css.map */

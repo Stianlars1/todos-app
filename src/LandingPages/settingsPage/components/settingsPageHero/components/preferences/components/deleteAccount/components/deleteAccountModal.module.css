@@ -55,7 +55,7 @@
   color: hsl(var(--destructive-foreground));
 }
 .deleteAccount .CTA .delete:hover {
-  background-color: hsl(var(--destructive) / 0.75) !important;
+  background-color: hsl(var(--destructive)/0.75) !important;
 }
 
 .isDeleting {
@@ -63,4 +63,4 @@
   height: -moz-max-content;
   height: max-content;
   min-height: 100px;
-} /*# sourceMappingURL=deleteAccountModal.module.css.map */
+}/*# sourceMappingURL=deleteAccountModal.module.css.map */

@@ -1,13 +1,15 @@
 .dashboardSelector {
-  position: fixed;
+  position: sticky;
   top: calc(var(--nav-height) + 0.75rem);
   left: calc(var(--sidebar-width) + 2rem + 2rem);
   margin-bottom: 1rem;
+  background-color: hsl(var(--background));
 
   display: flex;
   align-items: center;
   gap: 0.5rem;
   transition: all 0.15s ease-in-out;
+  z-index: 100000;
 
   .select {
     padding: 0;
@@ -24,7 +26,7 @@
     }
 
     &::selection {
-      color: red;
+      color: hsl(var(--foreground));
     }
   }
 }

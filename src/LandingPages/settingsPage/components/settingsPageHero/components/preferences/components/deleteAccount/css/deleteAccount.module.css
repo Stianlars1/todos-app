@@ -3,5 +3,5 @@
   color: hsl(var(--destructive-foreground));
 }
 .deleteAccount:hover {
-  background-color: hsl(var(--destructive) / 0.75) !important;
-} /*# sourceMappingURL=deleteAccount.module.css.map */
+  background-color: hsl(var(--destructive)/0.75) !important;
+}/*# sourceMappingURL=deleteAccount.module.css.map */
