@@ -2,7 +2,7 @@ import { getOnlyDashboards } from "@/app/actions/dashboards/fetch";
 import { getUserPreferences } from "@/app/actions/preferences/fetch";
 import {
   getAllTodosByDashboardName,
-  getCategorizedTodosByDashboardName,
+  getColumnsAndTasks,
   getOverdueTodosByDashboardName,
   getUpcomingDeadlinesTodosByDashboardName,
 } from "@/app/actions/todos/fetch";
@@ -10,7 +10,7 @@ import { getUserSettings } from "@/app/actions/user/userApi";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { ApiResponse } from "@/types/fetch";
-import { CategorizedTodosResponseDTO } from "@/types/todo/types";
+import { ColumnsAndTasks } from "@/types/todo/types";
 import { SoonDueTodosDTO, TodoDTO } from "@/types/types";
 import { Suspense } from "react";
 import { DashboardTabs } from "./components/dashboardTabs/dashboardTabs";
@@ -18,6 +18,7 @@ import { ProgressSummaryContainer } from "./components/progressSummary/progressS
 import { Taskboard } from "./components/taskboard/taskboard";
 import { getCategorizedTodosTexts } from "./components/taskboard/utils";
 import styles from "./css/dashboard.module.css";
+
 export const DashboardPage = async ({
   dashboardName,
 }: {
@@ -26,12 +27,10 @@ export const DashboardPage = async ({
   const { data: userSettings, error, isError } = await getUserSettings();
   const categorizedTexts = await getCategorizedTodosTexts();
   const {
-    data: taskResponse,
+    data: columnsAndTasksResponse,
     isError: isError2,
     error: error2,
-  } = await getCategorizedTodosByDashboardName<CategorizedTodosResponseDTO>(
-    dashboardName,
-  );
+  } = await getColumnsAndTasks<ColumnsAndTasks>(dashboardName);
   const {
     data: allTasks,
     isError: isError3,
@@ -62,7 +61,7 @@ export const DashboardPage = async ({
           <Taskboard
             isError={isError2}
             error={error2}
-            taskResponse={taskResponse}
+            taskResponse={columnsAndTasksResponse}
             categorizedTexts={categorizedTexts}
             userSettings={userSettings}
           />

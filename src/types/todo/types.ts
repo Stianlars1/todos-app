@@ -1,4 +1,4 @@
-import { TodoDTO } from "../types";
+import {StatusCode, TodoDTO} from "../types";
 
 export type StatusCodes =
   | "CREATED"
@@ -30,6 +30,17 @@ export interface CategorizedTodosResponseDTO {
   success: boolean;
   message: string;
   data: CategorizedTodosDTO;
+}
+
+export interface ColumnObject {
+  statusCode: StatusCode;
+  statusName: string;
+}
+
+export interface ColumnsAndTasks {
+  columns: ColumnObject[];
+  tasks: TodoDTO[];
+  error: string;
 }
 
 export interface UpdatedTaskDTO

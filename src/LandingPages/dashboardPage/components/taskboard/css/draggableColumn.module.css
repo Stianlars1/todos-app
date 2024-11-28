@@ -70,7 +70,7 @@
   padding: 2px;
   pointer-events: all;
   cursor: pointer;
-  stroke-width: none;
+  stroke-width: 0;
   border-radius: 2px;
 }
 
@@ -91,7 +91,7 @@
   background-color: hsl(var(--destructive) / 0.3);
 }
 
-@media screen and (prefers-color-scheme=dark) {
+@media screen and (prefers-color-scheme:dark) {
   .deletedColumn {
     background-color: hsl(var(--destructive) / 0.5);
   }

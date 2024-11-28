@@ -1,14 +1,9 @@
-import { UserSettingsDTO } from "@/app/actions/user/types";
-import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
-import {
-  CategorizedTodosDTO,
-  CategorizedTodosResponseDTO,
-  DUE_SOON_KEY,
-  StatusCodes,
-} from "@/types/todo/types";
+import {UserSettingsDTO} from "@/app/actions/user/types";
+import {ErrorMessage} from "@/components/ui/errorMessage/errorMessage";
+import {ColumnsAndTasks} from "@/types/todo/types";
 import styles from "./css/taskboard.module.css";
-import { GetCategorizedTodosTexts } from "./utils";
-import { TaskboardWrapper } from "./wrappers/taskboardWrapper";
+import {GetCategorizedTodosTexts} from "./utils";
+import {TaskboardWrapper} from "./wrappers/taskboardWrapper";
 
 export const Taskboard = async ({
   userSettings,
@@ -19,29 +14,21 @@ export const Taskboard = async ({
 }: {
   userSettings: UserSettingsDTO | null;
   categorizedTexts: GetCategorizedTodosTexts;
-  taskResponse: CategorizedTodosResponseDTO | null;
+  taskResponse: ColumnsAndTasks | null;
   isError: boolean;
   error: string;
 }) => {
-  const categorizedTodosFiltered = Object.entries(
-    taskResponse?.data || {},
-  ).reduce<CategorizedTodosDTO>((acc, [key, value]) => {
-    if (key !== DUE_SOON_KEY) {
-      acc[key as StatusCodes] = value;
-    }
-    return acc;
-  }, {} as CategorizedTodosDTO);
-
   if (isError && error) {
     return <ErrorMessage isError={isError} errorMessage={error} />;
   }
 
   return (
     <div id="taskboard" className={`${styles.taskboard} taskboard`}>
-      {taskResponse?.data && (
+      {taskResponse?.columns && taskResponse?.tasks && (
         <TaskboardWrapper
           userSettings={userSettings}
-          tasks={categorizedTodosFiltered}
+          columns={taskResponse.columns.map((column) => column.statusCode)}
+          tasks={taskResponse.tasks}
           categorizedTexts={categorizedTexts}
         />
       )}

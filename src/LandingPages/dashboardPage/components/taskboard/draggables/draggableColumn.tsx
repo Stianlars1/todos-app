@@ -1,23 +1,43 @@
 "use client";
-import { DragDropIcon } from "@/components/ui/icons/icons";
+import {DragDropIcon} from "@/components/ui/icons/icons";
 
-import { UserSettingsDTO } from "@/app/actions/user/types";
-import { useState } from "react";
-import { MdEdit } from "react-icons/md";
-import { StatusColumnSortButton } from "../../dashboardTodos/components/statusColumn/components/statusColumnSortButton/statusColumnSortButton";
-import draggableColumn from "../css/draggableColumn.module.css";
-import { ColumnListDND } from "../types";
-import { COLUMN_GROUP } from "../utils";
-import { TaskCardWrapper } from "../wrappers/TaskCardWrapper";
+import {UserSettingsDTO} from "@/app/actions/user/types";
+import {useState} from "react";
+import {MdEdit} from "react-icons/md";
+import {
+  StatusColumnSortButton
+} from "../../dashboardTodos/components/statusColumn/components/statusColumnSortButton/statusColumnSortButton";
+import styles from "./draggableColumn.module.scss";
+import {COLUMN_GROUP, TYPE_COLUMN} from "../utils";
+import {useSortable} from "@dnd-kit/sortable";
+import {CSS} from "@dnd-kit/utilities";
+import {StatusCodes} from "@/types/todo/types";
+import {TodoDTO} from "@/types/types";
+import {TaskCardWrapper} from "@/LandingPages/dashboardPage/components/taskboard/wrappers/TaskCardWrapper";
+
 export const DraggableColumn = ({
-  columnObject,
+  column,
+  tasks,
   title,
   userSettings,
 }: {
-  columnObject: ColumnListDND;
+  column: StatusCodes;
+  tasks: TodoDTO[];
   title: string;
   userSettings: UserSettingsDTO | null;
 }) => {
+  const {
+    setNodeRef,
+    listeners,
+    transition,
+    transform,
+    attributes,
+    isDragging,
+  } = useSortable({
+    id: column,
+    data: { type: TYPE_COLUMN, columnObject: column },
+  });
+
   const [draggableColumnEditActive, setDraggableColumnEditActive] =
     useState(false);
   const showSortButton =
@@ -25,51 +45,51 @@ export const DraggableColumn = ({
   const handleColumnEditClick = () => {
     setDraggableColumnEditActive(!draggableColumnEditActive);
   };
-  const isDeletedColumn = columnObject.categoryCode === "DELETED";
-
+  const isDeletedColumn = column === "DELETED";
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+  };
   return (
-    <>
-      <li
-        className={`${draggableColumn.column} ${COLUMN_GROUP} ${
-          isDeletedColumn ? draggableColumn.deletedColumn : ""
-        }`}
-        key={columnObject.column}
-        data-group={COLUMN_GROUP}
-        data-label={columnObject.column}
-      >
-        <header id="no-drag" className={draggableColumn.header}>
-          <h2 className={draggableColumn.headerTitle}>{title}</h2>
-          <div className={draggableColumn.headerButtons}>
-            {showSortButton && (
-              <StatusColumnSortButton
-                categoryString={columnObject.categoryCode}
-                userSettings={userSettings}
-                key={columnObject.categoryCode}
-              />
-            )}
-            {columnObject.tasks.length > 0 && (
-              <MdEdit
-                onClick={handleColumnEditClick}
-                className={`${draggableColumn.editColumn} ${
-                  draggableColumnEditActive
-                    ? draggableColumn.editColumnActive
-                    : ""
-                }`}
-              />
-            )}
-            <DragDropIcon
-              id="dragHandle"
-              className={`${draggableColumn.columnDragButtonSVG} column-drag-handle `}
+    <li
+      ref={setNodeRef}
+      style={style}
+      className={`${styles.column} ${COLUMN_GROUP} ${
+        isDeletedColumn ? styles.deletedColumn : ""
+      } ${isDragging ? styles.dragging : ""}`}
+      key={column}
+    >
+      <header id="no-drag" className={styles.header}>
+        <h2 className={styles.headerTitle}>{title}</h2>
+        <div className={styles.headerButtons}>
+          {showSortButton && (
+            <StatusColumnSortButton
+              categoryString={column}
+              userSettings={userSettings}
+              key={column}
             />
-          </div>
-        </header>
-        <TaskCardWrapper
-          categoryCode={columnObject.categoryCode}
-          tasks={columnObject.tasks}
-          userSettings={userSettings}
-          draggableColumnEditActive={draggableColumnEditActive}
-        />
-      </li>
-    </>
+          )}
+          {tasks.length > 0 && (
+            <MdEdit
+              onClick={handleColumnEditClick}
+              className={`${styles.editColumn} ${
+                draggableColumnEditActive ? styles.editColumnActive : ""
+              }`}
+            />
+          )}
+          <DragDropIcon
+            className={styles.columnDragButtonSVG}
+            {...attributes}
+            {...listeners}
+          />
+        </div>
+      </header>
+      <TaskCardWrapper
+        column={column}
+        tasks={tasks}
+        userSettings={userSettings}
+        draggableColumnEditActive={draggableColumnEditActive}
+      />
+    </li>
   );
 };

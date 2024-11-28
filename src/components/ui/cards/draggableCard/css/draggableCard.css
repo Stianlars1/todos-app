@@ -44,13 +44,10 @@
   font-weight: 300;
   font-size: 14px;
   line-height: 1.15;
-  -webkit-hyphens: auto;
-          hyphens: auto;
+  hyphens: auto;
   text-wrap: balance;
   min-width: 0;
-  -webkit-user-select: text;
-     -moz-user-select: text;
-          user-select: text;
+  user-select: text;
   cursor: text;
 }
 .reveal-card__wrapper__header p {
@@ -58,9 +55,7 @@
   font-weight: 200;
   line-height: 1.1;
   color: hsl(var(--muted-foreground));
-  -webkit-user-select: text;
-     -moz-user-select: text;
-          user-select: text;
+  user-select: text;
   cursor: text;
 }
 .reveal-card__wrapper__badges {
@@ -68,9 +63,7 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  -webkit-user-select: text;
-     -moz-user-select: text;
-          user-select: text;
+  user-select: text;
   cursor: text;
 }
 .reveal-card-permanently-deleting {
@@ -137,6 +130,11 @@
   cursor: pointer;
 }
 
+.reveal_card_is_dragging {
+  border: 1px solid hsl(var(--primary));
+  opacity: 0.5;
+}
+
 @media screen and (max-width: 768px) {
   .reveal-card__wrapper__header h3 {
     font-weight: 500;
@@ -151,4 +149,6 @@
     font-weight: 600;
     font-size: 10px;
   }
-}/*# sourceMappingURL=draggableCard.css.map */
+}
+
+/*# sourceMappingURL=draggableCard.css.map */

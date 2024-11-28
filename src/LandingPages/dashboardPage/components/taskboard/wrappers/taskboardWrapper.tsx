@@ -1,169 +1,111 @@
 "use client";
+import {StatusCodes} from "@/types/todo/types";
 import {
-  CategorizedTodosDTO,
-  SoonDueSubCategories,
-  StatusCodes,
-} from "@/types/todo/types";
+    DndContext,
+    DragEndEvent,
+    DragOverlay,
+    DragStartEvent,
+    PointerSensor,
+    useSensor,
+    useSensors,
+} from "@dnd-kit/core";
 import {
-  animations,
-  handleDragoverNode,
-  handleDragoverParent,
-  handleDragstart,
-  handleEnd,
-  handleTouchOverNode,
-  handleTouchOverParent,
-  handleTouchmove,
-  handleTouchstart,
-  resetState,
-} from "@formkit/drag-and-drop";
-import { useDragAndDrop } from "@formkit/drag-and-drop/react";
-
-import { UserSettingsDTO } from "@/app/actions/user/types";
-import { cacheInvalidate } from "@/app/lib/cache/cache";
-import { CacheKeys } from "@/app/lib/cache/keys";
-import { toast } from "@/components/ui/toast/toast";
-import { useBrowserInfo } from "@/hooks/useBrowserInfo";
-import { TodoDTO } from "@/types/types";
-import { useEffect } from "react";
+    arrayMove,
+    horizontalListSortingStrategy,
+    SortableContext,
+    verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import {UserSettingsDTO} from "@/app/actions/user/types";
+import {TodoDTO} from "@/types/types";
+import {DraggableColumn} from "@/LandingPages/dashboardPage/components/taskboard/draggables/draggableColumn";
 import columnWrapper from "../css/columnWrapper.module.css";
-import { DraggableColumn } from "../draggables/draggableColumn";
-import { ColumnListDND } from "../types";
 import {
-  COLUMN_GROUP,
-  TASKCARD_GROUP,
-  didCategoryIndexChange,
-  handleUpdateColumnsOrder,
-} from "../utils";
+    COLUMN_GROUP,
+    handleUpdateColumnsOrder,
+    TYPE_COLUMN,
+    TYPE_TASK,
+} from "@/LandingPages/dashboardPage/components/taskboard/utils";
+import {useEffect, useMemo, useState} from "react";
+import {toast} from "@/components/ui/toast/toast";
+import {cacheInvalidate} from "@/app/lib/cache/cache";
+import {CacheKeys} from "@/app/lib/cache/keys";
+import {createPortal} from "react-dom";
+import {DraggableCard} from "@/components/ui/cards/draggableCard/draggableCard";
 
 export const TaskboardWrapper = ({
+  columns,
   tasks,
   userSettings,
   categorizedTexts,
 }: {
-  tasks: CategorizedTodosDTO;
+  columns: StatusCodes[];
+  tasks: TodoDTO[];
   userSettings: UserSettingsDTO | null;
   categorizedTexts: { [key in StatusCodes]: string };
 }) => {
-  const { isMobile } = useBrowserInfo();
-
-  const columnsList: ColumnListDND[] = Object.entries(tasks).map(
-    ([categoryString, todosList]) => {
-      let flatTasks: TodoDTO[] = [];
-
-      if (categoryString === "SOON_DUE") {
-        const soonDueTasks = todosList as {
-          [key in SoonDueSubCategories]?: TodoDTO[];
-        };
-        flatTasks = Object.values(soonDueTasks).flat();
-      } else {
-        flatTasks = todosList as TodoDTO[];
-      }
-
-      return {
-        column: categoryString as StatusCodes,
-        tasks: flatTasks,
-        categoryCode: categoryString as StatusCodes,
-      };
-    },
-  );
-
+  const [columnsList, setColumnsList] = useState<StatusCodes[]>(columns);
+  const [tasksList, setTasksList] = useState<TodoDTO[]>(tasks);
+  const columnsIds = useMemo(() => columns.map((column) => column), [columns]);
+  const [activeColumn, setActiveColumn] = useState<StatusCodes | null>(null);
+  const [activeTask, setActiveTask] = useState<TodoDTO | null>(null);
   const isColumnLayout = userSettings?.isColumnLayout;
 
-  // Handle the drag and drop of the columns
-  const [parent, columns, setColumnsList, updateConfig] = useDragAndDrop<
-    HTMLUListElement,
-    ColumnListDND
-  >(
-    columnsList,
+  useEffect(() => {
+    console.log("==useEffect run for columns");
+    setColumnsList(columns);
+  }, [columns]);
 
-    {
-      dragHandle: ".column-drag-handle",
-      group: COLUMN_GROUP,
-      name: "ColumnsListWrapper",
-      plugins: [animations({ duration: 150 })],
+  useEffect(() => {
+    console.log("==useEffect run for tasks");
+    setTasksList(tasks);
+  }, [tasks]);
 
-      draggable: (el) => {
-        return el.attributes.getNamedItem("data-group")?.value == COLUMN_GROUP;
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 3,
+        delay: 250,
+        tolerance: 5,
       },
+    }),
+  );
 
-      handleDragstart: (data) => {
-        if (isMobile) {
-          if (
-            data.e.target instanceof HTMLElement ||
-            data.e.target instanceof SVGElement
-          ) {
-            if (data.e.target.id !== "dragHandle") {
-              return;
-            }
-          }
-        }
-        return handleDragstart(data);
-      },
+  const handleDragEnd = async (event: DragEndEvent) => {
+    const { active, over, activatorEvent } = event;
 
-      handleTouchstart: (data) => {
-        if (isMobile) {
-          if (
-            data.e.target instanceof HTMLElement ||
-            data.e.target instanceof SVGElement
-          ) {
-            if (data.e.target.id !== "dragHandle") {
-              return;
-            }
-          }
-        }
-        handleTouchstart(data);
-      },
-      handleDragoverNode: (data) => {
-        return handleDragoverNode(data);
-      },
-      handleDragoverParent: (data) => {
-        return handleDragoverParent(data);
-      },
+    const isColumnDrag = active.data.current?.type === TYPE_COLUMN;
+    const isTaskDrag = active.data.current?.type === TYPE_TASK;
+    // reset active
+    setActiveColumn(null);
+    setActiveTask(null);
 
-      handleTouchOverNode: (data) => {
-        return handleTouchOverNode(data);
-      },
-      handleTouchmove: (data) => {
-        return handleTouchmove(data);
-      },
-      handleTouchOverParent: (data) => {
-        return handleTouchOverParent(data);
-      },
+    if (isColumnDrag) {
+      if (!over) return;
+      const draggedColumn = active.id;
+      const overColumn = over.id;
 
-      handleEnd: async (data) => {
-        handleEnd(data);
+      if (draggedColumn === overColumn) return;
 
-        if (data.e.target instanceof HTMLElement) {
-          if (data.e.target.getAttribute("data-group") == TASKCARD_GROUP) {
-            // Needs this cause the drag of a task also fires of this.
-            return;
-          }
-        }
+      // calculate new order of columns
+      const draggedColumnIndex = columnsList.findIndex(
+        (col) => col === draggedColumn,
+      );
+      const overColumnIndex = columnsList.findIndex(
+        (col) => col === overColumn,
+      );
 
-        if (isMobile) {
-          if (
-            data.e.target instanceof HTMLElement ||
-            data.e.target instanceof SVGElement
-          ) {
-            if (data.e.target.id !== "dragHandle") {
-              return;
-            }
-          }
-        }
+      const newColumnsArray = arrayMove(
+        columnsList,
+        draggedColumnIndex,
+        overColumnIndex,
+      );
 
-        const didIndexChange = didCategoryIndexChange({
-          oldList: columnsList,
-          newList: columns,
-        });
+      setColumnsList(newColumnsArray);
 
-        // If order didnt change, no need to do update
-        if (!didIndexChange) {
-          return;
-        }
-
-        // save the new displayOrder of the columns
-        const columnsUpdateResponse = await handleUpdateColumnsOrder(columns);
-
+      // save the new displayOrder of the columns
+      try {
+        const columnsUpdateResponse =
+          await handleUpdateColumnsOrder(newColumnsArray);
         if (columnsUpdateResponse.isError) {
           toast.error(
             "An error occured while updating the sort preference of the status columns",
@@ -173,47 +115,105 @@ export const TaskboardWrapper = ({
         await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
         await cacheInvalidate({ cacheKey: CacheKeys.ALL_TAGS });
 
-        // if (parent.current) {
-        //   remapNodes(parent.current);
-        // }
-
-        resetState();
-
         toast.success("Column was updated successfully", "bottomRight");
-      },
-
-      sortable: true,
-    },
-  );
-
-  useEffect(() => {
-    if (tasks && columnsList) {
-      setColumnsList(columnsList);
-      resetState();
+      } catch {
+        toast.error(
+          "An error occured while updating the sort preference of the status columns",
+        );
+      }
     }
-  }, [tasks]);
+  };
 
-  // Need this since the drag and drop library does not update the columnsList when the columns are updated
+  const handleDragStart = (event: DragStartEvent) => {
+    console.log("Drag started", event);
+    const { active } = event;
+    const activeDragType = active.data.current?.type;
+    const isColumnDrag = activeDragType === TYPE_COLUMN;
+    const isTaskDrag = activeDragType === TYPE_TASK;
+    if (!isColumnDrag && !isTaskDrag) return;
+
+    if (isColumnDrag) {
+      console.log("Column drag started");
+      const columnObject = active.data.current?.columnObject;
+      setActiveColumn(columnObject);
+    }
+
+    if (isTaskDrag) {
+      console.log("Task drag started");
+      const taskObject = active.data.current?.taskObject;
+      setActiveTask(taskObject);
+    }
+  };
 
   return (
-    <>
-      <ul
-        ref={parent}
-        className={`${columnWrapper.columnWrapper} ${COLUMN_GROUP} ${
-          isColumnLayout ? columnWrapper.columnLayout : columnWrapper.rowLayout
-        }`}
-        data-group={COLUMN_GROUP}
+    <DndContext
+      {...sensors}
+      onDragEnd={handleDragEnd}
+      onDragStart={handleDragStart}
+    >
+      <SortableContext
+        strategy={
+          userSettings?.isColumnLayout
+            ? horizontalListSortingStrategy
+            : verticalListSortingStrategy
+        }
+        items={columnsIds}
       >
-        {columns.map((columnObject: ColumnListDND, index: number) => (
-          <DraggableColumn
-            data-label={columnObject.column}
-            key={columnObject.column}
-            columnObject={columnObject}
-            title={categorizedTexts[columnObject.column]}
-            userSettings={userSettings}
-          />
-        ))}
-      </ul>
-    </>
+        <ul
+          className={`${columnWrapper.columnWrapper} ${COLUMN_GROUP} ${
+            isColumnLayout
+              ? columnWrapper.columnLayout
+              : columnWrapper.rowLayout
+          }`}
+        >
+          {columnsList.map((column, index: number) => (
+            <DraggableColumn
+              key={column}
+              tasks={tasksList.filter(
+                (task) => task.status.statusCode === column,
+              )}
+              column={column}
+              userSettings={userSettings}
+              title={categorizedTexts[column]}
+            />
+          ))}
+        </ul>
+      </SortableContext>
+
+      {typeof window !== "undefined" && (activeColumn || activeTask) && (
+        <>
+          {activeColumn &&
+            createPortal(
+              <DragOverlay>
+                {activeColumn && (
+                  <DraggableColumn
+                    key={activeColumn}
+                    tasks={tasksList.filter(
+                      (task) => task.status.statusCode === activeColumn,
+                    )}
+                    column={activeColumn}
+                    userSettings={userSettings}
+                    title={categorizedTexts[activeColumn]}
+                  />
+                )}
+              </DragOverlay>,
+              document.body,
+            )}
+
+          {activeTask &&
+            createPortal(
+              <DragOverlay>
+                {activeTask && (
+                  <DraggableCard
+                    task={activeTask}
+                    categoryCode={activeTask.status.statusCode}
+                  />
+                )}
+              </DragOverlay>,
+              document.body,
+            )}
+        </>
+      )}
+    </DndContext>
   );
 };

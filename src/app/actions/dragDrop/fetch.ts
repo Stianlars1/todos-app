@@ -1,18 +1,14 @@
 "use server";
 
-import { FetchState, customFetch } from "@/utils/fetch/customFetch";
-import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
+import {customFetch, FetchState} from "@/utils/fetch/customFetch";
+import {APPLICATION_JSON_V1, HTTP_REQUEST} from "@/utils/fetch/fetch";
 import {
   API_DRAG_DROP_CATEGORIZED_UPDATE_ORDER,
   API_DRAG_DROP_TODOS_MOVE,
   API_DRAG_DROP_TODOS_SORT_INDEX,
   API_TODOS_URL,
 } from "@/utils/urls";
-import {
-  MoveTaskProps,
-  UpdateColumnOrderDTO,
-  UpdateTaskSortIndexProps,
-} from "./types";
+import {MoveTaskProps, UpdateColumnOrderDTO, UpdateTaskSortIndexProps,} from "./types";
 
 export const updateTaskSortIndex = async (
   updatedTask: UpdateTaskSortIndexProps,
@@ -57,7 +53,7 @@ export const deleteTask = async (todoId: number) => {
 export const updateColumnDisplayOrder = async (
   columns: UpdateColumnOrderDTO[],
 ) => {
-  const response = await customFetch<FetchState<undefined>>({
+  return await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_CATEGORIZED_UPDATE_ORDER,
     options: {
       method: HTTP_REQUEST.PUT,
@@ -65,6 +61,4 @@ export const updateColumnDisplayOrder = async (
     },
     headers: APPLICATION_JSON_V1,
   });
-
-  return response;
 };

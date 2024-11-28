@@ -149,6 +149,11 @@
   }
 }
 
+.reveal_card_is_dragging {
+  border: 1px solid hsl(var(--primary));
+  opacity: 0.5;
+}
+
 @media screen and (max-width: 768px) {
   .reveal-card {
     &__wrapper {

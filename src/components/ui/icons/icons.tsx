@@ -1,4 +1,4 @@
-import { CSSProperties, SVGProps } from "react";
+import {CSSProperties, SVGProps} from "react";
 
 export const IconDashboard = () => {
   return (
@@ -383,13 +383,7 @@ export const LogoutIcon = () => {
     </svg>
   );
 };
-export const DragDropIcon = ({
-  className = " ",
-  id,
-}: {
-  className?: string;
-  id?: string;
-}) => {
+export const DragDropIcon = (props: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -401,8 +395,7 @@ export const DragDropIcon = ({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
-      id={id}
+      {...props}
     >
       <path
         fill="currentColor"
