@@ -3,8 +3,8 @@
 import { updateActiveDashboardId } from "@/app/actions/user/api";
 import { IconAdd } from "@/components/ui/icons/icons";
 import { useBrowserInfo } from "@/hooks/useBrowserInfo";
-import { CreateDashboard } from "@/LandingPages/dashboardPage/components/dashboardSwitch/components/createDashboard/createDashboard";
-import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import { CreateDashboard } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/components/createDashboard/createDashboard";
+import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { UpdateDashboardModal } from "@/LandingPages/dashboardsPage/components/updateDashboardModal/updateDashboardModal";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
@@ -15,6 +15,7 @@ import { createPortal } from "react-dom";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { LoadingTasks } from "./components/loadingTasks/loadingTasks";
 import styles from "./css/dashboardLink.module.css";
+
 export const DashboardLink = ({
   dashboard,
 }: {

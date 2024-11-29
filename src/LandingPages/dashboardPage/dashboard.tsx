@@ -13,11 +13,11 @@ import { ApiResponse } from "@/types/fetch";
 import { ColumnsAndTasks } from "@/types/todo/types";
 import { SoonDueTodosDTO, TodoDTO } from "@/types/types";
 import { Suspense } from "react";
-import { DashboardTabs } from "./components/dashboardTabs/dashboardTabs";
-import { ProgressSummaryContainer } from "./components/progressSummary/progressSummary";
-import { Taskboard } from "./components/taskboard/taskboard";
-import { getCategorizedTodosTexts } from "./components/taskboard/utils";
-import styles from "./css/dashboard.module.css";
+import { DashboardTabs } from "@/LandingPages/dashboardPage/components/dashboard/dashboardTabs/dashboardTabs";
+import { ProgressSummaryContainer } from "@/LandingPages/dashboardPage/components/overview/progressSummary/progressSummary";
+import { Taskboard } from "@/LandingPages/dashboardPage/components/dashboard/taskboard/taskboard";
+import { getCategorizedTodosTexts } from "@/LandingPages/dashboardPage/components/dashboard/taskboard/utils";
+import styles from "./dashboard.module.css";
 
 export const DashboardPage = async ({
   dashboardName,
@@ -53,27 +53,30 @@ export const DashboardPage = async ({
       <div className={`dashboard ${styles.dashboard}`}>
         <ErrorMessage closeButton isError={isError} errorMessage={error} />
 
-        <DashboardTabs
-          userPreferences={userPreferences}
-          dashboards={dashboards}
-          userSettings={userSettings}
-        >
-          <Taskboard
-            isError={isError2}
-            error={error2}
-            taskResponse={columnsAndTasksResponse}
-            categorizedTexts={categorizedTexts}
+        {columnsAndTasksResponse && userSettings && (
+          <DashboardTabs
+            userPreferences={userPreferences}
+            dashboards={dashboards}
             userSettings={userSettings}
-          />
-          <ProgressSummaryContainer
-            upcomingDeadlines={upcomingDeadlines}
-            error={error3}
-            isError={isError3}
-            tasks={allTasks}
-            overdueTasks={overdueTasks}
-            userSettings={userSettings}
-          />
-        </DashboardTabs>
+          >
+            <>
+              <Taskboard
+                taskResponse={columnsAndTasksResponse}
+                categorizedTexts={categorizedTexts}
+                userSettings={userSettings}
+              />
+              <ErrorMessage isError={isError2} errorMessage={error} />
+            </>
+            <ProgressSummaryContainer
+              upcomingDeadlines={upcomingDeadlines}
+              error={error3}
+              isError={isError3}
+              tasks={allTasks}
+              overdueTasks={overdueTasks}
+              userSettings={userSettings}
+            />
+          </DashboardTabs>
+        )}
       </div>
     </Suspense>
   );

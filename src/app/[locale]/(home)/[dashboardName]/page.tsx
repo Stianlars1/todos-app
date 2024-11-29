@@ -1,5 +1,6 @@
-import { DashboardSwitch } from "@/LandingPages/dashboardPage/components/dashboardSwitch/dashboardSwitch";
+import { DashboardSwitch } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/dashboardSwitch";
 import { DashboardPage } from "@/LandingPages/dashboardPage/dashboard";
+
 type Props = {
   params: { dashboardName: string };
 };

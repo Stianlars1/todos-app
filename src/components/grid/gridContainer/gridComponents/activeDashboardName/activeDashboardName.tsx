@@ -1,5 +1,5 @@
 "use client";
-import { DashboardOnlyTypeDTO } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import { DashboardOnlyTypeDTO } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { usePathname } from "next/navigation";
 
 export const ActiveDashboardName = ({

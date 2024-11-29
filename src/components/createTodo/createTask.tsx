@@ -2,7 +2,7 @@
 import { createTodo } from "@/app/actions/todos/fetch";
 import { Priority, StatusId } from "@/app/actions/todos/types";
 import { UserSettingsDTO } from "@/app/actions/user/types";
-import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useFormState } from "react-dom";
