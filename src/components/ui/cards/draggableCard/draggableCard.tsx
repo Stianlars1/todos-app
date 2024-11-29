@@ -1,5 +1,5 @@
 "use client";
-import {TASKCARD_GROUP, TYPE_TASK,} from "@/LandingPages/dashboardPage/components/taskboard/utils";
+import {TYPE_TASK,} from "@/LandingPages/dashboardPage/components/taskboard/utils";
 import {deleteTask, moveTask} from "@/app/actions/dragDrop/fetch";
 import {Priority} from "@/app/actions/todos/types";
 import {UserSettingsDTO} from "@/app/actions/user/types";
@@ -117,7 +117,7 @@ export const DraggableCard = ({
         isDragging,
     } = useSortable({
         id: task.todoId,
-        data: {type: TYPE_TASK, taskObject: task},
+        data: {type: TYPE_TASK, task},
     });
 
     const style = {
@@ -147,8 +147,6 @@ export const DraggableCard = ({
       ${isMobile ? "reveal-card-mobile" : "reveal-card-desktop"}
       
       ${isPerformingOperation ? "reveal-card-permanently-deleting" : " "} ${isDragging ? "reveal_card_is_dragging" : ""}`}
-            data-group={TASKCARD_GROUP}
-            data-status={categoryCode}
             onClick={openTask}
         >
             {draggableColumnEditActive && (

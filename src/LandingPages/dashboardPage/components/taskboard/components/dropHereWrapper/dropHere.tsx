@@ -2,7 +2,6 @@ import styles from "./css/dropHere.module.css";
 import {StatusCodes} from "@/types/todo/types";
 
 export const DropHere = ({ column }: { column: StatusCodes }) => {
-  console.dir("Drop here ===, column", column);
   return (
     <>
       <div

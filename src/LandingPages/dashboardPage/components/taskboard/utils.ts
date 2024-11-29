@@ -13,28 +13,28 @@ export const TASKCARD_GROUP = "TasksList";
 export const DELETE_GROUP = "DeleteList";
 
 export const handleUpdateColumnsOrder = async (columns: StatusCodes[]) => {
-  const converted: UpdateColumnOrderDTO[] = columns.map((column) => ({
-    categoryCode: column,
-    newDisplayOrder: columns.indexOf(column) + 1,
-  }));
+    const converted: UpdateColumnOrderDTO[] = columns.map((column) => ({
+        categoryCode: column,
+        newDisplayOrder: columns.indexOf(column) + 1,
+    }));
 
-  return await updateColumnDisplayOrder(converted);
+    return await updateColumnDisplayOrder(converted);
 };
 
 export type GetCategorizedTodosTexts = {
-  [key in StatusCodes]: string;
+    [key in StatusCodes]: string;
 };
 export const getCategorizedTodosTexts =
-  async (): Promise<GetCategorizedTodosTexts> => {
-    const text = await getTranslations("Categorized Todos");
-    const headerColumnsTexts = {
-      CREATED: text("CREATED"),
-      PENDING: text("PENDING"),
-      IN_PROGRESS: text("IN_PROGRESS"),
-      COMPLETED: text("COMPLETED"),
-      ON_HOLD: text("ON_HOLD"),
-      CANCELLED: text("CANCELLED"),
-      DELETED: text("DELETED"),
-    } as { [key in StatusCodes]: string };
-    return headerColumnsTexts;
-  };
+    async (): Promise<GetCategorizedTodosTexts> => {
+        const text = await getTranslations("Categorized Todos");
+        const headerColumnsTexts = {
+            CREATED: text("CREATED"),
+            PENDING: text("PENDING"),
+            IN_PROGRESS: text("IN_PROGRESS"),
+            COMPLETED: text("COMPLETED"),
+            ON_HOLD: text("ON_HOLD"),
+            CANCELLED: text("CANCELLED"),
+            DELETED: text("DELETED"),
+        } as { [key in StatusCodes]: string };
+        return headerColumnsTexts;
+    };

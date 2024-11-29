@@ -75,7 +75,6 @@ export const TaskCardWrapper = ({
   }
 
   return (
-    <>
       <div
         suppressHydrationWarning={true}
         className={`${taskWrapperStyles.taskContainer} ${
@@ -121,6 +120,5 @@ export const TaskCardWrapper = ({
 
         {/*{isDragging && <DroppableDelete isDragging={isDragging} />}*/}
       </div>
-    </>
   );
 };

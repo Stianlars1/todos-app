@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/css/draggableCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/css/draggableCard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/css/draggableCard.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/css/draggableCard.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/components/dropHereWrapper/dropHere.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/components/dropHereWrapper/dropHere.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/draggables/draggableColumn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/draggables/draggableColumn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/wrappers/TaskCardWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/wrappers/TaskCardWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/wrappers/taskboardWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/wrappers/taskboardWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/draggableCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/draggableCard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "continuing-on-dnd-v2",
     "last_opened_file_path": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -91,7 +99,8 @@
       <workItem from="1732746494511" duration="3214000" />
       <workItem from="1732816998201" duration="3373000" />
       <workItem from="1732824789767" duration="365000" />
-      <workItem from="1732825159721" duration="719000" />
+      <workItem from="1732825159721" duration="5835000" />
+      <workItem from="1732886170097" duration="661000" />
     </task>
     <servers />
   </component>
