@@ -1,8 +1,0 @@
-.draggableColumn {
-  background-color: hsl(var(--card));
-  min-height: 200px;
-  padding: 0.5rem;
-  border-radius: var(--radius);
-}
-
-/*# sourceMappingURL=draggableColumn.module.css.map */
