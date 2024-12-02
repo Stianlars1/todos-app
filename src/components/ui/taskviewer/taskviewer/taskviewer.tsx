@@ -5,7 +5,7 @@ import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { CustomForm } from "@/components/form/components/customForm/customForm";
 
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import {
   CustomInput,
   CustomInputLabel,
@@ -55,7 +55,7 @@ export const TaskViewer = ({
   onClose,
 }: {
   taskId: string | null;
-  userSettings: UserSettingsDTO | null;
+  userSettings: UserSettings;
   redirectUrl: string;
   dashboards: DashboardOnlyTypeDTO[] | null;
   onTaskLoaded?: () => void;
@@ -83,7 +83,7 @@ export const TaskViewer = ({
 
   const [activeDashboardId, setActiveDashboardId] = useState<
     number | undefined
-  >(userSettings?.activeDashboardId);
+  >(userSettings.activeDashboardId);
 
   const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
     taskDTO && dashboards ? getActiveDashboardIds(taskDTO, dashboards) : [],
@@ -168,7 +168,7 @@ export const TaskViewer = ({
       if (onClose) {
         onClose();
       } else {
-        router.replace(`/${locale}${`/${pathName}`}`, undefined);
+        router.replace(`/${locale}/${pathName}`, undefined);
       }
     }, 350);
 

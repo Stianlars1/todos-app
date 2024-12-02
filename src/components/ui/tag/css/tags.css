@@ -1,15 +1,11 @@
 .tag {
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
+  padding: 0 0.62rem;
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 9px;
   line-height: 1rem;
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
   border: 1px solid transparent;
   border-radius: 9999px;
   white-space: nowrap;
-  width: -moz-fit-content;
   width: fit-content;
   display: inline-flex;
   align-items: center;
@@ -34,4 +30,6 @@
 .priority-high {
   color: rgb(153, 27, 27);
   background-color: rgb(254, 226, 226);
-}/*# sourceMappingURL=tags.css.map */
+}
+
+/*# sourceMappingURL=tags.css.map */

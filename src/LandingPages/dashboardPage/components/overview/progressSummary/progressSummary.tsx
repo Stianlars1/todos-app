@@ -1,5 +1,5 @@
 "use client";
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { ApiResponse } from "@/types/fetch";
 import { SoonDueTodosDTO, StatusCode, TodoDTO } from "@/types/types";
@@ -18,7 +18,7 @@ export interface ProgressSummaryProps {
   error: string | null;
   upcomingDeadlines: ApiResponse<SoonDueTodosDTO> | null;
   overdueTasks: ApiResponse<TodoDTO[]> | null;
-  userSettings: UserSettingsDTO | null;
+  userSettings: UserSettings;
 }
 export const ProgressSummaryContainer = ({
   tasks,
@@ -67,7 +67,7 @@ const getProgressSummaryTasks = (tasks: TodoDTO[]) => {
       }
       return acc;
     },
-    {} as Record<StatusCode, number>
+    {} as Record<StatusCode, number>,
   );
   const tasksMapFull = tasks.reduce(
     (acc, task) => {
@@ -77,7 +77,7 @@ const getProgressSummaryTasks = (tasks: TodoDTO[]) => {
       }
       return acc;
     },
-    {} as Record<StatusCode, TodoDTO[]>
+    {} as Record<StatusCode, TodoDTO[]>,
   );
 
   const finishedTaskFull = { TOTAL_TASKS: tasks, ...tasksMapFull };
@@ -95,7 +95,7 @@ const getProgressSummaryTasks = (tasks: TodoDTO[]) => {
 
   // Filter out status codes with zero values
   const filteredTasksMapSummary = Object.fromEntries(
-    Object.entries(tasksMapSummary).filter(([_, value]) => value > 0)
+    Object.entries(tasksMapSummary).filter(([_, value]) => value > 0),
   ) as Record<StatusCode, number>;
 
   // Return the final summary including totalTasks
@@ -187,7 +187,7 @@ const OverdueTasks = ({
   userSettings,
 }: {
   overdueTasks: ApiResponse<TodoDTO[]> | null;
-  userSettings: UserSettingsDTO | null;
+  userSettings: UserSettings;
 }) => {
   const overdueTasksMap = overdueTasks?.data as TodoDTO[];
   const texts = useTranslations("Dashboard.header.taskSummary");

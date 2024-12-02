@@ -1,0 +1,68 @@
+.draggableColumn {
+  background-color: hsl(var(--card));
+  height: fit-content;
+  padding: 1rem 0.5rem;
+  border-radius: var(--radius);
+  z-index: 1000;
+  border: 1px solid hsl(var(--border));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.draggableColumn .columnHeader {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.5rem;
+  background-color: hsl(var(--background));
+  border-radius: calc(var(--radius) / 2);
+  border: 1px solid transparent;
+  cursor: grab;
+}
+.draggableColumn .emptyContainer {
+  padding: 0.75rem;
+  border: 2px dashed hsl(var(--border));
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.draggableColumn .emptyContainer .emptyText {
+  font-size: 14px;
+}
+.draggableColumn .taskContainer {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.draggableColumn .limitButton {
+  width: 100%;
+  background-color: transparent;
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.draggableColumn .limitButton:active, .draggableColumn .limitButton:hover {
+  text-decoration: underline;
+}
+.draggableColumn .limitButton .limitIcon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.isDragging {
+  opacity: 0.5;
+  border-color: red;
+}
+.isDragging .columnHeader {
+  cursor: grabbing;
+}
+
+/*# sourceMappingURL=draggableColumn.module.css.map */

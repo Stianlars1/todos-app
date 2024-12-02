@@ -1,6 +1,6 @@
 "use client";
 import { updateUserSettings } from "@/app/actions/user/api";
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import "./css/gridSidebarToggle.css";
 export const GridSidebarToggle = ({
   userDetails,
 }: {
-  userDetails: UserSettingsDTO | null;
+  userDetails: UserSettings | null;
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(
     userDetails?.sidebarOpen || false,

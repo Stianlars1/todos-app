@@ -1,5 +1,5 @@
 import { getOnlyDashboards } from "@/app/actions/dashboards/fetch";
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import { getUserSettings } from "@/app/actions/user/userApi";
 import { ToastContainer } from "@/components/ui/toast/toast";
 import { DashboardOnlyTypeDTO } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
@@ -18,7 +18,7 @@ export const GridContainer = async ({ children }: GridProps) => {
   );
   return (
     <div
-      data-sidebar-open={String(userSettings?.data?.sidebarOpen)}
+      data-sidebar-open={String(userSettings.data?.sidebarOpen)}
       className={`grid-container ${GeistSans.className}`}
       id="grid-container"
     >
@@ -40,9 +40,9 @@ export const GridContainer = async ({ children }: GridProps) => {
 
 const getActiveDashboardName = (
   dashboards: DashboardOnlyTypeDTO[] | null,
-  userSettings: UserSettingsDTO | null,
+  userSettings: UserSettings | null,
 ) => {
   return dashboards?.find(
-    (board) => board.dashboardId === userSettings?.activeDashboardId,
+    (board) => board.dashboardId === userSettings.activeDashboardId,
   )?.name;
 };

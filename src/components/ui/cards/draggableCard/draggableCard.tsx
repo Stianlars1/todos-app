@@ -1,8 +1,8 @@
 "use client";
-import { TYPE_TASK } from "@/LandingPages/dashboardPage/components/dashboard/taskboard/utils";
+import { TYPE_TASK } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/utils";
 import { deleteTask, moveTask } from "@/app/actions/dragDrop/fetch";
 import { Priority } from "@/app/actions/todos/types";
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { StatusCodes } from "@/types/todo/types";
@@ -22,7 +22,7 @@ interface DraggableCardProps {
   className?: string;
   categoryCode: StatusCodes;
   sortManual?: boolean;
-  userSettings?: UserSettingsDTO | null;
+  userSettings?: UserSettings | null;
   draggableColumnEditActive?: boolean;
   isMobile?: boolean;
   deleteTaskFromTasklist?: (idToRemove: number) => void;
@@ -42,8 +42,8 @@ export const DraggableCard = ({
 }: DraggableCardProps) => {
   const [isPerformingOperation, setIsPerformingOperation] = useState(false);
   const { todoId, title, description, priority, tags, content } = task;
-  const sortManual = !!userSettings?.sortManual;
-  const isColumnLayout = !!userSettings?.isColumnLayout;
+  const sortManual = !!userSettings.sortManual;
+  const isColumnLayout = !!userSettings.isColumnLayout;
   const expanded = false;
   const pathName = usePathname();
   const router = useRouter();

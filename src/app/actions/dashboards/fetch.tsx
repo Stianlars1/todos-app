@@ -19,7 +19,7 @@ import {
   API_DASHBOARD_URL,
   API_USER_SETTINGS_URL,
 } from "@/utils/urls";
-import { UserSettingsDTO } from "../user/types";
+import { UserSettings } from "../user/types";
 import { getUserId } from "../user/userUtils";
 
 export const getDashboards = async () => {
@@ -47,7 +47,7 @@ export const getUserSettings = async () => {
   const userId = await getUserId();
   const settingsUrl = `${API_USER_SETTINGS_URL}/${userId}`;
 
-  return await customFetch<UserSettingsDTO>({
+  return await customFetch<UserSettings>({
     url: settingsUrl,
     options: {
       method: HTTP_REQUEST.GET,

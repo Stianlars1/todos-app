@@ -1,10 +1,10 @@
 "use server";
-import {cacheInvalidate} from "@/app/lib/cache/cache";
-import {CacheKeys} from "@/app/lib/cache/keys";
-import {ApiResponse} from "@/types/fetch";
-import {TodoDTO} from "@/types/types";
-import {customFetch} from "@/utils/fetch/customFetch";
-import {APPLICATION_JSON_V1, HTTP_REQUEST} from "@/utils/fetch/fetch";
+import { cacheInvalidate } from "@/app/lib/cache/cache";
+import { CacheKeys } from "@/app/lib/cache/keys";
+import { ApiResponse } from "@/types/fetch";
+import { TodoDTO } from "@/types/types";
+import { customFetch } from "@/utils/fetch/customFetch";
+import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import {
   API_COLUMNS_AND_TODOS_BY_DASHBOARDNAME_URL,
   API_TASKS_SEARCH,
@@ -22,8 +22,8 @@ import {
   API_TODOS_UPDATE_URL,
   API_TODOS_URL,
 } from "@/utils/urls";
-import {UpdatedTodoDTO, UpdateTodoResponse} from "./types";
-import {getCreateTodoFormData} from "./utils";
+import { UpdatedTodoDTO, UpdateTodoResponse } from "./types";
+import { getCreateTodoFormData } from "./utils";
 
 export const getTodoById = async (todoId: string) => {
   const API_TODO_URL = `${API_TODOS_URL}/${todoId}`;
@@ -194,9 +194,6 @@ export const getColumnsAndTasks = async <T>(dashboardName: string) => {
   if (categorized.isError) {
     error = "Couldn't load todos";
   }
-
-  console.dir("\n\n== getColumnsAndTasks ==");
-  console.log(categorized.data);
 
   return { ...categorized, error: error };
 };

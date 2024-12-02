@@ -1,5 +1,5 @@
 "use client";
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { TaskViewer } from "@/components/ui/taskviewer/taskviewer/taskviewer";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -14,7 +14,7 @@ export const ShowTaskModalContainer = ({
   redirectUrl = "",
 }: {
   redirectUrl?: string;
-  userSettings: UserSettingsDTO | null;
+  userSettings: UserSettings;
   dashboards: DashboardOnlyTypeDTO[] | null;
 }) => {
   const selectedTaskId = useSelectedTaskId();

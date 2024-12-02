@@ -1,0 +1,50 @@
+.tableBoard {
+  --tableSpacing: 0.4rem;
+}
+.tableBoard > * {
+  line-height: 1;
+}
+.tableBoard .columnList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.tableBoard .columnList .column {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 1px solid hsl(var(--accent));
+  border-radius: calc(var(--radius) / 2);
+  overflow: hidden;
+}
+.tableBoard .columnList .column .columnHeader {
+  padding: var(--tableSpacing) 0.65rem;
+  background-color: hsl(var(--accent));
+  width: 100%;
+}
+.tableBoard .columnList .column .columnHeader .columnHeading {
+  color: hsl(var(--accent-foreground));
+  font-weight: 300;
+}
+.tableBoard .columnList .column .taskWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.tableBoard .columnList .column .taskWrapper .task {
+  list-style-type: none;
+  display: flex;
+  border-bottom: 0.5px solid hsl(var(--accent));
+  padding: 0.5rem 0.65rem;
+}
+.tableBoard .columnList .column .taskWrapper .task:first-child {
+  border-top: 1px solid hsl(var(--border));
+}
+.tableBoard .columnList .column .taskWrapper .task:last-child {
+  border-bottom: none;
+}
+
+/*# sourceMappingURL=tableBoard.module.css.map */

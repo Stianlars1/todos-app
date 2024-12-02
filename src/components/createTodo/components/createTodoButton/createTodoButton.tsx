@@ -1,5 +1,5 @@
 "use client";
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import { IconAdd } from "@/components/ui/icons/icons";
 import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { Button } from "@stianlarsen/react-ui-kit";
@@ -13,7 +13,7 @@ export const CreateTodoButton = ({
   userSettings,
   dashboards,
 }: {
-  userSettings: UserSettingsDTO | null;
+  userSettings: UserSettings;
   dashboards: DashboardOnlyType[] | null;
 }) => {
   const text = useTranslations("Taskboard.header");

@@ -1,7 +1,7 @@
 "use client";
 import { createTodo } from "@/app/actions/todos/fetch";
 import { Priority, StatusId } from "@/app/actions/todos/types";
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -27,7 +27,7 @@ export const CreateTask = ({
   dashboards,
   onClose,
 }: {
-  userSettings: UserSettingsDTO | null;
+  userSettings: UserSettings;
   dashboards: DashboardOnlyType[] | null;
   onClose: () => void;
 }) => {
@@ -46,7 +46,7 @@ export const CreateTask = ({
 
   const [activeDashboardId, setActiveDashboardId] = useState<
     number | undefined
-  >(userSettings?.activeDashboardId);
+  >(userSettings.activeDashboardId);
   const text = useTranslations("general");
   const dashboardText = useTranslations("TodayPage.taskViewer");
   const createText = useTranslations("Create-task");

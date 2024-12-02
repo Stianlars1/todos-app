@@ -8,14 +8,14 @@
 }
 .suspense-fallback__loader {
   position: relative;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
 }
 .suspense-fallback__loader::after {
   content: "";
   display: block;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   border: 0.25rem solid hsl(var(--muted));
   border-top-color: hsl(var(--primary));
@@ -31,8 +31,8 @@
 }
 .suspense-fallback-fixed__loader {
   position: absolute;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -40,8 +40,8 @@
 .suspense-fallback-fixed__loader::after {
   content: "";
   display: block;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   border: 0.25rem solid hsl(var(--muted));
   border-top-color: hsl(var(--primary));
@@ -91,4 +91,6 @@
   to {
     transform: rotate(360deg);
   }
-}/*# sourceMappingURL=suspenseFallback.css.map */
+}
+
+/*# sourceMappingURL=suspenseFallback.css.map */

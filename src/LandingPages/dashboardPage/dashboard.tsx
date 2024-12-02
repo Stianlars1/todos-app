@@ -8,16 +8,13 @@ import {
 } from "@/app/actions/todos/fetch";
 import { getUserSettings } from "@/app/actions/user/userApi";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
-import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { ApiResponse } from "@/types/fetch";
 import { ColumnsAndTasks } from "@/types/todo/types";
 import { SoonDueTodosDTO, TodoDTO } from "@/types/types";
-import { Suspense } from "react";
 import { DashboardTabs } from "@/LandingPages/dashboardPage/components/dashboard/dashboardTabs/dashboardTabs";
 import { ProgressSummaryContainer } from "@/LandingPages/dashboardPage/components/overview/progressSummary/progressSummary";
-import { Taskboard } from "@/LandingPages/dashboardPage/components/dashboard/taskboard/taskboard";
-import { getCategorizedTodosTexts } from "@/LandingPages/dashboardPage/components/dashboard/taskboard/utils";
 import styles from "./dashboard.module.css";
+import { TaskViews } from "@/LandingPages/dashboardPage/components/dashboard/taskViews/taskViews";
 
 export const DashboardPage = async ({
   dashboardName,
@@ -25,7 +22,6 @@ export const DashboardPage = async ({
   dashboardName: string;
 }) => {
   const { data: userSettings, error, isError } = await getUserSettings();
-  const categorizedTexts = await getCategorizedTodosTexts();
   const {
     data: columnsAndTasksResponse,
     isError: isError2,
@@ -49,35 +45,32 @@ export const DashboardPage = async ({
   const { data: userPreferences } = await getUserPreferences();
 
   return (
-    <Suspense fallback={<SuspenseFallback fixed={false} />}>
-      <div className={`dashboard ${styles.dashboard}`}>
-        <ErrorMessage closeButton isError={isError} errorMessage={error} />
+    <div className={`dashboard ${styles.dashboard}`}>
+      <ErrorMessage closeButton isError={isError} errorMessage={error} />
 
-        {columnsAndTasksResponse && userSettings && (
-          <DashboardTabs
-            userPreferences={userPreferences}
-            dashboards={dashboards}
-            userSettings={userSettings}
-          >
-            <>
-              <Taskboard
-                taskResponse={columnsAndTasksResponse}
-                categorizedTexts={categorizedTexts}
-                userSettings={userSettings}
-              />
-              <ErrorMessage isError={isError2} errorMessage={error} />
-            </>
-            <ProgressSummaryContainer
-              upcomingDeadlines={upcomingDeadlines}
-              error={error3}
-              isError={isError3}
-              tasks={allTasks}
-              overdueTasks={overdueTasks}
+      {columnsAndTasksResponse && userSettings && (
+        <DashboardTabs
+          userPreferences={userPreferences}
+          dashboards={dashboards}
+          userSettings={userSettings}
+        >
+          <>
+            <TaskViews
+              dashboardName={dashboardName}
               userSettings={userSettings}
             />
-          </DashboardTabs>
-        )}
-      </div>
-    </Suspense>
+            <ErrorMessage isError={isError2} errorMessage={error} />
+          </>
+          <ProgressSummaryContainer
+            upcomingDeadlines={upcomingDeadlines}
+            error={error3}
+            isError={isError3}
+            tasks={allTasks}
+            overdueTasks={overdueTasks}
+            userSettings={userSettings}
+          />
+        </DashboardTabs>
+      )}
+    </div>
   );
 };

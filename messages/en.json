@@ -64,7 +64,8 @@
     "taskCard": {
       "showMore": "Show all",
       "showLess": "Show less"
-    }
+    },
+    "emptyState": "Drop tasks here"
   },
 
   "Buttons": {

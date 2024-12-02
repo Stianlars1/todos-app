@@ -1,18 +1,19 @@
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import { TodayCard } from "@/components/ui/cards/todayCard/todayCard";
 import { TodoDTO } from "@/types/types";
 import { TodayLayoutResizeWrapper } from "../components/todayLayoutResizeWrapper/todayLayoutResizeWrapper";
 import styles from "./css/todayLayout.module.css";
+
 export const TodayLayout = ({
   tasksToday,
   userSettings,
 }: {
   tasksToday: TodoDTO[] | null;
-  userSettings: UserSettingsDTO | null;
+  userSettings: UserSettings;
 }) => {
   return (
     <div className={styles.todayLayout}>
-      <TodayLayoutResizeWrapper sidebarOpen={!!userSettings?.sidebarOpen} />
+      <TodayLayoutResizeWrapper sidebarOpen={!!userSettings.sidebarOpen} />
 
       <ul className={styles.list}>
         {tasksToday?.map((task) => (
