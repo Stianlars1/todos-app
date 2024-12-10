@@ -6,16 +6,15 @@ import { CSS } from "@dnd-kit/utilities";
 import { cx } from "@/utils/utils";
 import { Tag } from "@/components/ui/tag/tags";
 import { useTaskViewerMenu } from "@/components/ui/taskviewer/hooks/useTaskViewerMenu";
-import { LanguageType } from "@/app/actions/user/types";
 import { IconDocumentText } from "@/components/ui/icons/icons";
 
 export const DraggableTask = ({
   task,
-  language,
   isDragOverlay = false,
+  disableDragAndDrop = false,
 }: {
   task: TodoDTO;
-  language: LanguageType;
+  disableDragAndDrop?: boolean;
   isDragOverlay?: boolean;
 }) => {
   const {
@@ -40,6 +39,7 @@ export const DraggableTask = ({
   } = useSortable({
     id: todoId,
     data: { type: TYPE_TASK, task },
+    disabled: disableDragAndDrop,
   });
 
   const style = {
@@ -49,6 +49,7 @@ export const DraggableTask = ({
 
   return (
     <li
+      id={task.todoId.toString()}
       ref={setNodeRef}
       style={style}
       {...attributes}

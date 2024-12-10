@@ -1,0 +1,14 @@
+@media screen and (max-width: 600px) {
+
+  .taskboard {
+    display: flex;
+    scroll-snap-type: x proximity; /* Change from mandatory to proximity */
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth; /* Add smooth scrolling */
+    padding: 0 1rem; /* Add some padding for better edge visibility */
+    gap: 1rem; /* Add gap between columns */
+  }
+}

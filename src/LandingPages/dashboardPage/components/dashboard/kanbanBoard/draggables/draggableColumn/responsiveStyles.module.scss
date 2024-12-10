@@ -1,0 +1,17 @@
+@media screen and (max-width: 600px) {
+  .draggableColumn {
+    flex: 0 0 90%; /* Change from flex: 1 0 auto */
+    min-width: 90%;
+    height: 100%;
+    overflow-y: auto;
+    margin: 0 auto;
+    min-height: 100%;
+    transform: translateZ(0); /* Enable hardware acceleration */
+    will-change: transform; /* Optimize for animations */
+
+
+    scroll-snap-align: center;
+    scroll-snap-stop: always; /* Force stopping at snap points */
+    scroll-margin: 0;
+  }
+}

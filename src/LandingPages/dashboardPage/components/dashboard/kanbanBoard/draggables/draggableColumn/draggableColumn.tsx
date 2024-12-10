@@ -6,7 +6,8 @@ import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { TYPE_COLUMN } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/utils";
 import { CSS } from "@dnd-kit/utilities";
 import { cx } from "@/utils/utils";
-import styles from "./draggableColumn.module.scss";
+import styles from "./draggableColumn.module.css";
+import responsiveStyles from "./responsiveStyles.module.css";
 import { DraggableTask } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask";
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -43,6 +44,7 @@ export const DraggableColumn = ({
   } = useSortable({
     id: column,
     data: { type: TYPE_COLUMN, column },
+    disabled: userSettings.sortManual,
   });
   const style = {
     transition,
@@ -66,9 +68,14 @@ export const DraggableColumn = ({
 
   return (
     <div
+      id={column}
       ref={setNodeRef}
       style={style}
-      className={cx(isDragging && styles.isDragging, styles.draggableColumn)}
+      className={cx(
+        isDragging && styles.isDragging,
+        styles.draggableColumn,
+        responsiveStyles.draggableColumn,
+      )}
     >
       <header {...attributes} {...listeners} className={styles.columnHeader}>
         {title}
@@ -87,7 +94,7 @@ export const DraggableColumn = ({
               <DraggableTask
                 key={task.todoId}
                 task={task}
-                language={userSettings.language}
+                disableDragAndDrop={userSettings.sortManual}
               />
             ))}
           </ul>

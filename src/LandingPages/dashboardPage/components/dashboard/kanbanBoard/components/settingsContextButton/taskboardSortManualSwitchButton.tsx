@@ -10,21 +10,21 @@ export const TaskboardSortManualSwitchButton = ({
 }: {
   userSettings: UserSettings;
 }) => {
-  const isChecked = userSettings.sortManual;
+  const sortManual = userSettings.sortManual;
+  const dragAndDropEnabled = !userSettings.sortManual;
+  console.log(sortManual);
   const handleSort = async () => {
-    if (userSettings.sortManual !== undefined) {
-      const sortResponse = await updateManualSortSetting({
-        newSortManualValue: !isChecked,
-      });
-      if (sortResponse.isSuccess) {
-        await cacheInvalidate({ cacheKey: CacheKeys.USER_DETAILS });
-        await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
-      }
+    const sortResponse = await updateManualSortSetting({
+      newSortManualValue: !sortManual,
+    });
+    if (sortResponse.isSuccess) {
+      await cacheInvalidate({ cacheKey: CacheKeys.USER_DETAILS });
+      await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
     }
   };
   return (
     <SwitchButton
-      checked={!!isChecked}
+      checked={dragAndDropEnabled}
       onToggle={() => handleSort()}
       size="xs"
     />

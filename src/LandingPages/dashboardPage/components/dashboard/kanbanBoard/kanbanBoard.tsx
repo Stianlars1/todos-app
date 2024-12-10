@@ -2,14 +2,17 @@
 import { UserSettings } from "@/app/actions/user/types";
 import { ColumnsAndTasks } from "@/types/todo/types";
 import styles from "./taskboard.module.css";
+import responsiveStyles from "./responsiveStyles.module.css";
 import { TYPE_COLUMN, TYPE_TASK } from "./utils";
 import {
+  closestCorners,
   DndContext,
   DragEndEvent,
   DragOverEvent,
   DragOverlay,
   DragStartEvent,
   MouseSensor,
+  pointerWithin,
   TouchSensor,
   useSensor,
   useSensors,
@@ -20,7 +23,7 @@ import { StatusCode, TodoDTO, TodoStatus } from "@/types/types";
 import { DraggableColumn } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn";
 import { createPortal } from "react-dom";
 import { DraggableTask } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask";
-import { getStatusByCode } from "@/utils/utils";
+import { cx, getStatusByCode } from "@/utils/utils";
 import {
   moveTask,
   updateColumnDisplayOrder,
@@ -31,6 +34,8 @@ import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallb
 import { useColumnHeadersTexts } from "@/LandingPages/dashboardPage/components/dashboard/utils";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
+import { useBrowserInfo } from "@/hooks/useBrowserInfo";
+import { Props } from "@dnd-kit/core/dist/components/DndContext/DndContext";
 
 export const KanbanBoard = ({
   userSettings,
@@ -39,6 +44,7 @@ export const KanbanBoard = ({
   userSettings: UserSettings;
   columnsAndTasks: ColumnsAndTasks;
 }) => {
+  const { isMobile, isMobileSize } = useBrowserInfo();
   const categorizedTexts = useColumnHeadersTexts();
   const [isMounted, setIsMounted] = useState(false);
   const [columns, setColumns] = useState<StatusCode[]>(
@@ -65,12 +71,20 @@ export const KanbanBoard = ({
     setIsMounted(true);
   }, []);
 
-  const sensors = useSensors(
-    useSensor(MouseSensor, {
-      activationConstraint: { distance: 3 },
-    }),
-    useSensor(TouchSensor, { activationConstraint: { distance: 2 } }),
-  );
+  const mouseSensor = useSensor(MouseSensor, {
+    activationConstraint: {
+      distance: 3, // Increase this to prevent accidental drags
+    },
+  });
+
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 100, // Add a small delay for touch
+      tolerance: 5,
+    },
+  });
+
+  const sensors = useSensors(mouseSensor, touchSensor);
 
   const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;
@@ -91,7 +105,8 @@ export const KanbanBoard = ({
 
   const handleDragOver = (event: DragOverEvent) => {
     const { active, over } = event;
-
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 600;
+    const taskboardElement = document.getElementById("taskboard");
     // Handle column drag
     if (active.data.current?.type === TYPE_COLUMN && over) {
       const activeColumnId = active.data.current.column;
@@ -102,6 +117,15 @@ export const KanbanBoard = ({
         const newIndex = columns.indexOf(overColumnId as StatusCode);
 
         setColumns(arrayMove(columns, oldIndex, newIndex));
+      }
+
+      // Only scroll into view on mobile
+      if (isMobile) {
+        const activeColumnElement = document.getElementById(activeColumnId);
+        activeColumnElement?.scrollTo({
+          behavior: "auto",
+          left: activeColumnElement.offsetLeft,
+        });
       }
     }
 
@@ -130,6 +154,17 @@ export const KanbanBoard = ({
           task.todoId === activeTask.todoId ? updatedTask : task,
         );
       });
+
+      // Only scroll into view on mobile
+      if (isMobile) {
+        const activeTaskElement = document.getElementById(
+          activeTask.todoId.toString(),
+        );
+        activeTaskElement?.scrollTo({
+          behavior: "auto",
+          left: activeTaskElement.offsetLeft,
+        });
+      }
     }
 
     // If dragging over another task
@@ -188,6 +223,9 @@ export const KanbanBoard = ({
   const handleColumnDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over) return;
+
+    const columnElement = document.getElementById(active.data.current?.column);
+    columnElement?.scrollIntoView({ behavior: "smooth" });
     const originalColumns = columnsAndTasks.columns.map(
       (col) => col.statusCode,
     );
@@ -219,7 +257,8 @@ export const KanbanBoard = ({
   const handleTaskDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over || !activeTask) return;
-
+    const taskElement = document.getElementById(activeTask.todoId.toString());
+    taskElement?.scrollIntoView({ behavior: "auto" });
     const overType = over.data.current?.type;
     const activeIndex = tasks.findIndex(
       (task) => task.todoId === activeTask.todoId,
@@ -327,6 +366,16 @@ export const KanbanBoard = ({
 
   if (!isMounted) return <SuspenseFallback fixed={false} />;
 
+  const dndContextOptions: Props =
+    isMobileSize || isMobile
+      ? {
+          autoScroll: {
+            acceleration: 300,
+          },
+          collisionDetection: pointerWithin,
+        }
+      : { collisionDetection: closestCorners };
+
   return (
     <div>
       <DndContext
@@ -334,9 +383,13 @@ export const KanbanBoard = ({
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
         sensors={sensors}
+        {...dndContextOptions}
       >
         <SortableContext items={columnsIds}>
-          <div id="taskboard" className={styles.taskboard}>
+          <div
+            id="taskboard"
+            className={cx(styles.taskboard, responsiveStyles.taskboard)}
+          >
             {columns.map((col) => (
               <DraggableColumn
                 key={col}
@@ -365,11 +418,7 @@ export const KanbanBoard = ({
               )}
 
               {activeTask && (
-                <DraggableTask
-                  task={activeTask}
-                  language={userSettings.language}
-                  isDragOverlay={true}
-                />
+                <DraggableTask task={activeTask} isDragOverlay={true} />
               )}
             </DragOverlay>,
             document.body,
