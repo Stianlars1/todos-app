@@ -5,90 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.module.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask.module.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/kanbanBoard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/taskboard.module.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/utils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/tableBoard/helper.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/tableBoard/tableBoard.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/tableBoard/tableBoard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskViews/taskViews.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/utils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/taskviewer/hooks/useTaskViewerMenu.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/nb.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/nb.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/dashboardTabs/dashboardTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/dashboardTabs/dashboardTabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/FilterTasksWrapper/FilterTaskColumn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/FilterTasksWrapper/FilterTaskColumn.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/FilterTasksWrapper/FilterTasksWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/FilterTasksWrapper/FilterTasksWrapper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/FilterTasksWrapper/filtering.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/FilterTasksWrapper/filtering.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/FilterTasksWrapper/filtering.module.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/FilterTasksWrapper/filtering.module.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/FilterTasksWrapper/filtering.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/FilterTasksWrapper/filtering.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/css/taskBoardSettingsTriggerButton.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/css/taskBoardSettingsTriggerButton.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/css/taskboardSettingsContextButton.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/css/taskboardSettingsContextButton.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/css/taskboardSettingsContextButton.module.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/css/taskboardSettingsContextButton.module.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/css/taskboardSettingsContextButton.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/css/taskboardSettingsContextButton.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/css/taskboardSortManualSwitchButton.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/css/taskboardSortManualSwitchButton.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/taskBoardSettingsTriggerButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/taskBoardSettingsTriggerButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/taskboardColumnLayoutSwitchButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/taskboardColumnLayoutSwitchButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/taskboardLimitTasksSwitchButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/taskboardLimitTasksSwitchButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/taskboardSettingsContextButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/taskboardSettingsContextButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/settingsContextButton/taskboardSortManualSwitchButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/taskboardSortManualSwitchButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/taskboardHeader/taskboardHeader.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/taskboardHeader/taskboardHeader.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/taskboardHeader/taskboardHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/taskboardHeader/taskboardHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/taskboardSettings/taskboardSettings.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/taskboardSettings/taskboardSettings.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/taskboardSettings/taskboardSettings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/taskboardSettings/taskboardSettings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/components/taskboardSortManualButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/taskboardSortManualButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableColumn/draggableColumn.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableColumn/draggableColumn.module.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableColumn/draggableColumn.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableColumn/draggableColumn.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableTask/draggableTask.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableTask/draggableTask.module.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableTask/draggableTask.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableTask/draggableTask.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/droppables/droppableDelete.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/droppables/droppableDelete.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/taskboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/taskboard.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/taskboard.module.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/taskboard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/taskboard.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/taskboard.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/utils.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/wrappers/taskContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/wrappers/taskContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/overview/progressSummary/progressSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/overview/progressSummary/progressSummary.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/showTaskModal/showTaskModalContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/showTaskModal/showTaskModalContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/settingsPage/components/settingsPageHero/components/preferences/preferences.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/settingsPage/components/settingsPageHero/components/preferences/preferences.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/todayPageTaskviewer/layout/todayLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/todayPageTaskviewer/layout/todayLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(home)/[dashboardName]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(home)/[dashboardName]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/dashboards/fetch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/dashboards/fetch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/dragDrop/fetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/dragDrop/fetch.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/todos/fetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/todos/fetch.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/user/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/user/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/user/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/user/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/user/userApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/user/userApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/createTodo/components/createTodoButton/createTodoButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/createTodo/components/createTodoButton/createTodoButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/createTodo/createTask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/createTodo/createTask.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainer/gridComponents/gridSidebar/components/gridSidebarToggle/gridSidebarToggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainer/gridComponents/gridSidebar/components/gridSidebarToggle/gridSidebarToggle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainer/gridContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainer/gridContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/draggableCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/draggableCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/icons/icons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/icons/icons.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/suspenseFallback/css/suspenseFallback.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/suspenseFallback/css/suspenseFallback.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/suspenseFallback/css/suspenseFallback.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/suspenseFallback/css/suspenseFallback.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/suspenseFallback/css/suspenseFallback.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/suspenseFallback/css/suspenseFallback.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/tag/css/tags.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/tag/css/tags.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/tag/css/tags.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/tag/css/tags.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/tag/css/tags.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/tag/css/tags.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/taskviewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/taskviewer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/kanbanBoard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/kanbanBoard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +85,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.112" />
       </set>
     </attachedChunks>
   </component>
@@ -192,7 +110,11 @@
       <workItem from="1732824789767" duration="365000" />
       <workItem from="1732825159721" duration="5835000" />
       <workItem from="1732886170097" duration="34948000" />
-      <workItem from="1733157214682" duration="10531000" />
+      <workItem from="1733157214682" duration="10698000" />
+      <workItem from="1733226568407" duration="1445000" />
+      <workItem from="1733724850410" duration="235000" />
+      <workItem from="1733725320868" duration="6000" />
+      <workItem from="1733862527813" duration="1008000" />
     </task>
     <servers />
   </component>

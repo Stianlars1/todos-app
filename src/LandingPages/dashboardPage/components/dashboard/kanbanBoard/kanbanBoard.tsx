@@ -29,6 +29,8 @@ import {
 import { toast } from "@/components/ui/toast/toast";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { useColumnHeadersTexts } from "@/LandingPages/dashboardPage/components/dashboard/utils";
+import { cacheInvalidate } from "@/app/lib/cache/cache";
+import { CacheKeys } from "@/app/lib/cache/keys";
 
 export const KanbanBoard = ({
   userSettings,
@@ -186,28 +188,31 @@ export const KanbanBoard = ({
   const handleColumnDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over) return;
+    const originalColumns = columnsAndTasks.columns.map(
+      (col) => col.statusCode,
+    );
 
-    const oldIndex = columns.findIndex(
+    const oldIndex = originalColumns.findIndex(
       (col) => col === active.data.current?.column,
     );
+
     const newIndex = columns.findIndex((col) => col === over.id);
+    if (oldIndex === newIndex) {
+      return;
+    } // because we change the order on drag over instead, so the drop placement is correct
 
-    /*if (oldIndex === newIndex) return;*/ // because we change the order on drag over instead, so the drop placement is correct
-
-    const updatedColumns = arrayMove(columns, oldIndex, newIndex);
-    setColumns(updatedColumns);
-
-    const newDisplayOrder = updatedColumns.map((column) => ({
+    const newDisplayOrder = columns.map((column) => ({
       categoryCode: column,
-      newDisplayOrder: updatedColumns.indexOf(column) + 1,
+      newDisplayOrder: columns.indexOf(column) + 1,
     }));
 
     try {
       await updateColumnDisplayOrder(newDisplayOrder);
+      await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
       toast.success("Column order updated", "bottomRight");
     } catch (error) {
       toast.error("Failed to update column order", "bottomRight");
-      setColumns(columns); // Revert on error
+      setColumns(originalColumns); // Revert on error
     }
   };
 
