@@ -22,9 +22,6 @@
 .dashboardSelector .select .option {
   padding: 1rem;
 }
-.dashboardSelector .select::-moz-selection {
-  color: hsl(var(--foreground));
-}
 .dashboardSelector .select::selection {
   color: hsl(var(--foreground));
 }
@@ -33,4 +30,6 @@
   .dashboardSelector {
     left: 1rem;
   }
-}/*# sourceMappingURL=dashboardSelector.module.css.map */
+}
+
+/*# sourceMappingURL=dashboardSelector.module.css.map */

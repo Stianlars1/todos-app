@@ -27,11 +27,9 @@
   display: inline-flex;
   justify-content: flex-start;
   align-items: center;
-  width: -moz-max-content;
   width: max-content;
   max-width: 150px;
   gap: 0.35rem;
-  height: -moz-min-content;
   height: min-content;
 }
 .grid-container__activeDashboardName__circle {
@@ -67,7 +65,6 @@
   padding: var(--main-padding);
   z-index: 1;
   overflow-x: hidden;
-  height: -moz-fit-content;
   height: fit-content;
   place-self: flex-end;
   justify-self: center;
@@ -84,4 +81,6 @@
   .grid-container__main {
     padding: 2.5rem 1rem 1rem;
   }
-}/*# sourceMappingURL=gridContainer.css.map */
+}
+
+/*# sourceMappingURL=gridContainer.css.map */
