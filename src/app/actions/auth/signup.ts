@@ -1,3 +1,4 @@
+"use server";
 import { SignupFormSchema } from "@/app/lib/auth/definitions";
 import { redirect } from "next/navigation";
 import { signUpFetcher } from "./fetches";
@@ -11,6 +12,21 @@ export const signup = async (_currentState: unknown, formData: FormData) => {
     password: formData.get("password"),
     additional: "",
   });
+
+  const recaptchaToken = formData.get("recaptcha") as string;
+  const tokenVerification = await verifyRecaptcha(recaptchaToken);
+
+  // Check reCAPTCHA score
+  if (!tokenVerification.success || tokenVerification.score < 0.5) {
+    console.error(
+      "Recaptcha verification failed or score too low",
+      tokenVerification.score,
+    );
+    return {
+      isSuccess: false,
+      errorMessage: "Recaptcha verification failed",
+    };
+  }
 
   // If any form fields are invalid, return early
   if (!validatedFields.success) {
@@ -58,4 +74,16 @@ export const signup = async (_currentState: unknown, formData: FormData) => {
       error: { additional: "An error occurred. Please try again later." },
     };
   }
+};
+
+const verifyRecaptcha = async (token: string) => {
+  const secretKey = process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY;
+
+  const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
+
+  const response = await fetch(verificationUrl, {
+    method: "POST",
+  });
+
+  return await response.json();
 };

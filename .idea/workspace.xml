@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="better column and tasks drag and drop on mobile devices">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(auth)/recaptcha/recaptchaProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/auth/signup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/auth/signup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/forms/components/signupButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/forms/components/signupButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/forms/signupForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/forms/signupForm.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Stianlars1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Stianlars1/todos-app.git&quot;,
+    &quot;accountId&quot;: &quot;6d398427-cd01-4d46-88e2-f9b9f87062a1&quot;
+  }
+}</component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2pGdN8h6NC3oXhSIJqXo3tq0yfH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "adde-recaptcha",
+    "last_opened_file_path": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/src/app",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/node_modules/typescript/lib",
+    "typescript.add.unambiguous.imports.on.the.fly": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard" />
+      <recent name="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableTask" />
+      <recent name="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/taskboard/draggables/draggableColumn" />
+      <recent name="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/overview" />
+      <recent name="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard" />
+      <recent name="$PROJECT_DIR$/src/LandingPages/dashboardPage" />
+      <recent name="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/taskboard/components/taskboardSettings" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.112" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="" />
+      <created>1729716446286</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729716446286</updated>
+      <workItem from="1732396304703" duration="11768000" />
+      <workItem from="1732521915587" duration="37000" />
+      <workItem from="1732563465275" duration="980000" />
+      <workItem from="1732564451755" duration="7976000" />
+      <workItem from="1732652442449" duration="2030000" />
+      <workItem from="1732746494511" duration="3214000" />
+      <workItem from="1732816998201" duration="3373000" />
+      <workItem from="1732824789767" duration="365000" />
+      <workItem from="1732825159721" duration="5835000" />
+      <workItem from="1732886170097" duration="34948000" />
+      <workItem from="1733157214682" duration="10698000" />
+      <workItem from="1733226568407" duration="1445000" />
+      <workItem from="1733724850410" duration="235000" />
+      <workItem from="1733725320868" duration="6000" />
+      <workItem from="1733862527813" duration="12434000" />
+      <workItem from="1733955196891" duration="29446000" />
+    </task>
+    <task id="LOCAL−00001" summary="Fixed drag and drag of columns for same index no changes on drag">
+      <option name="closed" value="true" />
+      <created>1733863599712</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1733863599712</updated>
+    </task>
+    <task id="LOCAL−00002" summary="better column and tasks drag and drop on mobile devices">
+      <option name="closed" value="true" />
+      <created>1733871016594</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1733871016594</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed drag and drag of columns for same index no changes on drag" />
+    <MESSAGE value="better column and tasks drag and drop on mobile devices" />
+    <option name="LAST_COMMIT_MESSAGE" value="better column and tasks drag and drop on mobile devices" />
+  </component>
+</project>
