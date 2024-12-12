@@ -9,7 +9,6 @@
   border: 1px solid transparent;
   border-radius: 9999px;
   white-space: nowrap;
-  width: -moz-fit-content;
   width: fit-content;
   display: inline-flex;
   align-items: center;
@@ -34,4 +33,6 @@
 .priority-high {
   color: rgb(153, 27, 27);
   background-color: rgb(254, 226, 226);
-}/*# sourceMappingURL=tags.css.map */
+}
+
+/*# sourceMappingURL=tags.css.map */

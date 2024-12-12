@@ -8,4 +8,6 @@
   .dashboard {
     max-height: calc(100dvh - 3.5rem - var(--nav-height));
   }
-}/*# sourceMappingURL=dashboard.module.css.map */
+}
+
+/*# sourceMappingURL=dashboard.module.css.map */
