@@ -8,13 +8,9 @@ import {
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 import styles from "./css/dashboardsPage.module.css";
+
 export default async function DashboardsPage() {
-  const {
-    data: allDashboards,
-    isLoading,
-    isError,
-    error,
-  } = await getOnlyDashboards();
+  const { data: allDashboards, isError, error } = await getOnlyDashboards();
 
   const text = await getTranslations("DashboardsPage");
 
@@ -34,7 +30,7 @@ export default async function DashboardsPage() {
         </header>
         {allDashboards && (
           <ul className={styles.dashboardMain}>
-            {allDashboards.map((dashboard, index) => {
+            {allDashboards.map((dashboard) => {
               return (
                 <DashboardLink
                   key={dashboard.dashboardId}

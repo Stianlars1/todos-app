@@ -5,7 +5,7 @@
   grid-template-columns: 100vw;
   grid-template-rows: var(--nav-height) calc(100dvh - var(--nav-height));
 
-  z-index: 1;
+  z-index: 0;
   overflow: auto;
   overflow-y: scroll;
 
@@ -13,7 +13,7 @@
     padding: 6rem 20px;
     flex: 1;
     max-width: var(--main--content-max-width); // Setting the width
-    z-index: 1;
+    z-index: 0;
     overflow-x: hidden;
     align-self: flex-start;
   }

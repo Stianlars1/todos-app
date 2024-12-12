@@ -1,12 +1,12 @@
 "use client";
-import { shouldReturn } from "@/components/ui/cards/draggableCard/draggableCard";
 import { TaskCard } from "@/components/ui/cards/taskCard/taskCard";
 import { TodoDTO } from "@/types/types";
-import { sortTasks } from "@/utils/utils";
+import { shouldReturn, sortTasks } from "@/utils/utils";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import "./css/taskCard.css";
 import styles from "./css/taskPreview.module.css";
+
 export const TaskPreview = ({ tasks }: { tasks: TodoDTO[] | null }) => {
   const locale = useLocale();
   const router = useRouter();

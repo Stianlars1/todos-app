@@ -130,126 +130,122 @@ export const KanbanBoard = ({
 
   const handleDragOver = (event: DragOverEvent) => {
     const { active, over } = event;
-    if (!over) return;
-
-    const isMobileViewport =
-      (typeof window !== "undefined" && window.innerWidth <= 600) || isMobile;
-
+    console.log("\n\n== handleDragOver ==", event);
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 600;
     // Handle column drag
-    if (active.data.current?.type === TYPE_COLUMN) {
+    if (active.data.current?.type === TYPE_COLUMN && over) {
       const activeColumnId = active.data.current.column;
       const overData = over.data.current;
 
-      // Determine target column id based on what we're dragging over
-      const targetColumnId =
-        overData?.type === TYPE_TASK
-          ? (overData.task as TodoDTO).status.statusCode
-          : (over.id as StatusCode);
+      let targetColumnId;
 
-      // Skip if trying to drop on itself
+      // Get the column id depending on whether we're over a column or task
+      if (overData?.type === TYPE_TASK) {
+        const task = overData.task as TodoDTO;
+        targetColumnId = task.status.statusCode;
+      } else {
+        targetColumnId = over.id as StatusCode;
+      }
+
+      // Add this check to prevent unnecessary updates
       if (activeColumnId === targetColumnId) {
         return;
       }
 
-      const activeIndex = columns.findIndex((col) => col === activeColumnId);
-      const targetIndex = columns.findIndex((col) => col === targetColumnId);
+      const oldIndex = columns.indexOf(activeColumnId);
+      const newIndex = columns.indexOf(targetColumnId);
 
-      // Validate indexes
-      if (activeIndex === -1 || targetIndex === -1) {
-        console.warn("Invalid column indexes:", { activeIndex, targetIndex });
+      // Add additional validation
+      if (oldIndex === -1 || newIndex === -1 || oldIndex === newIndex) {
         return;
       }
 
-      setColumns(arrayMove(columns, activeIndex, targetIndex));
+      // Create new columns array immutably
+      const newColumns = arrayMove(columns, oldIndex, newIndex);
 
-      // Handle mobile scrolling
-      if (isMobileViewport) {
-        requestAnimationFrame(() => {
-          const columnElement = document.getElementById(activeColumnId);
-          if (columnElement) {
-            columnElement.scrollTo({
-              behavior: "auto",
-              left: columnElement.offsetLeft,
-            });
-          }
+      // Only update if the order actually changed
+      if (newColumns.some((col, i) => col !== columns[i])) {
+        setColumns(newColumns);
+      }
+
+      // Only scroll into view on mobile
+      if (isMobile) {
+        const activeColumnElement = document.getElementById(activeColumnId);
+        activeColumnElement?.scrollTo({
+          behavior: "auto",
+          left: activeColumnElement.offsetLeft,
         });
       }
     }
 
-    // Handle task drag
-    if (active.data.current?.type === TYPE_TASK) {
-      const activeTask = active.data.current.task as TodoDTO;
-      const overType = over.data.current?.type;
+    if (!over || active.data.current?.type !== TYPE_TASK) return;
 
-      // Handle dragging over a column
-      if (overType === TYPE_COLUMN) {
-        const targetColumnStatus = over.id as StatusCode;
+    const activeTask = active.data.current?.task as TodoDTO;
+    const overType = over.data.current?.type;
 
-        setTasks((currentTasks) => {
-          const activeIndex = currentTasks.findIndex(
-            (task) => task.todoId === activeTask.todoId,
-          );
+    // If dragging over a column
+    if (overType === TYPE_COLUMN) {
+      const targetColumnStatus = over.id as StatusCode;
 
-          if (activeIndex === -1) return currentTasks;
+      setTasks((currentTasks) => {
+        const activeIndex = currentTasks.findIndex(
+          (task) => task.todoId === activeTask.todoId,
+        );
+        const targetStatus = getStatusByCode(targetColumnStatus);
 
+        // Create a temporary visual task update
+        const updatedTask = {
+          ...currentTasks[activeIndex],
+          status: targetStatus,
+        };
+
+        return currentTasks.map((task) =>
+          task.todoId === activeTask.todoId ? updatedTask : task,
+        );
+      });
+
+      // Only scroll into view on mobile
+      if (isMobile) {
+        const activeTaskElement = document.getElementById(
+          activeTask.todoId.toString(),
+        );
+        activeTaskElement?.scrollTo({
+          behavior: "auto",
+          left: activeTaskElement.offsetLeft,
+        });
+      }
+    }
+
+    // If dragging over another task
+    if (overType === TYPE_TASK) {
+      const overTask = over.data.current?.task as TodoDTO;
+
+      setTasks((currentTasks) => {
+        const activeIndex = currentTasks.findIndex(
+          (task) => task.todoId === activeTask.todoId,
+        );
+        const overIndex = currentTasks.findIndex(
+          (task) => task.todoId === overTask.todoId,
+        );
+
+        if (activeTask.status.statusCode !== overTask.status.statusCode) {
+          const targetStatus = getStatusByCode(overTask.status.statusCode);
           const updatedTask = {
             ...currentTasks[activeIndex],
-            status: getStatusByCode(targetColumnStatus),
+            status: targetStatus,
           };
 
-          const newTasks = [...currentTasks];
-          newTasks[activeIndex] = updatedTask;
+          // Remove and reinsert for visual ordering
+          const newTasks = currentTasks.filter(
+            (task) => task.todoId !== activeTask.todoId,
+          );
+          newTasks.splice(overIndex, 0, updatedTask);
           return newTasks;
-        });
-
-        // Handle mobile scrolling for tasks
-        if (isMobileViewport) {
-          requestAnimationFrame(() => {
-            const taskElement = document.getElementById(
-              activeTask.todoId.toString(),
-            );
-            if (taskElement) {
-              taskElement.scrollTo({
-                behavior: "auto",
-                left: taskElement.offsetLeft,
-              });
-            }
-          });
         }
-      }
 
-      // Handle dragging over another task
-      if (overType === TYPE_TASK) {
-        const overTask = over.data.current?.task as TodoDTO;
-
-        setTasks((currentTasks) => {
-          const activeIndex = currentTasks.findIndex(
-            (task) => task.todoId === activeTask.todoId,
-          );
-          const overIndex = currentTasks.findIndex(
-            (task) => task.todoId === overTask.todoId,
-          );
-
-          if (activeIndex === -1 || overIndex === -1) return currentTasks;
-
-          // Moving to a different column
-          if (activeTask.status.statusCode !== overTask.status.statusCode) {
-            const updatedTask = {
-              ...currentTasks[activeIndex],
-              status: getStatusByCode(overTask.status.statusCode),
-            };
-
-            const newTasks = currentTasks.filter(
-              (task) => task.todoId !== activeTask.todoId,
-            );
-            newTasks.splice(overIndex, 0, updatedTask);
-            return newTasks;
-          }
-
-          // Reordering within the same column
-          return arrayMove(currentTasks, activeIndex, overIndex);
-        });
-      }
+        // If same column, just reorder
+        return arrayMove(currentTasks, activeIndex, overIndex);
+      });
     }
   };
 

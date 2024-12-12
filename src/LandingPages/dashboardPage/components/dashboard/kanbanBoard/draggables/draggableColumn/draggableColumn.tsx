@@ -43,7 +43,13 @@ export const DraggableColumn = ({
     isDragging,
   } = useSortable({
     id: column,
-    data: { type: TYPE_COLUMN, column },
+    data: useMemo(
+      () => ({
+        type: TYPE_COLUMN,
+        column,
+      }),
+      [column],
+    ),
     disabled: userSettings.sortManual,
   });
   const style = {
@@ -75,6 +81,7 @@ export const DraggableColumn = ({
         isDragging && styles.isDragging,
         styles.draggableColumn,
         responsiveStyles.draggableColumn,
+        showHiddenTasks && styles.showHiddenTasks,
       )}
     >
       <header {...attributes} {...listeners} className={styles.columnHeader}>
@@ -87,8 +94,8 @@ export const DraggableColumn = ({
         </div>
       )}
 
-      {showTasks && (
-        <SortableContext items={tasksIds}>
+      <SortableContext items={tasksIds}>
+        {showTasks && (
           <ul className={styles.taskContainer}>
             {taskList.map((task) => (
               <DraggableTask
@@ -98,8 +105,8 @@ export const DraggableColumn = ({
               />
             ))}
           </ul>
-        </SortableContext>
-      )}
+        )}
+      </SortableContext>
 
       {limitTasks && (
         <button className={styles.limitButton} onClick={handleLimitButtonClick}>

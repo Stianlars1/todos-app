@@ -22,11 +22,8 @@ export const DashboardPage = async ({
   dashboardName: string;
 }) => {
   const { data: userSettings, error, isError } = await getUserSettings();
-  const {
-    data: columnsAndTasksResponse,
-    isError: isError2,
-    error: error2,
-  } = await getColumnsAndTasks<ColumnsAndTasks>(dashboardName);
+  const { data: columnsAndTasksResponse, isError: isError2 } =
+    await getColumnsAndTasks<ColumnsAndTasks>(dashboardName);
   const {
     data: allTasks,
     isError: isError3,

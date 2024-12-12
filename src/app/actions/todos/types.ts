@@ -59,13 +59,3 @@ export const statusCategoryToCodeMapping: Record<string, StatusCode> = {
   deletedTasks: "DELETED",
   backlog: "CREATED",
 };
-export const statusCategoryToDisplayName: Record<string, string> = {
-  pendingTasks: "Pending",
-  inProgressTasks: "In progress",
-  completedTasks: "Completed",
-  onHoldTasks: "On hold",
-  cancelledTasks: "Cancelled",
-  deletedTasks: "Deleted",
-  backlog: "Created",
-  upcomingDeadlines: "Upcoming deadlines",
-};

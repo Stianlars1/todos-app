@@ -95,7 +95,7 @@ const getProgressSummaryTasks = (tasks: TodoDTO[]) => {
 
   // Filter out status codes with zero values
   const filteredTasksMapSummary = Object.fromEntries(
-    Object.entries(tasksMapSummary).filter(([_, value]) => value > 0),
+    Object.entries(tasksMapSummary).filter(([, value]) => value > 0),
   ) as Record<StatusCode, number>;
 
   // Return the final summary including totalTasks
@@ -184,7 +184,6 @@ const UpcomingDeadlines = ({
 
 const OverdueTasks = ({
   overdueTasks,
-  userSettings,
 }: {
   overdueTasks: ApiResponse<TodoDTO[]> | null;
   userSettings: UserSettings;
@@ -226,7 +225,7 @@ const OverdueTasks = ({
             <div className={`${styles.wrapper} ${styles.TaskSummary}`}>
               <h2 className={styles.headerTitle}>{texts("TITLE_OVERDUE")}</h2>
               <ul className={styles.summaryList}>
-                {Object.entries(overdueOverview).map(([key, value], index) => {
+                {Object.entries(overdueOverview).map(([key, value]) => {
                   return (
                     <ProgressSummaryItem
                       style={{ width: "max-content", minWidth: "150px" }}

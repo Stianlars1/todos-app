@@ -7,14 +7,10 @@ import { getTranslations } from "next-intl/server";
 
 import styles from "./css/todayPage.module.css";
 import { TodayLayout } from "./layout/todayLayout";
+
 export const TodayPage = async () => {
-  const {
-    data: tasksDueToday,
-    isSuccess,
-    isError,
-    isLoading,
-    error,
-  } = await getTodosDueToday<ApiResponse<TodoDTO[]>>();
+  const { data: tasksDueToday } =
+    await getTodosDueToday<ApiResponse<TodoDTO[]>>();
 
   const { data: userSettings } = await getUserSettings();
   const text = await getTranslations("TodayPage");

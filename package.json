@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start -p 3001",
     "lint": "next lint",
+    "lint2": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,less,md}\""
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "moment-timezone": "^0.5.45",
     "next": "14.2.5",
     "next-intl": "^3.12.2",
+    "next-recaptcha-v3": "^1.5.0",
     "react": "^18",
     "react-avatar-editor": "^13.0.2",
     "react-cropper": "^2.3.3",
@@ -40,6 +42,8 @@
     "@types/react": "^18",
     "@types/react-avatar-editor": "^13.0.2",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
     "prettier": "^3.4.1",

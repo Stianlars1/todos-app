@@ -1,7 +1,7 @@
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useFormStatus } from "react-dom";
 
-export const SignUpButton = () => {
+export const SignUpButton = ({ disabled }: { disabled: boolean }) => {
   const { pending } = useFormStatus();
 
   return (
@@ -10,7 +10,7 @@ export const SignUpButton = () => {
         variant="primary"
         type="submit"
         loading={pending}
-        disabled={pending}
+        disabled={pending || disabled}
         loadingText="Signing up..."
         id="login-signup-button"
         width="100%"

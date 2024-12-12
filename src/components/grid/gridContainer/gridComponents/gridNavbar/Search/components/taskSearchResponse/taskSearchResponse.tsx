@@ -1,11 +1,10 @@
 "use client";
-import { shouldReturn } from "@/components/ui/cards/draggableCard/draggableCard";
 import { TaskCard } from "@/components/ui/cards/taskCard/taskCard";
 import { CloseIcon } from "@/components/ui/icons/icons";
 import { TodoDTO } from "@/types/types";
-import { sortTasks } from "@/utils/utils";
+import { shouldReturn, sortTasks } from "@/utils/utils";
 import { Button } from "@stianlarsen/react-ui-kit";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -33,7 +32,6 @@ export const TaskSearchResponse = ({
     description: true,
     tags: true,
   });
-  const locale = useLocale();
   const router = useRouter();
   useEffect(() => {
     if (typeof window !== "undefined") {

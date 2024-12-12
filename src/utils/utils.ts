@@ -167,3 +167,25 @@ export const STATUS_MAP: Record<StatusCode, TodoStatus> = {
 export const getStatusByCode = (statusCode: StatusCode): TodoStatus => {
   return STATUS_MAP[statusCode];
 };
+
+export const shouldReturn = (
+  event: React.MouseEvent<HTMLDivElement | HTMLLIElement>,
+) => {
+  if (
+    event.target instanceof HTMLElement &&
+    event.target.className.includes("tagBadge")
+  ) {
+    return true;
+  }
+
+  if (event.target instanceof HTMLElement) {
+    switch (event.target.nodeName) {
+      case "H3":
+        return true;
+      case "P":
+        return true;
+    }
+  }
+
+  return false;
+};

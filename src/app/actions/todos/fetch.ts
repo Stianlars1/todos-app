@@ -118,7 +118,7 @@ export const getTodosDueToday = async <T>() => {
     cacheKey: CacheKeys.TODOS_TODAY,
   });
 };
-export const searchTodos = async <T>(keyword: string) => {
+export const searchTodos = async (keyword: string) => {
   const url = `${API_TASKS_SEARCH}?keyword=${keyword}`;
   return await customFetch<ApiResponse<TodoDTO[]>>({
     url: url,

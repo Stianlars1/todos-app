@@ -3,14 +3,14 @@ import { UpdatedUserDetails } from "@/LandingPages/settingsPage/components/setti
 import { UpdatePasswordSchema } from "@/app/lib/auth/definitions";
 import { ApiResponse } from "@/types/fetch";
 import {
+  customFetch,
   FetchState,
   FetchStateForm,
-  customFetch,
 } from "@/utils/fetch/customFetch";
 import {
-  HTTP_REQUEST,
   getAuthHeaderOnly,
   getAuthHeaders,
+  HTTP_REQUEST,
 } from "@/utils/fetch/fetch";
 import {
   API_DASHBOARD_UPDATE_ID_URL,
@@ -25,7 +25,7 @@ import { UserSettings } from "./types";
 import { getUserId } from "./userUtils";
 
 export const updateUserSettings = async (
-  settings: UserSettings,
+  settings: Partial<UserSettings>,
 ): Promise<ApiResponse<UserSettings | null>> => {
   const userId = await getUserId();
   const userSettingsUrl = `${API_USER_SETTINGS_URL}/${userId}`;

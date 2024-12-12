@@ -21,7 +21,6 @@ import { ConfirmCreateTaskButton } from "./components/createTaskButton";
 import "./css/createTask.css";
 import styles from "./css/dashboardSelect.module.css";
 
-const DASHBOARD_DEFAULT_NAME = "Default";
 export const CreateTask = ({
   userSettings,
   dashboards,
@@ -44,9 +43,6 @@ export const CreateTask = ({
         : [],
   );
 
-  const [activeDashboardId, setActiveDashboardId] = useState<
-    number | undefined
-  >(userSettings.activeDashboardId);
   const text = useTranslations("general");
   const dashboardText = useTranslations("TodayPage.taskViewer");
   const createText = useTranslations("Create-task");

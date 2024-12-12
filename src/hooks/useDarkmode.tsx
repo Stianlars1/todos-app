@@ -10,7 +10,9 @@ export const useIsDarkmodeActive = (): { isDarkmodeActive: boolean } => {
     }
     try {
       mq.addEventListener("change", (evt) => setIsDarkmodeActive(evt.matches));
-    } catch (e) {}
+    } catch (e) {
+      console.info(e);
+    }
   }, []);
 
   return { isDarkmodeActive };

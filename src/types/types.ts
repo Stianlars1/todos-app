@@ -68,11 +68,3 @@ export type StatusCode =
   | "ON_HOLD"
   | "CANCELLED"
   | "DELETED";
-
-const type = [
-  { name: "a", sortIndex: 1 },
-  { name: "c", sortIndex: 3 },
-  { name: "b", sortIndex: 2 },
-  { name: "d", sortIndex: 4 },
-  { name: "e", sortIndex: 5 },
-];

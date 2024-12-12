@@ -4,19 +4,73 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="Fixed drag and drag of columns for same index no changes on drag">
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/responsiveStyles.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/hooks/useResponsiveCollisionDetection.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/hooks/useScrollModifiets.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/responsiveStyles.module.scss" afterDir="false" />
+    <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="better column and tasks drag and drop on mobile devices">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/hooks/useColumnInView.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/kanbanBoard_backlup.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(auth)/recaptcha/recaptchaProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/taskboardSortManualSwitchButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/components/settingsContextButton/taskboardSortManualSwitchButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.module.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.module.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/droppables/droppableDelete.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/kanbanBoard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/kanbanBoard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/responsiveStyles.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/responsiveStyles.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/kanbanBoard/wrappers/taskContainer.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/overview/progressSummary/progressSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/overview/progressSummary/progressSummary.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardsPage/dashboardsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardsPage/dashboardsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/forgotPassword/components/forms/resetForm/resetForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/forgotPassword/components/forms/resetForm/resetForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/settingsPage/components/settingsPageHero/components/security/security.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/settingsPage/components/settingsPageHero/components/security/security.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/tagsPage/components/taskPreview/taskPreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/tagsPage/components/taskPreview/taskPreview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/tagsPage/tagspage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/tagsPage/tagspage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/todayPageTaskviewer/layout/todayLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/todayPageTaskviewer/layout/todayLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/todayPageTaskviewer/todayPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/todayPageTaskviewer/todayPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/auth/signup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/auth/signup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/dragDrop/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/dragDrop/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/password/fetches.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/password/fetches.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/session.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/todos/fetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/todos/fetch.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/todos/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/todos/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/token.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/token.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/user/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/user/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/createTodo/createTask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/createTodo/createTask.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainer/css/gridContainer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainer/css/gridContainer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainer/css/gridContainer.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainer/css/gridContainer.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainer/css/gridContainer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainer/css/gridContainer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainer/gridComponents/gridNavbar/Search/components/taskSearchResponse/taskSearchResponse.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainer/gridComponents/gridNavbar/Search/components/taskSearchResponse/taskSearchResponse.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainer/gridComponents/gridSidebar/components/sidebarContentList/sidebarContentList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainer/gridComponents/gridSidebar/components/sidebarContentList/sidebarContentList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/GridContainerLoginOrSignupNavbar/GridContainerLoginOrSignupNavbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/GridContainerLoginOrSignupNavbar/GridContainerLoginOrSignupNavbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainerLogin/css/gridContainerLogin.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainerPassword/components/gridContainerPasswordNavbar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/languageSwitcher/localeSwitcherselect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/languageSwitcher/localeSwitcherselect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/profilePictureAvatar/profilePictureAvatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profilePictureAvatar/profilePictureAvatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/buttons/logout/logoutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/buttons/logout/logoutButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/css/draggableCard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/css/draggableCard.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/css/draggableCard.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/draggableCard.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/draggableCard/types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/revealCard/revealCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/cards/revealCard/revealCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/todayCard/todayCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/cards/todayCard/todayCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/forms/components/signupButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/forms/components/signupButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/forms/signupForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/forms/signupForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/taskviewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/taskviewer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/lotties/lotties.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/lotties/lotties.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useDarkmode.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useDarkmode.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/utils.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +127,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/node_modules/prettier",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/node_modules/typescript/lib",
     "typescript.add.unambiguous.imports.on.the.fly": "true",
     "vue.rearranger.settings.migration": "true"
@@ -125,7 +179,8 @@
       <workItem from="1733226568407" duration="1445000" />
       <workItem from="1733724850410" duration="235000" />
       <workItem from="1733725320868" duration="6000" />
-      <workItem from="1733862527813" duration="8322000" />
+      <workItem from="1733862527813" duration="12434000" />
+      <workItem from="1733955196891" duration="28329000" />
     </task>
     <task id="LOCAL−00001" summary="Fixed drag and drag of columns for same index no changes on drag">
       <option name="closed" value="true" />
@@ -134,7 +189,14 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1733863599712</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="better column and tasks drag and drop on mobile devices">
+      <option name="closed" value="true" />
+      <created>1733871016594</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1733871016594</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +204,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed drag and drag of columns for same index no changes on drag" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed drag and drag of columns for same index no changes on drag" />
+    <MESSAGE value="better column and tasks drag and drop on mobile devices" />
+    <option name="LAST_COMMIT_MESSAGE" value="better column and tasks drag and drop on mobile devices" />
   </component>
 </project>

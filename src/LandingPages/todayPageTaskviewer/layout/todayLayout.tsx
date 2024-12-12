@@ -9,11 +9,11 @@ export const TodayLayout = ({
   userSettings,
 }: {
   tasksToday: TodoDTO[] | null;
-  userSettings: UserSettings;
+  userSettings: UserSettings | null;
 }) => {
   return (
     <div className={styles.todayLayout}>
-      <TodayLayoutResizeWrapper sidebarOpen={!!userSettings.sidebarOpen} />
+      <TodayLayoutResizeWrapper sidebarOpen={!!userSettings?.sidebarOpen} />
 
       <ul className={styles.list}>
         {tasksToday?.map((task) => (

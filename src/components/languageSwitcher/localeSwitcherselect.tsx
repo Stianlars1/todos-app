@@ -2,9 +2,10 @@
 
 import { updateUserSettings } from "@/app/actions/user/api";
 import { LanguageType } from "@/app/actions/user/types";
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, ReactNode, useState } from "react";
 import "./css/localeSwitcher.css";
+
 type Props = {
   children: ReactNode;
   className?: string;
@@ -18,8 +19,6 @@ export default function LocaleSwitcherSelect({
 }: Props) {
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
-  const params = useParams();
 
   async function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
     setIsPending(true);
@@ -33,6 +32,7 @@ export default function LocaleSwitcherSelect({
         `/${nextLocale}`,
       );
     } catch (e) {
+      console.error(e);
       return null;
     }
   }

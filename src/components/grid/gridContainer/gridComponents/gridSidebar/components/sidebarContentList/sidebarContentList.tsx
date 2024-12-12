@@ -17,7 +17,7 @@ export const SidebarContentList = async () => {
     <ul className="sidebar__content">
       {sidebarContentList
         .filter((item) => item.render)
-        .map((item: sidebarContentListType, index: number) => {
+        .map((item: sidebarContentListType) => {
           const todayUrl = "/today";
           if (item.href === todayUrl) {
             return (

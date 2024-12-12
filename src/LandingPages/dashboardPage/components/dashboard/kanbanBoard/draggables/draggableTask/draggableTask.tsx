@@ -17,16 +17,7 @@ export const DraggableTask = ({
   disableDragAndDrop?: boolean;
   isDragOverlay?: boolean;
 }) => {
-  const {
-    todoId,
-    title,
-    priority,
-    dueDate,
-    tags,
-    files,
-    createdAt,
-    description,
-  } = task;
+  const { todoId, title, priority, tags, description } = task;
   const { onTaskClick } = useTaskViewerMenu();
 
   const {

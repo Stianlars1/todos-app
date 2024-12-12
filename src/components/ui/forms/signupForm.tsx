@@ -10,8 +10,24 @@ import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { SignUpButton } from "@/components/ui/forms/components/signupButton";
 import { useFormState } from "react-dom";
 import { FormError } from "./components/formError/formError";
+import { ReCaptcha } from "next-recaptcha-v3";
+import { useEffect, useRef, useState } from "react";
+
 export const SignUpForm = () => {
+  const recaptchaRef = useRef<HTMLInputElement>(null);
   const [state, dispatch] = useFormState(signup, null);
+  const [token, setToken] = useState<string>("");
+  const [recaptchaKey, setRecaptchaKey] = useState<string>("");
+  useEffect(() => {
+    if (token && recaptchaRef.current) {
+      recaptchaRef.current.value = token;
+    }
+  }, [token]);
+
+  const handleOnFocus = () => {
+    // make the recaptcha re-render by key
+    setRecaptchaKey(Date.now().toString());
+  };
   return (
     <>
       {state?.error?.additional && (
@@ -37,6 +53,7 @@ export const SignUpForm = () => {
               width="100%"
               placeholder="Enter your first name.."
               required
+              onFocus={handleOnFocus}
             />
             <FormError errorArray={state?.errors?.firstName} />
           </CustomInputLabelWrapper>
@@ -49,6 +66,7 @@ export const SignUpForm = () => {
               width="100%"
               placeholder="Enter your last name.."
               required
+              onFocus={handleOnFocus}
             />
             <FormError errorArray={state?.errors?.lastName} />
           </CustomInputLabelWrapper>
@@ -61,6 +79,7 @@ export const SignUpForm = () => {
               width="100%"
               placeholder="Enter your email address.."
               required
+              onFocus={handleOnFocus}
             />
             <FormError errorArray={state?.errors?.email} />
           </CustomInputLabelWrapper>
@@ -73,11 +92,33 @@ export const SignUpForm = () => {
               width="100%"
               placeholder="Enter a password.."
               required
+              onFocus={handleOnFocus}
             />
             <FormError errorArray={state?.errors?.password} />
           </CustomInputLabelWrapper>
+
+          <input
+            ref={recaptchaRef}
+            key={token}
+            readOnly
+            aria-hidden
+            style={{ display: "none" }}
+            value={token}
+            id={"recaptcha"}
+            name={"recaptcha"}
+          />
         </FormContentWrapper>
-        <SignUpButton />
+        <ReCaptcha
+          key={recaptchaKey}
+          onValidate={setToken}
+          action="signup_page"
+        />
+
+        <SignUpButton
+          disabled={
+            state?.errorMessage?.toLowerCase().includes("recaptcha") ?? false
+          }
+        />
       </CustomForm>
     </>
   );

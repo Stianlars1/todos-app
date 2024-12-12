@@ -81,10 +81,6 @@ export const TaskViewer = ({
     { isUpdating: false, isError: undefined, isSuccess: undefined },
   );
 
-  const [activeDashboardId, setActiveDashboardId] = useState<
-    number | undefined
-  >(userSettings.activeDashboardId);
-
   const [selectedDashboardIds, setSelectedDashboardIds] = useState<number[]>(
     taskDTO && dashboards ? getActiveDashboardIds(taskDTO, dashboards) : [],
   );
@@ -112,7 +108,9 @@ export const TaskViewer = ({
 
       document.body.setAttribute("taskviewer-modal-open", true.toString());
 
-      onTaskLoaded && onTaskLoaded();
+      if (onTaskLoaded) {
+        onTaskLoaded();
+      }
       setState(mapDTOtoUpdatedTodoDTO(taskDTO));
       setContent(taskDTO.content || "");
       setRawTagsInput(taskDTO?.tags?.join(", "));
