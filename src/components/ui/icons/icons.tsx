@@ -343,6 +343,7 @@ export const IconSort = ({ variant }: { variant: "ASC" | "DESC" }) => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={"iconsort"}
     >
       <path d="M12 5v14"></path>
       <path d="m19 12-7 7-7-7"></path>
