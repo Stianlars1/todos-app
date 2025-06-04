@@ -1,7 +1,7 @@
 .dashboard-header {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1rem;
 
   &__header {
@@ -61,5 +61,11 @@
         font-size: 1.5rem;
       }
     }
+  }
+}
+@media screen and (max-width: 600px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 0;
   }
 }

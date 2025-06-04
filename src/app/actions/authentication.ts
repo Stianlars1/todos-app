@@ -5,10 +5,5 @@ import { isValid } from "./token";
 
 export const verifyAuthentication = cache(async () => {
   const accessToken = cookies().get("session")?.value;
-  const isTokenValid = await isValid(accessToken);
-  if (isTokenValid) {
-    return true;
-  }
-
-  false;
+  return await isValid(accessToken);
 });

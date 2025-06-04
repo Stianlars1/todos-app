@@ -44,6 +44,7 @@
       "sortSwitch": "Sorter manuelt",
       "settings": {
         "dragAndDrop": "Dra & slipp",
+        "sortManual": "Sorter med knapp",
         "layout": "Kolonneoppsett",
         "limitTasks": "Begrens synlige oppgaver"
       },
@@ -184,7 +185,7 @@
 
   "Categorized Todos": {
     "CREATED": "Opprettet",
-    "PENDING": "venter",
+    "PENDING": "Venter",
     "IN_PROGRESS": "Under arbeid",
     "COMPLETED": "Ferdig",
     "ON_HOLD": "På vent",

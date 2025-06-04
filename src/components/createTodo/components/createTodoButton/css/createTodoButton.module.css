@@ -6,6 +6,7 @@
   justify-content: center;
   gap: 5px;
   color: hsl(var(--white)) !important;
+  padding: 0.45rem;
 }
 .createTodoButton svg {
   width: 0.875rem;
@@ -26,4 +27,6 @@
     width: 15px;
     height: 15px;
   }
-}/*# sourceMappingURL=createTodoButton.module.css.map */
+}
+
+/*# sourceMappingURL=createTodoButton.module.css.map */

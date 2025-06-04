@@ -14,8 +14,8 @@ import { ReCaptcha } from "next-recaptcha-v3";
 import { useEffect, useRef, useState } from "react";
 
 export const SignUpForm = () => {
-  const recaptchaRef = useRef<HTMLInputElement>(null);
   const [state, dispatch] = useFormState(signup, null);
+  const recaptchaRef = useRef<HTMLInputElement>(null);
   const [token, setToken] = useState<string>("");
   const [recaptchaKey, setRecaptchaKey] = useState<string>("");
   useEffect(() => {

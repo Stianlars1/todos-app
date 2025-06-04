@@ -12,7 +12,6 @@ export const TaskboardSortManualSwitchButton = ({
 }) => {
   const sortManual = userSettings.sortManual;
   const dragAndDropEnabled = !userSettings.sortManual;
-  console.log(sortManual);
   const handleSort = async () => {
     const sortResponse = await updateManualSortSetting({
       newSortManualValue: !sortManual,

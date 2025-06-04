@@ -9,9 +9,10 @@ import { cx } from "@/utils/utils";
 import styles from "./draggableColumn.module.css";
 import responsiveStyles from "./responsiveStyles.module.css";
 import { DraggableTask } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { IconAdd, IconMinus } from "@/components/ui/icons/icons";
+import { EditIcon2, IconAdd, IconMinus } from "@/components/ui/icons/icons";
+import { StatusColumnSortButton } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/components/draggableColumnSortButton/draggableColumnSortButton";
 
 export const LIMIT_THRESHOLD = 2;
 export const DraggableColumn = ({
@@ -26,7 +27,10 @@ export const DraggableColumn = ({
   userSettings: UserSettings;
 }) => {
   // config
+  const columnRef = useRef<HTMLDivElement>(null);
+
   const [showHiddenTasks, setShowHiddenTasks] = useState(false);
+  const [isEditMode, setisEditMode] = useState(false);
   const texts = useTranslations("Taskboard");
   const limitTasks = userSettings.limitTasks && tasks.length > LIMIT_THRESHOLD;
   const limitTasksText = texts(
@@ -72,10 +76,27 @@ export const DraggableColumn = ({
   const emptyColumn = taskList.length === 0;
   const showTasks = !emptyColumn || showHiddenTasks;
 
+  useEffect(() => {
+    const updateMaxHeight = () => {
+      const element = document.getElementById(column); // or use a data-attribute selector
+      if (element) {
+        const { top } = element.getBoundingClientRect();
+        element.style.setProperty("--column-top-offset", `${top}px`);
+      }
+    };
+
+    updateMaxHeight();
+    window.addEventListener("resize", updateMaxHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateMaxHeight);
+    };
+  }, [column]);
+
   return (
     <div
       id={column}
-      ref={setNodeRef}
+      ref={setNodeRef} // Just use the dnd-kit ref
       style={style}
       className={cx(
         isDragging && styles.isDragging,
@@ -84,8 +105,39 @@ export const DraggableColumn = ({
         showHiddenTasks && styles.showHiddenTasks,
       )}
     >
-      <header {...attributes} {...listeners} className={styles.columnHeader}>
-        {title}
+      <header className={cx(styles.columnHeader)}>
+        <div
+          {...attributes}
+          {...listeners}
+          className={cx(
+            styles.dragHandle,
+            !userSettings.sortManual && styles.draggableHeader,
+          )}
+        >
+          <h2 className={styles.columnTitle}>
+            {title}{" "}
+            {!!taskList.length && (
+              <span className={styles.columnTitleTaskCount}>
+                {taskList.length}
+              </span>
+            )}
+          </h2>
+        </div>
+
+        <div className={styles.utilitiesAre}>
+          {userSettings.sortManual && (
+            <StatusColumnSortButton
+              userSettings={userSettings}
+              categoryString={column}
+            />
+          )}
+          {!!taskList.length && (
+            <EditIcon2
+              onClick={() => setisEditMode(!isEditMode)}
+              className={styles.utilityButton}
+            />
+          )}
+        </div>
       </header>
 
       {emptyColumn && (
@@ -102,6 +154,7 @@ export const DraggableColumn = ({
                 key={task.todoId}
                 task={task}
                 disableDragAndDrop={userSettings.sortManual}
+                isEditMode={isEditMode}
               />
             ))}
           </ul>

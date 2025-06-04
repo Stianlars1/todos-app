@@ -18,7 +18,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { StatusCode, TodoDTO, TodoStatus } from "@/types/types";
 import { DraggableColumn } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn";
 import { createPortal } from "react-dom";
@@ -36,13 +36,12 @@ import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { useBrowserInfo } from "@/hooks/useBrowserInfo";
 import { Props } from "@dnd-kit/core/dist/components/DndContext/DndContext";
-import { useColumnInView } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/hooks/useColumnInView";
+import {
+  LOCAL_STORAGE_COLUMN_IN_VIEW_ID,
+  useColumnInView,
+} from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/hooks/useColumnInView";
 import { IconChevron } from "@/components/ui/icons/icons";
-
-type ActiveTaskState = TodoDTO & {
-  originalIndex: number;
-  originalPosition: number;
-};
+import { useColumnsAndTasks } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/context/columnsAndTasksContext";
 
 export const KanbanBoard = ({
   userSettings,
@@ -51,21 +50,24 @@ export const KanbanBoard = ({
   userSettings: UserSettings;
   columnsAndTasks: ColumnsAndTasks;
 }) => {
+  const {
+    columns,
+    tasks,
+    setTasks,
+    setColumns,
+    activeColumn,
+    setActiveColumn,
+    columnsIds,
+    originalTasks,
+    setOriginalTasks,
+    setActiveTask,
+    activeTask,
+    setActiveDashboardId,
+  } = useColumnsAndTasks();
   const { isMobile, isMobileSize } = useBrowserInfo();
   const isNative = isMobileSize || isMobile;
   const categorizedTexts = useColumnHeadersTexts();
   const [isMounted, setIsMounted] = useState(false);
-
-  const [originalTasks, setOriginalTasks] = useState<TodoDTO[]>([]);
-
-  const [columns, setColumns] = useState<StatusCode[]>(
-    columnsAndTasks.columns.map((col) => col.statusCode),
-  );
-  const columnsIds = useMemo(() => columns.map((col) => col), [columns]);
-  const [activeColumn, setActiveColumn] = useState<StatusCode | null>(null);
-
-  const [tasks, setTasks] = useState<TodoDTO[]>(columnsAndTasks.tasks);
-  const [activeTask, setActiveTask] = useState<ActiveTaskState | null>(null);
 
   const { columnInViewIndex } = useColumnInView(columns, isNative);
 
@@ -82,18 +84,39 @@ export const KanbanBoard = ({
 
   useEffect(() => {
     setIsMounted(true);
+
+    if (LOCAL_STORAGE_COLUMN_IN_VIEW_ID in localStorage) {
+      console.log("Column in view found in local storage");
+      const columnInViewId = localStorage.getItem(
+        LOCAL_STORAGE_COLUMN_IN_VIEW_ID,
+      );
+      if (columnInViewId) {
+        console.log("Scrolling to column in view", columnInViewId);
+        document.getElementById(columnInViewId)?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center", // start // nearest?
+        });
+      }
+    }
+
+    if (userSettings.activeDashboardId) {
+      setActiveDashboardId(userSettings.activeDashboardId);
+    }
   }, []);
 
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
-      distance: 3, // Increase this to prevent accidental drags
+      distance: 8, // For desktop, this is fine
     },
   });
 
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
-      delay: 100, // Add a small delay for touch
-      tolerance: 5,
+      // Require longer press + movement for touch devices
+      delay: 250, // Start with a delay
+      tolerance: 5, // Allow small unintentional movements during delay
+      distance: 15, // Then require significant movement
     },
   });
 
@@ -311,11 +334,6 @@ export const KanbanBoard = ({
     const { active, over } = event;
     if (!over || !activeTask) return;
 
-    if (isNative) {
-      const taskElement = document.getElementById(activeTask.todoId.toString());
-      taskElement?.scrollIntoView({ behavior: "auto" });
-    }
-
     const isDroppingInSameColumn =
       activeTask.status.statusCode ===
       active.data.current?.task.status.statusCode;
@@ -404,6 +422,11 @@ export const KanbanBoard = ({
         setTasks(originalTasks);
       }
     }
+
+    if (isNative) {
+      const taskElement = document.getElementById(activeTask.todoId.toString());
+      taskElement?.scrollIntoView({ behavior: "auto" });
+    }
   };
 
   if (!isMounted) return <SuspenseFallback fixed={false} />;
@@ -442,89 +465,87 @@ export const KanbanBoard = ({
   };
 
   return (
-    <div>
-      <DndContext
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        onDragOver={handleDragOver}
-        sensors={sensors}
-        {...dndContextOptions}
-      >
-        <SortableContext items={columnsIds}>
-          <div
-            id="taskboard"
-            className={cx(styles.taskboard, responsiveStyles.taskboard)}
-          >
-            {columns.map((col) => (
+    <DndContext
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      onDragOver={handleDragOver}
+      sensors={sensors}
+      {...dndContextOptions}
+    >
+      <SortableContext items={columnsIds}>
+        <div
+          id="taskboard"
+          className={cx(styles.taskboard, responsiveStyles.taskboard)}
+        >
+          {columns.map((col) => (
+            <DraggableColumn
+              key={col}
+              column={col}
+              tasks={tasks.filter((task) => task.status.statusCode === col)}
+              title={categorizedTexts[col]}
+              userSettings={userSettings}
+            />
+          ))}
+        </div>
+        {isNative && (
+          <>
+            <div className={responsiveStyles.columnPagination}>
+              <button
+                className={responsiveStyles.paginationButtons}
+                onClick={() => handleNativeColumnPagination("left")}
+              >
+                <IconChevron
+                  className={cx(
+                    responsiveStyles.chevron,
+                    responsiveStyles.chevronLeft,
+                  )}
+                />
+              </button>
+              <div className={responsiveStyles.paginationInfo}>
+                <p className={responsiveStyles.indexes}>
+                  {columnInViewIndex} / {columns.length}
+                </p>
+                <p className={responsiveStyles.currentColumnInView}>
+                  {columns[columnInViewIndex - 1]}
+                </p>
+              </div>
+              <button
+                className={responsiveStyles.paginationButtons}
+                onClick={() => handleNativeColumnPagination("right")}
+              >
+                <IconChevron
+                  className={cx(
+                    responsiveStyles.chevron,
+                    responsiveStyles.chevronRight,
+                  )}
+                />
+              </button>
+            </div>
+          </>
+        )}
+      </SortableContext>
+
+      {hasMounted &&
+        (activeColumn || activeTask) &&
+        createPortal(
+          <DragOverlay>
+            {activeColumn && (
               <DraggableColumn
-                key={col}
-                column={col}
-                tasks={tasks.filter((task) => task.status.statusCode === col)}
-                title={categorizedTexts[col]}
+                column={activeColumn}
+                tasks={tasks.filter(
+                  (task) => task.status.statusCode === activeColumn,
+                )}
+                title={categorizedTexts[activeColumn]}
                 userSettings={userSettings}
               />
-            ))}
-          </div>
-          {isNative && (
-            <>
-              <div className={responsiveStyles.columnPagination}>
-                <button
-                  className={responsiveStyles.paginationButtons}
-                  onClick={() => handleNativeColumnPagination("left")}
-                >
-                  <IconChevron
-                    className={cx(
-                      responsiveStyles.chevron,
-                      responsiveStyles.chevronLeft,
-                    )}
-                  />
-                </button>
-                <div className={responsiveStyles.paginationInfo}>
-                  <p className={responsiveStyles.indexes}>
-                    {columnInViewIndex} / {columns.length}
-                  </p>
-                  <p className={responsiveStyles.currentColumnInView}>
-                    {columns[columnInViewIndex - 1]}
-                  </p>
-                </div>
-                <button
-                  className={responsiveStyles.paginationButtons}
-                  onClick={() => handleNativeColumnPagination("right")}
-                >
-                  <IconChevron
-                    className={cx(
-                      responsiveStyles.chevron,
-                      responsiveStyles.chevronRight,
-                    )}
-                  />
-                </button>
-              </div>
-            </>
-          )}
-        </SortableContext>
+            )}
 
-        {hasMounted &&
-          (activeColumn || activeTask) &&
-          createPortal(
-            <DragOverlay>
-              {activeColumn && (
-                <DraggableColumn
-                  column={activeColumn}
-                  tasks={tasks.filter(
-                    (task) => task.status.statusCode === activeColumn,
-                  )}
-                  title={categorizedTexts[activeColumn]}
-                  userSettings={userSettings}
-                />
-              )}
-
-              {activeTask && (
-                <DraggableTask task={activeTask} isDragOverlay={true} />
-              )}
-            </DragOverlay>,
-            document.body,
-          )}
-      </DndContext>
-    </div>
+            {activeTask && (
+              <DraggableTask task={activeTask} isDragOverlay={true} />
+            )}
+          </DragOverlay>,
+          document.body,
+        )}
+    </DndContext>
   );
 };

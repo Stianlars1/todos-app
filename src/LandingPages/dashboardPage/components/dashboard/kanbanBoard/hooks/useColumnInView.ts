@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { StatusCode } from "@/types/types";
 
+export const LOCAL_STORAGE_COLUMN_IN_VIEW_ID = "columnInViewId";
 export const useColumnInView = (columns: StatusCode[], isNative: boolean) => {
   const [columnInViewIndex, setColumnInViewIndex] = useState(1);
 
@@ -12,6 +13,9 @@ export const useColumnInView = (columns: StatusCode[], isNative: boolean) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const columnId = entry.target.id;
+          // save to localstorage
+          localStorage.setItem(LOCAL_STORAGE_COLUMN_IN_VIEW_ID, columnId);
+
           const index = columns.findIndex((col) => col === columnId);
           if (index !== -1) {
             setColumnInViewIndex(index + 1);

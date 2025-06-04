@@ -9,10 +9,12 @@
   flex-direction: column;
   gap: 0.5rem;
 
+  position: relative;
+
+
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      cursor: pointer;
       border-color: hsl(var(--border) / 1);
     }
   }
@@ -28,16 +30,16 @@
 
 
     .taskTitle {
-      font-size: 14px;
+      font-size: 0.75rem;
       font-weight: 300;
       line-height: 1;
       margin: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 100%;
+      width: calc(100%  - 1rem  );
+      color: hsl(var(--card-foreground))
     }
-
 
 
   }
@@ -54,6 +56,7 @@
       text-overflow: ellipsis;
       text-wrap: nowrap;
       overflow: hidden;
+      color: hsl(var(--muted-foreground));
     }
 
 
@@ -75,6 +78,24 @@
     align-items: center;
     justify-content: flex-start;
     gap: 0.5rem;
+
+  }
+
+
+  .deleteButton {
+    position: absolute;
+    top: 50%;
+    right: 0.25rem;
+    transform: translateY(-50%);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    font-size: 1rem;
+    cursor: pointer;
+    color: hsl(var(--destructive));
+
 
   }
 

@@ -76,6 +76,7 @@
     grid-template-areas: "navbar" "main";
   }
   .grid-container__activeDashboardName {
+    top: calc(var(--nav-height) + 0.5rem);
     left: 1.75rem;
   }
   .grid-container__main {

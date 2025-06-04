@@ -8,6 +8,7 @@ import { ColumnsAndTasks } from "@/types/todo/types";
 import { CategorizedTodosDTO } from "@/types/types";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { TableBoard } from "@/LandingPages/dashboardPage/components/dashboard/tableBoard/tableBoard";
+import { ColumnsAndTasksProvider } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/context/columnsAndTasksContext";
 
 interface TaskViewsProps {
   dashboardName: string;
@@ -24,7 +25,9 @@ export const TaskViews = async ({
       await getColumnsAndTasks<ColumnsAndTasks>(dashboardName);
     if (isError) return <ErrorMessage isError={isError} errorMessage={error} />;
     return data ? (
-      <KanbanBoard columnsAndTasks={data} userSettings={userSettings} />
+      <ColumnsAndTasksProvider>
+        <KanbanBoard columnsAndTasks={data} userSettings={userSettings} />
+      </ColumnsAndTasksProvider>
     ) : null;
   }
 

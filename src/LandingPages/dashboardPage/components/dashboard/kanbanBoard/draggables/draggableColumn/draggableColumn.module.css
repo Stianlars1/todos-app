@@ -2,6 +2,7 @@
   scroll-snap-type: none;
   background-color: hsl(var(--card));
   height: fit-content;
+  max-height: calc(100svh - var(--column-top-offset) - 2rem);
   padding: 0 0.5rem 1rem;
   border-radius: var(--radius);
   z-index: 1000;
@@ -9,18 +10,69 @@
   display: flex;
   flex-direction: column;
   transition: height 0.3s ease;
+  overflow: hidden;
 }
 .draggableColumn .columnHeader {
+  position: sticky;
+  top: 0;
   display: flex;
-  align-items: flex-start;
-  padding: 1rem 0 1rem;
-  background-color: hsl(var(--background));
+  align-items: center;
+  background-color: hsl(var(--card)/0.65);
+  backdrop-filter: blur(8px);
   border-radius: calc(var(--radius) / 2);
   border: 1px solid transparent;
+  z-index: 10;
+}
+.draggableColumn .columnHeader > * {
+  padding: 1rem 0;
+}
+.draggableColumn .columnHeader .dragHandle {
+  flex: 1 1 auto;
+}
+.draggableColumn .columnHeader .dragHandle .columnTitle {
+  font-size: 1rem;
+  line-height: 1;
+}
+.draggableColumn .columnHeader .dragHandle .columnTitle .columnTitleTaskCount {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  line-height: 1;
+  margin-left: 4px;
+}
+.draggableColumn .columnHeader.draggableHeader .dragHandle {
   cursor: grab;
 }
+.draggableColumn .columnHeader .utilitiesAre {
+  flex: 0 0 auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.draggableColumn .columnHeader .utilitiesAre .utilityButton {
+  box-sizing: content-box;
+  width: calc(1rem - 1px);
+  height: calc(1rem - 1px);
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}
+.draggableColumn .columnHeader .utilitiesAre .utilityButton:active {
+  transform: scale(0.95);
+}
+.draggableColumn .columnHeader .utilitiesAre .utilityButton:hover {
+  background-color: hsl(var(--muted));
+  border-color: hsl(var(--primary)/0.25);
+  color: hsl(var(--foreground));
+}
+.draggableColumn .columnHeader .utilitiesAre .utilityButton:focus {
+  border-color: hsl(var(--primary));
+}
 .draggableColumn .emptyContainer {
-  padding: 0.75rem;
+  padding: 1.25rem 0.75rem;
   border: 2px dashed hsl(var(--border));
   border-radius: 0.25rem;
   display: flex;
@@ -37,11 +89,13 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  overflow: auto;
 }
 .draggableColumn .limitButton {
   margin-top: 1rem;
   width: 100%;
-  background-color: transparent;
+  background-color: hsl(var(--card)/0.65);
+  backdrop-filter: blur(8px);
   color: hsl(var(--foreground));
   text-decoration: none;
   border: none;
@@ -50,6 +104,8 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
+  position: sticky;
+  bottom: 0;
 }
 .draggableColumn .limitButton:active, .draggableColumn .limitButton:hover {
   text-decoration: underline;
@@ -58,9 +114,6 @@
   font-size: 14px;
   width: 14px;
   height: 14px;
-}
-.draggableColumn.showHiddenTasks {
-  height: calc-size(fit-content);
 }
 
 .isDragging {

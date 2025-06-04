@@ -41,10 +41,8 @@ export type UserSettingsSortKey =
   | "sortBacklog"
   | "sortInProgressTasks"
   | "sortCompletedTasks"
-  | "sortByUpdatedAt"
   | "sortByCreatedAt"
   | "sortByUpdatedAt"
-  | "sortByCreatedAt"
   | "sortByTitle"
   | "sortByPriority"
   | "sortByDueDate";

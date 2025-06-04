@@ -6,6 +6,8 @@
 
 @media screen and (max-width: 768px) {
   .dashboard {
-    max-height: calc(100dvh - calc(2.5rem + 1rem) - var(--nav-height));
+    height: 100%;
+    max-height: calc(100dvh - calc(2.5rem + 1rem) - var(--nav-height) - 60px);
+
   }
 }
