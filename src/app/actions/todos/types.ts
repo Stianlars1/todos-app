@@ -35,7 +35,7 @@ export interface CreateTodoDTO {
   dashboardIds?: number[];
 }
 
-export interface UpdatedTodoDTO extends CreateTodoDTO {}
+export type UpdatedTodoDTO = CreateTodoDTO;
 
 export interface CreateTodoResponse {
   success: boolean;
@@ -43,7 +43,7 @@ export interface CreateTodoResponse {
   data: TodoDTO;
 }
 
-export interface UpdateTodoResponse extends CreateTodoResponse {}
+export type UpdateTodoResponse = CreateTodoResponse;
 
 export interface TodoDropType {
   todoId: string;

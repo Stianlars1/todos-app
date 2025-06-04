@@ -230,9 +230,17 @@ export const updateTodoForm = async (_state: unknown, formData: FormData) => {
     priority: formData.get("priority") as string,
     content: formData.get("content") as string,
     tags: newTags,
-    // tags: JSON.parse(formData.get("tags") as string),
-    dashboardIds:
-      [parseInt(formData.get("dashboardIds") as string)] || undefined,
+
+    dashboardIds: (() => {
+      const dashboardIdStrings = formData.getAll("dashboardIds") as string[];
+      if (dashboardIdStrings.length === 0) return undefined;
+
+      const parsedIds = dashboardIdStrings
+        .map((id) => parseInt(id))
+        .filter((id) => !isNaN(id));
+
+      return parsedIds.length > 0 ? parsedIds : undefined;
+    })(),
   };
 
   formData.append("todo", JSON.stringify(updatedTodo));

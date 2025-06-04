@@ -4,16 +4,16 @@
   grid-template-rows: auto;
   gap: 14px;
   scrollbar-width: thin;
-  scrollbar-color: hsl(var(--primary)/0.4) hsl(var(--card));
+  scrollbar-color: hsl(var(--primary) / 0.4) hsl(var(--card));
 }
 .taskboard::-webkit-scrollbar {
   width: 8px;
 }
 .taskboard::-webkit-scrollbar-track {
-  background: hsl(var(--primary)/0.4);
+  background: hsl(var(--primary) / 0.4);
 }
 .taskboard::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary)/0.4);
+  background: hsl(var(--primary) / 0.4);
   border-radius: 4px;
 }
 

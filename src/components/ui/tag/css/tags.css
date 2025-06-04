@@ -14,7 +14,7 @@
 .default {
   background-color: hsl(var(--muted));
   color: hsl(var(--muted-foreground));
-  border-color: hsl(var(--muted-foreground)/0.2);
+  border-color: hsl(var(--muted-foreground) / 0.2);
 }
 
 .priority-low {

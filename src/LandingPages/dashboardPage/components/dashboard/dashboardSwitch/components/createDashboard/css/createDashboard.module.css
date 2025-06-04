@@ -32,7 +32,7 @@
   background-color: hsl(var(--destructive));
 }
 .deleteButton:hover {
-  background-color: hsl(var(--destructive)/0.75) !important;
+  background-color: hsl(var(--destructive) / 0.75) !important;
 }
 
 @media screen and (max-width: 768px) {

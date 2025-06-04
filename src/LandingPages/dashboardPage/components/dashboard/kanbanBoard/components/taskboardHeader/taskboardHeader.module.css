@@ -1,17 +1,16 @@
 .taskboardHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .taskboardHeader h1 {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
-
 @media screen and (max-width: 600px) {
-    .taskboardHeader {
-        align-self: flex-end;
-        width: fit-content;
-    }
+  .taskboardHeader {
+    align-self: flex-end;
+    width: fit-content;
+  }
 }

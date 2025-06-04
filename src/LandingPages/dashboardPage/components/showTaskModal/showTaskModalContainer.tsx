@@ -14,7 +14,7 @@ export const ShowTaskModalContainer = ({
   redirectUrl = "",
 }: {
   redirectUrl?: string;
-  userSettings: UserSettings;
+  userSettings: UserSettings | null;
   dashboards: DashboardOnlyTypeDTO[] | null;
 }) => {
   const selectedTaskId = useSelectedTaskId();

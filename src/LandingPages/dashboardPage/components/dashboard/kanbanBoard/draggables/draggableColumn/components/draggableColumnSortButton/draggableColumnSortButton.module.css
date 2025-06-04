@@ -1,1 +1,10 @@
-.status-column-button{fill:none;font-size:1rem;padding:.45rem}.status-column-button svg{fill:none;width:.75rem;height:auto}
+.status-column-button {
+  fill: none;
+  font-size: 1rem;
+  padding: 0.45rem;
+}
+.status-column-button svg {
+  fill: none;
+  width: 0.75rem;
+  height: auto;
+}

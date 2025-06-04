@@ -9,10 +9,7 @@ interface TableBoardProps {
   userSettings: UserSettings;
 }
 
-export const TableBoard = ({
-  categorizedTodos,
-  userSettings,
-}: TableBoardProps) => {
+export const TableBoard = ({ categorizedTodos }: TableBoardProps) => {
   const columnHeaders = useColumnHeadersTexts();
   const columns = getColumnsForTableBoard(categorizedTodos);
   return (
@@ -45,6 +42,6 @@ export const TableBoard = ({
 const getColumnsForTableBoard = (categorizedTodos: CategorizedTodos) => {
   // filter out the key named "SOON_DUE"
   return Object.entries(categorizedTodos as CategorizedTodos).filter(
-    ([key, value]) => key !== "SOON_DUE",
+    ([key]) => key !== "SOON_DUE",
   );
 };

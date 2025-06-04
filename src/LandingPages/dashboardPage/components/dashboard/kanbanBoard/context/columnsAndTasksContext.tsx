@@ -35,7 +35,6 @@ type columnsAndTasksContextType = {
   setActiveColumn: (column: StatusCode | null) => void;
   setActiveTask: (task: ActiveTaskState | null) => void;
   removeTask: (task: TodoDTO, activeDashboardId: number) => Promise<void>;
-  handleOptimisticUpdate: (id: string) => void;
 };
 
 const columnsAndTasksContext = createContext<
@@ -56,11 +55,6 @@ export const ColumnsAndTasksProvider = ({
   const [activeColumn, setActiveColumn] = useState<StatusCode | null>(null);
   const [activeTask, setActiveTask] = useState<ActiveTaskState | null>(null);
   const columnsIds = useMemo(() => columns.map((col) => col), [columns]);
-
-  const handleOptimisticUpdate = (todoId: string) => {
-    // API call here
-    return;
-  };
 
   const removeTask = async (task: TodoDTO, activeDashboardId: number) => {
     const todoId = task.todoId;
@@ -110,7 +104,6 @@ export const ColumnsAndTasksProvider = ({
         setTasks,
         setColumns,
         removeTask,
-        handleOptimisticUpdate,
         setOriginalTasks,
         setActiveColumn,
         setActiveTask,

@@ -1,10 +1,10 @@
 "use client";
-import {updateUserSettings} from "@/app/actions/user/api";
-import {cacheInvalidate} from "@/app/lib/cache/cache";
-import {CacheKeys} from "@/app/lib/cache/keys";
-import {useBrowserInfo} from "@/hooks/useBrowserInfo";
-import {useTranslations} from "next-intl";
-import {ReactNode} from "react";
+import { updateUserSettings } from "@/app/actions/user/api";
+import { cacheInvalidate } from "@/app/lib/cache/cache";
+import { CacheKeys } from "@/app/lib/cache/keys";
+import { useBrowserInfo } from "@/hooks/useBrowserInfo";
+import { useTranslations } from "next-intl";
+import { ReactNode } from "react";
 import "./css/dashboardHeader.css";
 
 interface DashboardHeaderProps {

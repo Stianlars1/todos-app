@@ -48,7 +48,6 @@ const initialUseState: UpdatedTodoDTO = {
 
 export const TaskViewer = ({
   taskId,
-  userSettings,
   redirectUrl = "",
   dashboards,
   onTaskLoaded,
@@ -670,17 +669,6 @@ const mapDTOtoUpdatedTodoDTO = (taskDTO: TodoDTO) => {
     content: taskDTO?.content || "",
     todoId: taskDTO?.todoId || "",
   };
-};
-
-const getTheTasksActiveDashboardIds = (
-  dashboardId: number,
-  aTasksDashboardIds: number[],
-) => {
-  for (let i = 0; i < aTasksDashboardIds.length; i++) {
-    if (aTasksDashboardIds[i] === dashboardId) {
-      return true;
-    }
-  }
 };
 
 const getActiveDashboardIds = (

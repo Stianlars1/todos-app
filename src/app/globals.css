@@ -14,7 +14,7 @@ html:root {
   --testMainBG: #f3f4f6;
   --test: 0 0% 83%;
   --test2: #2563eb;
-  --blue:  hsl(221.2 83.2% 53.3%);
+  --blue: hsl(221.2 83.2% 53.3%);
   --kant: lch(91.71% 4.73 258.16);
 
   --testMainMutedLightMode: 222 56% 88%;

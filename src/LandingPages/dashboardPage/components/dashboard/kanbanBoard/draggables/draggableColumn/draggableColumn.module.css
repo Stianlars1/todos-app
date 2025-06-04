@@ -17,7 +17,7 @@
   top: 0;
   display: flex;
   align-items: center;
-  background-color: hsl(var(--card)/0.65);
+  background-color: hsl(var(--card) / 0.65);
   backdrop-filter: blur(8px);
   border-radius: calc(var(--radius) / 2);
   border: 1px solid transparent;
@@ -65,7 +65,7 @@
 }
 .draggableColumn .columnHeader .utilitiesAre .utilityButton:hover {
   background-color: hsl(var(--muted));
-  border-color: hsl(var(--primary)/0.25);
+  border-color: hsl(var(--primary) / 0.25);
   color: hsl(var(--foreground));
 }
 .draggableColumn .columnHeader .utilitiesAre .utilityButton:focus {
@@ -94,7 +94,7 @@
 .draggableColumn .limitButton {
   margin-top: 1rem;
   width: 100%;
-  background-color: hsl(var(--card)/0.65);
+  background-color: hsl(var(--card) / 0.65);
   backdrop-filter: blur(8px);
   color: hsl(var(--foreground));
   text-decoration: none;
@@ -107,7 +107,8 @@
   position: sticky;
   bottom: 0;
 }
-.draggableColumn .limitButton:active, .draggableColumn .limitButton:hover {
+.draggableColumn .limitButton:active,
+.draggableColumn .limitButton:hover {
   text-decoration: underline;
 }
 .draggableColumn .limitButton .limitIcon {

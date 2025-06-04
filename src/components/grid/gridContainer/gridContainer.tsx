@@ -43,6 +43,6 @@ const getActiveDashboardName = (
   userSettings: UserSettings | null,
 ) => {
   return dashboards?.find(
-    (board) => board.dashboardId === userSettings.activeDashboardId,
+    (board) => board.dashboardId === userSettings?.activeDashboardId,
   )?.name;
 };

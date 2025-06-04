@@ -28,7 +28,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    background-color: hsl(var(--background)/0.5);
+    background-color: hsl(var(--background) / 0.5);
     backdrop-filter: blur(12px);
   }
   .columnPagination .paginationInfo {

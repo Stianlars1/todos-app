@@ -18,7 +18,7 @@ export const RevealCard = ({
   onClick,
 }: RevealCardProps) => {
   const expanded = false;
-  const [isExpanded, setIsExpanded] = useState(expanded);
+  const [isExpanded] = useState(expanded);
   const [isDragging] = useState(false);
 
   const router = useRouter();

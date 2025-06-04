@@ -492,7 +492,6 @@ export const CloseIcon = ({ className = " " }: { className?: string }) => {
 };
 export const ClickIcon = ({
   className = " ",
-  onClick,
 }: {
   className?: string;
   onClick?: () => void;

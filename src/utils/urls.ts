@@ -1,5 +1,5 @@
-import {useLocale} from "next-intl";
-import {getLocale} from "next-intl/server";
+import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 // Auth
 export const API_AUTH_URL = "https://app.taskbuddy.dev/api/auth";

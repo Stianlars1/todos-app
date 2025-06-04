@@ -9,7 +9,7 @@ import { cx } from "@/utils/utils";
 import styles from "./draggableColumn.module.css";
 import responsiveStyles from "./responsiveStyles.module.css";
 import { DraggableTask } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { EditIcon2, IconAdd, IconMinus } from "@/components/ui/icons/icons";
 import { StatusColumnSortButton } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/components/draggableColumnSortButton/draggableColumnSortButton";
@@ -27,7 +27,6 @@ export const DraggableColumn = ({
   userSettings: UserSettings;
 }) => {
   // config
-  const columnRef = useRef<HTMLDivElement>(null);
 
   const [showHiddenTasks, setShowHiddenTasks] = useState(false);
   const [isEditMode, setisEditMode] = useState(false);

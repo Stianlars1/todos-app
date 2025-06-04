@@ -35,7 +35,7 @@ export const TaskSummaryItem = ({
 
   const handleTaskSummaryClick = (
     event: React.MouseEvent<HTMLLIElement>,
-    taskId: number
+    taskId: number,
   ) => {
     event.preventDefault();
     event.stopPropagation();

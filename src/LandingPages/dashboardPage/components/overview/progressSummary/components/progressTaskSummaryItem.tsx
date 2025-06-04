@@ -1,9 +1,9 @@
 import { RevealCard } from "@/components/ui/cards/revealCard/revealCard";
 import { TodoDTO } from "@/types/types";
-import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { CSSProperties } from "react";
 import styles from "../css/progressSummary.module.css";
+
 export const ProgressTaskSummaryItem = ({
   task,
   style,
@@ -13,7 +13,6 @@ export const ProgressTaskSummaryItem = ({
   style?: CSSProperties;
   className?: string;
 }) => {
-  const texts = useTranslations("Dashboard.header.taskSummary");
   const pathName = usePathname();
   const openUrl = `${pathName}/?selectedTask=${task.todoId}`;
   if (true) {
