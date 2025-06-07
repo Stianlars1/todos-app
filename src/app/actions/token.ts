@@ -54,6 +54,7 @@ export const decodeToken = (tokenArgument: string) => {
     const decoded = jwt.decode(token, { json: true });
     return decoded ? decoded : null;
   } catch (error) {
+    console.error("Error decoding the token:", error);
     return null;
   }
 };

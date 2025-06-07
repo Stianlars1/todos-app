@@ -75,6 +75,3 @@ export const resetPasswordFetcher = async (
 
 const forgotPasswordSuccessMessage =
   "Password reset link has been sent to your email.";
-
-const passwordHasBeenReset = "Password has already been reset.";
-const passwordWasTheSameError = "You cannot use the same password.";

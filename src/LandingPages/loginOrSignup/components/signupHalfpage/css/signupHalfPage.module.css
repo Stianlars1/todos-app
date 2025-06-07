@@ -14,7 +14,8 @@
 .signupFirstSection3d .svgWrapper .svg {
   max-width: 50%;
   max-height: 50%;
-  transform: scale(0.7) translateX(0%) translateY(0) rotateX(45deg) rotateY(37deg) rotate(324deg);
+  transform: scale(0.7) translateX(0%) translateY(0) rotateX(45deg)
+    rotateY(37deg) rotate(324deg);
   transform-origin: bottom right;
   backface-visibility: hidden;
   border-radius: 1rem;
@@ -25,7 +26,11 @@
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(to bottom, transparent 50%, var(--background) 100%);
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    var(--background) 100%
+  );
 }
 .signupFirstSection3d .svgWrapper .svg .svgElements .navbar {
   width: -moz-fit-content;
@@ -57,4 +62,4 @@
   top: var(--nav-height);
   right: 49%;
   bottom: 0;
-}/*# sourceMappingURL=signupHalfPage.module.css.map */
+} /*# sourceMappingURL=signupHalfPage.module.css.map */

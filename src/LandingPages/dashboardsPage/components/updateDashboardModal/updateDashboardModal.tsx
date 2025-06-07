@@ -10,13 +10,13 @@ import {
 import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { Modal } from "@/components/modal/modal";
 import { toast } from "@/components/ui/toast/toast";
-import { UpdateDashboardConfirmButton } from "@/LandingPages/dashboardPage/components/dashboardSwitch/components/createDashboard/components/CreateDashboardConfirmButton";
-import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import { UpdateDashboardConfirmButton } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/components/createDashboard/components/CreateDashboardConfirmButton";
+import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import styles from "../../../dashboardPage/components/dashboardSwitch/components/createDashboard/css/createDashboard.module.css";
+import styles from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/components/createDashboard/css/createDashboard.module.css";
 import { DeleteDashboardModal } from "../deleteModal/deleteModal";
 
 export const UpdateDashboardModal = ({

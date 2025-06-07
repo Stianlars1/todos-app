@@ -1,5 +1,8 @@
-import { DashboardSwitch } from "@/LandingPages/dashboardPage/components/dashboardSwitch/dashboardSwitch";
+import { DashboardSwitch } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/dashboardSwitch";
 import { DashboardPage } from "@/LandingPages/dashboardPage/dashboard";
+import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
+import { Suspense } from "react";
+
 type Props = {
   params: { dashboardName: string };
 };
@@ -11,8 +14,9 @@ export default async function Dashboard({ params }: Props) {
       {/* <DashboardSwitch /> */}
       {/* <header className={styles.dashboardName}>{dashboardName}</header> */}
       <DashboardSwitch />
-
-      <DashboardPage dashboardName={dashboardName} />
+      <Suspense fallback={<SuspenseFallback fixed={false} />}>
+        <DashboardPage dashboardName={dashboardName} />
+      </Suspense>
     </>
   );
 }

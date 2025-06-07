@@ -1,11 +1,8 @@
 .tag {
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
+  padding: 0 0.62rem;
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 9px;
   line-height: 1rem;
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
   border: 1px solid transparent;
   border-radius: 9999px;
   white-space: nowrap;
@@ -17,7 +14,7 @@
 .default {
   background-color: hsl(var(--muted));
   color: hsl(var(--muted-foreground));
-  border-color: hsl(var(--muted-foreground)/0.2);
+  border-color: hsl(var(--muted-foreground) / 0.2);
 }
 
 .priority-low {

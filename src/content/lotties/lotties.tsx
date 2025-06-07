@@ -4,12 +4,21 @@ import emailAnimationData from "./animations/email.json";
 import signupAnimationData from "./animations/signup.json";
 import successAnimationData from "./animations/success.json";
 import tasksAnimationData from "./animations/tasks.json";
+import { useEffect, useState } from "react";
 
 export const SuccessAnimation = ({
   widthHeight = 250,
 }: {
   widthHeight?: number | undefined;
 }) => {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    if (!hasMounted) {
+      setHasMounted(true);
+    }
+  }, []);
+
+  if (!hasMounted) return <></>;
   const defaultLottieOptions = {
     loop: true,
     autoplay: true,
@@ -31,6 +40,14 @@ export const TasksAnimation = ({
 }: {
   widthHeight?: number | undefined;
 }) => {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    if (!hasMounted) {
+      setHasMounted(true);
+    }
+  }, []);
+
+  if (!hasMounted) return <></>;
   const defaultLottieOptions = {
     loop: true,
     autoplay: true,
@@ -52,6 +69,14 @@ export const SignupAnimation = ({
 }: {
   widthHeight?: number | undefined;
 }) => {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    if (!hasMounted) {
+      setHasMounted(true);
+    }
+  }, []);
+
+  if (!hasMounted) return <></>;
   const defaultLottieOptions = {
     loop: true,
     autoplay: true,
@@ -73,6 +98,14 @@ export const EmailSentAnimation = ({
 }: {
   widthHeight?: number | undefined;
 }) => {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    if (!hasMounted) {
+      setHasMounted(true);
+    }
+  }, []);
+
+  if (!hasMounted) return <></>;
   const defaultLottieOptions = {
     loop: true,
     autoplay: true,

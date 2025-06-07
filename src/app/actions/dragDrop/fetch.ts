@@ -1,6 +1,6 @@
 "use server";
 
-import { FetchState, customFetch } from "@/utils/fetch/customFetch";
+import { customFetch, FetchState } from "@/utils/fetch/customFetch";
 import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import {
   API_DRAG_DROP_CATEGORIZED_UPDATE_ORDER,
@@ -17,6 +17,8 @@ import {
 export const updateTaskSortIndex = async (
   updatedTask: UpdateTaskSortIndexProps,
 ) => {
+  console.log("\n\n== updateTaskSortIndex ==\n");
+  console.log(updatedTask);
   const response = await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_TODOS_SORT_INDEX,
     options: {
@@ -25,9 +27,15 @@ export const updateTaskSortIndex = async (
     },
     headers: APPLICATION_JSON_V1,
   });
+
+  console.log(response);
   return response;
 };
+
 export const moveTask = async (movedTask: MoveTaskProps) => {
+  console.log("\n\n== moveTask ==");
+  console.log(movedTask);
+
   const response = await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_TODOS_MOVE,
     options: {
@@ -37,8 +45,11 @@ export const moveTask = async (movedTask: MoveTaskProps) => {
     headers: APPLICATION_JSON_V1,
   });
 
+  console.log(response);
+
   return response;
 };
+
 export const deleteTask = async (todoId: number) => {
   const DELETE_URL = `${API_TODOS_URL}/${todoId}`;
   const response = await customFetch<FetchState<undefined>>({
@@ -57,7 +68,7 @@ export const deleteTask = async (todoId: number) => {
 export const updateColumnDisplayOrder = async (
   columns: UpdateColumnOrderDTO[],
 ) => {
-  const response = await customFetch<FetchState<undefined>>({
+  return await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_CATEGORIZED_UPDATE_ORDER,
     options: {
       method: HTTP_REQUEST.PUT,
@@ -65,6 +76,4 @@ export const updateColumnDisplayOrder = async (
     },
     headers: APPLICATION_JSON_V1,
   });
-
-  return response;
 };

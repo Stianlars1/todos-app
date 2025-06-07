@@ -1,8 +1,8 @@
 "use client";
 import { createTodo } from "@/app/actions/todos/fetch";
 import { Priority, StatusId } from "@/app/actions/todos/types";
-import { UserSettingsDTO } from "@/app/actions/user/types";
-import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import { UserSettings } from "@/app/actions/user/types";
+import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useFormState } from "react-dom";
@@ -21,13 +21,12 @@ import { ConfirmCreateTaskButton } from "./components/createTaskButton";
 import "./css/createTask.css";
 import styles from "./css/dashboardSelect.module.css";
 
-const DASHBOARD_DEFAULT_NAME = "Default";
 export const CreateTask = ({
   userSettings,
   dashboards,
   onClose,
 }: {
-  userSettings: UserSettingsDTO | null;
+  userSettings: UserSettings;
   dashboards: DashboardOnlyType[] | null;
   onClose: () => void;
 }) => {
@@ -44,9 +43,6 @@ export const CreateTask = ({
         : [],
   );
 
-  const [activeDashboardId, setActiveDashboardId] = useState<
-    number | undefined
-  >(userSettings?.activeDashboardId);
   const text = useTranslations("general");
   const dashboardText = useTranslations("TodayPage.taskViewer");
   const createText = useTranslations("Create-task");

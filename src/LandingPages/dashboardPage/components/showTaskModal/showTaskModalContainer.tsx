@@ -1,19 +1,20 @@
 "use client";
-import { UserSettingsDTO } from "@/app/actions/user/types";
+import { UserSettings } from "@/app/actions/user/types";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { TaskViewer } from "@/components/ui/taskviewer/taskviewer/taskviewer";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { DashboardOnlyTypeDTO } from "../dashboardSwitch/switchUtils";
+import { DashboardOnlyTypeDTO } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import styles from "./css/showTaskModal.module.css";
+
 export const ShowTaskModalContainer = ({
   userSettings,
   dashboards,
   redirectUrl = "",
 }: {
   redirectUrl?: string;
-  userSettings: UserSettingsDTO | null;
+  userSettings: UserSettings | null;
   dashboards: DashboardOnlyTypeDTO[] | null;
 }) => {
   const selectedTaskId = useSelectedTaskId();
@@ -61,7 +62,7 @@ export const ShowTaskModalContainer = ({
                 </div>
               )}
             </>,
-            document.getElementById("grid-container") ?? document.body
+            document.getElementById("grid-container") ?? document.body,
           )}
         </>
       )}

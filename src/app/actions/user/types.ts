@@ -7,30 +7,32 @@ export interface UserDTO {
   createdAt: Date;
   updatedAt: Date;
   profilePicture?: string;
-  settings?: UserSettingsDTO;
+  settings?: UserSettings;
 }
 
 export type LanguageType = "en" | "nb";
 
 // api/user/settings/:userId
-export interface UserSettingsDTO {
-  sidebarOpen?: boolean;
-  language?: LanguageType;
-  sortBacklog?: string;
-  sortInProgressTasks?: string;
-  sortCompletedTasks?: string;
-  sortByUpdatedAt?: string;
-  sortByCreatedAt?: string;
-  sortByTitle?: string;
-  sortByPriority?: string;
-  sortByDueDate?: string;
-  sortManual?: boolean;
-  isColumnLayout?: boolean;
-  timeZone?: string;
-  isDashboardTabActive?: boolean;
-  activeDashboardId?: number;
-  limitTasks?: boolean;
+export interface UserSettings {
+  sidebarOpen: boolean;
+  sortBacklog: string;
+  sortInProgressTasks: string;
+  sortCompletedTasks: string;
+  sortByUpdatedAt: string;
+  sortByCreatedAt: string;
+  sortByTitle: string;
+  sortByPriority: string;
+  sortByDueDate: string;
+  language: LanguageType;
+  sortManual: boolean;
+  isColumnLayout: boolean;
+  timeZone: string;
+  isDashboardTabActive: boolean;
+  sortNewTodosAtTop: boolean;
+  activeDashboardId: number;
+  limitTasks: boolean;
 }
+
 export type ExcludeBooleanKeys<T> = {
   [K in keyof T]: T[K] extends boolean ? never : K;
 }[keyof T];
@@ -39,10 +41,8 @@ export type UserSettingsSortKey =
   | "sortBacklog"
   | "sortInProgressTasks"
   | "sortCompletedTasks"
-  | "sortByUpdatedAt"
   | "sortByCreatedAt"
   | "sortByUpdatedAt"
-  | "sortByCreatedAt"
   | "sortByTitle"
   | "sortByPriority"
   | "sortByDueDate";

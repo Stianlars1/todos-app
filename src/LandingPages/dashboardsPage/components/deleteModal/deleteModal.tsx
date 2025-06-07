@@ -3,10 +3,11 @@ import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { Modal } from "@/components/modal/modal";
 import { toast } from "@/components/ui/toast/toast";
-import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
 import styles from "./css/deleteModal.module.css";
+
 export const DeleteDashboardModal = ({
   dashboard,
   onClose,

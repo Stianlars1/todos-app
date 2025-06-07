@@ -22,6 +22,7 @@ export const LogoutButton = ({
     try {
       await logout();
     } catch (error) {
+      console.info(error);
       setIsLoggingOut(false);
     }
   };
@@ -54,6 +55,7 @@ export const LogoutButtonSidebar = ({
     try {
       await logout();
     } catch (error) {
+      console.info(error);
       setIsLoggingOut(false);
     }
   };

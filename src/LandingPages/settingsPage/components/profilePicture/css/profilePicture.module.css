@@ -1,14 +1,16 @@
 .profilePictureWrapper {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),
+    var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
   position: relative;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 .profilePictureWrapper::after {
   content: "";
@@ -23,8 +25,8 @@
   opacity: 0;
   transition: opacity 0.2s;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   pointer-events: none;
 }
 .profilePictureWrapper:hover {
@@ -59,4 +61,4 @@
   fill: none;
   color: hsl(var(--white));
   stroke: none;
-}/*# sourceMappingURL=profilePicture.module.css.map */
+} /*# sourceMappingURL=profilePicture.module.css.map */

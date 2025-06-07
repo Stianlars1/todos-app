@@ -11,8 +11,8 @@
   align-items: center;
   border: none;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   cursor: pointer;
 }
 .locale-switcher span {
@@ -21,4 +21,4 @@
   right: 2px;
   top: 5px;
   cursor: pointer;
-}/*# sourceMappingURL=localeSwitcher.css.map */
+} /*# sourceMappingURL=localeSwitcher.css.map */

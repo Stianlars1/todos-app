@@ -4,13 +4,13 @@ import { CacheKeys } from "@/app/lib/cache/keys";
 import {
   DashboardOnlyTypeDTO,
   DashboardTypeDTO,
-} from "@/LandingPages/dashboardPage/components/dashboardSwitch/switchUtils";
+} from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { ApiResponse } from "@/types/fetch";
 import { customFetch } from "@/utils/fetch/customFetch";
 import {
   APPLICATION_JSON_V1,
-  HTTP_REQUEST,
   getAuthHeaderOnly,
+  HTTP_REQUEST,
 } from "@/utils/fetch/fetch";
 import {
   API_DASHBOARD_DELETE_URL,
@@ -19,7 +19,7 @@ import {
   API_DASHBOARD_URL,
   API_USER_SETTINGS_URL,
 } from "@/utils/urls";
-import { UserSettingsDTO } from "../user/types";
+import { UserSettings } from "../user/types";
 import { getUserId } from "../user/userUtils";
 
 export const getDashboards = async () => {
@@ -47,7 +47,7 @@ export const getUserSettings = async () => {
   const userId = await getUserId();
   const settingsUrl = `${API_USER_SETTINGS_URL}/${userId}`;
 
-  return await customFetch<UserSettingsDTO>({
+  return await customFetch<UserSettings>({
     url: settingsUrl,
     options: {
       method: HTTP_REQUEST.GET,

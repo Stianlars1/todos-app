@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IconChevron } from "../../icons/icons";
 import "./css/revealCard.css";
 import { RevealCardProps } from "./types";
+
 export const RevealCard = ({
   title,
   description,
@@ -17,8 +18,8 @@ export const RevealCard = ({
   onClick,
 }: RevealCardProps) => {
   const expanded = false;
-  const [isExpanded, setIsExpanded] = useState(expanded);
-  const [isDragging, setIsDragging] = useState(false);
+  const [isExpanded] = useState(expanded);
+  const [isDragging] = useState(false);
 
   const router = useRouter();
   const openTask = () => {
@@ -32,10 +33,6 @@ export const RevealCard = ({
     } else if (onClick) {
       onClick();
     }
-  };
-
-  const handleChevronClick = () => {
-    setIsExpanded(!isExpanded);
   };
 
   return (

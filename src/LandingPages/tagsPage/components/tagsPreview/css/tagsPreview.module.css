@@ -16,8 +16,8 @@
   overflow: hidden;
   padding: 6px 12px;
   cursor: pointer;
-  background-color: hsl(var(--card)/0.9) !important;
-  color: hsl(var(--black)/0.7);
+  background-color: hsl(var(--card) / 0.9) !important;
+  color: hsl(var(--black) / 0.7);
   transition: all 0.15s ease-in-out;
 }
 .tagsPreview ul .tag:hover {
@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: center;
   padding: 0 4px;
-  background-color: hsl(var(--muted)/0.5) !important;
+  background-color: hsl(var(--muted) / 0.5) !important;
   font-size: 12px;
   margin-left: 6px;
   border-radius: 2px;
@@ -45,9 +45,9 @@
   transition: all 0.15s ease-in-out;
 }
 .tagsPreview ul .active .tagNumber {
-  background-color: hsl(var(--muted)/0.5) !important;
-  border-color: hsl(var(--muted-foreground)/0.8) !important;
-  color: hsl(var(--black)/0.7);
+  background-color: hsl(var(--muted) / 0.5) !important;
+  border-color: hsl(var(--muted-foreground) / 0.8) !important;
+  color: hsl(var(--black) / 0.7);
 }
 .tagsPreview ul .active:hover {
   background-color: rgb(226, 232, 254) !important;
@@ -62,4 +62,4 @@
     background-color: rgba(226, 232, 254, 0.7) !important;
     color: hsl(var(--background));
   }
-}/*# sourceMappingURL=tagsPreview.module.css.map */
+} /*# sourceMappingURL=tagsPreview.module.css.map */

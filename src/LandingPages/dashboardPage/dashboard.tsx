@@ -2,36 +2,28 @@ import { getOnlyDashboards } from "@/app/actions/dashboards/fetch";
 import { getUserPreferences } from "@/app/actions/preferences/fetch";
 import {
   getAllTodosByDashboardName,
-  getCategorizedTodosByDashboardName,
+  getColumnsAndTasks,
   getOverdueTodosByDashboardName,
   getUpcomingDeadlinesTodosByDashboardName,
 } from "@/app/actions/todos/fetch";
 import { getUserSettings } from "@/app/actions/user/userApi";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
-import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { ApiResponse } from "@/types/fetch";
-import { CategorizedTodosResponseDTO } from "@/types/todo/types";
+import { ColumnsAndTasks } from "@/types/todo/types";
 import { SoonDueTodosDTO, TodoDTO } from "@/types/types";
-import { Suspense } from "react";
-import { DashboardTabs } from "./components/dashboardTabs/dashboardTabs";
-import { ProgressSummaryContainer } from "./components/progressSummary/progressSummary";
-import { Taskboard } from "./components/taskboard/taskboard";
-import { getCategorizedTodosTexts } from "./components/taskboard/utils";
-import styles from "./css/dashboard.module.css";
+import { DashboardTabs } from "@/LandingPages/dashboardPage/components/dashboard/dashboardTabs/dashboardTabs";
+import { ProgressSummaryContainer } from "@/LandingPages/dashboardPage/components/overview/progressSummary/progressSummary";
+import styles from "./dashboard.module.css";
+import { TaskViews } from "@/LandingPages/dashboardPage/components/dashboard/taskViews/taskViews";
+
 export const DashboardPage = async ({
   dashboardName,
 }: {
   dashboardName: string;
 }) => {
   const { data: userSettings, error, isError } = await getUserSettings();
-  const categorizedTexts = await getCategorizedTodosTexts();
-  const {
-    data: taskResponse,
-    isError: isError2,
-    error: error2,
-  } = await getCategorizedTodosByDashboardName<CategorizedTodosResponseDTO>(
-    dashboardName,
-  );
+  const { data: columnsAndTasksResponse, isError: isError2 } =
+    await getColumnsAndTasks<ColumnsAndTasks>(dashboardName);
   const {
     data: allTasks,
     isError: isError3,
@@ -50,22 +42,22 @@ export const DashboardPage = async ({
   const { data: userPreferences } = await getUserPreferences();
 
   return (
-    <Suspense fallback={<SuspenseFallback fixed={false} />}>
-      <div className={`dashboard ${styles.dashboard}`}>
-        <ErrorMessage closeButton isError={isError} errorMessage={error} />
+    <div className={`dashboard ${styles.dashboard}`}>
+      <ErrorMessage closeButton isError={isError} errorMessage={error} />
 
+      {columnsAndTasksResponse && userSettings && (
         <DashboardTabs
           userPreferences={userPreferences}
           dashboards={dashboards}
           userSettings={userSettings}
         >
-          <Taskboard
-            isError={isError2}
-            error={error2}
-            taskResponse={taskResponse}
-            categorizedTexts={categorizedTexts}
-            userSettings={userSettings}
-          />
+          <>
+            <TaskViews
+              dashboardName={dashboardName}
+              userSettings={userSettings}
+            />
+            <ErrorMessage isError={isError2} errorMessage={error} />
+          </>
           <ProgressSummaryContainer
             upcomingDeadlines={upcomingDeadlines}
             error={error3}
@@ -75,7 +67,7 @@ export const DashboardPage = async ({
             userSettings={userSettings}
           />
         </DashboardTabs>
-      </div>
-    </Suspense>
+      )}
+    </div>
   );
 };

@@ -8,14 +8,14 @@
 
   &__loader {
     position: relative;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
 
     &::after {
       content: "";
       display: block;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2rem;
+      height: 2rem;
       border-radius: 50%;
       border: 0.25rem solid hsl(var(--muted));
       border-top-color: hsl(var(--primary));
@@ -33,8 +33,8 @@
 
   &__loader {
     position: absolute;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
 
     top: 25%;
     left: 50%;
@@ -43,8 +43,8 @@
     &::after {
       content: "";
       display: block;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2rem;
+      height: 2rem;
       border-radius: 50%;
       border: 0.25rem solid hsl(var(--muted));
       border-top-color: hsl(var(--primary));

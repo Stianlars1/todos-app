@@ -16,10 +16,8 @@ import { useTranslations } from "next-intl";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import styles from "./css/security.module.css";
-export const SettingsSecurityContent = () => {
-  const [openChangePassword, setOpenChangePassword] = useState(false);
-  const securityTexts = useTranslations("SettingsPage.security");
 
+export const SettingsSecurityContent = () => {
   return (
     <>
       <div className={styles.securityPage}></div>

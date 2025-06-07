@@ -6,10 +6,10 @@ import { redirect } from "next/navigation";
 import { cache } from "react";
 import { decodeToken, isTokenExpired } from "./token";
 import {
+  authResponseDTO,
   DecryptedToken,
   SessionType,
   TokenType,
-  authResponseDTO,
 } from "./types";
 
 //
@@ -99,6 +99,7 @@ export async function decryptSession(
 
     return decryptedToken;
   } catch (error) {
+    console.error("Error decrypting token: ", error);
     return null;
   }
 }

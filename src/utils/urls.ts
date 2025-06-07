@@ -45,7 +45,8 @@ export const API_TODOS_CATEGORIZED_URL =
   "https://app.taskbuddy.dev/api/todos/categorized"; // GET
 export const API_TODOS_CATEGORIZED_BY_DASHBOARDNAME_URL =
   "https://app.taskbuddy.dev/api/todos/categorized-by-dashboard-name"; // GET
-
+export const API_COLUMNS_AND_TODOS_BY_DASHBOARDNAME_URL =
+  "https://app.taskbuddy.dev/api/todos/columns-and-tasks-by-dashboard-name"; // GET ? dashboardName=<dashboardName>
 // Tags
 export const API_ALL_TAGS = "https://app.taskbuddy.dev/api/todos/all-tags"; // GET
 export const API_TASKS_AND_TAGS_GROUPED =

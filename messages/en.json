@@ -43,6 +43,7 @@
       "sortSwitch": "Sort manually",
       "settings": {
         "dragAndDrop": "Drag & drop",
+        "sortManual": "Sort by knob",
         "layout": "Column Layout",
         "limitTasks": "Limit visible tasks"
       },
@@ -64,7 +65,8 @@
     "taskCard": {
       "showMore": "Show all",
       "showLess": "Show less"
-    }
+    },
+    "emptyState": "Drop tasks here"
   },
 
   "Buttons": {

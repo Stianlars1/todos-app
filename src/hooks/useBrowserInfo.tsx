@@ -40,5 +40,11 @@ export const useBrowserInfo = () => {
     window.addEventListener("resize", checkMobileSize);
   }, []);
 
-  return { isSafari, isMobile, isMobileSize, loading };
+  return {
+    isSafari,
+    isMobile,
+    isMobileSize,
+    loading,
+    isNative: isMobile || isMobileSize,
+  };
 };

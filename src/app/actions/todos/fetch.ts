@@ -6,6 +6,7 @@ import { TodoDTO } from "@/types/types";
 import { customFetch } from "@/utils/fetch/customFetch";
 import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import {
+  API_COLUMNS_AND_TODOS_BY_DASHBOARDNAME_URL,
   API_TASKS_SEARCH,
   API_TODOS_ALL_BY_DASHBOARDNAME,
   API_TODOS_BY_ACTIVE_DASHBOARD,
@@ -117,7 +118,7 @@ export const getTodosDueToday = async <T>() => {
     cacheKey: CacheKeys.TODOS_TODAY,
   });
 };
-export const searchTodos = async <T>(keyword: string) => {
+export const searchTodos = async (keyword: string) => {
   const url = `${API_TASKS_SEARCH}?keyword=${keyword}`;
   return await customFetch<ApiResponse<TodoDTO[]>>({
     url: url,
@@ -177,6 +178,26 @@ export const getCategorizedTodosByDashboardName = async <T>(
   return { ...categorized, error: error };
 };
 
+export const getColumnsAndTasks = async <T>(dashboardName: string) => {
+  const url = `${API_COLUMNS_AND_TODOS_BY_DASHBOARDNAME_URL}?dashboardName=${dashboardName}`;
+  const categorized = await customFetch<T>({
+    url: url,
+    options: {
+      method: HTTP_REQUEST.GET,
+    },
+    headers: APPLICATION_JSON_V1,
+    cacheKey: CacheKeys.CATEGORIZED_TODOS,
+    revalidate: 0,
+  });
+
+  let error = "";
+  if (categorized.isError) {
+    error = "Couldn't load todos";
+  }
+
+  return { ...categorized, error: error };
+};
+
 export const updateTodo = async (
   todoId: string,
   updatedTodo: UpdatedTodoDTO,
@@ -209,9 +230,17 @@ export const updateTodoForm = async (_state: unknown, formData: FormData) => {
     priority: formData.get("priority") as string,
     content: formData.get("content") as string,
     tags: newTags,
-    // tags: JSON.parse(formData.get("tags") as string),
-    dashboardIds:
-      [parseInt(formData.get("dashboardIds") as string)] || undefined,
+
+    dashboardIds: (() => {
+      const dashboardIdStrings = formData.getAll("dashboardIds") as string[];
+      if (dashboardIdStrings.length === 0) return undefined;
+
+      const parsedIds = dashboardIdStrings
+        .map((id) => parseInt(id))
+        .filter((id) => !isNaN(id));
+
+      return parsedIds.length > 0 ? parsedIds : undefined;
+    })(),
   };
 
   formData.append("todo", JSON.stringify(updatedTodo));

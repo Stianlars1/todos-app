@@ -335,14 +335,15 @@ export const IconSort = ({ variant }: { variant: "ASC" | "DESC" }) => {
   return variant === "DESC" ? (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={"iconsort"}
     >
       <path d="M12 5v14"></path>
       <path d="m19 12-7 7-7-7"></path>
@@ -350,8 +351,8 @@ export const IconSort = ({ variant }: { variant: "ASC" | "DESC" }) => {
   ) : (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -383,13 +384,7 @@ export const LogoutIcon = () => {
     </svg>
   );
 };
-export const DragDropIcon = ({
-  className = " ",
-  id,
-}: {
-  className?: string;
-  id?: string;
-}) => {
+export const DragDropIcon = (props: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -401,8 +396,7 @@ export const DragDropIcon = ({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
-      id={id}
+      {...props}
     >
       <path
         fill="currentColor"
@@ -498,7 +492,6 @@ export const CloseIcon = ({ className = " " }: { className?: string }) => {
 };
 export const ClickIcon = ({
   className = " ",
-  onClick,
 }: {
   className?: string;
   onClick?: () => void;
@@ -586,7 +579,13 @@ export const DragAndDropSimpleIcon2 = ({
     </svg>
   );
 };
-export const EditIcon = ({ className = " " }: { className?: string }) => {
+export const EditIcon = ({
+  onClick,
+  className = " ",
+}: {
+  onClick?: () => void;
+  className?: string;
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -600,6 +599,7 @@ export const EditIcon = ({ className = " " }: { className?: string }) => {
       strokeLinejoin="round"
       className={className}
       style={{ fill: "none" }}
+      onClick={onClick}
     >
       <path
         fillRule="evenodd"
@@ -607,6 +607,33 @@ export const EditIcon = ({ className = " " }: { className?: string }) => {
         d="M11.75 0.189331L12.2803 0.719661L15.2803 3.71966L15.8107 4.24999L15.2803 4.78032L5.15901 14.9016C4.45575 15.6049 3.50192 16 2.50736 16H0.75H0V15.25V13.4926C0 12.4981 0.395088 11.5442 1.09835 10.841L11.2197 0.719661L11.75 0.189331ZM11.75 2.31065L9.81066 4.24999L11.75 6.18933L13.6893 4.24999L11.75 2.31065ZM2.15901 11.9016L8.75 5.31065L10.6893 7.24999L4.09835 13.841C3.67639 14.2629 3.1041 14.5 2.50736 14.5H1.5V13.4926C1.5 12.8959 1.73705 12.3236 2.15901 11.9016ZM9 16H16V14.5H9V16Z"
         fill="currentColor"
       ></path>
+    </svg>
+  );
+};
+
+export const EditIcon2 = ({
+  onClick,
+  className = " ",
+}: {
+  onClick?: () => void;
+  className?: string;
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      className={className}
+      onClick={onClick}
+    >
+      <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
+      <path d="m15 5 4 4" />
     </svg>
   );
 };
@@ -630,6 +657,48 @@ export const SearchIcon = ({ className = " " }: { className?: string }) => {
         d="M1.5 6.5C1.5 3.73858 3.73858 1.5 6.5 1.5C9.26142 1.5 11.5 3.73858 11.5 6.5C11.5 9.26142 9.26142 11.5 6.5 11.5C3.73858 11.5 1.5 9.26142 1.5 6.5ZM6.5 0C2.91015 0 0 2.91015 0 6.5C0 10.0899 2.91015 13 6.5 13C8.02469 13 9.42677 12.475 10.5353 11.596L13.9697 15.0303L14.5 15.5607L15.5607 14.5L15.0303 13.9697L11.596 10.5353C12.475 9.42677 13 8.02469 13 6.5C13 2.91015 10.0899 0 6.5 0Z"
         fill="currentColor"
       ></path>
+    </svg>
+  );
+};
+
+export const IconMinus = ({ className = " " }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className={className}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+    </svg>
+  );
+};
+
+export const IconDocumentText = ({
+  className = " ",
+  size,
+}: {
+  className?: string;
+  size?: number;
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
+      className={className}
+      width={size}
+      height={size}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+      />
     </svg>
   );
 };

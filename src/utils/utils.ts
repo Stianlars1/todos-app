@@ -1,4 +1,4 @@
-import { TodoDTO } from "@/types/types";
+import { StatusCode, TodoDTO, TodoStatus } from "@/types/types";
 import moment from "moment-timezone";
 
 export const handleCloseNav = () => {
@@ -39,6 +39,7 @@ export const compareDates = (date1: string, date2: string): boolean => {
     d1.getDate() === d2.getDate()
   );
 };
+
 export function arraysEqual(arr1: any[], arr2: any[]) {
   if (arr1.length !== arr2.length) {
     return false;
@@ -78,4 +79,113 @@ export const sortTasks = (tasks: TodoDTO[]) => {
       return bUpdatedAt - aUpdatedAt; // Descending order for updatedAt
     }
   });
+};
+
+/**
+ * Flexibly combine class names with conditional logic
+ * @param classes Array of class names or conditional class objects
+ * @returns Combined class string
+ */
+export function cx(
+  ...classes: (
+    | string
+    | undefined
+    | null
+    | boolean
+    | { [key: string]: boolean }
+  )[]
+) {
+  return classes.reduce<string>((acc, cls) => {
+    if (cls === null || cls === undefined || cls === false) return acc;
+
+    if (typeof cls === "string") {
+      return acc ? `${acc} ${cls}` : cls;
+    }
+
+    if (typeof cls === "object") {
+      const conditionalClasses = Object.entries(cls)
+        .filter(([, condition]) => condition)
+        .map(([className]) => className);
+
+      // Replace with:
+      return Array.from(
+        new Set([...acc.split(" "), ...conditionalClasses]),
+      ).join(" ");
+    }
+
+    return acc;
+  }, "");
+}
+
+export const STATUS_MAP: Record<StatusCode, TodoStatus> = {
+  CREATED: {
+    statusId: 7,
+    statusCode: "CREATED",
+    statusName: "Created",
+    description: "Task has been created",
+  },
+  PENDING: {
+    statusId: 1,
+    statusCode: "PENDING",
+    statusName: "Pending",
+    description: "Task has not been started yet.",
+  },
+  IN_PROGRESS: {
+    statusId: 2,
+    statusCode: "IN_PROGRESS",
+    statusName: "In Progress",
+    description: "Task is currently ongoing.",
+  },
+  COMPLETED: {
+    statusId: 3,
+    statusCode: "COMPLETED",
+    statusName: "Completed",
+    description: "Task has been completed successfully.",
+  },
+  ON_HOLD: {
+    statusId: 4,
+    statusCode: "ON_HOLD",
+    statusName: "On Hold",
+    description: "Task is temporarily paused.",
+  },
+  CANCELLED: {
+    statusId: 5,
+    statusCode: "CANCELLED",
+    statusName: "Cancelled",
+    description: "Task has been cancelled and will not be completed.",
+  },
+  DELETED: {
+    statusId: 6,
+    statusCode: "DELETED",
+    statusName: "Deleted",
+    description:
+      "Task has been marked for deletion or removed from active view.",
+  },
+};
+
+// Helper function to get full status object
+export const getStatusByCode = (statusCode: StatusCode): TodoStatus => {
+  return STATUS_MAP[statusCode];
+};
+
+export const shouldReturn = (
+  event: React.MouseEvent<HTMLDivElement | HTMLLIElement>,
+) => {
+  if (
+    event.target instanceof HTMLElement &&
+    event.target.className.includes("tagBadge")
+  ) {
+    return true;
+  }
+
+  if (event.target instanceof HTMLElement) {
+    switch (event.target.nodeName) {
+      case "H3":
+        return true;
+      case "P":
+        return true;
+    }
+  }
+
+  return false;
 };

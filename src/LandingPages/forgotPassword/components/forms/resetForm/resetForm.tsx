@@ -12,7 +12,7 @@ import { FormError } from "@/components/ui/forms/components/formError/formError"
 import { LOGIN_URL } from "@/utils/urls";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useSearchParams } from "next/navigation";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { ForgotPasswordButtonsWrapper } from "../../forgotPasswordButtonsWrapper/forgotPasswordButtonsWrapper";
 import { ForgotPasswordButton } from "../buttons/resetPasswordButton";
 
@@ -20,7 +20,6 @@ export const ResetForm = () => {
   const token = useSearchParams().get("token");
   const validToken = token ? true : false;
   const [state, dispatch] = useFormState(resetPassword, null);
-  const { pending } = useFormStatus();
 
   if (!validToken) {
     return (

@@ -103,11 +103,12 @@
       "main";
 
     &__activeDashboardName {
+      top: calc(var(--nav-height) + 0.5rem);
       left: calc(0rem + 1rem + 0.75rem);
     }
 
     &__main {
-      padding: 2.5rem 1rem 1rem;
+      padding: 1rem;
     }
 
     // // Need high specificity

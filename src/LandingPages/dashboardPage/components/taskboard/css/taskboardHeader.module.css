@@ -1,9 +1,0 @@
-.taskboardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.taskboardHeader h1 {
-  font-size: 1.2rem;
-}

@@ -35,7 +35,7 @@ export interface CreateTodoDTO {
   dashboardIds?: number[];
 }
 
-export interface UpdatedTodoDTO extends CreateTodoDTO {}
+export type UpdatedTodoDTO = CreateTodoDTO;
 
 export interface CreateTodoResponse {
   success: boolean;
@@ -43,7 +43,7 @@ export interface CreateTodoResponse {
   data: TodoDTO;
 }
 
-export interface UpdateTodoResponse extends CreateTodoResponse {}
+export type UpdateTodoResponse = CreateTodoResponse;
 
 export interface TodoDropType {
   todoId: string;
@@ -58,14 +58,4 @@ export const statusCategoryToCodeMapping: Record<string, StatusCode> = {
   cancelledTasks: "CANCELLED",
   deletedTasks: "DELETED",
   backlog: "CREATED",
-};
-export const statusCategoryToDisplayName: Record<string, string> = {
-  pendingTasks: "Pending",
-  inProgressTasks: "In progress",
-  completedTasks: "Completed",
-  onHoldTasks: "On hold",
-  cancelledTasks: "Cancelled",
-  deletedTasks: "Deleted",
-  backlog: "Created",
-  upcomingDeadlines: "Upcoming deadlines",
 };
