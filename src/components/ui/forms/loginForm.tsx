@@ -7,10 +7,11 @@ import {
   CustomInputLabelWrapper,
 } from "@/components/form/components/customInput/customInput";
 import { FormContentWrapper } from "@/components/form/formContentWrapper";
-import { GeistSans } from "geist/font/sans";
 import { useFormState } from "react-dom";
 import { ErrorMessage } from "../errorMessage/errorMessage";
 import { LoginButton } from "./components/LoginButton";
+import { geistSans } from "@/fonts";
+
 export const LoginForm = () => {
   const [state, dispatch] = useFormState(login, null);
   const errorMessage = state?.errorMessage
@@ -23,7 +24,7 @@ export const LoginForm = () => {
         <CustomInputLabelWrapper>
           <CustomInputLabel htmlFor="email">Email</CustomInputLabel>
           <CustomInput
-            className={GeistSans.className}
+            className={geistSans.className}
             autoComplete="email"
             type="email"
             id="email"
@@ -36,7 +37,7 @@ export const LoginForm = () => {
         <CustomInputLabelWrapper>
           <CustomInputLabel htmlFor="password">Password</CustomInputLabel>
           <CustomInput
-            className={GeistSans.className}
+            className={geistSans.className}
             autoComplete="current-password"
             type="password"
             id="password"

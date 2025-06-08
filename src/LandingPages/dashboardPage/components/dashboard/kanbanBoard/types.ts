@@ -1,4 +1,4 @@
-import { StatusCodes } from "@/types/todo/types";
+import { StatusCodes } from "@/types/todo";
 import { TodoDTO } from "@/types/types";
 
 export interface ColumnListDND {

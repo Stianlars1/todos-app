@@ -4,7 +4,7 @@ import {
   getCategorizedTodosByDashboardName,
   getColumnsAndTasks,
 } from "@/app/actions/todos/fetch";
-import { ColumnsAndTasks } from "@/types/todo/types";
+import { ColumnsAndTasks } from "@/types/todo";
 import { CategorizedTodosDTO } from "@/types/types";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { TableBoard } from "@/LandingPages/dashboardPage/components/dashboard/tableBoard/tableBoard";

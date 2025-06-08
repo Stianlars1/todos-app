@@ -1,5 +1,5 @@
 "use client";
-import { LOGIN_URL } from "@/utils/urls";
+import { ROUTE_LOGIN } from "@/utils/urls";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useSearchParams } from "next/navigation";
 import {
@@ -26,7 +26,7 @@ export const ForgotPage = () => {
           title="Check Your Inbox!"
           description="🎉 We've sent a password reset link to your email address. Follow the link in the email to reset your password."
         >
-          <Button href={LOGIN_URL} variant="link">
+          <Button href={ROUTE_LOGIN} variant="link">
             Go to login
           </Button>
         </ForgotPasswordSuccessPage>
@@ -40,7 +40,7 @@ export const ForgotPage = () => {
       {!resetLinkSent && <ForgotForm />}
       {resetLinkSent && (
         <>
-          <Button href={LOGIN_URL} variant="link">
+          <Button href={ROUTE_LOGIN} variant="link">
             Go back to login
           </Button>
         </>

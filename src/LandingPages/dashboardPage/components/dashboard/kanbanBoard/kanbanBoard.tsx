@@ -1,22 +1,25 @@
 "use client";
 import { UserSettings } from "@/app/actions/user/types";
-import { ColumnsAndTasks } from "@/types/todo/types";
+import { ColumnsAndTasks } from "@/types/todo";
 import styles from "./taskboard.module.css";
 import responsiveStyles from "./responsiveStyles.module.css";
 import { TYPE_COLUMN, TYPE_TASK } from "./utils";
 import {
   closestCorners,
   DndContext,
-  DragEndEvent,
-  DragOverEvent,
   DragOverlay,
-  DragStartEvent,
   MouseSensor,
   pointerWithin,
   TouchSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+
+import type {
+  DragEndEvent,
+  DragOverEvent,
+  DragStartEvent,
+} from "@dnd-kit/core/dist/types";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { useEffect, useState } from "react";
 import { StatusCode, TodoDTO, TodoStatus } from "@/types/types";
@@ -382,7 +385,7 @@ export const KanbanBoard = ({
       } catch (error) {
         console.error("Failed to update task", error);
         toast.error(
-          "Failed to update task: " + (error as Error).message,
+          `Failed to update task: ${(error as Error).message}`,
           "bottomRight",
         );
         setTasks(originalTasks);
@@ -416,7 +419,7 @@ export const KanbanBoard = ({
       } catch (error) {
         console.error("Failed to update task", error);
         toast.error(
-          "Failed to update task: " + (error as Error).message,
+          `Failed to update task: ${(error as Error).message}`,
           "bottomRight",
         );
         setTasks(originalTasks);
@@ -540,9 +543,7 @@ export const KanbanBoard = ({
               />
             )}
 
-            {activeTask && (
-              <DraggableTask task={activeTask} isDragOverlay={true} />
-            )}
+            {activeTask && <DraggableTask task={activeTask} isDragOverlay />}
           </DragOverlay>,
           document.body,
         )}

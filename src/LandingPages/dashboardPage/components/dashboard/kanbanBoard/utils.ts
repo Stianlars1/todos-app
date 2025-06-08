@@ -3,7 +3,7 @@
 
 import { updateColumnDisplayOrder } from "@/app/actions/dragDrop/fetch";
 import { UpdateColumnOrderDTO } from "@/app/actions/dragDrop/types";
-import { StatusCodes } from "@/types/todo/types";
+import { StatusCodes } from "@/types/todo";
 import { LanguageType } from "@/app/actions/user/types";
 import { format } from "date-fns";
 import { enUS, nb } from "date-fns/locale";

@@ -4,6 +4,6 @@ import { cache } from "react";
 import { isValid } from "./token";
 
 export const verifyAuthentication = cache(async () => {
-  const accessToken = cookies().get("session")?.value;
+  const accessToken = (await cookies()).get("session")?.value;
   return await isValid(accessToken);
 });

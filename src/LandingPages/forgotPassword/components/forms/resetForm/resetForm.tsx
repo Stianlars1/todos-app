@@ -9,7 +9,7 @@ import {
 import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { FormError } from "@/components/ui/forms/components/formError/formError";
-import { LOGIN_URL } from "@/utils/urls";
+import { ROUTE_LOGIN } from "@/utils/urls";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useSearchParams } from "next/navigation";
 import { useFormState } from "react-dom";
@@ -81,7 +81,7 @@ export const ResetForm = () => {
 
       <ForgotPasswordButtonsWrapper>
         <ForgotPasswordButton variant="reset-password" />
-        <Button href={LOGIN_URL} variant="link">
+        <Button href={ROUTE_LOGIN} variant="link">
           Go to login
         </Button>
       </ForgotPasswordButtonsWrapper>

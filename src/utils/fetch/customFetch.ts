@@ -1,5 +1,4 @@
 "use server";
-import { deleteSession } from "@/app/actions/session";
 import { redirect } from "next/navigation";
 import {
   AccessRestrictedOrCacheHasCleaned,
@@ -7,6 +6,7 @@ import {
   vpnInternetError,
 } from "./errorMessages";
 import { getAuthHeaderOnly } from "./fetch";
+import { deleteSession } from "@/lib/session";
 
 export interface FetchState<T> {
   isLoading: boolean;

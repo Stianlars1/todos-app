@@ -1,5 +1,5 @@
 "use client";
-import { FORGOT_URL, LOGIN_URL } from "@/utils/urls";
+import { ROUTE_FORGOT_PASSWORD, ROUTE_LOGIN } from "@/utils/urls";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useSearchParams } from "next/navigation";
 import {
@@ -27,7 +27,7 @@ export const ResetPage = () => {
           title="Success!"
           description="🎉 Your password has been successfully updated. You can now use your new password to log in."
         >
-          <Button href={LOGIN_URL} variant="link">
+          <Button href={ROUTE_LOGIN} variant="link">
             Go to login
           </Button>
         </ForgotPasswordSuccessPage>
@@ -53,7 +53,7 @@ export const ResetPage = () => {
       {!passwordUpdatedWithSuccess && <ResetForm />}
       {passwordUpdatedWithSuccess && (
         <>
-          <Button href={LOGIN_URL} variant="link">
+          <Button href={ROUTE_LOGIN} variant="link">
             Go back to login
           </Button>
         </>
@@ -73,7 +73,7 @@ const InvalidTokenDescription = () => {
             color: "hsl(var(--muted-foreground))",
             whiteSpace: "nowrap",
           }}
-          href={FORGOT_URL}
+          href={ROUTE_FORGOT_PASSWORD}
         >
           try again
         </a>{" "}
@@ -84,7 +84,7 @@ const InvalidTokenDescription = () => {
             color: "hsl(var(--muted-foreground))",
             whiteSpace: "nowrap",
           }}
-          href={LOGIN_URL}
+          href={ROUTE_LOGIN}
         >
           login page
         </a>

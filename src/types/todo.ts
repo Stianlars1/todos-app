@@ -1,4 +1,4 @@
-import { StatusCode, TodoDTO } from "../types";
+import { StatusCode, TodoDTO } from "./types";
 
 export type StatusCodes =
   | "CREATED"

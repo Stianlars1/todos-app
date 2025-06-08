@@ -6,11 +6,11 @@ import { CustomInput } from "@/components/form/components/customInput/customInpu
 import Skeleton from "@/components/ui/skeleton/skeleton";
 import { toast } from "@/components/ui/toast/toast";
 import { Button } from "@stianlarsen/react-ui-kit";
-import "cropperjs/dist/cropper.css";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import Cropper from "react-cropper";
+import { Cropper } from "react-cropper";
 import { useFormState } from "react-dom";
+
 const IMAGE_ACCEPTORS = ".png, .jpg, .jpeg, .gif, .bmp, .webp";
 export const ChangeProfilePicture = ({
   initialPicture,
@@ -84,9 +84,9 @@ export const ChangeProfilePicture = ({
             style={{ height: 250, width: "100%" }}
             initialAspectRatio={1}
             aspectRatio={1}
-            guides={true}
-            cropBoxResizable={true}
-            cropBoxMovable={true}
+            guides
+            cropBoxResizable
+            cropBoxMovable
             viewMode={1}
             onInitialized={(instance) => setCropper(instance)}
             maxLength={250}
@@ -106,7 +106,7 @@ export const ChangeProfilePicture = ({
               src={newSavedImage}
               alt="profile picture"
               sizes="250px"
-              priority={true}
+              priority
               fetchPriority="high"
               loading="eager"
               onLoadingComplete={() => setImageLoaded(true)}
@@ -135,7 +135,7 @@ export const ChangeProfilePicture = ({
               src={initialPicture}
               alt="profile picture"
               sizes="250px"
-              priority={true}
+              priority
               fetchPriority="high"
               loading="eager"
               onLoadingComplete={() => setImageLoaded(true)}

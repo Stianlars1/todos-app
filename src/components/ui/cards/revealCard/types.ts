@@ -1,10 +1,10 @@
 import { StatusCode, TodoPriority } from "@/types/types";
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 export interface RevealCardProps {
   title: string;
   description?: string;
-  content: JSX.Element | null | undefined | string;
+  content: ReactNode | null | undefined | string;
   tags?: string[];
   priority?: TodoPriority;
   todoId: number;

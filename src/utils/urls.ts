@@ -84,10 +84,11 @@ export const API_DASHBOARD_UPDATE_ID_URL =
   "https://app.taskbuddy.dev/api/dashboards/update-active-dashboard";
 
 // Frontend URLS
-export const ROOT_URL = "/";
-export const LOGIN_URL = "/login";
-export const SIGNUP_URL = "/signup";
-export const FORGOT_URL = "/forgot-password";
+export const ROUTE_ROOT = "/";
+export const ROUTE_LOGIN = "/login";
+export const ROUTE_SIGNUP = "/signup";
+export const ROUTE_FORGOT_PASSWORD = "/forgot-password";
+export const ROUTE_RESET_PASSWORD = "/reset-password";
 
 export const useLinkUrl = (href: string) => {
   const locale = useLocale();

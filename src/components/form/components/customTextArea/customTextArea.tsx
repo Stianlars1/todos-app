@@ -1,4 +1,3 @@
-import { GeistSans } from "geist/font/sans";
 import {
   CSSProperties,
   TextareaHTMLAttributes,
@@ -6,6 +5,8 @@ import {
   useRef,
 } from "react";
 import styles from "./css/customTextArea.module.css";
+import { geistSans } from "@/fonts";
+
 interface CustomTextAreaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   width?: "100%" | "fit-content";
@@ -39,7 +40,7 @@ export const CustomTextArea = ({ width, ...props }: CustomTextAreaProps) => {
       ref={textAreaRef}
       style={customStyle}
       {...props}
-      className={`${styles.customTextArea} ${GeistSans.className} ${
+      className={`${styles.customTextArea} ${geistSans.className} ${
         props.className ? props.className : " "
       } `}
     />

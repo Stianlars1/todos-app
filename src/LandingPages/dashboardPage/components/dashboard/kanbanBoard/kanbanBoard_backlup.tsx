@@ -1,6 +1,6 @@
 "use client";
 import { UserSettings } from "@/app/actions/user/types";
-import { ColumnsAndTasks } from "@/types/todo/types";
+import { ColumnsAndTasks } from "@/types/todo";
 import styles from "./taskboard.module.css";
 import responsiveStyles from "./responsiveStyles.module.css";
 import { TYPE_COLUMN, TYPE_TASK } from "./utils";

@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { StatusCodes } from "@/types/todo/types";
+import { StatusCodes } from "@/types/todo";
 import { GetCategorizedTodosTexts } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/utils";
 
 export const useColumnHeadersTexts = (): GetCategorizedTodosTexts => {

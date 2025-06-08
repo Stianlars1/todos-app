@@ -1,5 +1,4 @@
 "use client";
-import { deleteSessionBoolean } from "@/app/actions/session";
 import { toast } from "@/components/ui/toast/toast";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
@@ -8,20 +7,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { DeleteAccountModal } from "./components/deleteAccountModal";
 import styles from "./css/deleteAccount.module.css";
-// "DeleteAccount": {
-//     "header": {
-//       "title": "Slett konto",
-//       "description": "Er du sikker på at du vil slette kontoen din? Denne handlingen kan ikke angres."
-//     },
-//     "form": {
-//       "label": "Skriv inn passordet ditt for å bekrefte",
-//       "placeholder": "Passord",
-//       "submit": "Slett konto",
-//       "loadingSubmit": "Sletter konto...",
-//       "cancel": "Avbryt",
-//       "passwordIncorrect": "Passordet er feil"
-//     }
-//   }
+import { deleteSessionBoolean } from "@/lib/session";
 
 export const DeleteAccount = () => {
   const [okToDelete, setOkToDelete] = useState(false);

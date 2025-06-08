@@ -1,4 +1,4 @@
-import { StatusCodes } from "@/types/todo/types";
+import { StatusCodes } from "@/types/todo";
 
 export interface UpdateTaskSortIndexProps {
   todoId: number;

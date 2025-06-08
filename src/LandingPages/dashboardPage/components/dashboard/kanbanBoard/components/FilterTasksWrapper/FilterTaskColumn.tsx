@@ -2,10 +2,11 @@
 import { updateUserPreferences } from "@/app/actions/preferences/fetch";
 import { UserPreferenceDTO } from "@/app/actions/preferences/types";
 import { toast } from "@/components/ui/toast/toast";
-import { StatusCodes } from "@/types/todo/types";
+import { StatusCodes } from "@/types/todo";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import styles from "./filtering.module.css";
+
 export const FilterTaskColumn = ({
   userPreferences,
 }: {

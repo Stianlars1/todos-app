@@ -1,5 +1,5 @@
-import { GeistSans } from "geist/font/sans";
 import "../globals.css";
+import { geistSans } from "@/fonts";
 
 export default async function RootLayout({
   children,
@@ -8,7 +8,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang={"en"}>
-      <body className={GeistSans.className}>{children}</body>
+      <body className={geistSans.className}>{children}</body>
     </html>
   );
 }

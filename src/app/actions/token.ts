@@ -1,5 +1,4 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { TokenType } from "./types";
 
 export const isValid = async (accessToken: string | undefined) => {
   if (!accessToken) {
@@ -47,11 +46,9 @@ export async function isTokenExpired(token: string): Promise<boolean> {
   }
 }
 
-export const decodeToken = (tokenArgument: string) => {
+export const decodeToken = (accessToken: string) => {
   try {
-    const tokens = JSON.parse(tokenArgument) as TokenType;
-    const token = tokens.accessToken;
-    const decoded = jwt.decode(token, { json: true });
+    const decoded = jwt.decode(accessToken, { json: true });
     return decoded ? decoded : null;
   } catch (error) {
     console.error("Error decoding the token:", error);

@@ -1,25 +1,29 @@
-import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import "../globals.css";
 import { mainPageMeta } from "../metadata";
+import { geistSans } from "@/fonts";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18/routing";
 
 export const metadata: Metadata = mainPageMeta;
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const messages = await getMessages();
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
 
   return (
     <html lang={locale}>
-      <NextIntlClientProvider messages={messages}>
-        <body className={GeistSans.className}>{children}</body>
+      <NextIntlClientProvider>
+        <body className={geistSans.className}>{children}</body>
       </NextIntlClientProvider>
     </html>
   );

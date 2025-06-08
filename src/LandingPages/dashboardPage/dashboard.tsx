@@ -9,7 +9,7 @@ import {
 import { getUserSettings } from "@/app/actions/user/userApi";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { ApiResponse } from "@/types/fetch";
-import { ColumnsAndTasks } from "@/types/todo/types";
+import { ColumnsAndTasks } from "@/types/todo";
 import { SoonDueTodosDTO, TodoDTO } from "@/types/types";
 import { DashboardTabs } from "@/LandingPages/dashboardPage/components/dashboard/dashboardTabs/dashboardTabs";
 import { ProgressSummaryContainer } from "@/LandingPages/dashboardPage/components/overview/progressSummary/progressSummary";

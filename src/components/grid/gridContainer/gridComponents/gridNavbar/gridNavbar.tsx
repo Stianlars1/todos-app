@@ -3,10 +3,11 @@ import { LocaleSwitcher } from "@/components/languageSwitcher/localeSwitcher";
 import { LogoutButton } from "@/components/ui/buttons/logout/logoutButton";
 import { DOMAIN_NAME, SUB_URL } from "@/utils/constants";
 import { getTranslations } from "next-intl/server";
-import Link from "next/link";
+import { Link } from "@/i18/navigation";
 import { TaskBuddyLogo } from "./assets/taskBuddyLogoSvg";
 import "./css/gridNavbar.css";
 import { Search } from "./Search/Search";
+
 export const GridNavbar = async () => {
   const text = await getTranslations("Buttons.logout");
 

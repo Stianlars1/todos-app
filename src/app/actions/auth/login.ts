@@ -1,12 +1,12 @@
 "use server";
 import { LoginFormSchema } from "@/app/lib/auth/definitions";
 
-import { ROOT_URL } from "@/utils/urls";
+import { ROUTE_ROOT } from "@/utils/urls";
 import { redirect } from "next/navigation";
-import { createSession } from "../session";
 import { decodeToken } from "../token";
-import { DecryptedToken, TokenType, authResponseDTO } from "../types";
+import { authResponseDTO, DecryptedToken } from "../types";
 import { loginFetcher } from "./fetches";
+import { createSession } from "@/lib/session";
 
 export const login = async (_currentState: unknown, formData: FormData) => {
   const validatedFields = LoginFormSchema.safeParse({
@@ -40,17 +40,15 @@ export const login = async (_currentState: unknown, formData: FormData) => {
 
   const refreshToken = (loginResponse as authResponseDTO).data.refreshToken;
   const accessToken = (loginResponse as authResponseDTO).data.accessToken;
-  const token: TokenType = { refreshToken, accessToken };
-  const decryptedToken = decodeToken(JSON.stringify(token)) as DecryptedToken;
-  await createSession(token);
+  const decryptedToken = decodeToken(accessToken) as DecryptedToken;
+  await createSession(accessToken, refreshToken);
 
   const userLanguagePreference = decryptedToken.locale;
 
   if (userLanguagePreference) {
-    const locale = userLanguagePreference;
-    const redirectUrl = `${ROOT_URL}${locale}`;
+    const redirectUrl = `${ROUTE_ROOT}${userLanguagePreference}`;
     return redirect(redirectUrl);
   }
 
-  return redirect(ROOT_URL);
+  return redirect(ROUTE_ROOT);
 };

@@ -8,7 +8,7 @@ import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashb
 import { UpdateDashboardModal } from "@/LandingPages/dashboardsPage/components/updateDashboardModal/updateDashboardModal";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18/navigation";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -97,7 +97,7 @@ export const DashboardLink = ({
   };
 
   return (
-    <div
+    <article
       className={styles.dashboardLinkWrapper}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={stopLongPress}
@@ -163,7 +163,7 @@ export const DashboardLink = ({
           />,
           document.body,
         )}
-    </div>
+    </article>
   );
 };
 

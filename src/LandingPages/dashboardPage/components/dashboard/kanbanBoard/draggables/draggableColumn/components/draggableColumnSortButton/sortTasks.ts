@@ -1,4 +1,4 @@
-import { StatusCodes } from "@/types/todo/types";
+import { StatusCodes } from "@/types/todo";
 import { useState } from "react";
 import { UserSettings, UserSettingsSortKey } from "@/app/actions/user/types";
 

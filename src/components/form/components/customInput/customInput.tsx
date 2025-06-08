@@ -1,13 +1,13 @@
-import { GeistSans } from "geist/font/sans";
 import {
   CSSProperties,
+  forwardRef,
   InputHTMLAttributes,
   LabelHTMLAttributes,
   ReactElement,
   ReactNode,
-  forwardRef,
 } from "react";
 import "./css/customInput.css";
+import { geistSans } from "@/fonts";
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: "100%" | "fit-content";
@@ -41,7 +41,7 @@ export const CustomInputLabel = ({
   return (
     <label
       {...props}
-      className={`custom-input-label ${GeistSans.className} ${
+      className={`custom-input-label ${geistSans.className} ${
         props.className ? props.className : " "
       }`}
     >

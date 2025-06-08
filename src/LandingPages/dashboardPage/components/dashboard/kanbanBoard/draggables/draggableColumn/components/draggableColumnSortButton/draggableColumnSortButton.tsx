@@ -3,7 +3,7 @@ import { updateSortSetting } from "@/app/actions/settings/update";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { IconSort } from "@/components/ui/icons/icons";
-import { StatusCodes } from "@/types/todo/types";
+import { StatusCodes } from "@/types/todo";
 import { Button } from "@stianlarsen/react-ui-kit";
 import "./draggableColumnSortButton.module.css";
 import { useSortingStuff } from "./sortTasks";

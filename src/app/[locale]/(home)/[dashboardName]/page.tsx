@@ -2,12 +2,13 @@ import { DashboardSwitch } from "@/LandingPages/dashboardPage/components/dashboa
 import { DashboardPage } from "@/LandingPages/dashboardPage/dashboard";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { Suspense } from "react";
+import { notFound } from "next/navigation";
 
 type Props = {
-  params: { dashboardName: string };
+  params: Promise<{ dashboardName: string }>;
 };
 export default async function Dashboard({ params }: Props) {
-  const dashboardName = decodeURI(params.dashboardName);
+  const dashboardName = decodeURI((await params).dashboardName) ?? notFound();
 
   return (
     <>

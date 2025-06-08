@@ -1,6 +1,6 @@
 "use client";
 import { UserSettings } from "@/app/actions/user/types";
-import { StatusCodes } from "@/types/todo/types";
+import { StatusCodes } from "@/types/todo";
 import { TodoDTO } from "@/types/types";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { TYPE_COLUMN } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/utils";

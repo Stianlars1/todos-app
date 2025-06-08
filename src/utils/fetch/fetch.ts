@@ -1,4 +1,4 @@
-import { getToken } from "@/app/actions/session";
+import { getToken } from "@/lib/session";
 
 export const HTTP_REQUEST = {
   GET: "GET",

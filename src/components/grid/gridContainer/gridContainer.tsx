@@ -4,10 +4,11 @@ import { getUserSettings } from "@/app/actions/user/userApi";
 import { ToastContainer } from "@/components/ui/toast/toast";
 import { DashboardOnlyTypeDTO } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { ShowTaskModalContainer } from "@/LandingPages/dashboardPage/components/showTaskModal/showTaskModalContainer";
-import { GeistSans } from "geist/font/sans";
+
 import "./css/gridContainer.css";
 import { ActiveDashboardName } from "./gridComponents/activeDashboardName/activeDashboardName";
 import { GridProps } from "./types";
+import { geistSans } from "@/fonts";
 
 export const GridContainer = async ({ children }: GridProps) => {
   const userSettings = await getUserSettings();
@@ -19,7 +20,7 @@ export const GridContainer = async ({ children }: GridProps) => {
   return (
     <div
       data-sidebar-open={String(userSettings.data?.sidebarOpen)}
-      className={`grid-container ${GeistSans.className}`}
+      className={`grid-container ${geistSans.className}`}
       id="grid-container"
     >
       <>
