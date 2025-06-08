@@ -5,10 +5,11 @@ import { GridContainer } from "@/components/grid/gridContainer/gridContainer";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { ROUTE_LOGIN } from "@/utils/urls";
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { mainPageMeta } from "../../metadata";
 import { verifySession } from "@/lib/dal";
+import { redirect } from "@/i18/navigation";
+import { getLocale } from "next-intl/server";
 
 export const metadata: Metadata = mainPageMeta;
 
@@ -19,7 +20,8 @@ export default async function Layout({
 }>) {
   const { isAuth } = await verifySession();
   if (!isAuth) {
-    return redirect(ROUTE_LOGIN);
+    console.log("rediredcting");
+    return redirect({ locale: await getLocale(), href: ROUTE_LOGIN });
   }
   return (
     <Suspense fallback={<SuspenseFallback fixed />}>
