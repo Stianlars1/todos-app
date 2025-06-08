@@ -7,13 +7,13 @@ import {
   CustomInputLabelWrapper,
 } from "@/components/form/components/customInput/customInput";
 import { FormContentWrapper } from "@/components/form/formContentWrapper";
-import { useFormState } from "react-dom";
 import { ErrorMessage } from "../errorMessage/errorMessage";
 import { LoginButton } from "./components/LoginButton";
 import { geistSans } from "@/fonts";
+import { useActionState } from "react";
 
 export const LoginForm = () => {
-  const [state, dispatch] = useFormState(login, null);
+  const [state, dispatch] = useActionState(login, null);
   const errorMessage = state?.errorMessage
     ? getErrorMessage(state.errorMessage)
     : null;

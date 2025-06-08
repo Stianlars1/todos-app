@@ -5,7 +5,6 @@ export async function middleware() {
 }
 
 export const config = {
-  // Match only internationalized pathnames
   matcher: [
     "/",
     "/(nb|en)/:path*",

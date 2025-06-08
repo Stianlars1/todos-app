@@ -10,12 +10,12 @@ import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
 import { ROUTE_LOGIN } from "@/utils/urls";
 import { Button } from "@stianlarsen/react-ui-kit";
-import { useFormState } from "react-dom";
 import { ForgotPasswordButtonsWrapper } from "../../forgotPasswordButtonsWrapper/forgotPasswordButtonsWrapper";
 import { ForgotPasswordButton } from "../buttons/resetPasswordButton";
+import { useActionState } from "react";
 
 export const ForgotForm = () => {
-  const [state, dispatch] = useFormState(forgotPassword, null);
+  const [state, dispatch] = useActionState(forgotPassword, null);
 
   return (
     <CustomForm action={dispatch}>

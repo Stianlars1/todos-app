@@ -14,8 +14,8 @@ import { toast } from "@/components/ui/toast/toast";
 import { conflictError } from "@/utils/fetch/errorMessages";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState, useEffect, useState } from "react";
+import { useFormStatus } from "react-dom";
 import { ProfilePicture } from "../../../profilePicture/profilePicture";
 import styles from "./css/profile.module.css";
 
@@ -30,7 +30,7 @@ export const SettingsProfileContent = ({
 }: {
   userDetails: UserDTO;
 }) => {
-  const [state, dispatch] = useFormState(updateUserProfile, undefined);
+  const [state, dispatch] = useActionState(updateUserProfile, undefined);
   const todayPageText = useTranslations("TodayPage");
 
   const SettingsPageTexts = useTranslations("SettingsPage");

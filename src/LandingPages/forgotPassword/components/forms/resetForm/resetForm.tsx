@@ -12,14 +12,14 @@ import { FormError } from "@/components/ui/forms/components/formError/formError"
 import { ROUTE_LOGIN } from "@/utils/urls";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useSearchParams } from "next/navigation";
-import { useFormState } from "react-dom";
 import { ForgotPasswordButtonsWrapper } from "../../forgotPasswordButtonsWrapper/forgotPasswordButtonsWrapper";
 import { ForgotPasswordButton } from "../buttons/resetPasswordButton";
+import { useActionState } from "react";
 
 export const ResetForm = () => {
   const token = useSearchParams().get("token");
   const validToken = token ? true : false;
-  const [state, dispatch] = useFormState(resetPassword, null);
+  const [state, dispatch] = useActionState(resetPassword, null);
 
   if (!validToken) {
     return (

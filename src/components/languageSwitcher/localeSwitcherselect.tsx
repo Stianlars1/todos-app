@@ -24,7 +24,10 @@ export default function LocaleSwitcherSelect({
     setIsPending(true);
     try {
       const nextLocale = event.target.value;
-      await updateUserSettings({ language: nextLocale as LanguageType });
+      const result = await updateUserSettings({
+        language: nextLocale as LanguageType,
+      });
+      console.log("result", result);
 
       router.replace(
         // are used in combination with a given `pathname`. Since the two will

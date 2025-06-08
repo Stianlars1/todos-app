@@ -1,8 +1,8 @@
 import "./css/form.css";
 import { LoginForm } from "./loginForm";
 import { SignUpForm } from "./signupForm";
-import { Link } from "@/i18/navigation";
 import { ROUTE_FORGOT_PASSWORD, ROUTE_LOGIN, ROUTE_SIGNUP } from "@/utils/urls";
+import Link from "next/link";
 
 export const FormCard = ({ variant }: { variant: "signup" | "login" }) => {
   const isLogin = variant === "login";

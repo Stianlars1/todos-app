@@ -1,12 +1,12 @@
-import { SUB_URL } from "@/utils/constants";
-import { Link } from "@/i18/navigation";
 import { TaskBuddyLogo } from "../grid/gridContainer/gridComponents/gridNavbar/assets/taskBuddyLogoSvg";
 import "./navbarLogo.css";
 import { inter } from "@/fonts";
+import { ROUTE_ROOT } from "@/utils/urls";
+import Link from "next/link";
 
 export const TaskBuddyNavbarLogo = () => {
   return (
-    <Link href={SUB_URL} className="navbar-logo-link">
+    <Link href={ROUTE_ROOT} className="navbar-logo-link">
       <TaskBuddyLogo />
       <span className={`${inter.className}`}>TaskBuddy</span>
     </Link>

@@ -25,8 +25,7 @@ import { arraysEqual, formatDate, normalizeDate } from "@/utils/utils";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
-import { useFormState } from "react-dom";
+import { Suspense, useActionState, useEffect, useState } from "react";
 import { UpdateTaskButton } from "./components/updateTaskButton";
 import styles from "./css/taskviewer.module.scss";
 
@@ -66,7 +65,7 @@ export const TaskViewer = ({
 
   console.log("TASKKK", taskDTO);
   // STATES
-  const [formState, dispatch] = useFormState(updateTodoForm, undefined);
+  const [formState, dispatch] = useActionState(updateTodoForm, undefined);
   const [state, setState] = useState<UpdatedTodoDTO>(initialUseState);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [content, setContent] = useState<string>(taskDTO?.content || "");

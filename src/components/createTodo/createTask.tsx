@@ -4,8 +4,7 @@ import { Priority, StatusId } from "@/app/actions/todos/types";
 import { UserSettings } from "@/app/actions/user/types";
 import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
-import { useFormState } from "react-dom";
+import { useActionState, useState } from "react";
 import { CustomForm } from "../form/components/customForm/customForm";
 import {
   CustomInput,
@@ -30,7 +29,7 @@ export const CreateTask = ({
   dashboards: DashboardOnlyType[] | null;
   onClose: () => void;
 }) => {
-  const [state, dispatch] = useFormState(createTodo, undefined);
+  const [state, dispatch] = useActionState(createTodo, undefined);
 
   const [content, setContent] = useState<string>("");
   const [statusId, setStatusId] = useState<StatusId>(StatusId.CREATED);

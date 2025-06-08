@@ -8,13 +8,13 @@ import {
 } from "@/components/form/components/customInput/customInput";
 import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { SignUpButton } from "@/components/ui/forms/components/signupButton";
-import { useFormState } from "react-dom";
+
 import { FormError } from "./components/formError/formError";
 import { ReCaptcha } from "next-recaptcha-v3";
-import { useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 
 export const SignUpForm = () => {
-  const [state, dispatch] = useFormState(signup, null);
+  const [state, dispatch] = useActionState(signup, null);
   const recaptchaRef = useRef<HTMLInputElement>(null);
   const [token, setToken] = useState<string>("");
   const [recaptchaKey, setRecaptchaKey] = useState<string>("");

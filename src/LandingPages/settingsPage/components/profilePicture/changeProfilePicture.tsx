@@ -7,9 +7,8 @@ import Skeleton from "@/components/ui/skeleton/skeleton";
 import { toast } from "@/components/ui/toast/toast";
 import { Button } from "@stianlarsen/react-ui-kit";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { Cropper } from "react-cropper";
-import { useFormState } from "react-dom";
 
 const IMAGE_ACCEPTORS = ".png, .jpg, .jpeg, .gif, .bmp, .webp";
 export const ChangeProfilePicture = ({
@@ -20,7 +19,7 @@ export const ChangeProfilePicture = ({
   onSuccess: () => void;
 }) => {
   // The form action handler
-  const [state, dispatch] = useFormState(uploadProfilePicture, undefined);
+  const [state, dispatch] = useActionState(uploadProfilePicture, undefined);
 
   // The initial profile picture the user already have
   const [imageSaved, setImageSaved] = useState(false);

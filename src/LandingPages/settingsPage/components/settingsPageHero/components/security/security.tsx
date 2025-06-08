@@ -13,8 +13,14 @@ import { toast } from "@/components/ui/toast/toast";
 import { FetchStateForm } from "@/utils/fetch/customFetch";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
-import { ReactElement, ReactNode, useEffect, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import {
+  ReactElement,
+  ReactNode,
+  useActionState,
+  useEffect,
+  useState,
+} from "react";
+import { useFormStatus } from "react-dom";
 import styles from "./css/security.module.css";
 
 export const SettingsSecurityContent = () => {
@@ -52,7 +58,7 @@ const SecuritySection = ({
 };
 
 const SecurityChangePassword = () => {
-  const [state, dispatch] = useFormState(updateUserPassword, undefined);
+  const [state, dispatch] = useActionState(updateUserPassword, undefined);
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const securityTexts = useTranslations("SettingsPage.security");
   const generalText = useTranslations("general");
