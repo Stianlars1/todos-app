@@ -1,13 +1,8 @@
-import createMiddleware from "next-intl/middleware";
+import { NextResponse } from "next/server";
 
-export default createMiddleware({
-  // A list of all locales that are supported
-  locales: ["en", "nb"],
-
-  // Used when no locale matches
-  defaultLocale: "en",
-  localePrefix: "always",
-});
+export async function middleware() {
+  return NextResponse.next();
+}
 
 export const config = {
   // Match only internationalized pathnames
@@ -16,6 +11,5 @@ export const config = {
     "/(nb|en)/:path*",
     "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
     "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
-    "/([\\w-]+)?/users/(.+)",
   ],
 };

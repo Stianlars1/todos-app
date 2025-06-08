@@ -8,8 +8,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import { mainPageMeta } from "../../metadata";
 import { verifySession } from "@/lib/dal";
-import { redirect } from "@/i18/navigation";
-import { getLocale } from "next-intl/server";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = mainPageMeta;
 
@@ -21,8 +20,9 @@ export default async function Layout({
   const { isAuth } = await verifySession();
   if (!isAuth) {
     console.log("rediredcting");
-    return redirect({ locale: await getLocale(), href: ROUTE_LOGIN });
+    return redirect(ROUTE_LOGIN);
   }
+
   return (
     <Suspense fallback={<SuspenseFallback fixed />}>
       <GridContainer>

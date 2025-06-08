@@ -17,6 +17,11 @@ export default async function RootLayout({
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
+    console.error(
+      `Locale "${locale}" is not supported. Supported locales are: ${routing.locales.join(
+        ", ",
+      )}`,
+    );
     notFound();
   }
 
