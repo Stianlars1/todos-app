@@ -5,14 +5,15 @@ import { LoginHalfPage } from "./components/loginHalfPage/loginHalfPage";
 import { SignUpSuccess } from "./components/signUpSuccess/signUpSuccess";
 import { SignupHalfPage } from "./components/signupHalfpage/signupHalfPage";
 import "./css/loginOrSignup.css";
+
 export const LoginOrSignupPage = ({
   variant,
 }: {
-  variant: "signup" | "login";
+  variant: "signup" | "signIn";
 }) => {
   const searchParams = useSearchParams();
   const signUpSuccess = searchParams.get("signup") === "success";
-  const isLoginPage = variant === "login";
+  const isLoginPage = variant === "signIn";
 
   return (
     <div className="grid-container-login__main login-or-signup">

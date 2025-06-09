@@ -76,7 +76,7 @@
     },
 
     "login": {
-      "title": "Login",
+      "title": "Sign in",
       "loadingTitle": "Logging in..."
     }
   },

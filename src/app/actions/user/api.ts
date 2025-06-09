@@ -22,7 +22,7 @@ import {
   API_USER_URL,
 } from "@/utils/urls";
 import { UserSettings } from "./types";
-import { getUserId } from "./userUtils";
+import { getUserId } from "./getUserId";
 
 export const updateUserSettings = async (
   settings: Partial<UserSettings>,

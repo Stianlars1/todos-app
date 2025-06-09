@@ -3,9 +3,9 @@ import { LogoutButtonSidebar } from "@/components/ui/buttons/logout/logoutButton
 import { sidebarContentListType } from "@/content/sidebar/sidebarContent";
 import { useLinkUrl } from "@/utils/urls";
 import { handleCloseNav } from "@/utils/utils";
-import { Link } from "@/i18/navigation";
 import { usePathname } from "next/navigation";
 import { SidebarDueCount } from "./sidebarDueCount/sidebarDueCount";
+import Link from "next/link";
 
 export const SidebarContentListItem = ({
   item,

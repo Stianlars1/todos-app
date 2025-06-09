@@ -3,6 +3,10 @@ import { getLocale } from "next-intl/server";
 
 // Auth
 export const API_AUTH_URL = "https://app.taskbuddy.dev/api/auth";
+export const API_AUTH_SIGN_IN_URL =
+  "https://app.taskbuddy.dev/api/auth/sign-in";
+export const API_AUTH_SIGN_UP_URL =
+  "https://app.taskbuddy.dev/api/auth/sign-up";
 export const API_REFRESH_TOKEN_URL =
   "https://app.taskbuddy.dev/api/auth/refresh";
 
@@ -85,8 +89,9 @@ export const API_DASHBOARD_UPDATE_ID_URL =
 
 // Frontend URLS
 export const ROUTE_ROOT = "/";
-export const ROUTE_LOGIN = "/login";
-export const ROUTE_SIGNUP = "/signup";
+export const ROUTE_SIGN_IN = "/sign-in";
+export const ROUTE_LOG_OUT = "/lgout";
+export const ROUTE_SIGN_UP = "/sign-up";
 export const ROUTE_FORGOT_PASSWORD = "/forgot-password";
 export const ROUTE_RESET_PASSWORD = "/reset-password";
 

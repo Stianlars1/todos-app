@@ -5,7 +5,7 @@ import { ApiResponse } from "@/types/fetch";
 import { customFetch } from "@/utils/fetch/customFetch";
 import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import { API_USER_PREFERENCES } from "@/utils/urls";
-import { getUserId } from "../user/userUtils";
+import { getUserId } from "../user/getUserId";
 import { GetUserPreferencesDTO, UserPreferenceUpdateDTO } from "./types";
 
 export const getUserPreferences = async () => {

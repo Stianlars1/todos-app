@@ -7,6 +7,7 @@ import {
 } from "./errorMessages";
 import { getAuthHeaderOnly } from "./fetch";
 import { deleteSession } from "@/lib/session";
+import { ROUTE_SIGN_IN } from "@/utils/urls";
 
 export interface FetchState<T> {
   isLoading: boolean;
@@ -111,7 +112,7 @@ export async function customFetch<T>({
 
     if (message === AccessRestrictedOrCacheHasCleaned) {
       await deleteSession();
-      return redirect("/login");
+      return redirect(ROUTE_SIGN_IN);
     }
     return {
       ...state,

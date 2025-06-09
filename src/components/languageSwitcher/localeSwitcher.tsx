@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
 import LocaleSwitcherSelect from "./localeSwitcherselect";
-import { routing } from "@/i18/routing";
+import { routing } from "@/i18n/routing";
 
 export const LocaleSwitcher = ({ className = "" }: { className?: string }) => {
   const text = useTranslations("Navbar.LocaleSwitcher");

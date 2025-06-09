@@ -1,13 +1,13 @@
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { customFetch } from "@/utils/fetch/customFetch";
-import { HTTP_REQUEST, getAuthHeaderOnly } from "@/utils/fetch/fetch";
+import { getAuthHeaderOnly, HTTP_REQUEST } from "@/utils/fetch/fetch";
 import {
   API_PROFILE_PICTURES_URL,
   API_USER_SETTINGS_URL,
   API_USER_URL,
 } from "@/utils/urls";
 import { UserDTO, UserSettings } from "./types";
-import { getUserId } from "./userUtils";
+import { getUserId } from "./getUserId";
 
 export const getUserDetails = async () => {
   const userDetails = await customFetch<UserDTO>({

@@ -8,7 +8,7 @@ import {
 } from "@/components/form/components/customInput/customInput";
 import { FormContentWrapper } from "@/components/form/formContentWrapper";
 import { ErrorMessage } from "@/components/ui/errorMessage/errorMessage";
-import { ROUTE_LOGIN } from "@/utils/urls";
+import { ROUTE_SIGN_IN } from "@/utils/urls";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { ForgotPasswordButtonsWrapper } from "../../forgotPasswordButtonsWrapper/forgotPasswordButtonsWrapper";
 import { ForgotPasswordButton } from "../buttons/resetPasswordButton";
@@ -42,7 +42,7 @@ export const ForgotForm = () => {
 
       <ForgotPasswordButtonsWrapper>
         <ForgotPasswordButton variant="forgot-password" />
-        <Button href={ROUTE_LOGIN} variant="link">
+        <Button href={ROUTE_SIGN_IN} variant="link">
           Go to login
         </Button>
       </ForgotPasswordButtonsWrapper>

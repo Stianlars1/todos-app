@@ -1,7 +1,7 @@
 import { useLocale, useTranslations } from "next-intl";
-import { Link } from "@/i18/navigation";
 import { CSSProperties } from "react";
 import styles from "../css/progressSummary.module.css";
+import Link from "next/link";
 
 export const ProgressSummaryItem = ({
   due,

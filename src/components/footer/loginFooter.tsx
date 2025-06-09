@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Link } from "@/i18/navigation";
+import Link from "next/link";
 import { FaEnvelope, FaGithub, FaInstagram } from "react-icons/fa";
 import "./css/footer.css";
 

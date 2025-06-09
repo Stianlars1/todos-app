@@ -54,7 +54,7 @@ export const resetPassword = async (
 // import { redirect } from "next/navigation";
 // import { signUpFetcher } from "./fetches";
 
-// export const signup = async (_currentState: unknown, formData: FormData) => {
+// export const sign-up = async (_currentState: unknown, formData: FormData) => {
 //   // Validate form fields
 //   const validatedFields = SignupFormSchema.safeParse({
 //     firstName: formData.get("firstname"),
@@ -88,10 +88,10 @@ export const resetPassword = async (
 //       };
 //     }
 
-//     redirect("/login?signup=success");
+//     redirect("/signIn?sign-up=success");
 //   } catch (error) {
 //     if (error instanceof Error && error.message === "NEXT_REDIRECT") {
-//       redirect("/login?signup=success");
+//       redirect("/signIn?sign-up=success");
 //     }
 
 //     if (error instanceof TypeError) {

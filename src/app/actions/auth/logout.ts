@@ -1,9 +1,9 @@
 "use server";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { deleteSession } from "@/lib/session";
-import { ROUTE_LOGIN } from "@/utils/urls";
+import { ROUTE_LOG_OUT } from "@/utils/urls";
 
 export const logout = async () => {
-  await deleteSession();
-  redirect(ROUTE_LOGIN);
+  await deleteSession("logout.ts");
+  permanentRedirect(ROUTE_LOG_OUT);
 };

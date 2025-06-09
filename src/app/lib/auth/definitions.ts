@@ -16,7 +16,6 @@ export const SignupFormSchema = z.object({
     .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
     .regex(/[0-9]/, { message: "Contain at least one number." })
     .trim(),
-  additional: z.string().optional(),
 });
 
 export const LoginFormSchema = z.object({

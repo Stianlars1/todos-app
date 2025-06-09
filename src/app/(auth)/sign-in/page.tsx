@@ -18,7 +18,7 @@ export default async function Login() {
   return (
     <>
       <GridContainerLogin>
-        <LoginOrSignupPage variant="login" />
+        <LoginOrSignupPage variant="signIn" />
       </GridContainerLogin>
     </>
   );

@@ -1,5 +1,5 @@
 import styles from "./styles/notFound.module.scss";
-import { Link } from "@/i18/navigation";
+import Link from "next/link";
 import { ROUTE_ROOT } from "@/utils/urls";
 
 export default async function NotFound() {

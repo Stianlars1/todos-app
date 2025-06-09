@@ -1,11 +1,15 @@
 import "./css/form.css";
 import { LoginForm } from "./loginForm";
 import { SignUpForm } from "./signupForm";
-import { ROUTE_FORGOT_PASSWORD, ROUTE_LOGIN, ROUTE_SIGNUP } from "@/utils/urls";
+import {
+  ROUTE_FORGOT_PASSWORD,
+  ROUTE_SIGN_IN,
+  ROUTE_SIGN_UP,
+} from "@/utils/urls";
 import Link from "next/link";
 
-export const FormCard = ({ variant }: { variant: "signup" | "login" }) => {
-  const isLogin = variant === "login";
+export const FormCard = ({ variant }: { variant: "signup" | "signIn" }) => {
+  const isLogin = variant === "signIn";
 
   return (
     <div className="form-card">
@@ -17,7 +21,7 @@ export const FormCard = ({ variant }: { variant: "signup" | "login" }) => {
         <>
           <p className="switchPageStatement">
             Not a member yet?{" "}
-            <Link href={ROUTE_SIGNUP} className="link">
+            <Link href={ROUTE_SIGN_UP} className="link">
               Sign up here
             </Link>
             .
@@ -32,7 +36,7 @@ export const FormCard = ({ variant }: { variant: "signup" | "login" }) => {
         <>
           <p className="switchPageStatement">
             Already have an account?{" "}
-            <Link href={ROUTE_LOGIN} className="link">
+            <Link href={ROUTE_SIGN_IN} className="link">
               Log in here
             </Link>
             .

@@ -20,7 +20,7 @@ import {
   API_USER_SETTINGS_URL,
 } from "@/utils/urls";
 import { UserSettings } from "../user/types";
-import { getUserId } from "../user/userUtils";
+import { getUserId } from "../user/getUserId";
 
 export const getDashboards = async () => {
   return await customFetch<DashboardTypeDTO[]>({

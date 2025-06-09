@@ -4,7 +4,7 @@ import { customFetch } from "@/utils/fetch/customFetch";
 import { HTTP_REQUEST } from "@/utils/fetch/fetch";
 import { API_USER_SETTINGS_URL } from "@/utils/urls";
 import { UserSettingsSortKey } from "../user/types";
-import { getUserId } from "../user/userUtils";
+import { getUserId } from "../user/getUserId";
 
 export const updateSortSetting = async ({
   settingKey,

@@ -8,13 +8,13 @@ import { DashboardOnlyType } from "@/LandingPages/dashboardPage/components/dashb
 import { UpdateDashboardModal } from "@/LandingPages/dashboardsPage/components/updateDashboardModal/updateDashboardModal";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18/navigation";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { LoadingTasks } from "./components/loadingTasks/loadingTasks";
 import styles from "./css/dashboardLink.module.css";
+import Link from "next/link";
 
 export const DashboardLink = ({
   dashboard,

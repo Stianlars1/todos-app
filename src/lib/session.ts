@@ -6,17 +6,22 @@ import {
   COOKIE_OPTIONS,
   COOKIE_REFRESH_TOKEN,
   COOKIE_SESSION_TOKEN,
+  COOKIE_USER_TOKEN,
   REFRESH_TOKEN_COOKIE_MAX_AGE,
+  USER_TOKEN_COOKIE_MAX_AGE,
 } from "@/utils/cookiesConstants";
-import { decodeToken } from "@/app/actions/token";
-import { DecryptedToken, TokenType } from "@/app/actions/types";
+import { AuthUserDTO } from "@/types/auth";
 
 //
 /* === SESSION ACTIONS ===  */
 
 // Crea
 
-export async function createSession(accessToken: string, refreshToken: string) {
+export async function createSession(
+  accessToken: string,
+  refreshToken: string,
+  user: AuthUserDTO,
+) {
   const cookieStore = await cookies();
 
   cookieStore.set(COOKIE_ACCESS_TOKEN, accessToken, COOKIE_OPTIONS);
@@ -33,23 +38,11 @@ export async function createSession(accessToken: string, refreshToken: string) {
       maxAge: REFRESH_TOKEN_COOKIE_MAX_AGE,
     },
   );
-}
 
-// decrypt session ( Get the decoded accessToken's information ie: userId, firstName, exp, etc...)
-export async function decryptSession(
-  accessToken: string | undefined = "",
-): Promise<DecryptedToken | null> {
-  try {
-    const data = decodeToken(accessToken) as DecryptedToken;
-    if (data && "userId" in data) {
-      return data;
-    }
-    console.warn("Invalid token structure, 'userId' not found.");
-    return null;
-  } catch (error) {
-    console.error("Error decrypting token: ", error);
-    return null;
-  }
+  cookieStore.set(COOKIE_USER_TOKEN, JSON.stringify(user), {
+    ...COOKIE_OPTIONS,
+    maxAge: USER_TOKEN_COOKIE_MAX_AGE,
+  });
 }
 
 export async function deleteSession(calledFrom?: string) {
@@ -72,28 +65,4 @@ export const deleteSessionBoolean = async () => {
   cookieStore.set("session", "", { path: "/", maxAge: 0 });
   cookieStore.delete("session");
   return true;
-};
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* === Token ACTIONS ===  */
-export const getToken = async () => {
-  const tokens = (await cookies()).get("session")?.value;
-
-  if (!tokens) {
-    console.warn("No tokens found in cookies");
-    return undefined;
-  }
-
-  const accessToken = (JSON.parse(tokens) as TokenType).accessToken;
-
-  return { accessToken };
 };

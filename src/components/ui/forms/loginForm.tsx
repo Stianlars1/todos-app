@@ -1,5 +1,5 @@
 "use client";
-import { login } from "@/app/actions/auth/login";
+import { signIn } from "@/app/actions/auth/signIn";
 import { CustomForm } from "@/components/form/components/customForm/customForm";
 import {
   CustomInput,
@@ -13,7 +13,7 @@ import { geistSans } from "@/fonts";
 import { useActionState } from "react";
 
 export const LoginForm = () => {
-  const [state, dispatch] = useActionState(login, null);
+  const [state, dispatch] = useActionState(signIn, null);
   const errorMessage = state?.errorMessage
     ? getErrorMessage(state.errorMessage)
     : null;

@@ -4,8 +4,8 @@ import { Metadata } from "next";
 // description:
 //   "Generer og lag en gratis strekkode for din bedrift eller produkt.",
 export const loginPageMeta: Metadata = {
-  title: "TaskBuddy | login",
-  description: "This is the login page for taskbuddy.dev",
+  title: "TaskBuddy | signIn",
+  description: "This is the signIn page for taskbuddy.dev",
   keywords: [
     "todo",
     "create todo",

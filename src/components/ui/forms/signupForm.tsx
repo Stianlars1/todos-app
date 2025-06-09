@@ -1,5 +1,5 @@
 "use client";
-import { signup } from "@/app/actions/auth/signup";
+import { signUp } from "@/app/actions/auth/signUp";
 import { CustomForm } from "@/components/form/components/customForm/customForm";
 import {
   CustomInput,
@@ -14,7 +14,7 @@ import { ReCaptcha } from "next-recaptcha-v3";
 import { useActionState, useEffect, useRef, useState } from "react";
 
 export const SignUpForm = () => {
-  const [state, dispatch] = useActionState(signup, null);
+  const [state, dispatch] = useActionState(signUp, null);
   const recaptchaRef = useRef<HTMLInputElement>(null);
   const [token, setToken] = useState<string>("");
   const [recaptchaKey, setRecaptchaKey] = useState<string>("");

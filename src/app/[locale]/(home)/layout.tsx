@@ -3,7 +3,7 @@ import { GridNavbar } from "@/components/grid/gridContainer/gridComponents/gridN
 import { GridSidebar } from "@/components/grid/gridContainer/gridComponents/gridSidebar/gridSidebar";
 import { GridContainer } from "@/components/grid/gridContainer/gridContainer";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
-import { ROUTE_LOGIN } from "@/utils/urls";
+import { ROUTE_SIGN_IN } from "@/utils/urls";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import { mainPageMeta } from "../../metadata";
@@ -20,7 +20,7 @@ export default async function Layout({
   const { isAuth } = await verifySession();
   if (!isAuth) {
     console.log("rediredcting");
-    return redirect(ROUTE_LOGIN);
+    return redirect(ROUTE_SIGN_IN);
   }
 
   return (
