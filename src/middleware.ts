@@ -47,7 +47,7 @@ export async function middleware(req: NextRequest) {
       const user = await getBasicUser();
 
       const url = createUrl(`/${user && user.locale ? user.locale : "en"}`);
-      return NextResponse.redirect(new URL(createUrl(url)));
+      return NextResponse.redirect(new URL(createUrl(url, true)));
     }
     // Only do background refresh for authenticated users on public paths
     if (refreshToken) {
