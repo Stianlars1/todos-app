@@ -26,6 +26,10 @@ const REFRESH_THROTTLE_DURATION = 5000;
 // Minimum time before token expiration to trigger a refresh (in seconds)
 const REFRESH_BEFORE_EXPIRY = 60;
 
+export function isRootPath(pathname: string): boolean {
+  return pathname.toLowerCase() == ROUTE_ROOT.toLowerCase();
+}
+
 export function isPublicPath(pathname: string): boolean {
   // First check if it's a protected path
   if (
@@ -72,7 +76,6 @@ export async function addReturnToCookieToResponse(
   req: NextRequest,
   res: NextResponse,
 ) {
-  console.log("addReturnToCookieToResponse", req.nextUrl.pathname);
   const referer = req.headers.get("referer");
   //console.log("referer", req);
   if (referer) {

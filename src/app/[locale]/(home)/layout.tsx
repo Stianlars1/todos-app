@@ -19,7 +19,6 @@ export default async function Layout({
 }>) {
   const { isAuth } = await verifySession();
   if (!isAuth) {
-    console.log("rediredcting");
     return redirect(ROUTE_SIGN_IN);
   }
 

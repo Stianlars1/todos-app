@@ -8,6 +8,7 @@ export interface AuthUserDTO {
 }
 
 export type AuthUser = AuthUserDTO & {};
+export type UserDTO = AuthUserDTO & {};
 
 export interface AuthResponse {
   accessToken: string;

@@ -65,7 +65,6 @@ export const ColumnsAndTasksProvider = ({
       const permanentlyDelete = await deleteTask(todoId);
 
       if (permanentlyDelete.isError) {
-        console.log("Error:", permanentlyDelete.error);
         toast.error("Error deleting task", "bottomRight");
       }
       if (permanentlyDelete.isSuccess) {

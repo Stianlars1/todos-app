@@ -1,7 +1,7 @@
 import { getRequestConfig } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "./routing";
-import { verifySession } from "@/lib/dal";
+import { getBasicUser } from "@/app/actions/user/getBasicUser";
 
 // export default getRequestConfig(async ({ requestLocale }) => {
 //   // Typically corresponds to the `[locale]` segment
@@ -11,14 +11,6 @@ import { verifySession } from "@/lib/dal";
 //     : routing.defaultLocale;
 //
 //   const chosenMessages = await import(`../../messages/${locale}.json`);
-//   console.log("requested", requested);
-//   console.log("locale", locale);
-//   console.log(
-//     "hasLocale(routing.locales, requested)",
-//     hasLocale(routing.locales, requested),
-//   );
-//   console.log("chosenMessages", chosenMessages);
-//   console.log("locale", locale);
 //   return {
 //     locale,
 //     messages: chosenMessages,
@@ -31,9 +23,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const locale = hasLocale(routing.locales, requested)
     ? requested
     : routing.defaultLocale;
-  const { user } = await verifySession();
+  const user = await getBasicUser();
 
-  const locale2 = user?.locale || locale;
+  const locale2 = user && user.locale ? user.locale : locale;
   const messagesByLocale = (await import(`../../messages/${locale2}.json`))
     .default;
   return {

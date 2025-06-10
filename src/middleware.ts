@@ -8,6 +8,7 @@ import {
   handleTokenRefresh,
   isProtectedPath,
   isPublicPath,
+  isRootPath,
   isTokenExpired,
   redirectToSignIn,
 } from "@/middlewareUtils";
@@ -15,13 +16,14 @@ import {
   COOKIE_ACCESS_TOKEN,
   COOKIE_REFRESH_TOKEN,
 } from "@/utils/cookiesConstants";
+import { createUrl } from "@/utils/createUrl";
+import { getBasicUser } from "@/app/actions/user/getBasicUser";
 
 export default createMiddleware(routing);
 
 // --- Middleware Main Function ---
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  console.log("Middleware pathname:", pathname);
 
   // Skip middleware for static files or assets
   if (pathname.startsWith("/_next") || pathname.includes(".")) {
@@ -40,19 +42,23 @@ export async function middleware(req: NextRequest) {
 
   // Handle public paths
   if (isPublicPath(pathname)) {
-    console.log("Public path detected:", pathname);
+    const isPathRoot = isRootPath(pathname);
+    if (isPathRoot) {
+      const user = await getBasicUser();
+
+      const url = createUrl(`/${user && user.locale ? user.locale : "en"}`);
+      return NextResponse.redirect(new URL(createUrl(url)));
+    }
     // Only do background refresh for authenticated users on public paths
     if (refreshToken) {
       return handleTokenRefresh(req, res, false);
     }
 
-    console.log("No refresh needed for public path:", pathname);
     return res;
   }
 
   // Handle protected paths
   if (isProtectedPath(pathname)) {
-    console.log("Protected path detected:", pathname);
     // If no tokens exist at all, force a sign-in
     if (!accessToken && !refreshToken) {
       console.log("No access or refresh token, redirecting to sign-in");
@@ -61,7 +67,6 @@ export async function middleware(req: NextRequest) {
 
     // Check if token is expired or soon to expire
     if (!accessToken || isTokenExpired(accessToken)) {
-      console.log("Access token is expired or missing, checking refresh token");
       if (!refreshToken) {
         return redirectToSignIn(req);
       }

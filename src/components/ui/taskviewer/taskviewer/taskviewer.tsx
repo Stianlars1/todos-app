@@ -63,7 +63,6 @@ export const TaskViewer = ({
   const { task: taskDTO } = useFetchTask(taskId);
   const pathName = usePathname();
 
-  console.log("TASKKK", taskDTO);
   // STATES
   const [formState, dispatch] = useActionState(updateTodoForm, undefined);
   const [state, setState] = useState<UpdatedTodoDTO>(initialUseState);

@@ -108,6 +108,7 @@ export const DashboardLink = ({
         href={url}
         className={styles.dashboardLink}
         onClick={(event) => handleOnClick(event)}
+        prefetch
       >
         <>
           <header className={styles.header}>

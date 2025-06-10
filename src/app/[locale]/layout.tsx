@@ -15,8 +15,6 @@ export default async function RootLayout({
 }) {
   const locale = (await params).locale;
 
-  console.log("locale", locale);
-
   return (
     <html lang={locale}>
       <NextIntlClientProvider locale={locale}>

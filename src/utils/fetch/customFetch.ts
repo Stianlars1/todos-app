@@ -36,7 +36,6 @@ export async function customFetch<T>({
   revalidate?: number;
   noAuthHeader?: boolean;
 }): Promise<FetchState<T>> {
-  console.log("Running customFetch with URL:", url);
   const authHeader = await getAuthHeaderOnly();
   const headersOptions = noAuthHeader
     ? headers

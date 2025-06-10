@@ -89,12 +89,10 @@ export const KanbanBoard = ({
     setIsMounted(true);
 
     if (LOCAL_STORAGE_COLUMN_IN_VIEW_ID in localStorage) {
-      console.log("Column in view found in local storage");
       const columnInViewId = localStorage.getItem(
         LOCAL_STORAGE_COLUMN_IN_VIEW_ID,
       );
       if (columnInViewId) {
-        console.log("Scrolling to column in view", columnInViewId);
         document.getElementById(columnInViewId)?.scrollIntoView({
           behavior: "smooth",
           block: "center",
@@ -127,17 +125,14 @@ export const KanbanBoard = ({
 
   const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;
-    console.log("\n\n== handleDragStart ==", event);
     const isColumnDrag = active.data.current?.type === TYPE_COLUMN;
     const isTaskDrag = active.data.current?.type === TYPE_TASK;
 
     if (isColumnDrag) {
-      console.log("Column drag", active.data.current?.column);
       setActiveColumn(active.data.current?.column);
     }
 
     if (isTaskDrag) {
-      console.log("Task drag", active.data.current?.task);
       const task = active.data.current?.task as TodoDTO;
       const originalIndex = tasks.findIndex((t) => t.todoId === task.todoId);
       const originalPosition =

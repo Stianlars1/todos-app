@@ -1,13 +1,24 @@
 // api/user
-export interface UserDTO {
+
+export interface UserBasic {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  updatedAt: Date;
+  profilePictureUrl?: string | null;
+  locale?: string | null;
+}
+export interface UserDetailsDTO {
   userId: number;
   email: string;
   firstName: string;
   lastName: string;
-  createdAt: Date;
   updatedAt: Date;
-  profilePicture?: string;
+  profilePictureUrl?: string;
   settings?: UserSettings;
+  createdAt: Date;
+  locale?: string;
 }
 
 export type LanguageType = "en" | "nb";

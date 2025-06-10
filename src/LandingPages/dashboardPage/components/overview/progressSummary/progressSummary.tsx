@@ -147,9 +147,6 @@ const UpcomingDeadlines = ({
   const isEmpty =
     !upcomingDeadlines || Object.keys(upcomingDeadlines).length === 0;
 
-  console.log("upcomingDEADLINES", upcomingDeadlines);
-  console.log("isEmpty", isEmpty);
-
   if (isEmpty) {
     return null;
   }

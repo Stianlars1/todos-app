@@ -1,6 +1,6 @@
 "use client";
 import { updateUserProfile } from "@/app/actions/user/api";
-import { UserDTO } from "@/app/actions/user/types";
+import { UserDetailsDTO } from "@/app/actions/user/types";
 import { cacheInvalidate } from "@/app/lib/cache/cache";
 import { CacheKeys } from "@/app/lib/cache/keys";
 import { CustomForm } from "@/components/form/components/customForm/customForm";
@@ -28,7 +28,7 @@ export interface UpdatedUserDetails {
 export const SettingsProfileContent = ({
   userDetails,
 }: {
-  userDetails: UserDTO;
+  userDetails: UserDetailsDTO;
 }) => {
   const [state, dispatch] = useActionState(updateUserProfile, undefined);
   const todayPageText = useTranslations("TodayPage");
@@ -92,7 +92,7 @@ export const SettingsProfileContent = ({
   return (
     <>
       <div className={styles.profile}>
-        <ProfilePicture profilePicture={userDetails.profilePicture || ""} />
+        <ProfilePicture profilePicture={userDetails.profilePictureUrl || ""} />
 
         <div className={styles.details}>
           <CustomForm action={dispatch} className={styles.customFormOverride}>
@@ -201,7 +201,7 @@ const SaveButton = () => {
 };
 
 const mapUserDTOtoUpdatedUserDetails = (
-  userDetails: UserDTO,
+  userDetails: UserDetailsDTO,
 ): UpdatedUserDetails => {
   return {
     firstName: userDetails.firstName,

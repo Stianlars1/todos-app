@@ -12,6 +12,7 @@ export const API_REFRESH_TOKEN_URL =
 
 // User
 export const API_USER_URL = "https://app.taskbuddy.dev/api/user";
+export const API_USER_BASIC_URL = "https://app.taskbuddy.dev/api/user/basic";
 export const API_DELETE_USER_URL = "https://app.taskbuddy.dev/api/user";
 export const API_USER_SETTINGS_URL =
   "https://app.taskbuddy.dev/api/user/settings"; // add /:userId to get a specific user's profile picture (PATCH)

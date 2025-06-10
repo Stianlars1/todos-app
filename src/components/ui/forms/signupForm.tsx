@@ -30,16 +30,12 @@ export const SignUpForm = () => {
   };
   return (
     <>
-      {state?.error?.additional && (
+      {state && state.errors && (
         <FormError
           style={{ listStyleType: "none", margin: "0" }}
-          errorArray={[state.error.additional]}
-        />
-      )}
-      {state?.errorMessage && (
-        <FormError
-          style={{ listStyleType: "none", margin: "0" }}
-          errorArray={[state.errorMessage]}
+          errorArray={Object.entries(state.errors).map(([, value]) =>
+            value.join(", "),
+          )}
         />
       )}
       <CustomForm action={dispatch}>
@@ -114,11 +110,7 @@ export const SignUpForm = () => {
           action="signup_page"
         />
 
-        <SignUpButton
-          disabled={
-            state?.errorMessage?.toLowerCase().includes("recaptcha") ?? false
-          }
-        />
+        <SignUpButton disabled={!!state?.errorMessage || !!state?.errors} />
       </CustomForm>
     </>
   );

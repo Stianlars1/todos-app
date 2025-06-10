@@ -1,24 +1,10 @@
-/* --background: 20 14.3% 4.1%; dark */
 html body {
   --nav-height: 50px;
   --sidebar-width: 15rem;
 
-  /* --background: #020817;
-  --foreground: #f8fafc;
-  --muted2: #1e293b;
-  --muted2-foreground: #94a3b8;
-  --border: #1e293b; */
 }
 
 html:root {
-  --testMainBG: #f3f4f6;
-  --test: 0 0% 83%;
-  --test2: #2563eb;
-  --blue: hsl(221.2 83.2% 53.3%);
-  --kant: lch(91.71% 4.73 258.16);
-
-  --testMainMutedLightMode: 222 56% 88%;
-  /* == layout sizes == */
   /* --nav-height: 65px; */
 
   /* --nav-height: 36px; */
@@ -50,39 +36,41 @@ html:root {
   /* == Theme == */
   --activeText: 124, 84%, 25%;
 
-  /* --background: 0 0% 100%; */
-  --background: 220 14% 96%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --muted: 222 56% 88%;
-  /* --muted: 210 40% 96.1%; */
-  --muted-foreground: 215.4 16.3% 46.9%;
 
   --muted2: 210 40% 96.1%;
   --muted2-foreground: 215.4 16.3% 46.9%;
 
-  --accent: 215, 28%, 17%;
-  --accent-foreground: 240 6% 94%;
   /* --accent: 210 40% 96.1%;
   --accent-foreground: 222.2 47.4% 11.2%; */
-  --destructive: 0 84.2% 60.2%;
   --destructive-text: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
   --warning: 47.9 95.8% 53.1%;
   --warning-foreground: 26 83.3% 14.1%;
   --info: 221.2 83.2% 53.3%;
   --info-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 0 0% 83%;
   --input-hover: 0 0% 40%;
-  --ring: 221.2 83.2% 53.3%;
+
+
+
+  --background: 220 14.3% 95.9%;
+  --foreground: 216 22.4% 13.1%;
+  --foreground-subtle: 214.7 7.8% 52%;
+  --card: 220 11.1% 94.7%;
+  --card-foreground: 216 22.4% 13.1%;
+  --popover: 214.3 22.6% 93.9%;
+  --popover-foreground: 216 22.4% 13.1%;
+  --primary: 220.8 83.3% 52.9%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 31% 94.3%;
+  --secondary-foreground: 216 22.4% 13.1%;
+  --muted: 214.3 22.6% 93.9%;
+  --muted-foreground: 213.3 8.8% 40%;
+  --accent: 219 52.6% 92.5%;
+  --accent-foreground: 220.9 71.3% 49.2%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214.3 21.2% 80.6%;
+  --input: 214.3 21.2% 80.6%;
+  --ring: 220.8 74.8% 46.7%;
 }
 
 /* Dark mode */
@@ -93,35 +81,39 @@ html:root {
     /* == Theme == */
     --activeText: 88, 50%, 53%;
 
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
     --muted2: 217.2 32.6% 17.5%;
     --muted2-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-text: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
 
     --warning: 47.9 95.8% 53.1%;
     --warning-foreground: 26 83.3% 14.1%;
     --info: 217.2 91.2% 59.8%;
     --info-foreground: 222.2 47.4% 11.2%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
     --input-hover: 217 34% 32%;
+
+
+    --background: 222.9 84% 4.9%;
+    --foreground: 214.3 46.7% 94.1%;
+    --foreground-subtle: 213.3 7.3% 48.2%;
+    --card: 216 50% 3.9%;
+    --card-foreground: 214.3 46.7% 94.1%;
+    --popover: 212.3 37.1% 6.9%;
+    --popover-foreground: 214.3 46.7% 94.1%;
+    --primary: 220.8 83.3% 52.9%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220.9 64.7% 6.7%;
+    --secondary-foreground: 214.3 46.7% 94.1%;
+    --muted: 212.3 37.1% 6.9%;
+    --muted-foreground: 213 13.3% 70.6%;
+    --accent: 221.1 80.3% 13.9%;
+    --accent-foreground: 216.9 100% 76.1%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 211.8 12.6% 26.5%;
+    --input: 211.8 12.6% 26.5%;
+    --ring: 220.4 59% 45.9%;
 
     --ring: 224.3 76.3% 48%;
   }

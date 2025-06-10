@@ -17,8 +17,6 @@ import {
 export const updateTaskSortIndex = async (
   updatedTask: UpdateTaskSortIndexProps,
 ) => {
-  console.log("\n\n== updateTaskSortIndex ==\n");
-  console.log(updatedTask);
   const response = await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_TODOS_SORT_INDEX,
     options: {
@@ -28,14 +26,10 @@ export const updateTaskSortIndex = async (
     headers: APPLICATION_JSON_V1,
   });
 
-  console.log(response);
   return response;
 };
 
 export const moveTask = async (movedTask: MoveTaskProps) => {
-  console.log("\n\n== moveTask ==");
-  console.log(movedTask);
-
   const response = await customFetch<FetchState<undefined>>({
     url: API_DRAG_DROP_TODOS_MOVE,
     options: {

@@ -8,6 +8,7 @@ import {
   FetchStateForm,
 } from "@/utils/fetch/customFetch";
 import {
+  APPLICATION_JSON_V1,
   getAuthHeaderOnly,
   getAuthHeaders,
   HTTP_REQUEST,
@@ -23,6 +24,7 @@ import {
 } from "@/utils/urls";
 import { UserSettings } from "./types";
 import { getUserId } from "./getUserId";
+import { fetchWithAuth } from "@/utils/fetch/fetchWithAuth";
 
 export const updateUserSettings = async (
   settings: Partial<UserSettings>,
@@ -30,12 +32,25 @@ export const updateUserSettings = async (
   const userId = await getUserId();
   const userSettingsUrl = `${API_USER_SETTINGS_URL}/${userId}`;
   try {
-    const updatedSettingsResponse = await fetch(userSettingsUrl, {
-      method: HTTP_REQUEST.PATCH,
-      headers: await getAuthHeaders(),
-      body: JSON.stringify(settings),
-    });
-    const updatedSettings: UserSettings = await updatedSettingsResponse.json();
+    const updatedSettingsResponse = await fetchWithAuth<UserSettings>(
+      userSettingsUrl,
+      {
+        method: HTTP_REQUEST.PATCH,
+        headers: {
+          ...APPLICATION_JSON_V1,
+        },
+
+        body: JSON.stringify(settings),
+      },
+    );
+    if (!updatedSettingsResponse.data) {
+      return {
+        success: false,
+        message: "Failed to update user settings",
+        data: null,
+      };
+    }
+    const updatedSettings: UserSettings = updatedSettingsResponse.data;
     return {
       success: true,
       message: "User settings updated",

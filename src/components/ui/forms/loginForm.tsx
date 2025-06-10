@@ -14,9 +14,7 @@ import { useActionState } from "react";
 
 export const LoginForm = () => {
   const [state, dispatch] = useActionState(signIn, null);
-  const errorMessage = state?.errorMessage
-    ? getErrorMessage(state.errorMessage)
-    : null;
+  const errorMessage = state?.errorMessage;
 
   return (
     <CustomForm action={dispatch}>
@@ -48,23 +46,14 @@ export const LoginForm = () => {
           />
         </CustomInputLabelWrapper>
       </FormContentWrapper>
-      <ErrorMessage
-        errorMessage={errorMessage}
-        isError={Boolean(state?.errorMessage)}
-        margins={false}
-      />
+      {errorMessage && (
+        <ErrorMessage
+          errorMessage={errorMessage}
+          isError={Boolean(errorMessage)}
+          margins={false}
+        />
+      )}
       <LoginButton />
     </CustomForm>
   );
-};
-
-const getErrorMessage = (errorMessage: string) => {
-  switch (errorMessage) {
-    case "Authentication failed: Bad credentials":
-      return "Invalid email or password";
-    case "fetch failed (VPN? Network issues?)":
-      return "Network error. Please check your internet connection, firewall, or VPN.";
-    default:
-      return "An error occurred, please try again or come back another time. We're sorry for the inconvenience.";
-  }
 };

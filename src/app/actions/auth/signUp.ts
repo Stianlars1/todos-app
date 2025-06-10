@@ -32,46 +32,51 @@ export async function signUp(prevState: unknown, formData: FormData) {
   const tokenVerification = await verifyRecaptcha(recaptchaToken);
 
   if (!tokenVerification.success || tokenVerification.score < 0.5) {
-    return { error: "Recaptcha verification failed" };
+    return { errorMessage: "Recaptcha verification failed", errors: null };
+  }
+
+  const rawFormData = SignupFormSchema.safeParse({
+    firstName: formData.get("firstname"),
+    lastName: formData.get("lastname"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+  });
+
+  const validationResult = SignupFormSchema.safeParse(rawFormData);
+
+  if (!validationResult.success) {
+    return {
+      errorMessage: null,
+      errors: validationResult.error.flatten().fieldErrors,
+    };
   }
 
   // 2. First handle the registration logic and get result
-  const result = await handleRegistration(formData);
+  const result = await handleRegistration(validationResult.data);
 
   // 3. If there was an feedback, return it
   if ("error" in result) {
     console.error("sign-up error", result);
-    return result;
+    return { errorMessage: result.error, errors: null };
   }
 
   // 4. If successful, redirect
-  console.info("result", result);
   permanentRedirect("/?register=success");
 }
 
 // Separate function to handle the registration logic
-async function handleRegistration(formData: FormData) {
+async function handleRegistration(newUser: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}) {
   try {
-    const rawFormData = SignupFormSchema.safeParse({
-      firstName: formData.get("firstname"),
-      lastName: formData.get("lastname"),
-      email: formData.get("email"),
-      password: formData.get("password"),
-    });
-
-    const validationResult = SignupFormSchema.safeParse(rawFormData);
-
-    if (!validationResult.success) {
-      return {
-        errors: validationResult.error.flatten().fieldErrors,
-      };
-    }
-
     // Make the API call
     const response = await fetch(API_AUTH_SIGN_UP_URL, {
       method: HTTP_REQUEST.POST,
       headers: APPLICATION_JSON_V1,
-      body: JSON.stringify(validationResult.data),
+      body: JSON.stringify(newUser),
       credentials: "include",
     });
 
@@ -79,16 +84,17 @@ async function handleRegistration(formData: FormData) {
       console.error("error in response :72", response);
       if ("message" in response) {
         return {
-          error: response.message || "Registration failed",
+          isSuccess: false,
+          errors: null,
+          errorMessage: response.message || "Registration failed",
         };
       }
     }
 
     if (!response.ok) {
-      console.error("!response ok error", response);
-
       return {
         isSuccess: false,
+        errors: null,
         errorMessage:
           (response as unknown as ErrorResponse).message ||
           "Registration failed",
@@ -109,16 +115,16 @@ async function handleRegistration(formData: FormData) {
       return {
         isSuccess: false,
         errorMessage: `${error.message} (VPN? Network issues?)`,
-        error: {
-          additional:
-            "An error occurred. Please Check your network or VPN or try again later.",
-        },
+        errors: [
+          "An error occurred. Please Check your network or VPN or try again later.",
+        ],
       };
     }
 
     return {
       isSuccess: false,
-      error: { additional: "An error occurred. Please try again later." },
+      errors: ["An error occurred. Please try again later."],
+      errorMessage: "An error occurred. Please try again later.",
     };
   }
 }

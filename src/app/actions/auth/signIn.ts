@@ -16,16 +16,26 @@ export async function signIn(prevState: unknown, formData: FormData) {
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
+      errorMessage: "Please check your input.",
     };
   }
 
   // 1. First handle the sign-in logic and get result
   const result = await handleSignIn(formData);
-  console.log("result", result);
 
   // 3. If there was an feedback, return it
   if ("error" in result) {
-    return result;
+    return {
+      errors: [result.error],
+      errorMessage: "Sign in failed. Please try again.",
+    };
+  }
+
+  if (!result.user) {
+    return {
+      errors: ["User data is missing after sign in."],
+      errorMessage: "Sign in failed. Please try again.",
+    };
   }
 
   const userLanguagePreference = result.user.locale;
@@ -46,7 +56,6 @@ async function handleSignIn(formData: FormData) {
       password: formData.get("password")?.toString() || "",
     };
 
-    console.log("signIn", credentials, API_AUTH_SIGN_IN_URL);
     // Make the sign in API call
     const response = await fetch(API_AUTH_SIGN_IN_URL, {
       method: HTTP_REQUEST.POST,
@@ -56,11 +65,10 @@ async function handleSignIn(formData: FormData) {
     });
 
     const data: AuthResponse = await response.json();
-    console.log("Sign in response data:", data);
 
     if (!response.ok) {
       return {
-        error:
+        errorMessage:
           (data as unknown as Error).message ||
           "Sign in failed. Please try again.",
       };
@@ -69,11 +77,11 @@ async function handleSignIn(formData: FormData) {
     // Create session
     await createSession(data.accessToken, data.refreshToken, data.user);
 
-    return { success: true, user: data.user };
+    return { success: true, user: data.user, errorMessage: null };
   } catch (error) {
     console.error("Sign in feedback:", error);
     return {
-      error: "Sign in failed. Please try again.",
+      errorMessage: "Sign in failed. Please try again.",
     };
   }
 }

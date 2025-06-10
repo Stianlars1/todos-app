@@ -6,6 +6,7 @@
   background-color: hsl(var(--destructive));
   width: fit-content;
   border-radius: calc(var(--radius) - 2px);
+  border: hsl(var(--background));
 
   display: flex;
   align-items: center;

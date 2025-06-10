@@ -6,11 +6,11 @@ import {
   API_USER_SETTINGS_URL,
   API_USER_URL,
 } from "@/utils/urls";
-import { UserDTO, UserSettings } from "./types";
+import { UserDetailsDTO, UserSettings } from "./types";
 import { getUserId } from "./getUserId";
 
 export const getUserDetails = async () => {
-  const userDetails = await customFetch<UserDTO>({
+  const userDetails = await customFetch<UserDetailsDTO>({
     url: API_USER_URL,
     options: {
       method: HTTP_REQUEST.GET,

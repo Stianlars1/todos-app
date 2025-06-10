@@ -5,6 +5,9 @@ import { LanguageType } from "@/app/actions/user/types";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, ReactNode, useState } from "react";
 import "./css/localeSwitcher.css";
+import { updateUserLocale } from "@/app/actions/user/updateUserLocale";
+import { cacheInvalidate } from "@/app/lib/cache/cache";
+import { CacheKeys } from "@/app/lib/cache/keys";
 
 type Props = {
   children: ReactNode;
@@ -24,10 +27,15 @@ export default function LocaleSwitcherSelect({
     setIsPending(true);
     try {
       const nextLocale = event.target.value;
-      const result = await updateUserSettings({
+      await updateUserSettings({
         language: nextLocale as LanguageType,
       });
-      console.log("result", result);
+
+      await updateUserLocale(nextLocale as LanguageType);
+
+      await cacheInvalidate({ cacheKey: CacheKeys.USER_DETAILS });
+      await cacheInvalidate({ cacheKey: CacheKeys.USER_SETTINGS });
+      await cacheInvalidate({ cacheKey: CacheKeys.USER_BASIC });
 
       router.replace(
         // are used in combination with a given `pathname`. Since the two will
@@ -37,6 +45,8 @@ export default function LocaleSwitcherSelect({
     } catch (e) {
       console.error(e);
       return null;
+    } finally {
+      setIsPending(false);
     }
   }
 

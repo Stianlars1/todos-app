@@ -1,5 +1,5 @@
 "use client";
-import { UserDTO } from "@/app/actions/user/types";
+import { UserDetailsDTO } from "@/app/actions/user/types";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
 import { useEffect, useState } from "react";
 import { SettingsPreferencesContent } from "./components/preferences/preferences";
@@ -12,7 +12,7 @@ import styles from "./css/settingsPageHero.module.css";
 export const SettingsPageHero = ({
   userDetails,
 }: {
-  userDetails: UserDTO | null;
+  userDetails: UserDetailsDTO | null;
 }) => {
   const [activeTab, setActiveTab] = useState<Tabs | null>(null);
 
