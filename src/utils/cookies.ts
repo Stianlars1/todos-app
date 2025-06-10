@@ -1,7 +1,6 @@
 // config/cookies.ts
-import { TASKBUDDY_APP_URL } from "@/utils/constants";
 
-export const BASE_DOMAIN = TASKBUDDY_APP_URL;
+export const BASE_DOMAIN = "taskbuddy.dev";
 export const FIVE_MINUTES = 60 * 5;
 type CookieOptions = {
   httpOnly: boolean;
