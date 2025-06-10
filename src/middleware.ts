@@ -98,6 +98,7 @@ export const config = {
      */
     //"/(!signIn|logout|sign-up)",
     //"/(nb|en)/:path*",
+    // nope
     "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|logo|logo2).*)",
     `/((?!logo|logo2|spline|_next/static|favicon.ico|web-app-manifest-192x192|web-app-manifest-512x512).*)`,
     "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
