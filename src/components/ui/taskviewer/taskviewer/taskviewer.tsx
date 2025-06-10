@@ -536,21 +536,23 @@ export const TaskViewer = ({
                 <TaskPriority key={state.priority} />
               )}
 
-              <CustomInputLabelWrapper>
-                <CustomInputLabel htmlFor="dueDate">
-                  {text("formDueDate")}
-                </CustomInputLabel>
+              {state && state.dueDate && (
+                <CustomInputLabelWrapper>
+                  <CustomInputLabel htmlFor="dueDate">
+                    {text("formDueDate")}
+                  </CustomInputLabel>
 
-                <CustomInput
-                  value={state.dueDate ? formatDate(state.dueDate) : undefined}
-                  onChange={handleOnChange}
-                  name="dueDate"
-                  id="dueDate"
-                  type="date"
-                  suppressHydrationWarning
-                  className={styles.dueDateInput}
-                />
-              </CustomInputLabelWrapper>
+                  <CustomInput
+                    value={formatDate(state.dueDate)}
+                    onChange={handleOnChange}
+                    name="dueDate"
+                    id="dueDate"
+                    type="date"
+                    suppressHydrationWarning
+                    className={styles.dueDateInput}
+                  />
+                </CustomInputLabelWrapper>
+              )}
             </div>
 
             {(contentClicked || content.length === 0) && (

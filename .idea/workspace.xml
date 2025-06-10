@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="better column and tasks drag and drop on mobile devices">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/forms/components/FormErrorDisplay/FormErrorDisplay.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/forms/components/FormErrorDisplay/FormErrorDisplay.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/signIn.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/robots.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/richTextEditor/quill.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/seo/StructuredData.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/seo/jsonld.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/seo/metadata.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/auth/signIn.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/auth/signIn.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/user/updateUserLocale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/user/updateUserLocale.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/forms/loginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/forms/loginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/components/createDashboard/css/createDashboard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/components/createDashboard/css/createDashboard.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/richTextEditor/css/textEditor.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/richTextEditor/richTextEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/richTextEditor/richTextEditor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/taskviewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/taskviewer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/constants.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +75,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/node_modules/prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "cssvarsassistant.settings",
     "ts.external.directory.path": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/node_modules/typescript/lib",
     "typescript.add.unambiguous.imports.on.the.fly": "true",
     "vue.rearranger.settings.migration": "true"
@@ -152,7 +158,7 @@
       <workItem from="1739706419157" duration="1249000" />
       <workItem from="1739819010058" duration="599000" />
       <workItem from="1749321997243" duration="4894000" />
-      <workItem from="1749564329108" duration="1269000" />
+      <workItem from="1749564329108" duration="4144000" />
     </task>
     <task id="LOCAL−00001" summary="Fixed drag and drag of columns for same index no changes on drag">
       <option name="closed" value="true" />

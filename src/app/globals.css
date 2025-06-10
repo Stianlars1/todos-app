@@ -1,3 +1,5 @@
+@import "@/components/ui/richTextEditor/quill.css"
+
 html body {
   --nav-height: 50px;
   --sidebar-width: 15rem;
@@ -83,7 +85,6 @@ html:root {
 
     --muted2: 217.2 32.6% 17.5%;
     --muted2-foreground: 215 20.2% 65.1%;
-    --destructive: 0 62.8% 30.6%;
     --destructive-text: 0 84.2% 60.2%;
 
     --warning: 47.9 95.8% 53.1%;

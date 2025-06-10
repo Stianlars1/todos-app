@@ -30,6 +30,7 @@
 
 .deleteButton {
   background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
 }
 .deleteButton:hover {
   background-color: hsl(var(--destructive) / 0.75) !important;
