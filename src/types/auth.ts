@@ -7,8 +7,7 @@ export interface AuthUserDTO {
   locale?: string | null;
 }
 
-export type AuthUser = AuthUserDTO & {};
-export type UserDTO = AuthUserDTO & {};
+export type AuthUser = AuthUserDTO;
 
 export interface AuthResponse {
   accessToken: string;

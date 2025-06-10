@@ -4,12 +4,12 @@ import { fetchWithAuth } from "@/utils/fetch/fetchWithAuth";
 import { API_USER_URL } from "@/utils/urls";
 import { getUserId } from "@/app/actions/user/getUserId";
 import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
-import { UserDTO } from "@/types/auth";
+import { AuthUser } from "@/types/auth";
 
 export const updateUserLocale = async (locale: LanguageType) => {
   const userId = await getUserId();
   const Url = `${API_USER_URL}/${userId}`;
-  const res = await fetchWithAuth<UserDTO>(Url, {
+  const res = await fetchWithAuth<AuthUser>(Url, {
     method: HTTP_REQUEST.PUT,
     headers: {
       ...APPLICATION_JSON_V1,
