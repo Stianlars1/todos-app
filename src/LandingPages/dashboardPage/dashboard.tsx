@@ -13,7 +13,8 @@ import { ColumnsAndTasks } from "@/types/todo";
 import { SoonDueTodosDTO, TodoDTO } from "@/types/types";
 import { DashboardTabs } from "@/LandingPages/dashboardPage/components/dashboard/dashboardTabs/dashboardTabs";
 import { ProgressSummaryContainer } from "@/LandingPages/dashboardPage/components/overview/progressSummary/progressSummary";
-import styles from "./dashboard.module.css";
+import styles from "./dashboard.module.scss";
+
 import { TaskViews } from "@/LandingPages/dashboardPage/components/dashboard/taskViews/taskViews";
 
 export const DashboardPage = async ({
