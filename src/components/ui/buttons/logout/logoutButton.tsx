@@ -2,8 +2,14 @@
 
 import { logout } from "@/app/actions/auth/logout";
 import { Button, Loader } from "@stianlarsen/react-ui-kit";
-import { JSXElementConstructor, ReactElement, useState } from "react";
-import "./logoutButton.css";
+import {
+  JSXElementConstructor,
+  ReactElement,
+  useState,
+  useTransition,
+} from "react";
+import "./logoutButton.scss";
+import { cx } from "@/utils/cx";
 
 export const LogoutButton = ({
   buttonTitle,
@@ -18,13 +24,8 @@ export const LogoutButton = ({
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
-
-    try {
-      await logout();
-    } catch (error) {
-      console.info(error);
-      setIsLoggingOut(false);
-    }
+    await logout();
+    setIsLoggingOut(false);
   };
 
   return (
@@ -43,25 +44,27 @@ export const LogoutButton = ({
 export const LogoutButtonSidebar = ({
   title,
   icon,
+  className,
 }: {
   title: string;
   icon: ReactElement<any, string | JSXElementConstructor<any>>;
+  className?: string;
 }) => {
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [isLoggingOut, startLogout] = useTransition();
 
-  const handleLogout = async () => {
-    setIsLoggingOut(true);
-
-    try {
+  function handleLogout() {
+    startLogout(async () => {
       await logout();
-    } catch (error) {
-      console.info(error);
-      setIsLoggingOut(false);
-    }
-  };
+    });
+  }
 
   return (
-    <button className={`sidebar__content__item__link `} onClick={handleLogout}>
+    <button
+      disabled={isLoggingOut}
+      aria-disabled={isLoggingOut}
+      className={cx(className)}
+      onClick={handleLogout}
+    >
       {isLoggingOut ? <Loader widthAndHeight={24} /> : icon}
       <span className="link-text">{title}</span>
     </button>

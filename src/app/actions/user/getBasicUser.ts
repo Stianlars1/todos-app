@@ -14,7 +14,6 @@ export const getBasicUser = async () => {
   });
 
   if (user.error) {
-    console.error("Failed to get basic user data", user.error);
     return null;
   }
 

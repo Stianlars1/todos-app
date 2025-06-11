@@ -1,5 +1,6 @@
 import { SignupAnimation } from "@/content/lotties/lotties";
-import styles from "./css/signupHalfPage.module.css";
+import styles from "./css/signupHalfPage.module.scss";
+
 export const SignupHalfPage = () => {
   return (
     <section

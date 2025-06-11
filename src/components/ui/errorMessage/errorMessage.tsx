@@ -2,7 +2,7 @@
 import { MdClose, MdError } from "react-icons/md";
 
 import { useState } from "react";
-import "./css/errorMessage.css";
+import "./css/errorMessage.scss";
 
 export const ErrorMessage = ({
   isError,

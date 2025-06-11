@@ -1,8 +1,8 @@
 "use client";
 import { UserSettings } from "@/app/actions/user/types";
 import { ColumnsAndTasks } from "@/types/todo";
-import styles from "./taskboard.module.css";
-import responsiveStyles from "./responsiveStyles.module.css";
+import styles from "./taskboard.module.scss";
+import responsiveStyles from "./responsiveStyles.module.scss";
 import { TYPE_COLUMN, TYPE_TASK } from "./utils";
 import {
   closestCorners,
@@ -26,7 +26,7 @@ import { StatusCode, TodoDTO, TodoStatus } from "@/types/types";
 import { DraggableColumn } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/draggableColumn";
 import { createPortal } from "react-dom";
 import { DraggableTask } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask";
-import { cx, getStatusByCode } from "@/utils/utils";
+import { getStatusByCode } from "@/utils/utils";
 import {
   moveTask,
   updateColumnDisplayOrder,
@@ -45,6 +45,7 @@ import {
 } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/hooks/useColumnInView";
 import { IconChevron } from "@/components/ui/icons/icons";
 import { useColumnsAndTasks } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/context/columnsAndTasksContext";
+import { cx } from "@/utils/cx";
 
 export const KanbanBoard = ({
   userSettings,

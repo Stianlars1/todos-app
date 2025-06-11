@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { DashboardOnlyTypeDTO } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
-import styles from "./css/showTaskModal.module.css";
+import styles from "./css/showTaskModal.module.scss";
 
 export const ShowTaskModalContainer = ({
   userSettings,
