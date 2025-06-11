@@ -5,14 +5,14 @@ import { TodoDTO } from "@/types/types";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { TYPE_COLUMN } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/utils";
 import { CSS } from "@dnd-kit/utilities";
-import { cx } from "@/utils/utils";
-import styles from "./draggableColumn.module.css";
-import responsiveStyles from "./responsiveStyles.module.css";
+import styles from "./draggableColumn.module.scss";
+import responsiveStyles from "./responsiveStyles.module.scss";
 import { DraggableTask } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableTask/draggableTask";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { EditIcon2, IconAdd, IconMinus } from "@/components/ui/icons/icons";
 import { StatusColumnSortButton } from "@/LandingPages/dashboardPage/components/dashboard/kanbanBoard/draggables/draggableColumn/components/draggableColumnSortButton/draggableColumnSortButton";
+import { cx } from "@/utils/cx";
 
 export const LIMIT_THRESHOLD = 2;
 export const DraggableColumn = ({
