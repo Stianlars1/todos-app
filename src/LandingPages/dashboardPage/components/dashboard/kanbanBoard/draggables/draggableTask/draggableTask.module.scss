@@ -114,6 +114,18 @@
   backdrop-filter: blur(12px);
 }
 
+.openTaskLoaderBackdrop {
+  position: fixed;
+  inset: var(--nav-height) 0 0 0;
+  background: hsl(var(--black) / 0.1);
+  z-index: 1000;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 96px;
+}
+
 
 
 
