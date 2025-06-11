@@ -7,14 +7,14 @@ import {
 import { ApiResponse } from "@/types/fetch";
 import { getTranslations } from "next-intl/server";
 import { SidebarContentListItem } from "./components/SidebarContentListItem";
-import "./css/sidebarContentList.css";
+import styles from "./css/sidebarContentList.module.scss";
 
 export const SidebarContentList = async () => {
   const texts = await getTranslations("Sidebar");
   const todosDueTodayCount = await getTodosDueTodayCount<ApiResponse<number>>();
 
   return (
-    <ul className="sidebar__content">
+    <ul className={styles.content}>
       {sidebarContentList
         .filter((item) => item.render)
         .map((item: sidebarContentListType) => {
@@ -38,7 +38,7 @@ export const SidebarContentList = async () => {
           );
         })}
 
-      <LocaleSwitcher className={"sidebar__content__localeSwitcher"} />
+      <LocaleSwitcher className={styles.localeSwitcher} />
     </ul>
   );
 };

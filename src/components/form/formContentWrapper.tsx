@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from "react";
-import "./css/formContentWrapper.css";
+import "./css/formContentWrapper.scss";
 
 export const FormContentWrapper = ({
   children,

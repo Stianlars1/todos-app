@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { LoginHalfPage } from "./components/loginHalfPage/loginHalfPage";
 import { SignUpSuccess } from "./components/signUpSuccess/signUpSuccess";
 import { SignupHalfPage } from "./components/signupHalfpage/signupHalfPage";
-import "./css/loginOrSignup.css";
+import "./css/loginOrSignup.scss";
 
 export const LoginOrSignupPage = ({
   variant,

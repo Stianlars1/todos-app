@@ -1,5 +1,5 @@
 import { TaskBuddyNavbarLogo } from "../navbarLogo/navbarLogo";
-import "./commonNavbar.css";
+import "./commonNavbar.scss";
 
 export const CommonNavbar = () => {
   return (

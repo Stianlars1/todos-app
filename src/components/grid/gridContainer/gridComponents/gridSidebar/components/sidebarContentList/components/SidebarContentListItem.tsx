@@ -6,6 +6,7 @@ import { handleCloseNav } from "@/utils/utils";
 import { usePathname } from "next/navigation";
 import { SidebarDueCount } from "./sidebarDueCount/sidebarDueCount";
 import Link from "next/link";
+import styles from "../css/sidebarContentList.module.scss";
 
 export const SidebarContentListItem = ({
   item,
@@ -25,34 +26,33 @@ export const SidebarContentListItem = ({
   const linkurl = useLinkUrl(item.href);
 
   const onlyOnMobile = item.renderMobileOnly;
-  const showDueCount =
-    todosDueTodayCount && todosDueTodayCount > 0 ? true : false;
+  const showDueCount = !!(todosDueTodayCount && todosDueTodayCount > 0);
   const dueCount = todosDueTodayCount;
 
   if (onlyOnMobile) {
     return (
       <li
         key={item.href}
-        className={`sidebar__content__item ${
-          onlyOnMobile ? "sidebar__content__item-mobile-only" : " "
-        }`}
+        className={`${styles.item} ${onlyOnMobile ? styles.mobileOnlyItem : ""}`}
       >
-        <LogoutButtonSidebar title={title} icon={Icon} />
+        <LogoutButtonSidebar
+          className={styles.link}
+          title={title}
+          icon={Icon}
+        />
       </li>
     );
   }
   return (
-    <li key={item.href} className="sidebar__content__item">
+    <li key={item.href} className={styles.item}>
       <Link
-        className={`sidebar__content__item__link ${
-          isActive ? "sidebar__content__item__link-active" : ""
-        }`}
+        className={`${styles.link} ${isActive ? styles.activeLink : ""}`}
         href={linkurl}
         onClick={handleCloseNav}
       >
         {Icon}
 
-        <span className="link-text">{title}</span>
+        <span className={styles.linkText}>{title}</span>
 
         {showDueCount && <SidebarDueCount dueCount={dueCount!} />}
       </Link>

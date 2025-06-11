@@ -1,0 +1,11 @@
+.editorWrapper {
+  > *{
+  color: green !important;
+    fill: red;
+  }
+
+  .editor {
+    min-height: 12rem;
+    outline: none; // removes blue outline when programmatically focused
+  }
+}

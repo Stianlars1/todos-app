@@ -8,7 +8,8 @@ import { CacheKeys } from "@/app/lib/cache/keys";
 import { toast } from "@/components/ui/toast/toast";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
-import styles from "./css/dashboardSelector.module.css";
+import styles from "./css/dashboardSelector.module.scss";
+
 interface DashboardSelectorProps {
   activeDashboardId: number;
   dashboards: DashboardType[] | null;

@@ -1,4 +1,4 @@
-import "./css/form.css";
+import "./css/form.scss";
 import { LoginForm } from "./loginForm";
 import { SignUpForm } from "./signupForm";
 import {

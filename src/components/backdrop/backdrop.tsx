@@ -1,7 +1,7 @@
 "use client";
 import { handleCloseNav } from "@/utils/utils";
 import { useEffect } from "react";
-import "./css/backdrop.css";
+import "./css/backdrop.scss";
 
 export const Backdrop = () => {
   const handleKeyDown = (e: KeyboardEvent) => {
