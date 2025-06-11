@@ -4,7 +4,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import styles from "./css/customTextArea.module.css";
+import styles from "./css/customTextArea.module.scss";
 import { geistSans } from "@/fonts";
 
 interface CustomTextAreaProps
