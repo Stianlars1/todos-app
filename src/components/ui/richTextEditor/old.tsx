@@ -1,26 +1,26 @@
+/*
 "use client";
 import dynamic from "next/dynamic";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import "react-quill/dist/quill.snow.css"; // Ensure CSS is loaded
 import { SuspenseFallback } from "../suspenseFallback/suspenseFallback";
-import "./css/textEditor.module.scss";
-import "react-quill-new/dist/quill.snow.css";
-
+import "./css/textEditor.css";
 interface TextEditorProps {
   content: string;
   setContent?: Dispatch<SetStateAction<string>>;
   onChange?: (e: any) => void;
 }
 
-const ReactQuill = dynamic(() => import("react-quill-new"), {
+const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false, // Disable server-side rendering
   loading: () => <SuspenseFallback fixed={false} />, // Optional loading component
 });
 
 export const TextEditor: React.FC<TextEditorProps> = ({
-  content,
-  setContent,
-  onChange,
-}) => {
+                                                        content,
+                                                        setContent,
+                                                        onChange,
+                                                      }) => {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
   // This useEffect will only run once, during the first client render
 
@@ -87,3 +87,4 @@ export const TextEditor: React.FC<TextEditorProps> = ({
     </>
   );
 };
+*/
