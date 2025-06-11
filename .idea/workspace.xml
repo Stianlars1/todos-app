@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="better column and tasks drag and drop on mobile devices">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/forms/components/FormErrorDisplay/FormErrorDisplay.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/forms/components/FormErrorDisplay/FormErrorDisplay.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/signIn.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/richTextEditor/css/quill.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/richTextEditor/css/textEditor.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/richTextEditor/richTextEditor_old.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/auth/signIn.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/auth/signIn.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/user/updateUserLocale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/user/updateUserLocale.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/forms/loginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/forms/loginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/richTextEditor/contentInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/richTextEditor/css/textEditor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/richTextEditor/css/textEditor.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/richTextEditor/css/textEditor.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/richTextEditor/richTextEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/richTextEditor/richTextEditor.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +64,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/src/components/ui/forms/components/FormErrorDisplay",
+    "git-widget-placeholder": "quill",
+    "last_opened_file_path": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/src/components/ui/richTextEditor/css",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.standard": "",
@@ -77,11 +80,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/ui/richTextEditor/css" />
+      <recent name="$PROJECT_DIR$/src/components/ui/richTextEditor" />
       <recent name="$PROJECT_DIR$/src/components/ui/forms/components/FormErrorDisplay" />
       <recent name="$PROJECT_DIR$/src/utils/fetch" />
       <recent name="$PROJECT_DIR$/src/app/(auth)" />
-      <recent name="$PROJECT_DIR$/src/utils" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/types" />
