@@ -24,6 +24,7 @@ import {
 } from "@/utils/urls";
 import { UpdatedTodoDTO, UpdateTodoResponse } from "./types";
 import { getCreateTodoFormData } from "./utils";
+import { fetchWithAuth } from "@/utils/fetch/fetchWithAuth";
 
 export const getTodoById = async (todoId: string) => {
   const API_TODO_URL = `${API_TODOS_URL}/${todoId}`;
@@ -272,17 +273,16 @@ export const createTodo = async (
   const formDataDTO = new FormData();
   formDataDTO.append("todo", JSON.stringify(updatedTodo));
 
-  const uploadResponse = await customFetch<TodoDTO>({
-    url: API_TODOS_CREATE_URL,
-    options: {
-      method: HTTP_REQUEST.POST,
-      body: formDataDTO,
-    },
+  const uploadResponse = await fetchWithAuth<TodoDTO>(API_TODOS_CREATE_URL, {
+    method: HTTP_REQUEST.POST,
+    body: formDataDTO,
   });
 
-  if (uploadResponse.isError) {
+  if (uploadResponse.error) {
     console.error("\n 🔴 Error creating todo", uploadResponse.error);
   }
+
+  console.log("\n 🟢 Successfully created todo", uploadResponse.data);
 
   await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
 

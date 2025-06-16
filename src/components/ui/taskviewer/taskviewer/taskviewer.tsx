@@ -25,7 +25,15 @@ import { arraysEqual, formatDate, normalizeDate } from "@/utils/utils";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import { Suspense, useActionState, useEffect, useState } from "react";
+import {
+  CSSProperties,
+  memo,
+  Suspense,
+  useActionState,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { UpdateTaskButton } from "./components/updateTaskButton";
 import styles from "./css/taskviewer.module.scss";
 
@@ -45,7 +53,7 @@ const initialUseState: UpdatedTodoDTO = {
   content: undefined,
 };
 
-export const TaskViewer = ({
+const TaskViewerComponent = ({
   taskId,
   redirectUrl = "",
   dashboards,
@@ -153,7 +161,7 @@ export const TaskViewer = ({
     }
   }, [formState?.isSuccess]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setEndAnimation(true);
     setTimeout(() => {
       setEndAnimation(false);
@@ -168,9 +176,9 @@ export const TaskViewer = ({
     }, 350);
 
     document.body.style.overflow = "auto"; // Reset when component unmounts
-  };
+  }, [locale, pathName, onClose, router]);
 
-  const handleMarkAsCompleted = async () => {
+  const handleMarkAsCompleted = useCallback(async () => {
     if (!taskId) return;
     setMarkAsCompletedState({
       isUpdating: true,
@@ -198,87 +206,91 @@ export const TaskViewer = ({
     cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
     cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
     toast.success(text("markedAsCompleted"), "bottomRight");
-  };
+  }, [taskId, router, locale, text]);
+  const handleOnChange = useCallback(
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >,
+    ) => {
+      if (e.target.name === "tags") {
+        const newTags = e.target.value
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag !== "");
+        const newState = {
+          ...state,
+          tags: newTags,
+        };
 
-  const handleOnChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    if (e.target.name === "tags") {
-      const newTags = e.target.value
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter((tag) => tag !== "");
-      const newState = {
-        ...state,
-        tags: newTags,
-      };
+        setState(newState);
+        setRawTagsInput(e.target.value);
+        const titleChanged = newState.title !== taskDTO?.title;
+        const descriptionChanged =
+          newState.description !== taskDTO?.description;
+        const statusChanged =
+          newState.statusId?.toString() !== taskDTO?.status.statusId.toString();
+        const priorityChanged =
+          newState.priority?.toString().toLocaleUpperCase() !==
+          taskDTO?.priority?.toString().toLocaleUpperCase();
+        const dueDateChanged = newState.dueDate !== taskDTO?.dueDate;
+        const tagsChanged = !arraysEqual(
+          newState.tags as any[],
+          taskDTO?.tags as any[],
+        );
 
-      setState(newState);
-      setRawTagsInput(e.target.value);
-      const titleChanged = newState.title !== taskDTO?.title;
-      const descriptionChanged = newState.description !== taskDTO?.description;
-      const statusChanged =
-        newState.statusId?.toString() !== taskDTO?.status.statusId.toString();
-      const priorityChanged =
-        newState.priority?.toString().toLocaleUpperCase() !==
-        taskDTO?.priority?.toString().toLocaleUpperCase();
-      const dueDateChanged = newState.dueDate !== taskDTO?.dueDate;
-      const tagsChanged = !arraysEqual(
-        newState.tags as any[],
-        taskDTO?.tags as any[],
-      );
+        setHasUnsavedChanges(
+          titleChanged ||
+            descriptionChanged ||
+            statusChanged ||
+            priorityChanged ||
+            dueDateChanged ||
+            tagsChanged,
+        );
+      } else {
+        const isDueDate = e.target.name === "dueDate";
 
-      setHasUnsavedChanges(
-        titleChanged ||
-          descriptionChanged ||
-          statusChanged ||
-          priorityChanged ||
-          dueDateChanged ||
-          tagsChanged,
-      );
-    } else {
-      const isDueDate = e.target.name === "dueDate";
+        const dueDateInput = document.getElementById(
+          "dueDate",
+        ) as HTMLInputElement;
+        const valueDate = normalizeDate(new Date(dueDateInput.value || ""));
+        const taskDueDate = taskDTO?.dueDate
+          ? normalizeDate(new Date(taskDTO?.dueDate))
+          : undefined;
 
-      const dueDateInput = document.getElementById(
-        "dueDate",
-      ) as HTMLInputElement;
-      const valueDate = normalizeDate(new Date(dueDateInput.value || ""));
-      const taskDueDate = taskDTO?.dueDate
-        ? normalizeDate(new Date(taskDTO?.dueDate))
-        : undefined;
+        const newState = {
+          ...state,
+          [e.target.name]: isDueDate ? valueDate : e.target.value,
+        };
 
-      const newState = {
-        ...state,
-        [e.target.name]: isDueDate ? valueDate : e.target.value,
-      };
+        setState(newState);
 
-      setState(newState);
+        const titleChanged = newState.title !== taskDTO?.title;
+        const descriptionChanged =
+          newState.description !== taskDTO?.description;
+        const statusChanged =
+          newState.statusId?.toString() !== taskDTO?.status.statusId.toString();
+        const priorityChanged =
+          newState.priority?.toString().toLocaleUpperCase() !==
+          taskDTO?.priority?.toString().toLocaleUpperCase();
+        const dueDateChanged = valueDate !== taskDueDate;
+        const tagsChanged = !arraysEqual(
+          newState.tags as any[],
+          taskDTO?.tags as any[],
+        );
 
-      const titleChanged = newState.title !== taskDTO?.title;
-      const descriptionChanged = newState.description !== taskDTO?.description;
-      const statusChanged =
-        newState.statusId?.toString() !== taskDTO?.status.statusId.toString();
-      const priorityChanged =
-        newState.priority?.toString().toLocaleUpperCase() !==
-        taskDTO?.priority?.toString().toLocaleUpperCase();
-      const dueDateChanged = valueDate !== taskDueDate;
-      const tagsChanged = !arraysEqual(
-        newState.tags as any[],
-        taskDTO?.tags as any[],
-      );
-
-      setHasUnsavedChanges(
-        titleChanged ||
-          descriptionChanged ||
-          statusChanged ||
-          priorityChanged ||
-          dueDateChanged ||
-          tagsChanged,
-      );
-    }
-  };
+        setHasUnsavedChanges(
+          titleChanged ||
+            descriptionChanged ||
+            statusChanged ||
+            priorityChanged ||
+            dueDateChanged ||
+            tagsChanged,
+        );
+      }
+    },
+    [state, taskDTO],
+  );
 
   const SelectStatus = () => {
     const handleOnChangeStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -411,41 +423,41 @@ export const TaskViewer = ({
     );
   };
 
-  const handleCancel = () => {
+  const handleCancel = useCallback(() => {
     if (taskDTO) {
       setState(mapDTOtoUpdatedTodoDTO(taskDTO));
     }
     setHasUnsavedChanges(false);
-  };
+  }, [taskDTO]);
 
-  const handleTextEditorChange = () => {
+  const handleTextEditorChange = useCallback(() => {
     setContentClicked(true);
 
     setHasUnsavedChanges(content !== taskDTO?.content);
-  };
+  }, [content, taskDTO]);
 
-  const handleMoveToTrash = async () => {
+  const handleMoveToTrash = useCallback(async () => {
     if (!taskId) return;
     const updatedTask: UpdatedTodoDTO = { statusId: 6 };
     const updateResponse = await updateTodo(taskId, updatedTask);
     if (updateResponse.isError) {
       toast.error(text("errorMovingToTrash"), "bottomRight");
     } else {
-      cacheInvalidate({ cacheKey: CacheKeys.TODOS_TODAY });
-      cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
-      cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
-      cacheInvalidate({ cacheKey: CacheKeys.ALL_TAGS });
-      cacheInvalidate({ cacheKey: CacheKeys.TODOS_BY_TAGNAME });
-      cacheInvalidate({ cacheKey: CacheKeys.ALL_TASKS_AND_TAGS_GROUPED });
+      await cacheInvalidate({ cacheKey: CacheKeys.TODOS_TODAY });
+      await cacheInvalidate({ cacheKey: CacheKeys.ALL_TODOS });
+      await cacheInvalidate({ cacheKey: CacheKeys.CATEGORIZED_TODOS });
+      await cacheInvalidate({ cacheKey: CacheKeys.ALL_TAGS });
+      await cacheInvalidate({ cacheKey: CacheKeys.TODOS_BY_TAGNAME });
+      await cacheInvalidate({ cacheKey: CacheKeys.ALL_TASKS_AND_TAGS_GROUPED });
       toast.success(text("movedToTrash"), "bottomRight");
       router.replace(`/${locale}/${redirectUrl}`, undefined);
     }
-  };
+  }, [taskId, router, locale, redirectUrl, text]);
 
   return (
     <Suspense fallback={<SuspenseFallback fixed={false} />}>
       <div
-        suppressHydrationWarning={true}
+        suppressHydrationWarning
         className={`${styles.taskViewer} ${
           startAnimation ? styles.startAnimation : ""
         } ${endAnimation ? styles.endAnimation : ""}
@@ -474,7 +486,14 @@ export const TaskViewer = ({
             </Button>
           </div>
         </div>
-        <CustomForm action={dispatch}>
+        <CustomForm
+          style={
+            {
+              ["--custom-form-surface-color"]: "hsl(var(--accent-10))",
+            } as CSSProperties
+          }
+          action={dispatch}
+        >
           <FormContentWrapper>
             <CustomInputLabelWrapper>
               <CustomInputLabel htmlFor="title">
@@ -655,7 +674,7 @@ export const TaskViewer = ({
           )}
         </CustomForm>
       </div>
-      <div onClick={handleClose} className={styles.taskBackdrop} />
+      <div aria-hidden onClick={handleClose} className={styles.taskBackdrop} />
     </Suspense>
   );
 };
@@ -681,3 +700,4 @@ const getActiveDashboardIds = (
     .filter((dashboard) => taskDTO.dashboardIds.includes(dashboard.dashboardId))
     .map((dashboard) => dashboard.dashboardId);
 };
+export const TaskViewer = memo(TaskViewerComponent);

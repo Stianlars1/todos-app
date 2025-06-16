@@ -1,4 +1,5 @@
 .custom-input {
+
   font-size: 1rem;
   line-height: 1.25rem;
   padding: 6px 12px;
@@ -6,7 +7,7 @@
   height: 45px;
 
   font-family: inherit;
-  background-color: hsl(var(--card));
+  background-color: var(--custom-form-surface-color) hsl(var(--card));
   border: 1px solid hsl(var(--input));
   outline: none;
   border-radius: calc(var(--radius) - 2px);
@@ -60,6 +61,7 @@ input:-webkit-autofill-and-obscured {
   -webkit-text-fill-color: hsl(
     var(--foreground)
   ) !important; /* Change text color */
-  background-color: hsl(var(--card)) !important; /* Change background color */
+  background-color: var(--custom-form-surface-color), hsl(var(--card)) !important; /* Change background color */
+
   transition: background-color 5000s ease-in-out 0s;
 }

@@ -5,5 +5,5 @@
   flex-direction: column;
   gap: 1.625rem; // 26px
 
-  background-color: hsl(var(--card));
+  background-color: var(--custom-form-surface-color), hsl(var(--card));
 }

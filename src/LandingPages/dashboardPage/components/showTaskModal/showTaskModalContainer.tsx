@@ -1,12 +1,23 @@
 "use client";
 import { UserSettings } from "@/app/actions/user/types";
 import { SuspenseFallback } from "@/components/ui/suspenseFallback/suspenseFallback";
-import { TaskViewer } from "@/components/ui/taskviewer/taskviewer/taskviewer";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { DashboardOnlyTypeDTO } from "@/LandingPages/dashboardPage/components/dashboard/dashboardSwitch/switchUtils";
 import styles from "./css/showTaskModal.module.scss";
+import dynamic from "next/dynamic";
+
+const TaskViewer = dynamic(
+  () =>
+    import("@/components/ui/taskviewer/taskviewer/taskviewer").then(
+      (m) => m.TaskViewer,
+    ),
+  {
+    loading: () => <SuspenseFallback fixed={false} />,
+    ssr: false,
+  },
+);
 
 export const ShowTaskModalContainer = ({
   userSettings,
@@ -23,20 +34,19 @@ export const ShowTaskModalContainer = ({
   const [fetchingTask, setFetchingTask] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    if (selectedTaskId) {
-      setShowTaskModal(true);
-      setFetchingTask(true);
-    }
+    if (!selectedTaskId) return;
+    setShowTaskModal(true);
+    setFetchingTask(true);
   }, [selectedTaskId]);
 
-  const handleTaskLoaded = () => {
+  const handleTaskLoaded = useCallback(() => {
     setFetchingTask(false);
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setShowTaskModal(false);
     router.replace(pathName.split("?")[0], { scroll: false });
-  };
+  }, [pathName, router]);
   return (
     <>
       {showTaskModal && selectedTaskId && userSettings && (

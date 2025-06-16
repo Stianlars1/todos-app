@@ -29,7 +29,7 @@ export const TaskCard = ({
   const text = useTranslations("taskCard");
   return (
     <li
-      suppressHydrationWarning={true}
+      suppressHydrationWarning
       className={`reveal-card ${className} ${onClick ? "clickable" : ""}`}
       style={style}
       id={index === 0 ? "one" : index === 1 ? "two" : "three"}

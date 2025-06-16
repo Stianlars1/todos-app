@@ -1,6 +1,6 @@
 import "../globals.css";
 import { geistSans } from "@/fonts";
-import { cx } from "@/utils/utils";
+import { cx } from "@/utils/cx";
 
 export default async function RootLayout({
   children,
