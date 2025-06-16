@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="better column and tasks drag and drop on mobile devices">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/showTaskModal/showTaskModalContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LandingPages/dashboardPage/components/showTaskModal/showTaskModalContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/todos/fetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/todos/fetch.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/components/customForm/css/customForm.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/components/customForm/css/customForm.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/components/customInput/css/customInput.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/components/customInput/css/customInput.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/components/customTextArea/css/customTextArea.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/components/customTextArea/css/customTextArea.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/css/formContentWrapper.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/css/formContentWrapper.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/grid/gridContainer/gridComponents/gridSidebar/components/sidebarContentList/css/sidebarContentList.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/grid/gridContainer/gridComponents/gridSidebar/components/sidebarContentList/css/sidebarContentList.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/cards/taskCard/taskCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/cards/taskCard/taskCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/css/taskviewer.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/css/taskviewer.module.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/css/taskviewer.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/css/taskviewer.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/taskviewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/taskviewer/taskviewer/taskviewer.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="better column and tasks drag and drop on mobile devices" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -171,6 +155,7 @@
       <workItem from="1749732567689" duration="3920000" />
       <workItem from="1749771110489" duration="1082000" />
       <workItem from="1749991747783" duration="9000" />
+      <workItem from="1750067452676" duration="337000" />
     </task>
     <task id="LOCAL−00001" summary="Fixed drag and drag of columns for same index no changes on drag">
       <option name="closed" value="true" />
