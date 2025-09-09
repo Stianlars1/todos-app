@@ -9,7 +9,7 @@ import { UserSettings } from "@/app/actions/user/types";
 import {
   CustomInput,
   CustomInputLabel,
-  CustomInputLabelWrapper,
+  CustomInputLabelWrapper
 } from "@/components/form/components/customInput/customInput";
 import { CustomTextArea } from "@/components/form/components/customTextArea/customTextArea";
 import { FormContentWrapper } from "@/components/form/formContentWrapper";
@@ -25,15 +25,7 @@ import { arraysEqual, formatDate, normalizeDate } from "@/utils/utils";
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import {
-  CSSProperties,
-  memo,
-  Suspense,
-  useActionState,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { CSSProperties, memo, Suspense, useActionState, useCallback, useEffect, useState } from "react";
 import { UpdateTaskButton } from "./components/updateTaskButton";
 import styles from "./css/taskviewer.module.scss";
 
@@ -213,81 +205,62 @@ const TaskViewerComponent = ({
         HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
       >,
     ) => {
-      if (e.target.name === "tags") {
-        const newTags = e.target.value
+      const { name, value } = e.target;
+
+      // Build next draft state without touching the DOM
+      let next: UpdatedTodoDTO;
+
+      if (name === "tags") {
+        const newTags = value
           .split(",")
-          .map((tag) => tag.trim())
-          .filter((tag) => tag !== "");
-        const newState = {
-          ...state,
-          tags: newTags,
-        };
-
-        setState(newState);
-        setRawTagsInput(e.target.value);
-        const titleChanged = newState.title !== taskDTO?.title;
-        const descriptionChanged =
-          newState.description !== taskDTO?.description;
-        const statusChanged =
-          newState.statusId?.toString() !== taskDTO?.status.statusId.toString();
-        const priorityChanged =
-          newState.priority?.toString().toLocaleUpperCase() !==
-          taskDTO?.priority?.toString().toLocaleUpperCase();
-        const dueDateChanged = newState.dueDate !== taskDTO?.dueDate;
-        const tagsChanged = !arraysEqual(
-          newState.tags as any[],
-          taskDTO?.tags as any[],
-        );
-
-        setHasUnsavedChanges(
-          titleChanged ||
-            descriptionChanged ||
-            statusChanged ||
-            priorityChanged ||
-            dueDateChanged ||
-            tagsChanged,
-        );
+          .map((t) => t.trim())
+          .filter(Boolean);
+        next = { ...state, tags: newTags };
+        setState(next);
+        setRawTagsInput(value);
+      } else if (name === "statusId") {
+        next = { ...state, statusId: Number(value) as StatusId };
+        setState(next);
+      } else if (name === "priority") {
+        next = { ...state, priority: (value as Priority) ?? undefined };
+        setState(next);
+      } else if (name === "dueDate") {
+        const valueDate = value ? normalizeDate(new Date(value)) : undefined;
+        next = { ...state, dueDate: valueDate as Date | undefined };
+        setState(next);
       } else {
-        const isDueDate = e.target.name === "dueDate";
-
-        const dueDateInput = document.getElementById(
-          "dueDate",
-        ) as HTMLInputElement;
-        const valueDate = normalizeDate(new Date(dueDateInput.value || ""));
-        const taskDueDate = taskDTO?.dueDate
-          ? normalizeDate(new Date(taskDTO?.dueDate))
-          : undefined;
-
-        const newState = {
-          ...state,
-          [e.target.name]: isDueDate ? valueDate : e.target.value,
-        };
-
-        setState(newState);
-
-        const titleChanged = newState.title !== taskDTO?.title;
-        const descriptionChanged =
-          newState.description !== taskDTO?.description;
-        const statusChanged =
-          newState.statusId?.toString() !== taskDTO?.status.statusId.toString();
-        const priorityChanged =
-          newState.priority?.toString().toLocaleUpperCase() !==
-          taskDTO?.priority?.toString().toLocaleUpperCase();
-        const dueDateChanged = valueDate !== taskDueDate;
-        const tagsChanged = !arraysEqual(
-          newState.tags as any[],
-          taskDTO?.tags as any[],
-        );
-
-        setHasUnsavedChanges(
-          titleChanged ||
-            descriptionChanged ||
-            statusChanged ||
-            priorityChanged ||
-            dueDateChanged ||
-            tagsChanged,
-        );
+        // title, description, any other text inputs
+        next = { ...state, [name]: value };
+        setState(next);
       }
+
+      // Compute "dirty" vs original task without relying on the DOM
+      const titleChanged = next.title !== taskDTO?.title;
+      const descriptionChanged = next.description !== taskDTO?.description;
+      const statusChanged =
+        (next.statusId ?? "").toString() !==
+        taskDTO?.status.statusId.toString();
+      const priorityChanged =
+        (next.priority ?? "").toString().toLocaleUpperCase() !==
+        (taskDTO?.priority ?? "").toString().toLocaleUpperCase();
+      const dueDateChanged =
+        (next.dueDate ?? undefined) !==
+        (taskDTO?.dueDate
+          ? normalizeDate(new Date(taskDTO.dueDate))
+          : undefined);
+      const tagsChanged = !arraysEqual(
+        next.tags as any[],
+        (taskDTO?.tags ?? []) as any[],
+      );
+
+      setHasUnsavedChanges(
+        titleChanged ||
+          descriptionChanged ||
+          statusChanged ||
+          priorityChanged ||
+          dueDateChanged ||
+          tagsChanged,
+      );
     },
     [state, taskDTO],
   );

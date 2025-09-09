@@ -2,7 +2,7 @@
 import { Button } from "@stianlarsen/react-ui-kit";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
+import { ReactElement, ReactNode, useCallback, useEffect, useRef } from "react";
 import { MdClose } from "react-icons/md";
 import "./css/modal.css";
 
@@ -23,54 +23,62 @@ export const Modal = ({
   closeButton?: boolean;
   className?: string;
 }) => {
-  const [isModalOpen, setModalOpen] = useState(true);
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const locale = useLocale();
   const router = useRouter();
   const text = useTranslations("general");
-  const handleCloseModal = () => {
+
+  const closeModal = useCallback(() => {
     if (hasUnsavedChanges) {
       const userConfirmed = window.confirm(
         text("tasks.CREATION.messages.UNSAVED_CHANGES"),
       );
-      if (!userConfirmed) {
-        return;
-      }
+      if (!userConfirmed) return;
     }
 
     if (replaceUrl) {
-      const replaceUrl = url ? `/${locale}/${url}` : `/${locale}`;
-      router.replace(replaceUrl, undefined);
+      const nextUrl = url ? `/${locale}/${url}` : `/${locale}`;
+      router.replace(nextUrl, undefined);
     }
 
-    if (onClose) onClose();
-    setModalOpen(false);
-  };
+    onClose?.();
+
+    // Close the native dialog if still mounted/open
+    const el = modalRef.current;
+    if (el?.open) el.close();
+
+    document.body.removeAttribute("taskviewer-modal-open");
+  }, [hasUnsavedChanges, replaceUrl, url, locale, router, onClose, text]);
+
+  // Open the dialog ONCE on mount, do not re-focus on re-renders
+  useEffect(() => {
+    const el = modalRef.current;
+    if (!el) return;
+
+    // Mark body so global shortcuts respect the modal
+    document.body.setAttribute("taskviewer-modal-open", "true");
+
+    // Only open if not already open
+    if (!el.open) {
+      // Keep dialog out of the tab order; don't steal focus
+      el.setAttribute("tabindex", "-1");
+      el.showModal();
+    }
+
+    return () => {
+      document.body.removeAttribute("taskviewer-modal-open");
+      if (el.open) el.close();
+    };
+  }, []);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {
     if (event.key === "Escape") {
       event.preventDefault();
       event.stopPropagation();
-      handleCloseModal();
+      closeModal();
     }
   };
 
-  useEffect(() => {
-    const modalElement = modalRef.current;
-    if (!modalElement) return;
-
-    if (modalElement) {
-      if (isModalOpen) {
-        modalElement.setAttribute("tabindex", "0");
-        modalElement.focus();
-        modalElement.showModal();
-      } else {
-        modalElement.close();
-      }
-    }
-
-    return () => {};
-  }, [isModalOpen, modalRef.current]);
   return (
     <dialog
       className={`modal ${className}`}
@@ -78,22 +86,19 @@ export const Modal = ({
       ref={modalRef}
       onKeyDown={handleKeyDown}
       role="dialog"
+      aria-modal="true"
     >
       {closeButton && (
         <Button
           className="modal__closeButton"
           variant="icon"
-          onClick={handleCloseModal}
+          onClick={closeModal}
           tabIndex={0}
         >
           <MdClose />
         </Button>
       )}
-      <div
-        className="modal__backdrop-clickable"
-        onClick={handleCloseModal} // Close the modal if this backdrop is clicked
-      />
-
+      <div className="modal__backdrop-clickable" onClick={closeModal} />
       {children}
     </dialog>
   );
