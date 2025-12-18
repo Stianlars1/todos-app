@@ -8,7 +8,7 @@
     "start": "next start -p 3001",
     "lint": "next lint",
     "lint2": "eslint src/ --ext .js,.jsx,.ts,.tsx",
-    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,less,md}\""
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,less,md,scss}\""
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -31,8 +31,6 @@
     "react-dom": "^19.2.3",
     "react-icons": "^5.5.0",
     "react-quill-new": "^3.4.6",
-    "sass": "^1.89.1",
-    "sharp": "^0.34.2",
     "zod": "^3.25.56"
   },
   "devDependencies": {
@@ -41,13 +39,15 @@
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20.19.0",
     "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
     "@types/react-avatar-editor": "^13.0.4",
+    "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.33.1",
     "@typescript-eslint/parser": "^8.33.1",
     "eslint": "^9.28.0",
     "eslint-config-next": "15.3.3",
     "prettier": "^3.5.3",
+    "sass": "^1.97.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.8.3"
   }
 }

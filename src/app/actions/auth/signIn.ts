@@ -1,13 +1,13 @@
 "use server";
 
-import { LoginFormSchema } from "@/app/lib/auth/definitions";
-import { API_AUTH_SIGN_IN_URL, ROUTE_ROOT } from "@/utils/urls";
-import { redirect } from "next/navigation";
-import { createSession } from "@/lib/session";
-import { AuthResponse } from "@/types/auth";
+import {LoginFormSchema} from "@/app/lib/auth/definitions";
+import {API_AUTH_SIGN_IN_URL, ROUTE_ROOT} from "@/utils/urls";
+import {redirect} from "next/navigation";
+import {createSession} from "@/lib/session";
+import {AuthResponse} from "@/types/auth";
 
-import { APPLICATION_JSON_V1, HTTP_REQUEST } from "@/utils/fetch/fetch";
-import { AuthActionResponse } from "@/types/signIn";
+import {APPLICATION_JSON_V1, HTTP_REQUEST} from "@/utils/fetch/fetch";
+import {AuthActionResponse} from "@/types/signIn";
 
 export async function signIn(
   _prevState: AuthActionResponse | null,

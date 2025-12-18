@@ -1,13 +1,10 @@
-import "server-only";
+"use server";
 
-import { cookies } from "next/headers";
-import { cache } from "react";
-import { isTokenExpired } from "@/middlewareUtils";
-import {
-  COOKIE_ACCESS_TOKEN,
-  COOKIE_USER_TOKEN,
-} from "@/utils/cookiesConstants";
-import { AuthUser } from "@/types/auth";
+import {cookies} from "next/headers";
+import {cache} from "react";
+import {isTokenExpired} from "@/middlewareUtils";
+import {COOKIE_ACCESS_TOKEN, COOKIE_USER_TOKEN,} from "@/utils/cookiesConstants";
+import {AuthUser} from "@/types/auth";
 
 export const verifySession = cache(async () => {
   const cookieStore = await cookies();
