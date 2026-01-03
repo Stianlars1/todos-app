@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="better column and tasks drag and drop on mobile devices">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/auth/signIn.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/auth/signIn.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/urls.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +72,7 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/Users/stian.larsen/privat/nettsider/Taskbuddy/todos-app/node_modules/prettier",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/stian.larsen/privat/privat/nettsider/Taskbuddy/todos-app/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/PlugIns/javascript-plugin/jsLanguageServicesImpl/external",
     "typescript.add.unambiguous.imports.on.the.fly": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -112,7 +111,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-WS-253.28294.332" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.29346.143" />
       </set>
     </attachedChunks>
   </component>
@@ -175,6 +174,7 @@
       <workItem from="1765971733653" duration="745000" />
       <workItem from="1766018158335" duration="508000" />
       <workItem from="1766018827721" duration="1071000" />
+      <workItem from="1767466458244" duration="1726000" />
     </task>
     <task id="LOCAL−00001" summary="Fixed drag and drag of columns for same index no changes on drag">
       <option name="closed" value="true" />
