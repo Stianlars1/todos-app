@@ -1,5 +1,5 @@
-import { useLocale } from "next-intl";
-import { getLocale } from "next-intl/server";
+import {useLocale} from "next-intl";
+import {getLocale} from "next-intl/server";
 
 // Auth
 export const API_AUTH_URL = "https://app.taskbuddy.dev/api/auth";
@@ -47,6 +47,7 @@ export const API_TODOS_CREATE_URL = API_TODOS_URL; // POST
 export const API_TASKS_URL = API_TODOS_URL; // GET
 
 export const API_TODOS_CATEGORIZED_URL =
+
   "https://app.taskbuddy.dev/api/todos/categorized"; // GET
 export const API_TODOS_CATEGORIZED_BY_DASHBOARDNAME_URL =
   "https://app.taskbuddy.dev/api/todos/categorized-by-dashboard-name"; // GET

@@ -70,7 +70,9 @@ async function attemptAuthentication(credentials: {
       credentials: "include",
     });
 
+    console.log("Authentication response status:", response);
     const data: AuthResponse = await response.json();
+    console.log("Authentication response data:", data);
 
     // Handle authentication failure
     if (!response.ok) {
