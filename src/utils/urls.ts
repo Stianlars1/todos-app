@@ -92,7 +92,7 @@ export const API_DASHBOARD_UPDATE_ID_URL =
 // Frontend URLS
 export const ROUTE_ROOT = "/";
 export const ROUTE_SIGN_IN = "/sign-in";
-export const ROUTE_LOG_OUT = "/lgout";
+export const ROUTE_LOG_OUT = "/logout";
 export const ROUTE_SIGN_UP = "/sign-up";
 export const ROUTE_FORGOT_PASSWORD = "/forgot-password";
 export const ROUTE_RESET_PASSWORD = "/reset-password";

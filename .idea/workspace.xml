@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="better column and tasks drag and drop on mobile devices">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/urls.ts" afterDir="false" />
-    </list>
+    <list default="true" id="6316eb38-7b9e-4411-bab3-b7c249f0fc8f" name="Changes" comment="better column and tasks drag and drop on mobile devices" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,6 +72,11 @@
     "ts.external.directory.path": "/Applications/WebStorm.app/Contents/PlugIns/javascript-plugin/jsLanguageServicesImpl/external",
     "typescript.add.unambiguous.imports.on.the.fly": "true",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -174,7 +176,7 @@
       <workItem from="1765971733653" duration="745000" />
       <workItem from="1766018158335" duration="508000" />
       <workItem from="1766018827721" duration="1071000" />
-      <workItem from="1767466458244" duration="1726000" />
+      <workItem from="1767466458244" duration="3168000" />
     </task>
     <task id="LOCAL−00001" summary="Fixed drag and drag of columns for same index no changes on drag">
       <option name="closed" value="true" />

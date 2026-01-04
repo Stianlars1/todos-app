@@ -1,5 +1,5 @@
-"use server";
-import { cookies } from "next/headers";
+"server only"
+import {cookies} from "next/headers";
 
 import {
   COOKIE_ACCESS_TOKEN,
@@ -10,7 +10,7 @@ import {
   REFRESH_TOKEN_COOKIE_MAX_AGE,
   USER_TOKEN_COOKIE_MAX_AGE,
 } from "@/utils/cookiesConstants";
-import { AuthUser, AuthUserDTO } from "@/types/auth";
+import {AuthUser, AuthUserDTO} from "@/types/auth";
 
 type AuthSession = {
   accessToken: string | null;
