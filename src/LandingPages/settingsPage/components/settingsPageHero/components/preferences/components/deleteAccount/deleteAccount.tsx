@@ -7,7 +7,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { DeleteAccountModal } from "./components/deleteAccountModal";
 import styles from "./css/deleteAccount.module.css";
-import { deleteSessionBoolean } from "@/lib/session";
+import { deleteSessionBoolean } from "@/app/actions/auth/deleteSession";
 
 export const DeleteAccount = () => {
   const [okToDelete, setOkToDelete] = useState(false);
