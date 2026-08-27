@@ -63,7 +63,7 @@ export const homePageMetadata: Metadata = {
     title: "TaskBuddy - Effortless Task Management",
     description:
       "Boost productivity with customizable dashboards, drag & drop tasks, and real-time updates. Try TaskBuddy free!",
-    creator: "@Litehode",
+    creator: "@stianlarsen_",
     images: [`${SUB_URL}/twitter-card.png`],
   },
   robots: {

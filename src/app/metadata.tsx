@@ -50,7 +50,7 @@ export const mainPageMeta: Metadata = {
     description:
       "This is the website for creating and structuring your daily tasks.",
     siteId: "882276408",
-    creator: "@Litehode",
+    creator: "@stianlarsen_",
     creatorId: "882276408",
     images: {
       url: "https://stianlarsen.com/og.png",

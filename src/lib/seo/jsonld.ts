@@ -20,7 +20,7 @@ export const organizationSchema = {
     contactType: "customer service",
     email: "stian.larsen@mac.com",
   },
-  sameAs: ["https://twitter.com/Litehode"],
+  sameAs: ["https://twitter.com/stianlarsen_"],
 };
 
 export const webApplicationSchema = {
