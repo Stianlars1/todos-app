@@ -1,6 +1,7 @@
 import "../globals.css";
 import { geistSans } from "@/fonts";
 import { cx } from "@/utils/cx";
+import { AppAnalytics } from "@/components/analytics/appAnalytics";
 
 export default async function RootLayout({
   children,
@@ -9,7 +10,10 @@ export default async function RootLayout({
 }) {
   return (
     <html lang={"en"}>
-      <body className={cx(geistSans.className, "password")}>{children}</body>
+      <body className={cx(geistSans.className, "password")}>
+        {children}
+        <AppAnalytics />
+      </body>
     </html>
   );
 }
